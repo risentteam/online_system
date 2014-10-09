@@ -1,0 +1,12 @@
+// Place all the styles related to the Requistions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+span.error
+{
+  float: right;
+}
+
+input.error, textarea.error
+{
+  border: 2px solid red;
+}
