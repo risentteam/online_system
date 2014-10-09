@@ -45,6 +45,6 @@ class RequistionsController < ApplicationController
   		params.require(:requistion).permit(:object, :main_address, :arrival_address, :contact_name, :contact_phone, :type_requistion)
   end
   def manager_params
-    params.require(:requistion).permit(:company, :contract, :contract_period, :category)
+    params.require(:requistion).permit(:contract)
   end
 end
