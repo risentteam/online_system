@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141004052407) do
+ActiveRecord::Schema.define(version: 20141006183830) do
 
   create_table "pair_worker_requistions", force: true do |t|
     t.integer  "id_worker"
@@ -36,6 +36,16 @@ ActiveRecord::Schema.define(version: 20141004052407) do
     t.datetime "contract_period"
     t.integer  "category"
   end
+
+  create_table "users", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "password_digest"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
 
   create_table "workers", force: true do |t|
     t.string   "name"

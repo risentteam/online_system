@@ -1,25 +1,24 @@
 <% provide(:title, 'All users') %>
-<h1>All users</h1>
-  <table class="pretty">
-    <tr>
-      <th><%="Объект" %></th>
-      <th><%="Главный адрес" %></th>
-      <th><%="Время"%></th>
-    </tr>
-    <% for requistion in @requistions %>
-        <tr>
-          <td><%= requistion.object %></td>
-          <td><%= requistion.main_address %></td>
-          <td><%= requistion.updated_at.strftime("%e %B %Y %H:%M") %></td>
-          <td><%= if requistion.status =='' then 'test' end  %></td>
-        </tr>
-    <% end %>
-  </table>
 
+<h1>All users</h1>
+<table class="pretty">
+	<tr>
+		<th><%="Объект" %></th>
+		<th><%="Главный адрес" %></th>
+		<th><%="Время"%></th>
+	</tr>
+	<% for requistion in @requistions %>
+	<tr>
+		<td><%= requistion.object %></td>
+		<td><%= requistion.main_address %></td>
+		<td><%= requistion.updated_at.strftime("%e %B %Y %H:%M") %></td>
+		<td><%= if requistion.status =='' then 'test' end  %></td>
+	</tr>
+	<% end %>
+</table>
 
 <ul class="users">
-  <% for requistion in @requistions %>
-      <li>
-      </li>
-  <% end %>
+	<% for requistion in @requistions %>
+	<li></li>
+	<% end %>
 </ul>
