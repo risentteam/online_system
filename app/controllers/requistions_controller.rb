@@ -7,7 +7,7 @@ class RequistionsController < ApplicationController
   	@requistion = Requistion.new(user_params)
   	if @requistion.save
       flash[:success] = "Profile created"
-      UserMailer.welcome_email(@requistion).deliver
+      #UserMailer.welcome_email(@requistion).deliver
       redirect_to @requistion
     else
       render 'new'
