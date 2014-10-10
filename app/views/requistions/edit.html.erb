@@ -50,7 +50,7 @@
 				<div class="form-group">
 					<%= f.label :'Компания:', class: "col-md-4 control-label" %>
 					<div class="col-md-8">
-						<%= select_tag :company, options_from_collection_for_select(@list_contract, 'contract_id', 'company'), { :prompt => "Выбирите из списка"}, {:class => "form-control"} %>
+						<%= select_tag :company, options_from_collection_for_select(@list_contract, 'contract_id', 'company'), :prompt => "Выбирите из списка", :class => "form-control" %>
 					</div>
 				</div>
 
@@ -71,7 +71,7 @@
 				<div class="form-group">
 					<%= f.label :'Категория заявки:', class: "col-md-4 control-label" %>
 					<div class="col-md-8">
-						<%= f.select :category, [['Немедленно', 1], ['Очень срочно', 2], ['Срочно', 3]], class: "form-control" %>
+						<%= f.select :category, [['Немедленно', 1], ['Очень срочно', 2], ['Срочно', 3]], :prompt => "Выбирите из списка", class: "form-control" %>
 					</div>
 				</div>
 
