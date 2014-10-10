@@ -1,4 +1,4 @@
-class RenameColumnAddress < ActiveRecord::Migration
+class CreateWorker < ActiveRecord::Migration
   def change
     create_table "workers", force: true do |t|
       t.string   "name"

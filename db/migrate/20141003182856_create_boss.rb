@@ -1,4 +1,4 @@
-class ChangeType < ActiveRecord::Migration
+class CreateBoss < ActiveRecord::Migration
   def change
     create_table "boss", force: true do |t|
       t.string "name"

@@ -1,4 +1,4 @@
-class AddColumnType < ActiveRecord::Migration
+class CreateConract < ActiveRecord::Migration
   def change
     create_table "contracts", force: true do |t|
       t.integer  "contract_id"

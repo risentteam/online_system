@@ -1,4 +1,4 @@
-class ChangeTypeType < ActiveRecord::Migration
+class CreatePairWorkerRequistion < ActiveRecord::Migration
   def change
     create_table "pair_worker_requistions", force: true do |t|
       t.integer  "id_worker",     null: false
