@@ -29,6 +29,7 @@ $(document).ready(function(){
 
 $(document).ready(function() {
     $("#company").change(function () {
+        alert("1");
         $.ajax({url: "/static_pages/ajaxPages",
             type: 'post',
             dataType: 'json',
@@ -37,7 +38,7 @@ $(document).ready(function() {
                 xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
             },
             success: function (data, status) {
-//                alert("Data: " + data + "\nStatus: " + status);
+                alert("Data: " + data + "\nStatus: " + status);
                 $('#contract').val(data.id);
                 $('#period_contract').val(data.time);
             }
