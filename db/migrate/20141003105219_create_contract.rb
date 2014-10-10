@@ -1,4 +1,4 @@
-class CreateConract < ActiveRecord::Migration
+class CreateContract < ActiveRecord::Migration
   def change
     create_table "contracts", force: true do |t|
       t.integer  "contract_id"
