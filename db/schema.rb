@@ -13,54 +13,35 @@
 
 ActiveRecord::Schema.define(version: 20141004052407) do
 
-  create_table "boss", force: true do |t|
-    t.string "name"
-  end
-
-  create_table "contracts", primary_key: "contract_id", force: true do |t|
-    t.string   "company"
-    t.datetime "period_contract"
-    t.integer  "user_id"
-  end
-
   create_table "pair_worker_requistions", force: true do |t|
-    t.integer  "id_worker",     null: false
-    t.integer  "id_requistion", null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "id_worker"
+    t.integer  "id_requistion"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "requistions", force: true do |t|
-    t.string   "object",                      null: false
+    t.string   "object"
     t.string   "status"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.string   "main_address",                null: false
-    t.string   "arrival_address",             null: false
-    t.string   "contact_name",                null: false
-    t.string   "contact_phone",               null: false
-    t.string   "type_requistion", limit: nil, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "main_address"
+    t.string   "arrival_address"
+    t.string   "contact_name"
+    t.string   "contact_phone"
+    t.string   "type_requistion"
     t.string   "info"
-    t.integer  "contract"
+    t.string   "company"
+    t.string   "contract"
+    t.datetime "contract_period"
     t.integer  "category"
   end
 
-  create_table "users", force: true do |t|
-    t.string  "name"
-    t.integer "privileges",    null: false
-    t.string  "login",         null: false
-    t.string  "hash_password"
-  end
-
-  add_index "users", ["login"], name: "sqlite_autoindex_users_1", unique: true
-
   create_table "workers", force: true do |t|
     t.string   "name"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.integer  "boss_id"
-    t.string   "type_worker", limit: nil
-    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "requistion_id"
   end
 
 end
