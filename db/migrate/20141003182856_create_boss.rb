@@ -1,6 +1,6 @@
 class CreateBoss < ActiveRecord::Migration
   def change
-    create_table "boss", force: true do |t|
+    create_table "bosses", force: true do |t|
       t.string "name"
     end
   end
