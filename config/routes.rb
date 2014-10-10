@@ -6,7 +6,6 @@ App::Application.routes.draw do
 
 	resources :users
 	
-	
 	match '/signup',  to: 'users#new',            via: 'get'
 	match '/home',    to: 'static_pages#home',    via: 'get'
 	match '/help',    to: 'static_pages#help',    via: 'get'
@@ -17,6 +16,8 @@ App::Application.routes.draw do
 	resources :requistions
 	match '/new', to: 'requistions#new', via: 'get'
 	match '/new1', to: 'requistions#index', via: 'get'
+
+  resources :contracts
 
 	# The priority is based upon order of creation: first created -> highest priority.
 	# See how all your routes lay out with "rake routes".
