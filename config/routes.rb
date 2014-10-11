@@ -5,6 +5,7 @@ App::Application.routes.draw do
 	match '/ajax', to: 'static_pages#ajaxPages', via: 'post'
 
 	resources :users
+	resources :sessions, only: [:new, :create, :destroy]
 	
 	match '/signup',  to: 'users#new',            via: 'get'
 	match '/home',    to: 'static_pages#home',    via: 'get'

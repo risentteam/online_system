@@ -11,38 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141010221053) do
-
-  create_table "bosses", force: true do |t|
-    t.string "name"
-  end
-
-  create_table "contracts", force: true do |t|
-    t.integer  "contract_id"
-    t.string   "company"
-    t.datetime "period_contract"
-    t.integer  "user_id"
-  end
+ActiveRecord::Schema.define(version: 20141006183830) do
 
   create_table "pair_worker_requistions", force: true do |t|
-    t.integer  "id_worker",     null: false
-    t.integer  "id_requistion", null: false
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "id_worker"
+    t.integer  "id_requistion"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "requistions", force: true do |t|
-    t.string   "object",          null: false
+    t.string   "object"
     t.string   "status"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.string   "main_address",    null: false
-    t.string   "arrival_address", null: false
-    t.string   "contact_name",    null: false
-    t.string   "contact_phone",   null: false
-    t.string   "type_requistion", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "main_address"
+    t.string   "arrival_address"
+    t.string   "contact_name"
+    t.string   "contact_phone"
+    t.string   "type_requistion"
     t.string   "info"
-    t.integer  "contract"
+    t.string   "company"
+    t.string   "contract"
+    t.datetime "contract_period"
     t.integer  "category"
   end
 
@@ -58,11 +49,9 @@ ActiveRecord::Schema.define(version: 20141010221053) do
 
   create_table "workers", force: true do |t|
     t.string   "name"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "boss_id"
-    t.string   "type_worker"
-    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "requistion_id"
   end
 
 end
