@@ -31,7 +31,7 @@ class RequistionsController < ApplicationController
   def update
     @requistion = Requistion.find(params[:id])
     if !params[:contract].blank? and !params[:requistion][:category].blank? and @requistion.update_attributes(:contract => params[:contract], :category => params[:requistion][:category], :status => "Бригада отправлена")
-          @pair = @requistion.pairs.build(:id_worker => params[:worker])
+          @pair = @requistion.pairs.create(:user_id => params[:worker])
           if @pair.save
             flash[:success] = "Profile updated"
             redirect_to @requistion
