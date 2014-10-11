@@ -1,4 +1,6 @@
+#encoding: utf-8
 class RequistionsController < ApplicationController
+  helper_method :sort_column, :sort_direction
   def show
     @requistion = Requistion.find(params[:id])
   end
@@ -6,6 +8,7 @@ class RequistionsController < ApplicationController
   def create
   	@requistion = Requistion.new(user_params)
   	if @requistion.save
+      @requistion.update_attributes(:status => 'Заявка принята')
       flash[:success] = "Profile created"
       #UserMailer.welcome_email(@requistion).deliver
       redirect_to @requistion
@@ -15,23 +18,31 @@ class RequistionsController < ApplicationController
   end
 
   def index
-    @requistions = Requistion.all
+    @requistions = Requistion.order(sort_column + " " + sort_direction)
   end
 
   def edit
     @requistion = Requistion.find(params[:id])
     @list_worker = Worker.all
     @list_contract = Contract.all
+    @list_boss = Boss.all
 
   end
 
   def update
     @requistion = Requistion.find(params[:id])
-    if @requistion.update_attributes(manager_params)
-      flash[:success] = "Profile updated"
-      redirect_to @requistion
+    if !params[:contract].blank? and !params[:requistion][:category].blank? and @requistion.update_attributes(:contract => params[:contract], :category => params[:requistion][:category], :status => "Бригада отправлена")
+          @pair = PairWorkerRequistion.new(:id_worker => params[:worker], :id_requistion => params[:id])
+          if @pair.save
+            flash[:success] = "Profile updated"
+            redirect_to @requistion
+          else
+            @requistion.update_attributes(:contract => '', :category => '', :status => "Заявка принята")
+            render 'new'
+          end
     else
-      render 'edit'
+#вот здесь падает
+      render 'new'
     end
   end
 
@@ -47,4 +58,11 @@ class RequistionsController < ApplicationController
   def manager_params
     params.require(:requistion).permit(:contract)
   end
+  def sort_column
+    Requistion.column_names.include?(params[:sort]) ? params[:sort] : "status"
+  end
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
+
 end
