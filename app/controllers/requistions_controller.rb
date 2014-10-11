@@ -23,16 +23,15 @@ class RequistionsController < ApplicationController
 
   def edit
     @requistion = Requistion.find(params[:id])
-    @list_worker = Worker.all
+    @list_worker = User.all
     @list_contract = Contract.all
     @list_boss = Boss.all
-
   end
 
   def update
     @requistion = Requistion.find(params[:id])
     if !params[:contract].blank? and !params[:requistion][:category].blank? and @requistion.update_attributes(:contract => params[:contract], :category => params[:requistion][:category], :status => "Бригада отправлена")
-          @pair = PairWorkerRequistion.new(:id_worker => params[:worker], :id_requistion => params[:id])
+          @pair = @requistion.pairs.build(:id_worker => params[:worker])
           if @pair.save
             flash[:success] = "Profile updated"
             redirect_to @requistion
