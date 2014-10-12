@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141010221053) do
+ActiveRecord::Schema.define(version: 20141011104000) do
 
   create_table "bosses", force: true do |t|
     t.string "name"
+  end
+
+  create_table "buildings", force: true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "linkQR"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "contracts", force: true do |t|
