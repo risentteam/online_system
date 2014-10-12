@@ -3,19 +3,23 @@
 <h1>All users</h1>
 <table class="pretty">
 	<tr>
-		<th><%="Объект" %></th>
-		<th><%="Главный адрес" %></th>
-		<th><%="Время"%></th>
-	</tr>
+		<th><%= sortable 'object', "Объект" %></th>
+		<th><%= sortable 'main_address', "Главный адрес" %></th>
+		<th><%= sortable 'created_at', "Время заявки"  %></th>
+	    <th><%= sortable 'status', "Статус"  %></th>>
+        <th><%="Ссылка"%></th>>
+    </tr>
 	<% for requistion in @requistions %>
 	<tr>
 		<td><%= requistion.object %></td>
 		<td><%= requistion.main_address %></td>
-		<td><%= requistion.updated_at.strftime("%e %B %Y %H:%M") %></td>
-		<td><%= if requistion.status =='' then 'test' end  %></td>
-	</tr>
+		<td><%= requistion.created_at.strftime("%e %B %Y %H:%M") %></td>
+		<td><%= if requistion.status.blank? then 'Данных нет' else requistion.status end%></td>
+	    <th><%= link_to "Подробнее", requistion, action: :edit, method: :get %></th>
+    </tr>
 	<% end %>
 </table>
+
 
 <ul class="users">
 	<% for requistion in @requistions %>

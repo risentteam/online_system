@@ -11,12 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20141011104000) do
+=======
+ActiveRecord::Schema.define(version: 20141011181415) do
+>>>>>>> master
 
   create_table "bosses", force: true do |t|
     t.string "name"
   end
 
+<<<<<<< HEAD
   create_table "buildings", force: true do |t|
     t.string   "name"
     t.string   "address"
@@ -27,28 +32,31 @@ ActiveRecord::Schema.define(version: 20141011104000) do
 
   create_table "contracts", force: true do |t|
     t.integer  "contract_id"
+=======
+  create_table "contracts", primary_key: "contract_id", force: true do |t|
+>>>>>>> master
     t.string   "company"
     t.datetime "period_contract"
     t.integer  "user_id"
   end
 
-  create_table "pair_worker_requistions", force: true do |t|
-    t.integer  "id_worker",     null: false
-    t.integer  "id_requistion", null: false
+  create_table "pairs", force: true do |t|
+    t.integer  "user_id",       null: false
+    t.integer  "requistion_id", null: false
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
   create_table "requistions", force: true do |t|
-    t.string   "object",          null: false
+    t.string   "object",                      null: false
     t.string   "status"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.string   "main_address",    null: false
-    t.string   "arrival_address", null: false
-    t.string   "contact_name",    null: false
-    t.string   "contact_phone",   null: false
-    t.string   "type_requistion", null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "main_address",                null: false
+    t.string   "arrival_address",             null: false
+    t.string   "contact_name",                null: false
+    t.string   "contact_phone",               null: false
+    t.string   "type_requistion", limit: nil, null: false
     t.string   "info"
     t.integer  "contract"
     t.integer  "category"
@@ -60,16 +68,18 @@ ActiveRecord::Schema.define(version: 20141011104000) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_digest"
+    t.integer  "type"
+    t.integer  "boss_id",         default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
 
   create_table "workers", force: true do |t|
     t.string   "name"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.integer  "boss_id"
-    t.string   "type_worker"
+    t.string   "type_worker", limit: nil
     t.integer  "user_id"
   end
 
