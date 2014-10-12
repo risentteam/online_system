@@ -85,6 +85,7 @@
 	              	<div class="form-group">
 		                	<%= f.label :'Исполнитель:', class: "col-md-4 control-label" %>
 		                <div id="workerfield" class="col-md-7">
+
 		                  <%= select_tag :worker, options_from_collection_for_select(@list_worker, 'id', 'name'), :prompt => "Выберите из списка", :class => "form-control" %>
 		                </div>
 		                <div class="col-md-1">

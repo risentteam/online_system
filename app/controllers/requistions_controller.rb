@@ -58,16 +58,13 @@ class RequistionsController < ApplicationController
   def manager_params
     params.require(:requistion).permit(:contract)
   end
-<<<<<<< HEAD
 
-
-=======
   def sort_column
     Requistion.column_names.include?(params[:sort]) ? params[:sort] : "status"
   end
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
->>>>>>> master
+  
 
 end
