@@ -11,13 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(version: 20141011104000) do
+=======
 ActiveRecord::Schema.define(version: 20141011181415) do
+>>>>>>> master
 
   create_table "bosses", force: true do |t|
     t.string "name"
   end
 
+<<<<<<< HEAD
+  create_table "buildings", force: true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "linkQR"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contracts", force: true do |t|
+    t.integer  "contract_id"
+=======
   create_table "contracts", primary_key: "contract_id", force: true do |t|
+>>>>>>> master
     t.string   "company"
     t.datetime "period_contract"
     t.integer  "user_id"
