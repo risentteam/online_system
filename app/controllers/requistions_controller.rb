@@ -6,7 +6,7 @@ class RequistionsController < ApplicationController
   end
 
   def create
-  	@requistion = Requistion.new(user_params)
+  	@requistion = Requistion.new(requistions_params)
   	if @requistion.save
       @requistion.update_attributes(:status => 'Заявка принята')
       flash[:success] = "Profile created"
@@ -23,16 +23,15 @@ class RequistionsController < ApplicationController
 
   def edit
     @requistion = Requistion.find(params[:id])
-    @list_worker = Worker.all
+    @list_worker = User.all
     @list_contract = Contract.all
     @list_boss = Boss.all
-
   end
 
   def update
     @requistion = Requistion.find(params[:id])
     if !params[:contract].blank? and !params[:requistion][:category].blank? and @requistion.update_attributes(:contract => params[:contract], :category => params[:requistion][:category], :status => "Бригада отправлена")
-          @pair = PairWorkerRequistion.new(:id_worker => params[:worker], :id_requistion => params[:id])
+          @pair = @requistion.pairs.create(:user_id => params[:worker])
           if @pair.save
             flash[:success] = "Profile updated"
             redirect_to @requistion
@@ -52,17 +51,20 @@ class RequistionsController < ApplicationController
 
 
   private
-  def user_params
+  def requistions_params
   		params.require(:requistion).permit(:object, :main_address, :arrival_address, :contact_name, :contact_phone, :type_requistion)
   end
+
   def manager_params
     params.require(:requistion).permit(:contract)
   end
+
   def sort_column
     Requistion.column_names.include?(params[:sort]) ? params[:sort] : "status"
   end
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
+  
 
 end

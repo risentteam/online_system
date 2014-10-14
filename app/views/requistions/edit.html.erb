@@ -1,98 +1,113 @@
 <% provide(:title, 'Оформление заявки') %>
 <h1>Оформление заявки</h1>
 
-<div class="row">
 	<div class="span6 offset3">
 		<%= form_for @requistion, :html => {:class => "form-vertical center"} do |f| %>
 
-				<div class="form-group">
-					<label class="col-md-4 control-label">Объект</label>
-					<div class="col-md-8">
-						<label class="col-md-4 control-label"><%= @requistion.object %></label>
+				<div class="row top5">
+					<div class="form-group">
+						<label class="col-md-4 control-label">Объект</label>
+						<label class="col-md-8 control-label"><%= @requistion.object %></label>
 					</div>
 				</div>
 
-				<div class="form-group">
-					<label class="col-md-4 control-label">Главный адрес</label>
-					<div class="col-md-8">
-						<label class="col-md-4 control-label"><%= @requistion.main_address %></label>
+
+				<div class="row top5">
+					<div class="form-group">
+						<label class="col-md-4 control-label">Главный адрес</label>
+						<label class="col-md-8 control-label"><%= @requistion.main_address %></label>
 					</div>
 				</div>
 
-				<div class="form-group">
-					<label class="col-md-4 control-label">Адрес вызова</label>
-					<div class="col-md-8">
-						<label class="col-md-4 control-label"><%= @requistion.arrival_address %></label>
+				<div class="row top5">
+					<div class="form-group">
+						<label class="col-md-4 control-label">Адрес вызова</label>
+						<label class="col-md-8 control-label"><%= @requistion.arrival_address %></label>
 					</div>
 				</div>
 
-				<div class="form-group">
-					<label class="col-md-4 control-label">Контактное лицо</label>
-					<div class="col-md-8">
-						<label class="col-md-4 control-label"><%= @requistion.contact_name %></label>
+
+				<div class="row top5">
+					<div class="form-group">
+						<label class="col-md-4 control-label">Контактное лицо</label>
+						<label class="col-md-8 control-label"><%= @requistion.contact_name %></label>
 					</div>
 				</div>
 
-				<div class="form-group">
-					<label class="col-md-4 control-label">Время заявки</label>
-					<div class="col-md-8">
-						<label class="col-md-4 control-label"><%= @requistion.created_at.strftime("%e %B %Y %H:%M") %></label>
+				<div class="row top5">
+					<div class="form-group">
+						<label class="col-md-4 control-label">Время заявки</label>
+						<label class="col-md-8 control-label"><%= @requistion.created_at.strftime("%e %B %Y %H:%M") %></label>
 					</div>
 				</div>
 
-				<div class="form-group">
-					<label class="col-md-4 control-label">Контактный телефон</label>
-					<div class="col-md-8">
-						<label class="col-md-4 control-label"><%= @requistion.contact_phone %></label>
+				<div class="row top5">
+					<div class="form-group">
+						<label class="col-md-4 control-label">Контактный телефон</label>
+						<label class="col-md-8 control-label"><%= @requistion.contact_phone %></label>
 					</div>
 				</div>
 
-				<div class="form-group">
-					<%= f.label :'Компания:', class: "col-md-4 control-label" %>
-					<div class="col-md-8">
-						<%= select_tag :company, options_from_collection_for_select(@list_contract, 'contract_id', 'company'), :prompt => "Выбирите из списка", :class => "form-control" %>
+				<div class="row top5">
+					<div class="form-group">
+						<%= f.label :'Компания:', class: "col-md-4 control-label" %>
+						<div class="col-md-8">
+							<%= select_tag :company, options_from_collection_for_select(@list_contract, 'contract_id', 'company'), :prompt => "Выберите из списка", :class => "form-control" %>
+						</div>
 					</div>
 				</div>
-
+				<div class="row top5">
 				<div class="form-group">
 					<%= f.label :'№ договора:', class: "col-md-4 control-label" %>
 					<div class="col-md-8">
 						<%= text_field_tag :contract, nil, :placeholder => "Введите № договора", class: "form-control" %>
 					</div>
 				</div>
-
-				<div class="form-group">
-					<%= f.label :'Период договора:', class: "col-md-4 control-label" %>
-					<div class="col-md-8">
-						<%= text_field_tag :period_contract, nil, :placeholder => "Введите время окончания договора", class: "form-control" %>
+				</div>
+				<div class="row top5">
+					<div class="form-group">
+						<%= f.label :'Период договора:', class: "col-md-4 control-label" %>
+						<div class="col-md-8">
+							<%= text_field_tag :period_contract, nil, :placeholder => "Введите время окончания договора", class: "form-control" %>
+						</div>
 					</div>
 				</div>
+				<div class="row top5">
+					<div class="form-group">
+						<%= f.label :'Категория заявки:', class: "col-md-4 control-label" %>
+						<div class="col-md-8">
+							<%= f.select :category, [['Немедленно', 1], ['Очень срочно', 2], ['Срочно', 3]], {:prompt => "Выберите из списка"}, {:class =>  "form-control"} %>
 
-				<div class="form-group">
-					<%= f.label :'Категория заявки:', class: "col-md-4 control-label" %>
-					<div class="col-md-8">
-						<%= f.select :category, [['Немедленно', 1], ['Очень срочно', 2], ['Срочно', 3]], {:prompt => "Выбирите из списка"}, {:class =>  "form-control"} %>
-
-                    </div>
+	                    </div>
+					</div>
 				</div>
+			    <div class="row top5">
+	              	<div class="form-group">
+		                	<%= f.label :'Исполнитель:', class: "col-md-4 control-label" %>
+		                <div id="workerfield" class="col-md-7">
 
-              <div class="form-group">
-                <%= f.label :'Исполнитель:', class: "col-md-4 control-label" %>
-                <div class="col-md-8">
-                  <%= select_tag :worker, options_from_collection_for_select(@list_worker, 'id', 'name'), :prompt => "Выбирите из списка", :class => "form-control" %>
-                </div>
+		                  <%= select_tag :worker, options_from_collection_for_select(@list_worker, 'id', 'name'), :prompt => "Выберите из списка", :class => "form-control" %>
+		                </div>
+		                <div class="col-md-1">
+
+		                	<button id="addbtn" type="button" class="btn btn-default btn-s">
+		  						<span class="glyphicon glyphicon-plus"></span>
+							</button>
+						</div>
+					</div>
               </div>
 
-              <div class="form-group">
-                <%= f.label :'Начальник:', class: "col-md-4 control-label" %>
-                <div class="col-md-8">
-                  <%= select_tag :boss, options_from_collection_for_select(@list_boss, 'id', 'name'), :prompt => "Выбирите из списка", :class => "form-control" %>
-                </div>
-              </div>
+            	<div class="row top5">
+		            <div class="form-group">
+		            	<%= f.label :'Начальник:', class: "col-md-4 control-label" %>
+		                <div class="col-md-8">
+		                  <%= select_tag :boss, options_from_collection_for_select(@list_boss, 'id', 'name'), :prompt => "Выберите из списка", :class => "form-control" %>
+		                </div>
+		            </div>
+          		</div>
 
 
 				<%= f.submit "Выезд бригады", class: "btn btn-large btn-primary" %>
 
 		<% end %>
-	</div>
 </div>

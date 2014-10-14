@@ -11,29 +11,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141011161838) do
+ActiveRecord::Schema.define(version: 20141011181415) do
 
-  create_table "pair_worker_requistions", force: true do |t|
-    t.integer  "id_worker"
-    t.integer  "id_requistion"
+  create_table "boss", force: true do |t|
+    t.string "name"
+  end
+
+  create_table "buildings", force: true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "linkQR"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "requistions", force: true do |t|
-    t.string   "object"
-    t.string   "status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "main_address"
-    t.string   "arrival_address"
-    t.string   "contact_name"
-    t.string   "contact_phone"
-    t.string   "type_requistion"
-    t.string   "info"
+  create_table "contracts", force: true do |t|
+    t.integer  "contract_id"
     t.string   "company"
-    t.string   "contract"
-    t.datetime "contract_period"
+    t.datetime "period_contract"
+    t.integer  "user_id"
+  end
+
+  create_table "pairs", force: true do |t|
+    t.integer  "user_id",       null: false
+    t.integer  "requistion_id", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  create_table "requistions", force: true do |t|
+    t.string   "object",          null: false
+    t.string   "status"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "main_address",    null: false
+    t.string   "arrival_address", null: false
+    t.string   "contact_name",    null: false
+    t.string   "contact_phone",   null: false
+    t.string   "type_requistion", null: false
+    t.string   "info"
+    t.integer  "contract"
     t.integer  "category"
   end
 
@@ -43,6 +60,8 @@ ActiveRecord::Schema.define(version: 20141011161838) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_digest"
+    t.integer  "type"
+    t.integer  "boss_id",         default: 0
     t.string   "remember_token"
   end
 
@@ -51,9 +70,11 @@ ActiveRecord::Schema.define(version: 20141011161838) do
 
   create_table "workers", force: true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "requistion_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "boss_id"
+    t.string   "type_worker"
+    t.integer  "user_id"
   end
 
 end

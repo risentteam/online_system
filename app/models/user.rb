@@ -22,4 +22,8 @@ class User < ActiveRecord::Base
     def create_remember_token
       self.remember_token = User.encrypt(User.new_remember_token)
     end
+
+  has_many :pairs
+  has_many :requistions, through: :pairs
+
 end
