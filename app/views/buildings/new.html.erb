@@ -1,0 +1,30 @@
+<% provide(:title, 'Заполнение объекта') %>
+<h1>Объекты</h1>
+
+	<%= form_for @building, :html => {:class => "form-horizontal"} do |f| %>
+		<div class="row"> 
+		<div class="form-group">
+			<label class="control-label col-md-3">Объект</label>
+			<div class="col-md-4">
+			<%= f.text_field :name, :placeholder => "Введите № объекта", class: "form-control" %>
+			</div>
+		</div>
+		</div>
+
+		<div class="row"> 
+		<div class="form-group">
+			<label class="control-label col-md-3">Главный адрес объекта</label>
+			<div class="col-md-4">
+			<%= f.text_field :main_address, :placeholder => "Введите главный адрес оъекта", class: "form-control" %>
+			</div>
+		</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+		<%= f.submit "Сохранить", class: "btn btn-large btn-primary" %>
+	</div>
+		</div>
+	<% end %>
+  </div>
+</div>
+

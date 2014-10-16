@@ -26,6 +26,7 @@ class RequistionsController < ApplicationController
     @list_worker = User.all
     @list_contract = Contract.all
     @list_boss = Boss.all
+    @list_building = Building.all
   end
 
   def update

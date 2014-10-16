@@ -22,7 +22,11 @@ App::Application.routes.draw do
 	match '/new', to: 'requistions#new', via: 'get'
 	match '/new1', to: 'requistions#index', via: 'get'
 
-  resources :contracts
+  	resources :contracts
+
+  	resources :buildings
+  	match 'buildings/:id/for_worker', to: 'buildings#for_worker', via: 'get'
+  	match 'no_build', to: 'buildings#no_build', via: 'get'
 
 	# The priority is based upon order of creation: first created -> highest priority.
 	# See how all your routes lay out with "rake routes".

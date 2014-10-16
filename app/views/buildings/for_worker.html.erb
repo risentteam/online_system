@@ -1,0 +1,5 @@
+<% provide(:title, 'Успех') %>
+<h1>Успех!</h1>
+<% @list_users.each do |worker| %>
+  <%= worker.name %> зачекинился<br>
+<% end %>
