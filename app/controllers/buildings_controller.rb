@@ -39,6 +39,7 @@ class BuildingsController < ApplicationController
 
 	def show 
     	@building = Building.find(params[:id])
+		@list_requistion = Requistion.where("id in (SELECT requistion_id FROM pairs WHERE user_id = ?) and building_id = ?", current_user[:id], params[:id])
 	end
 
 
