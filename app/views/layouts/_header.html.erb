@@ -11,10 +11,25 @@
 			<% end %>
 			<ul class="nav navbar-nav navbar-right">
 				<% if signed_in? %>
-				<li>
-                  <%= link_to "Sign out", signout_path, method: "delete" %>
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
+				 <span class="caret"></span>&nbspУправление</a>
+              <ul class="dropdown-menu">
+                <li>
+                 	<%= link_to edit_user_path(current_user) do %>
+    				<span class="glyphicon glyphicon-wrench"></span>&nbspРедактировать профиль
+					<% end %>
                 </li>
-				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>&nbsp Выйти</a></li>
+                <li><a href="#">Мои заявки</a></li>
+                <li><a href="#">Мои договора</a></li>
+              </ul>
+            </li>
+				
+                <li>
+                 	<%= link_to signout_path, method: "delete" do %>
+    				<span class="glyphicon glyphicon-log-out"></span>&nbspВыйти
+					<% end %>
+                </li>
+               
 				<% else %>
 				<li><a href="/signup"><span class="glyphicon glyphicon-user"></span>&nbsp Зарегистрироваться</a></li>
 				<li><a href="/sessions/new"><span class="glyphicon glyphicon-log-in"></span>&nbsp Войти</a></li>

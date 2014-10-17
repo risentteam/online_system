@@ -6,6 +6,7 @@
         <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
+      <%= link_to "Редактировать профиль", edit_user_path(current_user), class: "btn btn-large btn-primary"%>
     </section>
   </aside>
 

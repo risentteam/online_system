@@ -1,28 +1,39 @@
 <% provide(:title, "Edit user") %>
-<h1>Update your profile</h1>
+
 
 <div class="row">
 	<div class="col-md-4">
 	</div>
 	<div class="col-md-4">
-		<%= form_for(@user) do |f| %>
+		<h1>Изменение Профиля</h1>
 		<%= render 'shared/error_messages' %>
 
-		<%= f.label :name %>
-		<%= f.text_field :name %>
+		<%= form_for(@user, :html => {:class => "form-vertical center"}) do |f| %>
+		
+		<div class="form-group">
+			<label>Имя</label>
+			<%= f.text_field :name, class: "form-control" %>
+		</div>
 
-		<%= f.label :email %>
-		<%= f.text_field :email %>
+		<div class="form-group">
+			<label>Почта</label>
+			<%= f.text_field :email, class: "form-control" %>
+		</div>
 
-		<%= f.label :password %>
-		<%= f.password_field :password %>
+		<div class="form-group">
+			<label>Пароль</label>
+			<%= f.password_field :password, class: "form-control"%>
+		</div>
 
-		<%= f.label :password_confirmation, "Confirm Password" %>
-		<%= f.password_field :password_confirmation %>
-
+		<div class="form-group">
+			<label>Подтверждение пароля</label>
+			<%= f.password_field :password_confirmation, class: "form-control" %>
+		</div>
+		<br>
 		<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+		<br>
 		<% end %>
-
+		<br>
 		<%= gravatar_for @user %>
 		<a href="http://gravatar.com/emails">change</a>
 	</div>

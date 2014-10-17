@@ -1,6 +1,10 @@
 #encoding: utf-8
 class UsersController < ApplicationController
 	def show
+		if !signed_in?
+			flash[:warning] = "Для просмотра своего профиля необходимо авторизироваться!"
+			redirect_to signin_path
+		end
 		@user = User.find(params[:id])
 	end
 	
@@ -20,8 +24,23 @@ class UsersController < ApplicationController
 	end
 
 	def edit
+		if !signed_in?
+			flash[:warning] = "Для редактирования своего профиля необходимо авторизироваться!"
+			redirect_to signin_path
+		end
 		@user = User.find(params[:id])
 	end
+
+	def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      # Handle a successful update.
+      flash[:success] = "Профиль успешно изменен"
+      redirect_to @user
+    else
+      render 'edit'
+    end
+  end
 
 	private
 
