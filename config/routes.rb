@@ -26,6 +26,7 @@ App::Application.routes.draw do
 
   	resources :buildings
   	match 'buildings/:id/for_worker', to: 'buildings#for_worker', via: 'get'
+  	match 'buildings/:id/check_in', to: 'buildings#check_in', via: 'get'
   	match 'no_build', to: 'buildings#no_build', via: 'get'
 
 	# The priority is based upon order of creation: first created -> highest priority.
