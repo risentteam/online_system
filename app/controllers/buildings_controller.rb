@@ -42,21 +42,21 @@ class BuildingsController < ApplicationController
 		@list_requistion = Requistion.where("id in (SELECT requistion_id FROM pairs WHERE user_id = ?) and building_id = ?", current_user[:id], params[:id])
 	end
 
-
-	
-
 	def index
 		@buildings = Building.find(:all);
 	end
-
 	
 
 	def check_in
-
+	    @building = Building.find(params[:id])
+		@list_requistion = Pair.where("user_id = ? and requistion_id in (SELECT id FROM Requistion WHERE building_id = ?) and building_id = ?", current_user[:id], params[:id])
 	end
 
-	private
+	def check_out
+	end
 
+
+	private
 	def building_params
 		params.require(:building).permit(:name, :main_address)
 	end
