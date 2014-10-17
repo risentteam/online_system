@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141015132804) do
+ActiveRecord::Schema.define(version: 20141017182542) do
 
-  create_table "boss", force: true do |t|
+  create_table "bosses", force: true do |t|
     t.string "name"
   end
 
   create_table "buildings", force: true do |t|
     t.string   "name"
-    t.string   "main_address"
+    t.integer  "main_address",    limit: 255
     t.string   "arrival_address"
     t.string   "status"
     t.string   "linkQR"
@@ -27,11 +27,19 @@ ActiveRecord::Schema.define(version: 20141015132804) do
     t.datetime "updated_at"
   end
 
-  create_table "contracts", force: true do |t|
-    t.integer  "contract_id"
+  create_table "buildingscontracts", id: false, force: true do |t|
+    t.integer "contract_id", null: false
+    t.integer "building_id", null: false
+  end
+
+  create_table "contracts", primary_key: "contract_id", force: true do |t|
     t.string   "company"
     t.datetime "period_contract"
     t.integer  "user_id"
+  end
+
+  create_table "main_address", force: true do |t|
+    t.string "name"
   end
 
   create_table "pairs", force: true do |t|
@@ -42,18 +50,20 @@ ActiveRecord::Schema.define(version: 20141015132804) do
   end
 
   create_table "requistions", force: true do |t|
-    t.string   "object",          null: false
+    t.string   "object",                      null: false
     t.string   "status"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.string   "main_address",    null: false
-    t.string   "arrival_address", null: false
-    t.string   "contact_name",    null: false
-    t.string   "contact_phone",   null: false
-    t.string   "type_requistion", null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "main_address",                null: false
+    t.string   "arrival_address",             null: false
+    t.string   "contact_name",                null: false
+    t.string   "contact_phone",               null: false
+    t.string   "type_requistion", limit: nil, null: false
     t.string   "info"
     t.integer  "contract"
     t.integer  "category"
+    t.integer  "buildings_id"
+    t.integer  "building_id"
   end
 
   create_table "users", force: true do |t|
@@ -69,14 +79,5 @@ ActiveRecord::Schema.define(version: 20141015132804) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
-
-  create_table "workers", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "boss_id"
-    t.string   "type_worker"
-    t.integer  "user_id"
-  end
 
 end

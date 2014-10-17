@@ -7,4 +7,6 @@ class Requistion < ActiveRecord::Base
   validates :type_requistion, presence: true
   has_many :pairs
   has_many :users, through: :pairs
+  belongs_to :building
+  belongs_to :contract
 end

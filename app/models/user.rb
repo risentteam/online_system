@@ -25,5 +25,5 @@ class User < ActiveRecord::Base
 
   has_many :pairs
   has_many :requistions, through: :pairs
-
+  has_many :contracts
 end

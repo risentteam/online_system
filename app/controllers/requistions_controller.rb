@@ -48,12 +48,13 @@ class RequistionsController < ApplicationController
 
   def new
   	@requistion = Requistion.new
+    @list = Building.where("id in (SELECT building_id FROM buildingscontracts WHERE contract_id in (SELECT contract_id FROM contracts t WHERE user_id = ?))", current_user[:id])
   end
 
 
   private
   def requistions_params
-  		params.require(:requistion).permit(:object, :main_address, :arrival_address, :contact_name, :contact_phone, :type_requistion)
+  		params.require(:requistion).permit(:object, :main_address, :arrival_address, :contact_name, :contact_phone, :type_requistion, :building_id)
   end
 
   def manager_params

@@ -9,6 +9,24 @@
     </section>
   </aside>
 
+<% if @user.contracts.any? %>
+<h3>Ваши контракты (<%= @user.contracts.count %>)</h3>
+<table class="pretty">
+  <tr>
+    <th><%= "№Контракта" %></th>
+    <th><%= "Название компании" %></th>
+    <th><%= "Период договора" %></th>
+  </tr>
+  <% for contract in @user.contracts %>
+    <tr>
+      <td> <%= contract.contract_id %> </td>
+      <td> <%= contract.company %> </td>
+      <td> <%= contract.period_contract %> </td>
+    </tr>
+  <% end %>
+</table>
+<% end %>
+
 <% if @user.pairs.any? %>
 <h3>Ваши заявки (<%= @user.pairs.count %>)</h3>
 
