@@ -49,7 +49,7 @@ class BuildingsController < ApplicationController
 
 	def check_in
 	    @building = Building.find(params[:id])
-		@list_requistion = Pair.where("user_id = ? and requistion_id in (SELECT id FROM Requistion WHERE building_id = ?) and building_id = ?", current_user[:id], params[:id])
+		@list_requistion = Pair.where("user_id = ? and requistion_id in (SELECT id FROM Requistion WHERE building_id = ?)", current_user[:id], params[:id])
 	end
 
 	def check_out
