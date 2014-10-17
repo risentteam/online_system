@@ -4,12 +4,21 @@
 			<a class="navbar-brand" id="logo" href="/">Заявки онлайн</a>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
+			<% if signed_in? %>
 			<ul class="nav navbar-nav">
 				<li><a href="/new"><span class="glyphicon glyphicon-envelope"></span>&nbsp Подать заявку</a></li>
 			</ul>
+			<% end %>
 			<ul class="nav navbar-nav navbar-right">
+				<% if signed_in? %>
+				<li>
+                  <%= link_to "Sign out", signout_path, method: "delete" %>
+                </li>
+				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>&nbsp Выйти</a></li>
+				<% else %>
 				<li><a href="/signup"><span class="glyphicon glyphicon-user"></span>&nbsp Зарегистрироваться</a></li>
-				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>&nbsp Войти</a></li>
+				<li><a href="/sessions/new"><span class="glyphicon glyphicon-log-in"></span>&nbsp Войти</a></li>
+				<% end %>
 			</ul>
 		</div>
 	</div>	

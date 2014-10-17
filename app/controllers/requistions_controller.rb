@@ -6,7 +6,7 @@ class RequistionsController < ApplicationController
   end
 
   def create
-  	@requistion = Requistion.new(user_params)
+  	@requistion = Requistion.new(requistions_params)
   	if @requistion.save
       @requistion.update_attributes(:status => 'Заявка принята')
       flash[:success] = "Profile created"
@@ -26,6 +26,7 @@ class RequistionsController < ApplicationController
     @list_worker = User.all
     @list_contract = Contract.all
     @list_boss = Boss.all
+    @list_building = Building.all
   end
 
   def update
@@ -51,17 +52,20 @@ class RequistionsController < ApplicationController
 
 
   private
-  def user_params
+  def requistions_params
   		params.require(:requistion).permit(:object, :main_address, :arrival_address, :contact_name, :contact_phone, :type_requistion)
   end
+
   def manager_params
     params.require(:requistion).permit(:contract)
   end
+
   def sort_column
     Requistion.column_names.include?(params[:sort]) ? params[:sort] : "status"
   end
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
+  
 
 end
