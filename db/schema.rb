@@ -13,13 +13,13 @@
 
 ActiveRecord::Schema.define(version: 20141018082343) do
 
-  create_table "bosses", force: true do |t|
+  create_table "boss", force: true do |t|
     t.string "name"
   end
 
   create_table "buildings", force: true do |t|
     t.string   "name"
-    t.integer  "main_address",    limit: 255
+    t.string   "main_address"
     t.string   "arrival_address"
     t.string   "status"
     t.string   "linkQR"
@@ -32,7 +32,8 @@ ActiveRecord::Schema.define(version: 20141018082343) do
     t.integer "building_id", null: false
   end
 
-  create_table "contracts", primary_key: "contract_id", force: true do |t|
+  create_table "contracts", force: true do |t|
+    t.integer  "contract_id"
     t.string   "company"
     t.datetime "period_contract"
     t.integer  "user_id"
@@ -52,15 +53,15 @@ ActiveRecord::Schema.define(version: 20141018082343) do
   end
 
   create_table "requistions", force: true do |t|
-    t.string   "object",                      null: false
+    t.string   "object",          null: false
     t.string   "status"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.string   "main_address",                null: false
-    t.string   "arrival_address",             null: false
-    t.string   "contact_name",                null: false
-    t.string   "contact_phone",               null: false
-    t.string   "type_requistion", limit: nil, null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "main_address",    null: false
+    t.string   "arrival_address", null: false
+    t.string   "contact_name",    null: false
+    t.string   "contact_phone",   null: false
+    t.string   "type_requistion", null: false
     t.string   "info"
     t.integer  "contract"
     t.integer  "category"
