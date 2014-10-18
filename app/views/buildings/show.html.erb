@@ -1,5 +1,4 @@
 <h1>Здравствуйте, <%= current_user.name %> вы зашли на объект: <%= @building.name %> по адресу <%= @building.arrival_address %> </h1>
-<h1><%= Time.zone.now.to_s :db%></h1>
 <% if @list_requistion.any? %>
 <h3>На объект подано заявок (<%= @list_requistion.count %>)</h3>
 <table class="pretty">
@@ -26,7 +25,8 @@
 <h1>Для вас на объект заявок нет</h1>>
 <% end %> 
 
-
+<%= button_to "Прибыл", {:action => 'check_in'}, {:method => :get } %>
+<%= button_to "Отбыл", {:action => 'check_out'}, {:method => :get } %>
 
 <!-- <div class="row">
 <div class="form-group">

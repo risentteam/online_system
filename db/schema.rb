@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141017200714) do
+ActiveRecord::Schema.define(version: 20141018082343) do
 
   create_table "bosses", force: true do |t|
     t.string "name"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20141017200714) do
     t.integer  "type"
     t.integer  "boss_id",         default: 0
     t.string   "remember_token"
+    t.integer  "status",          default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

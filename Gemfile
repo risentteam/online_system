@@ -1,12 +1,17 @@
 source 'https://rubygems.org'
 #ruby-gemset=railstutorial_rails_4_0
 
-gem 'rails', '4.0.4'
+gem 'rails', '4.1.6' #'4.0.4'
 gem 'bootstrap-sass'
 gem "sass-rails", "~> 4.0.2"
 gem 'bcrypt'
 gem "nested_form"
 gem 'simple_form'
+gem 'autoprefixer-rails'
+
+gem 'faker', '1.1.2'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 
 group :development, :test do
