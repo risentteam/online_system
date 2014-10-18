@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141017200714) do
+ActiveRecord::Schema.define(version: 20141017234211) do
 
   create_table "bosses", force: true do |t|
     t.string "name"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20141017200714) do
     t.string   "linkQR"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "main_address_id"
   end
 
   create_table "buildingscontracts", id: false, force: true do |t|
@@ -52,15 +53,15 @@ ActiveRecord::Schema.define(version: 20141017200714) do
   end
 
   create_table "requistions", force: true do |t|
-    t.string   "object",                      null: false
+    t.string   "object",          null: false
     t.string   "status"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.string   "main_address",                null: false
-    t.string   "arrival_address",             null: false
-    t.string   "contact_name",                null: false
-    t.string   "contact_phone",               null: false
-    t.string   "type_requistion", limit: nil, null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "main_address",    null: false
+    t.string   "arrival_address", null: false
+    t.string   "contact_name",    null: false
+    t.string   "contact_phone",   null: false
+    t.string   "type_requistion", null: false
     t.string   "info"
     t.integer  "contract"
     t.integer  "category"

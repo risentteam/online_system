@@ -1,28 +1,25 @@
 <% provide(:title, 'All users') %>
 
-<h1>All users</h1>
-<table class="pretty">
+<h1>Все заявки</h1>
+<table id = "all_requistion">
+	<thead>
 	<tr>
-		<th><%= sortable 'object', "Объект" %></th>
-		<th><%= sortable 'main_address', "Главный адрес" %></th>
-		<th><%= sortable 'created_at', "Время заявки"  %></th>
-	    <th><%= sortable 'status', "Статус"  %></th>>
-        <th><%="Ссылка"%></th>>
+		<th>Объект</th>
+		<th>Главный адрес</th>
+		<th>Время заявки</th>
+	    <th>Статус</th>
+        <th></th>
     </tr>
+    </thead>
+    <tbody>
 	<% for requistion in @requistions %>
 	<tr>
-		<td><%= requistion.object %></td>
+	    <th><%= link_to requistion.object,  {:action => :show, :id => requistion.id}, {:method => :get} %></th>
 		<td><%= requistion.main_address %></td>
-		<td><%= requistion.created_at.strftime("%e %B %Y %H:%M") %></td>
+		<td><%= Russian::strftime(requistion.created_at, "%e %B %Y %H:%M") %></td>
 		<td><%= if requistion.status.blank? then 'Данных нет' else requistion.status end%></td>
-	    <th><%= link_to "Подробнее", requistion, action: :edit, method: :get %></th>
+	    <th><%= button_to "Изменить",  {:action => :edit, :id => requistion.id}, {:method => :get} %></th>
     </tr>
 	<% end %>
+	</tbody>
 </table>
-
-
-<ul class="users">
-	<% for requistion in @requistions %>
-	<li></li>
-	<% end %>
-</ul>

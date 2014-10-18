@@ -49,7 +49,7 @@
     <div class="form-group">
       <label class="col-md-4 control-label">Время поступления заявки</label>
       <div class="col-md-8">
-        <label class="col-md-4 control-label"><%= @requistion.created_at.strftime("%e %B %Y %H:%M") %></label>
+        <label class="col-md-4 control-label"><%= Russian::strftime(@requistion.created_at, "%e %B %Y %H:%M") %></label>
       </div>
     </div>
 
@@ -67,7 +67,7 @@
       </div>
     </div>
 
-    <%= button_to "Подать заявку", edit_requistion_path, method: :get, class: "btn btn-large btn-primary" %>
+    <%= button_to "Обработать заявку", edit_requistion_path, method: :get, class: "btn btn-large btn-primary" %>
 
 
 </div>

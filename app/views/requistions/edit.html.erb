@@ -37,7 +37,7 @@
 				<div class="row top5">
 					<div class="form-group">
 						<label class="col-md-4 control-label">Время заявки</label>
-						<label class="col-md-8 control-label"><%= @requistion.created_at.strftime("%e %B %Y %H:%M") %></label>
+						<label class="col-md-8 control-label"><%= Russian::strftime(@requistion.created_at, "%e %B %Y %H:%M") %></label>
 					</div>
 				</div>
 

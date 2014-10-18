@@ -9,4 +9,5 @@ class Requistion < ActiveRecord::Base
   has_many :users, through: :pairs
   belongs_to :building
   belongs_to :contract
+  accepts_nested_attributes_for :pairs
 end

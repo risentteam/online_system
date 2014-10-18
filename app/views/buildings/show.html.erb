@@ -12,7 +12,7 @@
   </tr>
   <% for requistion in @list_requistion %>
     <tr>
-      <td> <%= requistion.created_at %> </td>
+      <td> <%= Russian::strftime(requistion.created_at, "%e %B %Y %H:%M") %> </td>
       <td> <%= requistion.contact_phone %> </td>
       <td> <%= requistion.contact_name %> </td>
       <td> <%= requistion.type_requistion %> </td>
