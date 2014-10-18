@@ -1,8 +1,38 @@
-<div class="row">
+<h1>Здравствуйте, <%= current_user.name %> вы зашли на объект: <%= @building.name %> по адресу <%= @building.arrival_address %> </h1>
+<% if @list_requistion.any? %>
+<h3>На объект подано заявок (<%= @list_requistion.count %>)</h3>
+<table class="pretty">
+  <tr>
+    <th><%= "Время подачи заявки" %></th>
+    <th><%= "Контактный телефон" %></th>
+    <th><%= "Контактное лицо" %></th>
+    <th><%= "Тип неисправности" %></th>
+    <th><%= "Категория" %></th>
+    <th><%= "Дополнительная информация" %></th>
+  </tr>
+  <% for requistion in @list_requistion %>
+    <tr>
+      <td> <%= requistion.created_at %> </td>
+      <td> <%= requistion.contact_phone %> </td>
+      <td> <%= requistion.contact_name %> </td>
+      <td> <%= requistion.type_requistion %> </td>
+      <td> <%= requistion.category %> </td>
+      <td> <%= requistion.info %> </td>
+    </tr>
+  <% end %>
+</table>
+<% else %>
+<h1>Для вас на объект заявок нет</h1>>
+<% end %> 
+
+<%= button_to "Прибыл", {:action => 'check_in'}, {:method => :get } %>
+<%= button_to "Отбыл", {:action => 'check_out'}, {:method => :get } %>
+
+<!-- <div class="row">
 <div class="form-group">
       <label class="col-md-4 control-label">Объект</label>
       <div class="col-md-8">
-        <label class="col-md-4 control-label"><%= @building.name %></label>
+        <label class="col-md-4 control-label"><%#= @building.name %></label>
       </div>
     </div>
 </div>
@@ -11,7 +41,7 @@
     <div class="form-group">
       <label class="col-md-4 control-label">Главный адрес</label>
       <div class="col-md-8">
-        <label class="col-md-4 control-label"><%= @building.main_address %></label>
+        <label class="col-md-4 control-label"><%#= @building.main_address %></label>
       </div>
     </div>
-  </div>
+  </div> -->

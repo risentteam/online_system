@@ -1,3 +1,4 @@
+#encoding: utf-8
 class BuildingsController < ApplicationController
 	before_action :require_login, :only=>[:show]
 
@@ -39,23 +40,34 @@ class BuildingsController < ApplicationController
 
 	def show 
     	@building = Building.find(params[:id])
+		@list_requistion = Requistion.where("id in (SELECT requistion_id FROM pairs WHERE user_id = ?) and building_id = ?", current_user[:id], params[:id])
 	end
-
-
-	
 
 	def index
 		@buildings = Building.find(:all);
 	end
-
 	
 
 	def check_in
-
+		@list_requistion = Pair.where("user_id = ? and requistion_id in (SELECT id FROM requistions WHERE building_id = ?)", current_user[:id], params[:id])
+		for requistion in @list_requistion
+			requistion.update_attributes(:check_in => Time.zone.now.to_s)
+		end
+      flash[:success] = "Ваше прибытие отмечено!"
+      redirect_to current_user
 	end
 
-	private
+	def check_out
+		@list_requistion = Pair.where("user_id = ? and requistion_id in (SELECT id FROM requistions WHERE building_id = ?)", current_user[:id], params[:id])
+		for requistion in @list_requistion
+			requistion.update_attributes(:check_out => Time.zone.now.to_s)
+		end
+      flash[:success] = "Ваше отбытие отмечено!"
+      redirect_to current_user
+	end
 
+
+	private
 	def building_params
 		params.require(:building).permit(:name, :main_address)
 	end
