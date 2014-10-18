@@ -3,8 +3,10 @@
   <%= gravatar_for user %>
   <%= link_to user.name, user %>
   <% if current_user.admin? && !current_user?(user) %>
-    | <%= link_to "Удалить", user, method: :delete,
-                                  data: { confirm: "You sure?" } %>
+  	|
+    <%= link_to user, method: :delete, data: { confirm: "You sure?" } do%>
+    <span class="glyphicon glyphicon-trash"></span>
+    <% end %>
   <% end %>
 </div>
 </li>

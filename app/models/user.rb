@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
     Digest::SHA1.hexdigest(token.to_s)
   end
 
-  enum status: { worker: 0, admin: 1, manager: 2, client: 3 }
+  enum status: { worker: 0, admin: 1, client: 2 }
 
   private
 
