@@ -1,25 +1,98 @@
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<a class="navbar-brand" id="logo" href="/">Заявки онлайн</a>
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>                        
+        	</button>
+			<a class="navbar-brand" href="/">
+			<img style="height: 20px; border:1px solid black;"src="http://3v-service.ru/a/favicon.ico">
+			&nbspЗаявки онлайн</a>
 		</div>
-		<div class="collapse navbar-collapse" id="myNavbar">
-			<% if signed_in? %>
-			<ul class="nav navbar-nav">
-				<li><a href="/new"><span class="glyphicon glyphicon-envelope"></span>&nbsp Подать заявку</a></li>
-			</ul>
-			<% end %>
-			<ul class="nav navbar-nav navbar-right">
-				<% if signed_in? %>
-				<li>
-                  <%= link_to "Sign out", signout_path, method: "delete" %>
-                </li>
-				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>&nbsp Выйти</a></li>
-				<% else %>
-				<li><a href="/signup"><span class="glyphicon glyphicon-user"></span>&nbsp Зарегистрироваться</a></li>
-				<li><a href="/sessions/new"><span class="glyphicon glyphicon-log-in"></span>&nbsp Войти</a></li>
-				<% end %>
-			</ul>
+		<div class="collapse navbar-collapse" id="myNavbar">			
+		<% if signed_in? %>
+			<% if current_user.admin? %>
+				<ul class="nav navbar-nav">
+					<li><a href="/new"><span class="glyphicon glyphicon-envelope">
+					</span>&nbsp Подать заявку</a></li>
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						<span class="caret"></span>&nbspУправление</a>
+						<ul class="dropdown-menu">
+						<li>
+							<%= link_to edit_user_path(current_user) do %>
+							<span class="glyphicon glyphicon-wrench"></span>&nbspРедактировать профиль
+							<% end %>
+						</li>
+						<li>
+							<%= link_to requistions_path do %>
+							<span class="glyphicon glyphicon-list"></span>&nbspВсе заявки
+							<% end %>
+						</li>
+						<li>
+							<%= link_to users_path do %>
+							<span class="glyphicon glyphicon-list"></span>&nbspВсе пользователи
+							<% end %>
+						</li>
+						</ul>
+					</li><li>
+					<%= link_to signout_path, method: "delete" do %>
+					<span class="glyphicon glyphicon-log-out"></span>&nbspВыйти
+					<% end %>
+					</li>
+				</ul>
+			<% elsif current_user.client? %>
+				<ul class="nav navbar-nav">
+					<li><a href="/new"><span class="glyphicon glyphicon-envelope">
+					</span>&nbsp Подать заявку</a></li>
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						<span class="caret"></span>&nbspУправление</a>
+						<ul class="dropdown-menu">
+						<li>
+							<%= link_to edit_user_path(current_user) do %>
+							<span class="glyphicon glyphicon-wrench"></span>&nbspРедактировать профиль
+							<% end %>
+						</li>
+						<li><a href="#">Мои заявки</a></li>
+						<li><a href="#">Мои договора</a></li>
+						</ul>
+					</li><li>
+					<%= link_to signout_path, method: "delete" do %>
+					<span class="glyphicon glyphicon-log-out"></span>&nbspВыйти
+					<% end %>
+					</li>
+				</ul>
+			<% else #worker%>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						<span class="caret"></span>&nbspУправление</a>
+						<ul class="dropdown-menu">
+						<li>
+							<%= link_to edit_user_path(current_user) do %>
+							<span class="glyphicon glyphicon-wrench"></span>&nbspРедактировать профиль
+							<% end %>
+						</li>
+						<li><a href="#">Объекты работы</a></li>
+						</ul>
+					</li><li>
+					<%= link_to signout_path, method: "delete" do %>
+					<span class="glyphicon glyphicon-log-out"></span>&nbspВыйти
+					<% end %>
+					</li>
+				</ul>
+			<% end %>	
+		<% else %>
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="/signup"><span class="glyphicon glyphicon-user"></span>&nbsp Зарегистрироваться</a></li>
+			<li><a href="/sessions/new"><span class="glyphicon glyphicon-log-in"></span>&nbsp Войти</a></li>
+		</ul>
+		<% end %>
 		</div>
 	</div>	
 </nav>

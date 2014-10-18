@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141017234211) do
+ActiveRecord::Schema.define(version: 20141018082343) do
 
-  create_table "bosses", force: true do |t|
+  create_table "boss", force: true do |t|
     t.string "name"
   end
 
   create_table "buildings", force: true do |t|
     t.string   "name"
-    t.integer  "main_address",    limit: 255
+    t.string   "main_address"
     t.string   "arrival_address"
     t.string   "status"
     t.string   "linkQR"
@@ -33,7 +33,8 @@ ActiveRecord::Schema.define(version: 20141017234211) do
     t.integer "building_id", null: false
   end
 
-  create_table "contracts", primary_key: "contract_id", force: true do |t|
+  create_table "contracts", force: true do |t|
+    t.integer  "contract_id"
     t.string   "company"
     t.datetime "period_contract"
     t.integer  "user_id"
@@ -78,6 +79,7 @@ ActiveRecord::Schema.define(version: 20141017234211) do
     t.integer  "type"
     t.integer  "boss_id",         default: 0
     t.string   "remember_token"
+    t.integer  "status",          default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
