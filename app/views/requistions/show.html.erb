@@ -1,5 +1,6 @@
 <div class="row">
-  <table class="table">
+<div class="col-md-7">
+  <table class="table table-bordered table-striped">
   <tr>
     <th>Объект</th>
     <td><%= @requistion.object %></td>
@@ -41,6 +42,7 @@
 <br>
 <%= button_to "Обработать заявку", edit_requistion_path, method: :get, class: "btn btn-large btn-primary" %>
 
+</div>
 </div>
 
 
