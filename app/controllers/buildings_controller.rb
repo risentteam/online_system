@@ -1,6 +1,7 @@
 #encoding: utf-8
 class BuildingsController < ApplicationController
 	before_action :signed_in_user
+	before_action :admin_user, only: [:index]
 
 	def for_worker
 		@building = Building.find (params[:id])

@@ -40,15 +40,46 @@ module SessionsHelper
 
 ##for redericting
 	def admin_user
-		redirect_to(root_url) unless current_user.admin?
+		unless current_user.admin?
+		redirect_to root_url, warning: "Доступ к этой странице имеет только администратор."
+		end
 	end
 
+	def client_user
+		unless current_user.client?
+		redirect_to root_url, warning: "Доступ к этой странице имеет только клиент."
+		end
+	end
+
+	def worker_user
+		unless current_user.worker?
+		redirect_to root_url, warning: "Доступ к этой странице имеет только рабочий."
+		end
+	end
+
+	def client_admin_user
+		unless current_user.client? || current_user.admin?
+		redirect_to root_url , warning: "Доступ к этой странице имеет только клиент или администратор."
+		end
+	end
+
+	def client_worker_user
+		unless current_user.client? || current_user.worker?
+		redirect_to root_url, warning: "Доступ к этой странице имеет только клиент или рабочий."
+		end
+	end
+
+	def worker_admin_user
+		unless current_user.worker? || current_user.admin?
+		redirect_to root_url, warning: "Доступ к этой странице имеет только рабочий или администратор."
+		end
+	end
 	# Before filters
 
 	def signed_in_user
 		unless signed_in?
 			store_location
-			redirect_to signin_url, notice: "Please sign in."
+			redirect_to signin_url, warning: "Пожалуйста войдите."
 		end
 	end
 
