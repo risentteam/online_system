@@ -1,9 +1,8 @@
 #encoding: utf-8
 class RequistionsController < ApplicationController
 	before_action :signed_in_user
-
-
 	helper_method :sort_column, :sort_direction
+	
 	def show
 		@requistion = Requistion.find(params[:id])
 	end

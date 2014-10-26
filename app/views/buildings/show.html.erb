@@ -1,4 +1,6 @@
-<h2>Здравствуйте, <%= current_user.name %> вы зашли на объект: <%= @building.name %> по адресу <%= @building.arrival_address %> </h2>
+<h2>Здравствуйте, <%= current_user.name %> вы зашли на объект:
+ <%= @building.name %> по адресу <%= @building.arrival_address %> </h2>
+
 <% if @list_requistion.any? %>
 <h3>На объект подано заявок (<%= @list_requistion.count %>)</h3>
 <table class="pretty">

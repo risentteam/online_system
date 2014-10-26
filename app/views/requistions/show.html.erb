@@ -1,76 +1,46 @@
-
 <div class="row">
-  <div class="span6 offset3">
-    <div class = "form-vertical center" >
+  <table class="table">
+  <tr>
+    <th>Объект</th>
+    <td><%= @requistion.object %></td>
+  </tr>
+  <tr>
+    <th>Главный адрес</th>
+    <td><%= @requistion.main_address %></td>
+  </tr>
+  <tr>
+    <th>Адрес вызова</th>
+    <td><%= @requistion.arrival_address %></td>
+  </tr>
+  <tr>
+    <th>Контактное лицо</th>
+    <td><%= @requistion.contact_name %></td>
+  </tr>
+  <tr>
+    <th>Контактный телефон</th>
+    <td><%= @requistion.contact_phone %></td>
+  </tr>
+  <tr>
+    <th>Тип заявки</th>
+    <td><%= (transcript_of_the_messages(@requistion.type_requistion)) +' '+String(@requistion.info) %></td>
+  </tr>
+  <tr>
+    <th>Время поступления заявки</th>
+    <td><%= Russian::strftime(@requistion.created_at, "%e %B %Y %H:%M") %></td>
+  </tr>
+  <tr>
+    <th>Договор</th>
+    <td><%= replacement_empty(@requistion.contract) %></td>
+  </tr>
+  <tr>
+    <th>Категория</th>
+    <td><%= replacement_empty(@requistion.category) %></td>
+  </tr>
+</table>
 
-    <div class="form-group">
-      <label class="col-md-4 control-label">Объект</label>
-      <div class="col-md-8">
-        <label class="col-md-4 control-label"><%= @requistion.object %></label>
-      </div>
-    </div>
-
-
-    <div class="form-group">
-      <label class="col-md-4 control-label">Главный адрес</label>
-      <div class="col-md-8">
-        <label class="col-md-4 control-label"><%= @requistion.main_address %></label>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="col-md-4 control-label">Адрес вызова</label>
-      <div class="col-md-8">
-        <label class="col-md-4 control-label"><%= @requistion.arrival_address %></label>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="col-md-4 control-label">Контактное лицо</label>
-      <div class="col-md-8">
-        <label class="col-md-4 control-label"><%= @requistion.contact_name %></label>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="col-md-4 control-label">Контактный телефон</label>
-      <div class="col-md-8">
-        <label class="col-md-4 control-label"><%= @requistion.contact_phone %></label>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="col-md-4 control-label">Тип заявки</label>
-      <div class="col-md-8">
-        <label class="col-md-4 control-label"><%= (transcript_of_the_messages(@requistion.type_requistion)) +' '+String(@requistion.info) %></label>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="col-md-4 control-label">Время поступления заявки</label>
-      <div class="col-md-8">
-        <label class="col-md-4 control-label"><%= Russian::strftime(@requistion.created_at, "%e %B %Y %H:%M") %></label>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="col-md-4 control-label">№ договора</label>
-      <div class="col-md-8">
-        <label class="col-md-4 control-label"><%= replacement_empty(@requistion.contract) %></label>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="col-md-4 control-label">Категория</label>
-      <div class="col-md-8">
-        <label class="col-md-4 control-label"><%= replacement_empty(@requistion.category) %></label>
-      </div>
-    </div>
-
-    <%= button_to "Обработать заявку", edit_requistion_path, method: :get, class: "btn btn-large btn-primary" %>
-
+<br>
+<%= button_to "Обработать заявку", edit_requistion_path, method: :get, class: "btn btn-large btn-primary" %>
 
 </div>
-</div>
-</div>
+
 
