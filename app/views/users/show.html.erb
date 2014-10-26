@@ -24,37 +24,45 @@
 	</aside>
 
 <% if @user.contracts.any? %>
-<h3>Ваши контракты (<%= @user.contracts.count %>)</h3>
-<table class="pretty">
-	<tr>
-		<th><%= "№Контракта" %></th>
-		<th><%= "Название компании" %></th>
-		<th><%= "Период договора" %></th>
-	</tr>
-	<% for contract in @user.contracts %>
+<div class="row">
+<div class="col-md-7">
+	<h3>Ваши контракты (<%= @user.contracts.count %>)</h3>
+	<table class="table-bordered">
 		<tr>
-			<td> <%= contract.contract_id %> </td>
-			<td> <%= contract.company %> </td>
-			<td> <%= contract.period_contract %> </td>
+			<th><%= "Контракт" %></th>
+			<th><%= "Название компании" %></th>
+			<th><%= "Период договора" %></th>
 		</tr>
-	<% end %>
-</table>
+		<% for contract in @user.contracts %>
+			<tr>
+				<td> <%= contract.contract_id %> </td>
+				<td> <%= contract.company %> </td>
+				<td> <%= contract.period_contract %> </td>
+			</tr>
+		<% end %>
+	</table>
+</div>
+</div>
 <% end %>
 
 <% if @user.pairs.any? %>
-<h3>Ваши заявки (<%= @user.pairs.count %>)</h3>
+<div class="row">
+<div class="col-md-7">
+	<h3>Ваши заявки (<%= @user.pairs.count %>)</h3>
 
-<table class="pretty">
-	<tr>
-		<th><%= "Объект" %></th>
-		<th><%= "Адрес вызова" %></th>
-		<th><%= "Время подачи заявки" %></th>
-		<th><%= "Статус" %></th>    
-	</tr>
-	<% for pair in @user.pairs %>
+	<table class="table-bordered">
 		<tr>
-			<%= render pair.requistion %>
+			<th><%= "Объект" %></th>
+			<th><%= "Адрес вызова" %></th>
+			<th><%= "Время подачи заявки" %></th>
+			<th><%= "Статус" %></th>    
 		</tr>
-	<% end %>
-</table>
+		<% for pair in @user.pairs %>
+			<tr>
+				<%= render pair.requistion %>
+			</tr>
+		<% end %>
+	</table>
+</div>
+</div>
 <% end %>
