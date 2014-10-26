@@ -18,11 +18,6 @@ class BuildingsController < ApplicationController
 				redirect_to action: 'no_build' and return 
 			end
 		end
-
-	end
-
-	def no_build
-
 	end
 
 	def create 
@@ -34,17 +29,17 @@ class BuildingsController < ApplicationController
 		end
 	end
 
-		def new
-			@building = Building.new
+	def new
+		@building = Building.new
 	end
 
 	def show 
-			@building = Building.find(params[:id])
+		@building = Building.find(params[:id])
 		@list_requistion = Requistion.where("id in (SELECT requistion_id FROM pairs WHERE user_id = ?) and building_id = ?", current_user[:id], params[:id])
 	end
 
 	def index
-		@buildings = Building.find(:all);
+		@buildings = Building.all;
 	end
 	
 
