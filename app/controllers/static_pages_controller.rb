@@ -3,6 +3,9 @@ class StaticPagesController < ApplicationController
 	def home
 	end
 
+	def help
+	end
+
 	def ajaxPages
 		@company = params[:company]
 		@list_company =  Contract.where("company = ? ", @company)

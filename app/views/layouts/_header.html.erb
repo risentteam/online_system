@@ -23,6 +23,11 @@
 						<span class="caret"></span>&nbspУправление</a>
 						<ul class="dropdown-menu">
 						<li>
+							<%= link_to user_path(current_user) do %>
+							<span class="glyphicon glyphicon-user"></span>&nbspМой профиль
+							<% end %>
+						</li>
+						<li>
 							<%= link_to edit_user_path(current_user) do %>
 							<span class="glyphicon glyphicon-wrench"></span>&nbspРедактировать профиль
 							<% end %>
@@ -55,6 +60,11 @@
 						<span class="caret"></span>&nbspУправление</a>
 						<ul class="dropdown-menu">
 						<li>
+							<%= link_to user_path(current_user) do %>
+							<span class="glyphicon glyphicon-user"></span>&nbspМой профиль
+							<% end %>
+						</li>
+						<li>
 							<%= link_to edit_user_path(current_user) do %>
 							<span class="glyphicon glyphicon-wrench"></span>&nbspРедактировать профиль
 							<% end %>
@@ -73,6 +83,11 @@
 					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
 						<span class="caret"></span>&nbspУправление</a>
 						<ul class="dropdown-menu">
+						<li>
+							<%= link_to user_path(current_user) do %>
+							<span class="glyphicon glyphicon-user"></span>&nbspМой профиль
+							<% end %>
+						</li>
 						<li>
 							<%= link_to edit_user_path(current_user) do %>
 							<span class="glyphicon glyphicon-wrench"></span>&nbspРедактировать профиль
