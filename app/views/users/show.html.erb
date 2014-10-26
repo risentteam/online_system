@@ -6,6 +6,18 @@
         <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
+      <% if signed_in? %>
+        <% if current_user.admin? %>
+        <span style="color:red" href="#">Администратор</span>
+        <% elsif current_user.client? %>
+        <span style="color:red" href="#">Клиент</span>
+        <% else #worker%>
+        <span style="color:red" href="#">Рабочий</span>
+        <% end %>
+      <% else %>
+      <span style="color:red" href="#">Неавторизированный пользователь</span>
+      <% end %>
+      <br>
       <%= link_to "Редактировать профиль", edit_user_path(current_user), class: "btn btn-large btn-primary"%>
     </section>
   </aside>

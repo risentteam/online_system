@@ -8,8 +8,9 @@ class BuildingsController < ApplicationController
 		
 		if @list_requistion.nil?
 			flash[:error] = "No such request"
-			redirect_to action: 'no_build' and return
-			render 'no_build'
+			#redirect_to action: 'no_build' and return
+			#render 'no_build'
+			render 'show'
 		else
 			@id_users = Pair.find_by(requistion_id: @list_requistion.id).attributes['user_id']	#находим айди рабочих на данном объекте через айди заявки
 			@list_users = User.find (params[:@id_users])	#получаем список рабочих
