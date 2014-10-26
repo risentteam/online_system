@@ -41,37 +41,43 @@ module SessionsHelper
 ##for redericting
 	def admin_user
 		unless current_user.admin?
-		redirect_to root_url, warning: "Доступ к этой странице имеет только администратор."
+		flash[:warning] = "Доступ к этой странице имеет только администратор."
+		redirect_to root_url 
 		end
 	end
 
 	def client_user
 		unless current_user.client?
-		redirect_to root_url, warning: "Доступ к этой странице имеет только клиент."
+		flash[:warning] = "Доступ к этой странице имеет только клиент." 
+		redirect_to root_url
 		end
 	end
 
 	def worker_user
 		unless current_user.worker?
-		redirect_to root_url, warning: "Доступ к этой странице имеет только рабочий."
+		flash[:warning] = "Доступ к этой странице имеет только рабочий."
+		redirect_to root_url
 		end
 	end
 
 	def client_admin_user
 		unless current_user.client? || current_user.admin?
-		redirect_to root_url , warning: "Доступ к этой странице имеет только клиент или администратор."
+		flash[:warning] = "Доступ к этой странице имеет только клиент или администратор."
+		redirect_to root_url
 		end
 	end
 
 	def client_worker_user
 		unless current_user.client? || current_user.worker?
-		redirect_to root_url, warning: "Доступ к этой странице имеет только клиент или рабочий."
+		flash[:warning] = "Доступ к этой странице имеет только клиент или рабочий."
+		redirect_to root_url
 		end
 	end
 
 	def worker_admin_user
 		unless current_user.worker? || current_user.admin?
-		redirect_to root_url, warning: "Доступ к этой странице имеет только рабочий или администратор."
+		flash[:warning] = "Доступ к этой странице имеет только рабочий или администратор."
+		redirect_to root_url
 		end
 	end
 	# Before filters
@@ -79,7 +85,8 @@ module SessionsHelper
 	def signed_in_user
 		unless signed_in?
 			store_location
-			redirect_to signin_url, warning: "Пожалуйста войдите."
+			flash[:warning] = 'Пожалуйста войдите.'
+			redirect_to signin_url
 		end
 	end
 
