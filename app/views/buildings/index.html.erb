@@ -1,15 +1,19 @@
-<h1>Все объекты</h1>
- 
-<table class="table">
-  <tr>
-    <th>Номер</th>
-    <th>Адрес</th>
-  </tr>
- 
-  <% @buildings.each do |b| %>
-    <tr>
-      <td><%= b.name %></td>
-      <td><%= b.main_address %></td>
-    </tr>
-  <% end %>
-</table>
+<div class="row">
+<div class="col-md-7">
+	<h1>Все объекты</h1>
+
+	<table class="table table-bordered table-striped">
+		<tr>
+			<th>Номер</th>
+			<th>Адрес</th>
+		</tr>
+	
+		<% @buildings.each do |b| %>
+			<tr>
+				<td><%= b.name %></td>
+				<td><%= b.main_address %></td>
+			</tr>
+		<% end %>
+	</table>
+</div>
+</div>
