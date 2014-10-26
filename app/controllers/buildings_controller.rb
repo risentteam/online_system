@@ -1,6 +1,6 @@
 #encoding: utf-8
 class BuildingsController < ApplicationController
-	before_action :require_login, :only=>[:show]
+	before_action :signed_in_user
 
 	def for_worker
 		@building = Building.find (params[:id])
@@ -34,12 +34,12 @@ class BuildingsController < ApplicationController
 		end
 	end
 
-  	def new
-  		@building = Building.new
+		def new
+			@building = Building.new
 	end
 
 	def show 
-    	@building = Building.find(params[:id])
+			@building = Building.find(params[:id])
 		@list_requistion = Requistion.where("id in (SELECT requistion_id FROM pairs WHERE user_id = ?) and building_id = ?", current_user[:id], params[:id])
 	end
 
@@ -57,8 +57,8 @@ class BuildingsController < ApplicationController
 		for requistion in @list_requistion
 			requistion.update_attributes(:status => "Рабочие прибыли")
 		end
-      	flash[:success] = "Ваше прибытие отмечено!"
-      	redirect_to current_user
+				flash[:success] = "Ваше прибытие отмечено!"
+				redirect_to current_user
 	end
 
 	def check_out
@@ -70,21 +70,21 @@ class BuildingsController < ApplicationController
 		for requistion in @list_requistion
 			requistion.update_attributes(:status => "Рабочие отбыли")
 		end
-      flash[:success] = "Ваше отбытие отмечено!"
-      redirect_to current_user
+			flash[:success] = "Ваше отбытие отмечено!"
+			redirect_to current_user
 	end
 
 
 	private
-	def building_params
-		params.require(:building).permit(:name, :main_address)
-	end
- 
-	def require_login
-		unless !current_user.nil?
-			flash[:error] = "You must be logged in to access this section"
-			redirect_to "/sessions/new"
+		def building_params
+			params.require(:building).permit(:name, :main_address)
 		end
-	end
+
+		def require_login
+			unless !current_user.nil?
+				flash[:error] = "You must be logged in to access this section"
+				redirect_to "/sessions/new"
+			end
+		end
 
 end
