@@ -2,6 +2,8 @@
 class BuildingsController < ApplicationController
 	before_action :signed_in_user
 	before_action :admin_user, only: [:index]
+	before_action :client_admin_user, only: [:create, :new,]
+	before_action :worker_user, only: [:check_in, :check_out]
 
 	def for_worker
 		@building = Building.find (params[:id])

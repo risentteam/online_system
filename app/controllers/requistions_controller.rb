@@ -2,8 +2,10 @@
 class RequistionsController < ApplicationController
 	before_action :signed_in_user
 	before_action :admin_user, only: [:index]
-	before_action :client_user, only: [:new]
+	before_action :client_user, only: [:new, :create]
+	before_action :client_admin_user, only: [:edit, :update]
 	
+
 	# show create index edit update new
 	helper_method :sort_column, :sort_direction
 	
