@@ -1,4 +1,20 @@
-<h1>Здравствуйте, <%= current_user.name %> вы зашли на объект: <%= @building.name %> по адресу <%= @building.arrival_address %> </h1>
+<h2>Информация об объкте</h2>
+
+<div class="row">
+<div class="col-md-7">
+  <table class="table table-bordered">
+    <tr>
+      <th>Объукт</th>
+      <th><%= @building.name %></th>
+    </tr>
+    <tr>
+      <td>Адрес</td>
+      <td><%= @building.arrival_address %></td>
+    </tr>
+  </table>
+</div>
+</div>
+
 <% if @list_requistion.any? %>
 <h3>На объект подано заявок (<%= @list_requistion.count %>)</h3>
 <table class="pretty">
@@ -22,11 +38,12 @@
   <% end %>
 </table>
 <% else %>
-<h1>Для вас на объект заявок нет</h1>>
+<h4>Для вас на объект заявок нет</h4>
 <% end %> 
 
-<%= button_to "Прибыл", {:action => 'check_in'}, {:method => :get } %>
-<%= button_to "Отбыл", {:action => 'check_out'}, {:method => :get } %>
+<%= link_to "Прибыл", {:action => 'check_in'}, {:class => "btn btn-large btn-primary"} %>
+<%= link_to "Отбыл", {:action => 'check_out'}, {:class => "btn btn-large btn-primary"} %>
+<br>
 
 <!-- <div class="row">
 <div class="form-group">

@@ -1,6 +1,9 @@
 #encoding: utf-8
 class BuildingsController < ApplicationController
-	before_action :require_login, :only=>[:show]
+	before_action :signed_in_user
+	before_action :admin_user, only: [:index]
+	before_action :client_admin_user, only: [:create, :new,]
+	before_action :worker_user, only: [:check_in, :check_out]
 
 	def for_worker
 		@building = Building.find (params[:id])
@@ -8,8 +11,9 @@ class BuildingsController < ApplicationController
 		
 		if @list_requistion.nil?
 			flash[:error] = "No such request"
-			redirect_to action: 'no_build' and return
-			render 'no_build'
+			#redirect_to action: 'no_build' and return
+			#render 'no_build'
+			render 'show'
 		else
 			@id_users = Pair.find_by(requistion_id: @list_requistion.id).attributes['user_id']	#находим айди рабочих на данном объекте через айди заявки
 			@list_users = User.find (params[:@id_users])	#получаем список рабочих
@@ -18,11 +22,6 @@ class BuildingsController < ApplicationController
 				redirect_to action: 'no_build' and return 
 			end
 		end
-
-	end
-
-	def no_build
-
 	end
 
 	def create 
@@ -34,17 +33,17 @@ class BuildingsController < ApplicationController
 		end
 	end
 
-  	def new
-  		@building = Building.new
+	def new
+		@building = Building.new
 	end
 
 	def show 
-    	@building = Building.find(params[:id])
+		@building = Building.find(params[:id])
 		@list_requistion = Requistion.where("id in (SELECT requistion_id FROM pairs WHERE user_id = ?) and building_id = ?", current_user[:id], params[:id])
 	end
 
 	def index
-		@buildings = Building.find(:all);
+		@buildings = Building.all;
 	end
 	
 
@@ -57,8 +56,8 @@ class BuildingsController < ApplicationController
 		for requistion in @list_requistion
 			requistion.update_attributes(:status => "Рабочие прибыли")
 		end
-      	flash[:success] = "Ваше прибытие отмечено!"
-      	redirect_to current_user
+				flash[:success] = "Ваше прибытие отмечено!"
+				redirect_to current_user
 	end
 
 	def check_out
@@ -70,21 +69,14 @@ class BuildingsController < ApplicationController
 		for requistion in @list_requistion
 			requistion.update_attributes(:status => "Рабочие отбыли")
 		end
-      flash[:success] = "Ваше отбытие отмечено!"
-      redirect_to current_user
+			flash[:success] = "Ваше отбытие отмечено!"
+			redirect_to current_user
 	end
 
 
 	private
-	def building_params
-		params.require(:building).permit(:name, :main_address)
-	end
- 
-	def require_login
-		unless !current_user.nil?
-			flash[:error] = "You must be logged in to access this section"
-			redirect_to "/sessions/new"
+		def building_params
+			params.require(:building).permit(:name, :main_address)
 		end
-	end
 
 end
