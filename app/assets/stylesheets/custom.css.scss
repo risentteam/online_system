@@ -123,3 +123,27 @@ h1, .btn, p, label {
 	margin-top: -20px;
 }
 
+.users-list {
+	margin-top: -35px;
+}
+.navbar .nav > li.dropdown.open > a {
+	background-color: rgba(0, 71, 187, 0.06);
+}
+.navbar .nav > li.dropdown.open.active > a > li:hover {
+	background-color : red;
+}
+
+.form-group .row {
+	text-align: left;
+}
+
+.form-horizontal {
+	margin-top: 35px;
+}
+
+.showtable {
+	margin-top: 20px;
+	.btn {
+		margin-top: -15px;
+	}
+}

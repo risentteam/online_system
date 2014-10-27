@@ -1,6 +1,6 @@
+<div class="list">
 <li>
-<div style="padding: 10px; border: 1px solid black">
-  <%= gravatar_for user %>
+  
   <%= link_to user.name, user %>
   <% if current_user.admin? && !current_user?(user) %>
   	|
@@ -8,5 +8,5 @@
     <span class="glyphicon glyphicon-trash"></span>
     <% end %>
   <% end %>
-</div>
 </li>
+</div>
