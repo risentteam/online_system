@@ -101,6 +101,6 @@ $(document).ready(function() {
 
 $(document).ready(function() {
     $('#addbtn').click (function(){
-        $("<h3>Дополнительный рабочий</h3>").insertBefore("#addbtn");
+        $("#worker_row").insertBefore("#addbtn");
     })
 });
