@@ -99,8 +99,9 @@ $(document).ready(function() {
     });
 });
 
+var count = 1;
 $(document).ready(function() {
     $('#addbtn').click (function(){
-        $("#worker_row").insertBefore("#addbtn");
+        $("#worker_row").clone().attr('id', count++).insertBefore("#addbtn");
     })
 });
