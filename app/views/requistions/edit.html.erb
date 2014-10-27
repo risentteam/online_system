@@ -5,7 +5,7 @@
 			<div class="row">
 				<div class="form-group">
 					<label class="col-md-3 control-label">Объект</label>
-					<input class="col-md-5 control-label" placeholder="<%= @requistion.object %>" readonly></input>
+					
 				</div>
 			</div>
 
@@ -13,14 +13,14 @@
 			<div class="row">
 				<div class="form-group">
 					<label class="col-md-3 control-label">Главный адрес</label>
-					<label class="col-md-5 control-label"><%= @requistion.main_address %></label>
+					<input class="form-control col-md-5" type="text" placeholder="<%= @requistion.main_adress %>" readonly></input>
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="form-group">
 					<label class="col-md-3 control-label">Адрес вызова</label>
-					<label class="col-md-5 control-label"><%= @requistion.arrival_address %></label>
+					<input class="form-control col-md-5" type="text" placeholder="<%= @requistion.arrival_adress %>" readonly></input>
 				</div>
 			</div>
 
@@ -28,21 +28,21 @@
 			<div class="row">
 				<div class="form-group">
 					<label class="col-md-3 control-label">Контактное лицо</label>
-					<label class="col-md-5 control-label"><%= @requistion.contact_name %></label>
+					<input class="form-control col-md-5" type="text" placeholder="<%= @requistion.contact_name %>" readonly></input>
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="form-group">
 					<label class="col-md-3 control-label">Время заявки</label>
-					<label class="col-md-5 control-label"><%= Russian::strftime(@requistion.created_at, "%e %B %Y %H:%M") %></label>
+					<input class="form-control col-md-5" type="text" placeholder="<%= Russian::strftime(@requistion.created_at, "%e %B %Y %H:%M") %>" readonly></input>
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="form-group">
 					<label class="col-md-3 control-label">Контактный телефон</label>
-					<label class="col-md-5 control-label"><%= @requistion.contact_phone %></label>
+					<input class="form-control col-md-5" type="text" placeholder="<%= @requistion.contact_phone %>" readonly></input>
 				</div>
 			</div>
 
