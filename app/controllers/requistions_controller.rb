@@ -17,10 +17,11 @@ class RequistionsController < ApplicationController
 		@requistion = Requistion.new(requistions_params)
 		if @requistion.save
 			@requistion.update_attributes(:status => 'Заявка принята')
-			flash[:success] = "Profile created"
+			flash[:success] = "Заявка отправлена"
 			#UserMailer.welcome_email(@requistion).deliver
 			redirect_to @requistion
 		else
+			flash[:warning] = "Что-то пошло не так возможно вы ошиблись при заполнении формы"
 			render 'new'
 		end
 	end
@@ -39,15 +40,17 @@ class RequistionsController < ApplicationController
 
 	def update
 		@requistion = Requistion.find(params[:id])
-		if !params[:contract].blank? and !params[:requistion][:category].blank? and @requistion.update_attributes(:contract => params[:contract], :category => params[:requistion][:category], :status => "Бригада отправлена")
-					@pair = @requistion.pairs.create(:user_id => params[:worker])
-					if @pair.save
-						flash[:success] = "Profile updated"
-						redirect_to @requistion
-					else
-						@requistion.update_attributes(:contract => '', :category => '', :status => "Заявка принята")
-						render 'new'
-					end
+		if !params[:contract].blank? and !params[:requistion][:category].blank? 
+		and @requistion.update_attributes(:contract => params[:contract], 
+		:category => params[:requistion][:category], :status => "Бригада отправлена")
+			@pair = @requistion.pairs.create(:user_id => params[:worker])
+			if @pair.save
+				flash[:success] = "Заявка успешно изменена"
+				redirect_to @requistion
+			else
+				@requistion.update_attributes(:contract => '', :category => '', :status => "Заявка принята")
+				render 'new'
+			end
 		else 
 #вот здесь падает
 			render 'new'
@@ -56,7 +59,10 @@ class RequistionsController < ApplicationController
 
 	def new
 		@requistion = Requistion.new
-		@list = Building.where("id in (SELECT building_id FROM buildingscontracts WHERE contract_id in (SELECT contract_id FROM contracts t WHERE user_id = ?))", current_user[:id])
+		@list = Building.where(
+		"id in (SELECT building_id FROM buildingscontracts 
+			WHERE contract_id in 
+			(SELECT contract_id FROM contracts t WHERE user_id = ?))", current_user[:id])
 	end
 
 
@@ -72,9 +78,9 @@ class RequistionsController < ApplicationController
 		def sort_column
 			Requistion.column_names.include?(params[:sort]) ? params[:sort] : "status"
 		end
+
 		def sort_direction
 			%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
 		end
 		
-
 end

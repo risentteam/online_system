@@ -5,6 +5,7 @@ class Requistion < ActiveRecord::Base
   validates :contact_name, presence: true
   validates :contact_phone, presence: true
   validates :type_requistion, presence: true
+  
   has_many :pairs
   has_many :users, through: :pairs
   belongs_to :building

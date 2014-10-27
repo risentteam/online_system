@@ -5,6 +5,4 @@ class UserMailer < ActionMailer::Base
     @requistion = requistion
     mail(to: "ryznikov@mail.ru", subject: 'Welcome to My Awesome Site')
   end
-
-
 end
