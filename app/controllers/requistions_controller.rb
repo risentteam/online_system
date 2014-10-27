@@ -40,8 +40,7 @@ class RequistionsController < ApplicationController
 
 	def update
 		@requistion = Requistion.find(params[:id])
-		if !params[:contract].blank? and !params[:requistion][:category].blank? 
-		and @requistion.update_attributes(:contract => params[:contract], 
+		if !params[:contract].blank? and !params[:requistion][:category].blank? and @requistion.update_attributes(:contract => params[:contract], 
 		:category => params[:requistion][:category], :status => "Бригада отправлена")
 			@pair = @requistion.pairs.create(:user_id => params[:worker])
 			if @pair.save
@@ -61,8 +60,8 @@ class RequistionsController < ApplicationController
 		@requistion = Requistion.new
 		@list = Building.where(
 		"id in (SELECT building_id FROM buildingscontracts 
-			WHERE contract_id in 
-			(SELECT contract_id FROM contracts t WHERE user_id = ?))", current_user[:id])
+		WHERE contract_id in 
+		(SELECT contract_id FROM contracts t WHERE user_id = ?))", current_user[:id])
 	end
 
 
