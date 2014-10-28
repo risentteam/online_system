@@ -9,11 +9,11 @@
 		<%= form_for(:session, url: sessions_path, html: {:class => "form-vertical center"}) do |f| %>
 		<div class="form-group">
 			<label> Почта </label>
-			<%= f.text_field :email, class: "form-control" %>
+			<%= f.text_field :email, class: "form-control", required: "" %>
 		</div>
 		<div class="form-group">
 		<label> Пароль </label>
-		<%= f.password_field :password, class: "form-control" %>
+		<%= f.password_field :password, class: "form-control", required: "" %>
 		</div>
 
 		<%= f.submit "Войти", class: "btn btn-large btn-primary" %>

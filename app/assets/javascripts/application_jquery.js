@@ -66,7 +66,7 @@ $(document).ready(function() {
 })
 
 $(document).ready(function(){
-    $('.form-control').blur(function() {
+    $('.form-control[required]').blur(function() {
         if($(this).val().length == 0) {
             $(this)
                 .addClass('error')
