@@ -68,9 +68,8 @@ $(document).ready(function() {
 $(document).ready(function(){
     $('.form-control[required]').blur(function() {
         if($(this).val().length == 0) {
-            $(this)
-                .addClass('error')
-                .after('<span class="error">Поле не должно быть пустым!</span>');
+            $(this).parent().addClass('has-error')    
+            $(this).after('<span class="error">Поле не должно быть пустым!</span>');
         }
     });
     $('.form-control').focus(function() {
