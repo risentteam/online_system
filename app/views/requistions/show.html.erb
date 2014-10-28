@@ -5,12 +5,8 @@
     <td><%= @requistion.object %></td>
   </tr>
   <tr>
-    <th>Главный адрес</th>
-    <td><%= @requistion.main_address %></td>
-  </tr>
-  <tr>
     <th>Адрес вызова</th>
-    <td><%= @requistion.arrival_address %></td>
+    <td><%= @requistion.building.arrival_address %></td>
   </tr>
   <tr>
     <th>Контактное лицо</th>
@@ -22,7 +18,7 @@
   </tr>
   <tr>
     <th>Тип заявки</th>
-    <td><%= (transcript_of_the_messages(@requistion.type_requistion)) +' '+String(@requistion.info) %></td>
+    <td><%= transcript_of_the_messages(@requistion.type_requistion)+' '+@requistion.info.to_s %></td>
   </tr>
   <tr>
     <th>Время поступления заявки</th>
@@ -39,7 +35,9 @@
 </table>
 
 <br>
-<%= button_to "Обработать заявку", edit_requistion_path, method: :get, class: "btn btn-large btn-primary" %>
+<% if current_user.status == "admin" %>
+  <%= button_to "Обработать заявку", edit_requistion_path, method: :get, class: "btn btn-large btn-primary" %>
+<% end %>
 
 </div>
 

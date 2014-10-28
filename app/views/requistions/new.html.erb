@@ -10,13 +10,6 @@
 		</div>
 		</div>
 
-		<div class="form-group">
-			<label class=" col-md-3">Главный адрес объекта</label>
-			<div class="col-md-5">
-			<%= f.text_field :main_address, :placeholder => "Введите главный адрес оъекта", class: "form-control" %>
-			</div>
-		</div>
-
  		<div class="form-group">
 			<label class=" col-md-3">Адресс прибытия специалистов</label>
 			<div class="col-md-5">
@@ -24,21 +17,6 @@
 			</div>
 		</div>
  
- <!-- 		<div class="form-group">
-			<label class=" col-md-3">Адресс прибытия специалистов</label>
-			<div class="col-md-5">
-			<%#= select_tag :building_id, options_groups_from_collection_for_select(current_user.contracts.first, :buildings, :contract_id, :id, :arrival_address), :prompt => "Выберите из списка адресс прибытия специалистов", :class => "form-control" %>
-			</div>
-		</div>
- -->
-
-		<div class="form-group">
-			<label class=" col-md-3">Адресс прибытия специалистов</label>
-			<div class="col-md-5">
-			<%= f.text_field :arrival_address, :placeholder => "Введите адрес прибытия специалистов", class: "form-control" %>
-			</div>
-		</div>
-
 		<div class="form-group">
 		  <label class=" col-md-3">Контактное лицо</label>
 		  <div class="col-md-5">

@@ -17,12 +17,14 @@ class RequistionsController < ApplicationController
 		@requistion = Requistion.new(requistions_params)
 		if @requistion.save
 			@requistion.update_attributes(:status => 'Заявка принята')
-			flash[:success] = "Заявка отправлена"
+			flash[:success] = "Заявка отправлена "
+			current_user.pairs.create!(requistion_id: @requistion.id)
 			#UserMailer.welcome_email(@requistion).deliver
 			redirect_to @requistion
 		else
-			flash[:warning] = "Что-то пошло не так возможно вы ошиблись при заполнении формы"
-			render 'new'
+			flash[:warning] = "Вы ошиблись при заполнении формы"
+			redirect_to "/requistions/new"
+#			render "new" //почему не работает render?
 		end
 	end
 
@@ -67,7 +69,7 @@ class RequistionsController < ApplicationController
 
 	private
 		def requistions_params
-				params.require(:requistion).permit(:object, :main_address, :arrival_address, :contact_name, :contact_phone, :type_requistion, :building_id)
+				params.require(:requistion).permit(:object, :contact_name, :contact_phone, :type_requistion, :building_id)
 		end
 
 		def manager_params

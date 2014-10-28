@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141018082343) do
+ActiveRecord::Schema.define(version: 20141027204026) do
 
   create_table "boss", force: true do |t|
     t.string "name"
@@ -36,8 +36,12 @@ ActiveRecord::Schema.define(version: 20141018082343) do
   create_table "contracts", force: true do |t|
     t.integer  "contract_id"
     t.string   "company"
-    t.datetime "period_contract"
+    t.datetime "date_of_signing"
     t.integer  "user_id"
+    t.string   "comment"
+    t.string   "description"
+    t.string   "name_contract"
+    t.string   "period"
   end
 
   create_table "main_address", force: true do |t|
@@ -76,7 +80,6 @@ ActiveRecord::Schema.define(version: 20141018082343) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_digest"
-    t.integer  "type"
     t.integer  "boss_id",         default: 0
     t.string   "remember_token"
     t.integer  "status",          default: 0
