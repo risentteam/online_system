@@ -1,3 +1,3 @@
 class Main_address < ActiveRecord::Base
-	self.table_name = 'Main_address'
+	self.table_name = 'main_address'
 end
