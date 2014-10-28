@@ -70,6 +70,8 @@ $(document).ready(function(){
         if($(this).val().length == 0) {
             $(this).parent().addClass('has-error')    
             $(this).after('<span class="error">Поле не должно быть пустым!</span>');
+        }else{
+            $(this).parent().removeClass('has-error') 
         }
     });
     $('.form-control').focus(function() {
