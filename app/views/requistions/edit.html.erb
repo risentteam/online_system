@@ -90,18 +90,21 @@
 					</div>
 				</div>
 			</div>
-			<div class="row" id="worker_row">
-				<div class="form-group">
+			<div class="row">
+				<div class="form-group" id="worker_row">
 					<%= f.label :'Исполнитель:', class: "col-md-3 control-label" %>
 					<div id="workerfield" class="col-md-5">
 					  <%= select_tag :worker, options_from_collection_for_select(@list_worker, 'id', 'name'), :prompt => "Выберите из списка", :class => "form-control", required: "" %>
-					</div>	
+					</div>
 				</div>
+				
+					<button id="addbtn" type="button" class="btn btn-default btn-xs">
+						<span class="glyphicon glyphicon-plus"></span>
+					</button>	
+				
 			</div>
 
-			<button id="addbtn" type="button" class="btn btn-default btn-xs">
-				<span class="glyphicon glyphicon-plus"></span>
-			</button>
-			<%= f.submit "Сохранить", class: "btn btn-large btn-primary" %>
+			
+			<%= f.submit "Сохранить", class: "btn btn-large btn-primary", id: "submut" %>
 		
 		<% end %>

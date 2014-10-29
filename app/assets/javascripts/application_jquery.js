@@ -103,6 +103,8 @@ $(document).ready(function() {
 var count = 1;
 $(document).ready(function() {
     $('#addbtn').click (function(){
-        $("#worker_row").clone().attr('id', count++).insertBefore("#addbtn");
+        var new_work = $("#worker_row").clone().attr('id', count++);
+        new_work.wrap ("<div class='row'></div>").parent().insertBefore('#submut');
+        // new_work.insertBefore ("#submut");
     })
 });
