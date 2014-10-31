@@ -32,7 +32,11 @@
   </tr>
   <tr>
     <th>Договор</th>
-    <td><%= replacement_empty(@requistion.contract.company+@requistion.contract.description) %></td>
+    <%if @requistion.contract.nil? %>
+      <td><%= replacement_empty('') %></td>
+    <% else %>
+      <td><%= replacement_empty(@requistion.contract.company+@requistion.contract.description) %></td>
+    <% end %>    
   </tr>
   <tr>
     <th>Время поступления заявки</th>
