@@ -12,22 +12,22 @@
 
 		<div class="form-group">
 			<label>Имя</label>
-			<%= f.text_field :name , class: "form-control" %>
+			<%= f.text_field :name ,  class: "form-control", required: "" %>
 		</div>
 
 		<div class="form-group">
 			<label>Почта</label>
-			<%= f.text_field :email , class: "form-control" %>
+			<%= f.text_field :email , class: "form-control", required: "" %>
 		</div>
 
 		<div class="form-group">
 			<label>Пароль</label>
-			<%= f.password_field :password, class: "form-control"%>
+			<%= f.password_field :password, class: "form-control", required: "" %>
 		</div>
 
 		<div class="form-group">
 			<label>Подтверждение пароля</label>
-			<%= f.password_field :password_confirmation, class: "form-control" %>
+			<%= f.password_field :password_confirmation, class: "form-control", required: "" %>
 		</div>
 
 		<br>

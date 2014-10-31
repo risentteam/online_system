@@ -57,12 +57,11 @@
 				</div>
 				</div>
 			</div>
-			<br>
 			<div class="row">
 				<div class="form-group">
 					<%= f.label :'Компания:', class: "col-md-3 control-label" %>
 					<div class="col-md-5">
-						<%= select_tag :company, options_from_collection_for_select(@list_contract, 'contract_id', 'company'), :prompt => "Выберите из списка", :class => "form-control" %>
+						<%= select_tag :company, options_from_collection_for_select(@list_contract, 'contract_id', 'company'), :prompt => "Выберите из списка", :class => "form-control", required: "" %>
 					</div>
 				</div>
 			</div>
@@ -70,7 +69,7 @@
 				<div class="form-group">
 					<%= f.label :'№ договора:', class: "col-md-3 control-label" %>
 					<div class="col-md-5">
-						<%= text_field_tag :contract, nil, :placeholder => "Введите № договора", class: "form-control" %>
+						<%= text_field_tag :contract, nil, :placeholder => "Введите № договора", class: "form-control", required: "" %>
 					</div>
 				</div>
 			</div>
@@ -78,7 +77,7 @@
 				<div class="form-group">
 					<%= f.label :'Период договора:', class: "col-md-3 control-label" %>
 					<div class="col-md-5">
-						<%= text_field_tag :period_contract, nil, :placeholder => "Введите время окончания договора", class: "form-control" %>
+						<%= text_field_tag :period_contract, nil, :placeholder => "Введите время окончания договора", class: "form-control", required: "" %>
 					</div>
 				</div>
 			</div>
@@ -86,25 +85,26 @@
 				<div class="form-group">
 					<%= f.label :'Категория заявки:', class: "col-md-3 control-label" %>
 					<div class="col-md-5">
-						<%= f.select :category, [['Немедленно', 1], ['Очень срочно', 2], ['Срочно', 3]], {:prompt => "Выберите из списка"}, {:class =>  "form-control"} %>
+						<%= f.select :category, [['Немедленно', 1], ['Очень срочно', 2], ['Срочно', 3]], {:prompt => "Выберите из списка"}, {:class =>  "form-control", required: ""} %>
 
 					</div>
 				</div>
 			</div>
-			<br>
-			<div class="row" id="worker_row">
-				<div class="form-group">
+			<div class="row">
+				<div class="form-group" id="worker_row">
 					<%= f.label :'Исполнитель:', class: "col-md-3 control-label" %>
 					<div id="workerfield" class="col-md-5">
-					  <%= select_tag :worker, options_from_collection_for_select(@list_worker, 'id', 'name'), :prompt => "Выберите из списка", :class => "form-control" %>
-					</div>	
+					  <%= select_tag :worker, options_from_collection_for_select(@list_worker, 'id', 'name'), :prompt => "Выберите из списка", :class => "form-control", required: "" %>
+					</div>
 				</div>
+				
+					<button id="addbtn" type="button" class="btn btn-default btn-xs">
+						<span class="glyphicon glyphicon-plus"></span>
+					</button>	
+				
 			</div>
 
-			<button id="addbtn" type="button" class="btn btn-default btn-s">
-				<span class="glyphicon glyphicon-plus">Добавить исполнителя</span>
-			</button>
-			<br>
-			<%= f.submit "Сохранить", class: "btn btn-large btn-primary" %>
+			
+			<%= f.submit "Сохранить", class: "btn btn-large btn-primary", id: "submut" %>
 		
 		<% end %>

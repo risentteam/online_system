@@ -3,22 +3,18 @@
 	<aside class="span4">
 		<section>
 			<h1>
-				<%= gravatar_for @user %>
 				<%= @user.name %>
 			</h1>
-			<% if signed_in? %>
-				<% if current_user.admin? %>
+			
+			<% if @user.admin? %>
 				<span style="color:red" href="#">Администратор</span>
-				<% elsif current_user.client? %>
+			<% elsif @user.client? %>
 				<span style="color:red" href="#">Клиент</span>
-				<% else #worker%>
+			<% else #worker%>
 				<span style="color:red" href="#">Рабочий</span>
-				<% end %>
-			<% else %>
-			<span style="color:red" href="#">Неавторизированный пользователь</span>
 			<% end %>
 			<br>
-				<% if @user.contracts.any? %>
+			<% if @user.contracts.any? %>
 				<div class="row">
 				<div class="col-md-7">
 					<h3>Ваши контракты (<%= @user.contracts.count %>)</h3>
@@ -42,31 +38,32 @@
 					</table>
 				</div>
 				</div>
-				<% end %>
+			<% end %>
 			<br>
-				<% if @user.pairs.any? %>
+			<% if @user.pairs.any? %>
 				<div class="row">
 				<div class="col-md-7">
-				<h3>Ваши заявки (<%= @user.pairs.count %>)</h3>
+					<h3>Ваши заявки (<%= @user.pairs.count %>)</h3>
 
-				<table class="table table-bordered table-striped">
-					<tr>
-						<th><%= "Объект" %></th>
-						<th><%= "Адрес вызова" %></th>
-						<th><%= "Тип вызова" %></th>						
-						<th><%= "Статус" %></th>
-						<th><%= "Время подачи заявки" %></th>  
-					</tr>
-					<% for pair in @user.pairs %>
+					<table class="table table-bordered table-striped">
 						<tr>
-							<%= render pair.requistion %>
+							<th><%= "Объект" %></th>
+							<th><%= "Адрес вызова" %></th>
+							<th><%= "Тип вызова" %></th>						
+							<th><%= "Статус" %></th>
+							<th><%= "Время подачи заявки" %></th>  
 						</tr>
-					<% end %>
-				</table>
-			</div>
-			</div>
+						<% for pair in @user.pairs %>
+							<tr>
+								<%= render pair.requistion %>
+							</tr>
+						<% end %>
+					</table>
+				</div>
+				</div>
 			<% end %>
-
-			<%= link_to "Редактировать профиль", edit_user_path(current_user), class: "btn btn-large btn-primary"%>
 		</section>
 	</aside>
+
+</div>
+

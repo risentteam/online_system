@@ -82,11 +82,12 @@ $(document).ready(function() {
 
 
 $(document).ready(function(){
-    $('.form-control').blur(function() {
+    $('.form-control[required]').blur(function() {
         if($(this).val().length == 0) {
-            $(this)
-                .addClass('error')
-                .after('<span class="error">Поле не должно быть пустым!</span>');
+            $(this).parent().addClass('has-error')    
+            $(this).after('<span class="error">Поле не должно быть пустым!</span>');
+        }else{
+            $(this).parent().removeClass('has-error') 
         }
     });
     $('.form-control').focus(function() {
@@ -118,6 +119,8 @@ $(document).ready(function() {
 var count = 1;
 $(document).ready(function() {
     $('#addbtn').click (function(){
-        $("#worker_row").clone().attr('id', count++).insertBefore("#addbtn");
+        var new_work = $("#worker_row").clone().attr('id', count++);
+        new_work.wrap ("<div class='row'></div>").parent().insertBefore('#submut');
+        // new_work.insertBefore ("#submut");
     })
 });
