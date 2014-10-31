@@ -20,17 +20,27 @@
     <th>Тип заявки</th>
     <td><%= transcript_of_the_messages(@requistion.type_requistion)+' '+@requistion.info.to_s %></td>
   </tr>
+  <% if @requistion.type_requistion == 'А' %>
   <tr>
-    <th>Категория</th>
+    <th>Тип аварийного обслуживания</th>
     <td><%= replacement_empty(@requistion.subtype_requistions) %></td>
+  </tr>
+  <% end %>
+  <tr>
+    <th>Комментарий</th>
+    <td><%= @requistion.requistion_comment %></td>
+  </tr>
+  <tr>
+    <th>Договор</th>
+    <td><%= replacement_empty(@requistion.contract.company+@requistion.contract.description) %></td>
   </tr>
   <tr>
     <th>Время поступления заявки</th>
     <td><%= Russian::strftime(@requistion.created_at, "%e %B %Y %H:%M") %></td>
   </tr>
   <tr>
-    <th>Договор</th>
-    <td><%= replacement_empty(@requistion.contract) %></td>
+    <th>Статус</th>
+    <td><%= @requistion.status %></td>
   </tr>
 </table>
 

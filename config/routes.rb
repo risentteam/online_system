@@ -16,7 +16,8 @@ App::Application.routes.draw do
 	resources :requistions
 	match '/new', to: 'requistions#new', via: 'get'
 	match '/requistions', to: 'requistions#index', via: 'get'
-
+	match "/update_contracts", to: "requistions#update_contracts", via: 'get'	
+	match "/update_date", to: "requistions#update_date", via: 'get'	
   	resources :contracts
 
   	resources :buildings
