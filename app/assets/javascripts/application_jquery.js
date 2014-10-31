@@ -52,18 +52,34 @@ $(document).ready(function() {
         } );
 });
 
+//Добавление поля описания, для "другого"
 $(document).ready(function() {
     if ($('#requistion_type_requistion :selected').text()!='Другое')
-        $('#test').hide()
+        $('#info').hide()
     else
-        $('#test').show()
+        $('#info').show()
     $('#requistion_type_requistion').change(function () {
         if ($('#requistion_type_requistion :selected').text()!='Другое')
-            $('#test').hide()
+            $('#info').hide()
         else
-            $('#test').show()
+            $('#info').show()
     })
 })
+
+//Добавление поля описания, для "другого"
+$(document).ready(function() {
+    if ($('#requistion_type_requistion :selected').text()!='Аварийное обслуживание')
+        $('#subtype').hide()
+    else
+        $('#subtype').show()
+    $('#requistion_type_requistion').change(function () {
+        if ($('#requistion_type_requistion :selected').text()!='Аварийное обслуживание')
+            $('#subtype').hide()
+        else
+            $('#subtype').show()
+    })
+})
+
 
 $(document).ready(function(){
     $('.form-control').blur(function() {
