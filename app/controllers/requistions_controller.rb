@@ -69,7 +69,7 @@ class RequistionsController < ApplicationController
 
 	private
 		def requistions_params
-				params.require(:requistion).permit(:object, :contact_name, :contact_phone, :type_requistion, :subtype_requistion, :building_id, :comment)
+				params.require(:requistion).permit(:object, :contact_name, :contact_phone, :type_requistion, :subtype_requistion, :building_id, :requistion_comment)
 		end
 
 		def manager_params
