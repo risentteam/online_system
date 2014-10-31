@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141031103449) do
+ActiveRecord::Schema.define(version: 20141031123626) do
 
   create_table "boss", force: true do |t|
     t.string "name"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20141031103449) do
     t.string   "info"
     t.integer  "building_id"
     t.string   "subtype_requistions"
+    t.string   "comment"
   end
 
   create_table "users", force: true do |t|
