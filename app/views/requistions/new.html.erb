@@ -34,7 +34,7 @@
 		<div class="form-group">
 		  <label class=" col-md-3">Тип работ</label>
 		  <div class="col-md-5">
-			<%= f.select :type_requistion, [['Электрика', 'Э'], ['Сантехника ГВС', 'Г'], ['Сантехника ХВС', 'X'], ['Канализация', 'К'], ['Отопление', 'О'], ['АПС', 'П'], ['АУУ', 'У'], ['Видеокамера', 'В'], ['Системы дымоудаления', 'C'], ['Видеодомофон', 'Д'], ['Аварийное обслуживание', 'А'], ['Другое', 'Д']], { :prompt => "Выберите из списка" }, { :class => "form-control" }  %>
+			<%= f.select :type_requistion, [['Электрика', 'Э'], ['Сантехника ГВС', 'Г'], ['Сантехника ХВС', 'X'], ['Канализация', 'К'], ['Отопление', 'О'], ['АПС', 'П'], ['АУУ', 'У'], ['Видеокамера', 'В'], ['Системы дымоудаления', 'C'], ['Видеодомофон', 'Д'], ['Аварийное обслуживание', 'А'], ['Другое', 'Д']], { :prompt => "Выберите из списка" }, { :class => "form-control", required: ""  }  %>
 		</div>
 		</div>
 
@@ -49,14 +49,14 @@
 		<div class="form-group" id="info" style="display:none">
 		  <label class=" col-md-3">Дополнительная информация</label>
 		  <div class="col-md-5">
-		  <%= f.text_field :info, :placeholder =>"Опишите проблему", class: "form-control", required: ""%>
+		  <%= f.text_field :info, :placeholder =>"Опишите проблему", class: "form-control"%>
 		</div>
 		</div>
 
 		<div class="form-group">
 		  <label class=" col-md-3">Комментарий</label>
 		  <div class="col-md-5">
-			<%= f.text_field :requistion_comment, :placeholder =>"Введите описание", class: "form-control" %>
+			<%= f.text_field :requistion_comment, :placeholder =>"Введите описание", class: "form-control"%>
 		</div>
 		</div>
 
