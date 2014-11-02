@@ -1,14 +1,14 @@
 <% provide(:title, 'All users') %>
 
 <h1>Все заявки</h1>
-<table id = "all_requistion">
+<table id = "all_requistion" class="table">
 	<thead>
 	<tr>
 		<th>Объект</th>
-		<th>|Главный адрес</th>
-		<th>|Время заявки</th>
-	    <th>|Статус</th>
-        <th>|</th>
+		<th>Главный адрес</th>
+		<th>Время заявки</th>
+	    <th>Статус</th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -18,7 +18,10 @@
 		<td><%= requistion.main_address %></td>
 		<td><%= Russian::strftime(requistion.created_at, "%e %B %Y %H:%M") %></td>
 		<td><%= if requistion.status.blank? then 'Данных нет' else requistion.status end%></td>
-	    <th><%= button_to "Изменить",  {:action => :edit, :id => requistion.id}, {:method => :get} %></th>
+	    <th><%= link_to requistion.object,  {:action => :edit, :id => requistion.id}, {:method => :get} do%>
+	    	<span class="glyphicon glyphicon-pencil"></span>&nbsp
+	    	<%= end %>
+	    </th>
     </tr>
 	<% end %>
 	</tbody>
