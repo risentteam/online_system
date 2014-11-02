@@ -18,7 +18,7 @@
 		<td><%= requistion.main_address %></td>
 		<td><%= Russian::strftime(requistion.created_at, "%e %B %Y %H:%M") %></td>
 		<td><%= if requistion.status.blank? then 'Данных нет' else requistion.status end%></td>
-	    <th><%= link_to requistion.object,  {:action => :edit, :id => requistion.id}, {:method => :get} do%>
+	    <th><%= link_to edit_requistion_path(requistion) do%>
 	    	<span class="glyphicon glyphicon-pencil"></span>&nbsp
 	    	<% end %>
 	    </th>
