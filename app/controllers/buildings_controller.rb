@@ -59,6 +59,7 @@ class BuildingsController < ApplicationController
 		else
 			flash[:warning] = "Вы зашли не на то здание!"
 			redirect_to current_user
+		end
 	end
 
 	def check_out
