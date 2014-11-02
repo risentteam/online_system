@@ -16,3 +16,4 @@
 //= require dataTables/jquery.dataTables
 //= require jquery_nested_form
 //= require bootstrap
+//= require application_jquery.js
