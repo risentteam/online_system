@@ -67,7 +67,7 @@ $(document).ready(function() {
 
 $(document).ready(function(){
     $('.form-control[required]').blur(function() {
-        if($(this).val().length == 0) {
+        if($.trim($(this).val()) == '') {
             $(this).parent().addClass('has-error')    
             $(this).after('<span class="error">Поле не должно быть пустым!</span>');
         }else{

@@ -13,6 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
 //= require dataTables/jquery.dataTables
 //= require jquery_nested_form
