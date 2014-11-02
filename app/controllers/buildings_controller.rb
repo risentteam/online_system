@@ -48,29 +48,24 @@ class BuildingsController < ApplicationController
 	
 
 	def check_in
-		@list_pair_requistion_user = Pair.where("user_id = ? and requistion_id in (SELECT id FROM requistions WHERE building_id = ?)", current_user[:id], params[:id])
-		for requistion in @list_pair_requistion_user
-			requistion.update_attributes(:check_in => Time.zone.now.to_s)
-		end
-		@list_requistion = Requistion.where("building_id = ? and id in (SELECT requistion_id FROM pairs WHERE user_id = ?)", params[:id], current_user[:id])
-		for requistion in @list_requistion
-			requistion.update_attributes(:status => "Рабочие прибыли")
-		end
-				flash[:success] = "Ваше прибытие отмечено!"
-				redirect_to current_user
+		pairs = Pair.where(id_user: current_user[:id], id_building: params[:id])
+		if pairs
+			Arrival.create(id_user: current_user[:id], id_building: params[:id], type: :check_in, time: Time.zone.now.to_s)
+			pairs.each do |pair|
+				pair.update_attributes(:status => "Рабочие прибыли")
+			end
+			flash[:success] = "Ваше прибытие отмечено!"
+			redirect_to current_user
+		else
+			flash[:warning] = "Вы зашли не на то здание!"
+			redirect_to current_user
 	end
 
 	def check_out
-		@list_requistion = Pair.where("user_id = ? and requistion_id in (SELECT id FROM requistions WHERE building_id = ?)", current_user[:id], params[:id])
-		for requistion in @list_requistion
-			requistion.update_attributes(:check_out => Time.zone.now.to_s)
-		end
-		@list_requistion = Requistion.where("building_id = ? and id in (SELECT requistion_id FROM pairs WHERE user_id = ?)", params[:id], current_user[:id])
-		for requistion in @list_requistion
-			requistion.update_attributes(:status => "Рабочие отбыли")
-		end
-			flash[:success] = "Ваше отбытие отмечено!"
-			redirect_to current_user
+		#Arrival.create(id_user: current_user[:id], id_building: params[:id], type: :check_in, time: Time.zone.now.to_s)
+		
+		flash[:success] = "Ваше отбытие отмечено!"
+		redirect_to current_user
 	end
 
 
