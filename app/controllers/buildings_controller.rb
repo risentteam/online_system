@@ -48,11 +48,11 @@ class BuildingsController < ApplicationController
 	
 
 	def check_in
-		pairs = Pair.where(id_user: current_user[:id], id_building: params[:id])
-		if pairs
-			Arrival.create(id_user: current_user[:id], id_building: params[:id], type: :check_in, time: Time.zone.now.to_s)
+		pairs = Pair.where("user_id = ? and requistion_id in (SELECT id FROM requistions WHERE building_id = ?)", current_user[:id], params[:id])
+		if pairs != []
+			arrival = Arrival.create(user_id: current_user[:id], check_type: "check_in", building_id: params[:id], time: Time.zone.now.to_s)
 			pairs.each do |pair|
-				pair.update_attributes(:status => "Рабочие прибыли")
+				pair.requistion.update_attributes(status: "Рабочие прибыли")
 			end
 			flash[:success] = "Ваше прибытие отмечено!"
 			redirect_to current_user
@@ -63,10 +63,18 @@ class BuildingsController < ApplicationController
 	end
 
 	def check_out
-		#Arrival.create(id_user: current_user[:id], id_building: params[:id], type: :check_in, time: Time.zone.now.to_s)
-		
-		flash[:success] = "Ваше отбытие отмечено!"
-		redirect_to current_user
+		pairs = Pair.where("user_id = ? and requistion_id in (SELECT id FROM requistions WHERE building_id = ?)", current_user[:id], params[:id])
+		if pairs != []
+			arrival = Arrival.create(user_id: current_user[:id], check_type: "check_out", building_id: params[:id], time: Time.zone.now.to_s)
+			#pairs.each do |pair|
+			#	pair.requistion.update_attributes(status: "Рабочие отбыли")
+			#end
+			flash[:success] = "Ваше отбытие отмечено!"
+			redirect_to current_user
+		else
+			flash[:warning] = "Вы отбыли не из того здания!"
+			redirect_to current_user
+		end
 	end
 
 

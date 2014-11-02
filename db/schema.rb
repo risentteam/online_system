@@ -14,9 +14,9 @@
 ActiveRecord::Schema.define(version: 20141102191208) do
 
   create_table "arrivals", force: true do |t|
-    t.integer  "id_user",     null: false
-    t.integer  "id_building", null: false
-    t.integer  "type"
+    t.integer  "user_id",     null: false
+    t.integer  "building_id", null: false
+    t.integer  "check_type"
     t.datetime "time",        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
