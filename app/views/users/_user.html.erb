@@ -1,12 +1,12 @@
 <div class="list">
-<li>
-  
+<tr>
+  <td>
   <%= link_to user.name, user %>
   <% if current_user.admin? && !current_user?(user) %>
-  	|
     <%= link_to user, method: :delete, data: { confirm: "You sure?" } do%>
-    <span class="glyphicon glyphicon-trash"></span>
+    <span class="glyphicon glyphicon-trash" style="float:right"></span>
     <% end %>
   <% end %>
-</li>
+  </td>
+</tr>
 </div>
