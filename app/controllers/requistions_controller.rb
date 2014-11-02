@@ -19,11 +19,16 @@ class RequistionsController < ApplicationController
 			@requistion.update_attributes(:status => 'Заявка принята')
 			flash[:success] = "Заявка отправлена "
 			current_user.pairs.create!(requistion_id: @requistion.id)
+			message = MainsmsApi::Message.new(sender: '3B-online', message: 'Ваша заявка №'+@requistion.id.to_s+' принята', recipients: ['89611600018'])
+			response = message.deliver
+#			flash[:warning] = response['status']
+#			flash[:warning] = response['error']
+#			flash[:warning] = response['message']
 			#UserMailer.welcome_email(@requistion).deliver
 			redirect_to @requistion
 		else
 			flash[:warning] = "Вы ошиблись при заполнении формы"
-			redirect_to "/requistions/new"
+				redirect_to "/requistions/new"
 #			render "new" //почему не работает render?
 		end
 	end
@@ -34,19 +39,33 @@ class RequistionsController < ApplicationController
 
 	def edit
 		@requistion = Requistion.find(params[:id])
-		@list_worker = User.all
-		@list_contract = Contract.all
+		@list_worker = User.where("status = 0")
+		@list_contract = @requistion.building.contracts
+		@list_company = Contract.all
 		@list_boss = Boss.all
 		@list_building = Building.all
 	end
 
+	def update_contracts
+		@list_company =  Contract.where("company = ? ", params[:company])
+		render :partial => "versions", :object => @list_company
+	end
+
+	def update_date
+ 		@contract = Contract.find(params[:contract])
+		render json: @contract, methods: [:contract_id, :description, :date_of_signing]
+	end
+
+
 	def update
 		@requistion = Requistion.find(params[:id])
-		if !params[:contract].blank? and !params[:requistion][:category].blank? and @requistion.update_attributes(:contract => params[:contract], 
-		:category => params[:requistion][:category], :status => "Бригада отправлена")
-			@pair = @requistion.pairs.create(:user_id => params[:worker])
+#!params[:contract].blank? and !params[:requistion][:category].blank? and 
+		if @requistion.update_attributes(:contract_id => params[:contract], :category => params[:requistion][:category], :status => "Бригада отправлена")
+			@pair = @requistion.pairs.create!(:user_id => params[:worker])
 			if @pair.save
 				flash[:success] = "Заявка успешно изменена"
+				message = MainsmsApi::Message.new(sender: '3B-online', message: 'По вашей заявке №'+@requistion.id.to_s+' выслан '+User.find(params[:worker]).name, recipients: ['89611600018'])
+				response = message.deliver
 				redirect_to @requistion
 			else
 				@requistion.update_attributes(:contract => '', :category => '', :status => "Заявка принята")
@@ -69,7 +88,7 @@ class RequistionsController < ApplicationController
 
 	private
 		def requistions_params
-				params.require(:requistion).permit(:object, :contact_name, :contact_phone, :type_requistion, :building_id)
+				params.require(:requistion).permit(:object, :contact_name, :contact_phone, :type_requistion, :subtype_requistion, :building_id, :requistion_comment)
 		end
 
 		def manager_params

@@ -52,18 +52,34 @@ $(document).ready(function() {
         } );
 });
 
+//Добавление поля описания, для "другого"
 $(document).ready(function() {
     if ($('#requistion_type_requistion :selected').text()!='Другое')
-        $('#test').hide()
+        $('#info').hide()
     else
-        $('#test').show()
+        $('#info').show()
     $('#requistion_type_requistion').change(function () {
         if ($('#requistion_type_requistion :selected').text()!='Другое')
-            $('#test').hide()
+            $('#info').hide()
         else
-            $('#test').show()
+            $('#info').show()
     })
 })
+
+//Добавление поля описания, для "другого"
+$(document).ready(function() {
+    if ($('#requistion_type_requistion :selected').text()!='Аварийное обслуживание')
+        $('#subtype').hide()
+    else
+        $('#subtype').show()
+    $('#requistion_type_requistion').change(function () {
+        if ($('#requistion_type_requistion :selected').text()!='Аварийное обслуживание')
+            $('#subtype').hide()
+        else
+            $('#subtype').show()
+    })
+})
+
 
 $(document).ready(function(){
     $('.form-control[required]').blur(function() {
@@ -84,25 +100,48 @@ $(document).ready(function(){
 
 $(document).ready(function() {
     $("#company").change(function () {
-        $.ajax({url: "/static_pages/ajaxPages",
-            type: 'post',
-            dataType: 'json',
+//        alert($("#company :selected").text());
+        $.ajax({url: "/update_contracts",
+            type: 'GET',
+            dataType: 'html',
             data: "company=" + $('#company :selected').text(),
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
-            },
+//            beforeSend: function (xhr) {
+//                xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+//            },
             success: function (data, status) {
 //                alert("Data: " + data + "\nStatus: " + status);
-                $('#contract').val(data.id);
-                $('#period_contract').val(data.time);
+                console.log(data[0].description);
+                $("#versionsDiv").html(data);
             }
         });
     });
 });
 
+$(document).ready(function() {
+    $("#company").blur(function(){
+        $("#version_id").change(function () {
+//            alert($("#version_id :selected").val());
+            $.ajax({url: "/update_date",
+                type: 'GET',
+                dataType: 'json',
+                data: "contract=" + $('#version_id :selected').val(),
+                success: function (data, status) {
+//                  alert("Data: " + data.description + "\nStatus: " + status);
+                    $('#contract').val(data.contract_id);
+                    $('#period_contract').val(data.date_of_signing);
+                    $('#description').val(data.description);
+                }
+            });
+        });
+    });
+
+});
+
 var count = 1;
 $(document).ready(function() {
     $('#addbtn').click (function(){
-        $("#worker_row").clone().attr('id', count++).insertBefore("#addbtn");
+        var new_work = $("#worker_row").clone().attr('id', count++);
+        new_work.wrap ("<div class='row'></div>").parent().insertBefore('#submut');
+        // new_work.insertBefore ("#submut");
     })
 });
