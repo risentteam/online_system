@@ -10,7 +10,8 @@
  *
  *= require_self
  *= require custom
- *= require dataTables/jquery.dataTables
+ *= require requistions
+ *= require dataTables.bootstrap 
  */
 
 .hidden{

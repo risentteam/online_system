@@ -1,6 +1,7 @@
 
 $(document).ready(function() {
     table = $('#all_requistion').DataTable( {
+        tableClass: "mytable",
         initComplete: function () {
             var api = this.api();
  
@@ -22,11 +23,10 @@ $(document).ready(function() {
             } );
         },
 
-        "dom": '<"top"i>rt<"bottom"flp><"clear">', 
         "language": {
             "emptyTable":     "В таблице отсутствуют данные",
             "info":           "Показаны с _START_ по _END_ из _TOTAL_ записей",
-            "infoEmpty":      "Ппоказаны 0 из 0 записей",
+            "infoEmpty":      "Показаны 0 из 0 записей",
             "infoFiltered":   "(filtered from _MAX_ total entries)",
             "infoPostFix":    "",
             "thousands":      ",",
