@@ -234,7 +234,7 @@ PLATFORMS
 DEPENDENCIES
   autoprefixer-rails
   bcrypt
-  bootstrap-sass
+  bootstrap-sass (~> 3.3.0)
   bootstrap-will_paginate
   capybara (= 2.1.0)
   childprocess (= 0.3.6)

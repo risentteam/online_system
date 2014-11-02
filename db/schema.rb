@@ -62,8 +62,8 @@ ActiveRecord::Schema.define(version: 20141031180055) do
     t.string   "status"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
-    t.string   "main_address"
-    t.string   "arrival_address"
+    t.string   "main_address",        null: false
+    t.string   "arrival_address",     null: false
     t.string   "contact_name",        null: false
     t.string   "contact_phone",       null: false
     t.string   "type_requistion",     null: false

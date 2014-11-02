@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 #ruby-gemset=railstutorial_rails_4_0
 
 gem 'rails', '4.1.6' #'4.0.4'
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 3.3.0'
 gem "sass-rails", "~> 4.0.2"
 gem 'bcrypt'
 gem "nested_form"

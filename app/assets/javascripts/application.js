@@ -15,4 +15,4 @@
 //= require turbolinks
 //= require dataTables/jquery.dataTables
 //= require jquery_nested_form
-//= require bootstrap-sprockets
+//= require bootstrap
