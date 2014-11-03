@@ -82,9 +82,8 @@ class RequistionsController < ApplicationController
 
 			if @pair.save
 				flash[:success] += "Заявка успешно изменена"
-				text = 'По вашей заявке №'+@requistion.id.to_s+' выслан(ы) '
-				all_workers.each { |id| 
-					tex	+= ' ' + User.find(id).name}
+				text = 'По вашей заявке №'+ @requistion.id.to_s+' выслан(ы) '
+				#all_workers.each { |id| text += ' ' + User.find(id).name}
 				text += "."
 				flass[:info] = text
 				message = MainsmsApi::Message.new(
