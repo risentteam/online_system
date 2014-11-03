@@ -140,8 +140,11 @@ $(document).ready(function() {
 var count = 1;
 $(document).ready(function() {
     $('#addbtn').click (function(){
-        var new_work = $("#worker_row").clone().attr('id', count++);
+        var new_work = $("#worker_row").clone().attr('id', count);
         new_work.wrap ("<div class='row'></div>").parent().insertBefore('#submut');
+        new_work.find("select").attr('id', "worker" + count.toString());
+        console.log("inserted " + count);
         // new_work.insertBefore ("#submut");
+        count++;
     })
 });
