@@ -69,13 +69,13 @@ class RequistionsController < ApplicationController
 			category: params[:requistion][:category], 
 			status: "Бригада отправлена")
 
-			@pair = @requistion.pairs.create(user_id: params[:worker])
+			@pair = @requistion.pairs.new(user_id: params[:worker])
 			count = 1
 			
 			until (params[("worker" + count.to_s).to_sym].nil?) do
 				str ="worker" + count.to_s
 				flash[:success] += str + ' '
-				@requistion.pairs.create(user_id: params[str.to_sym]).save
+				@requistion.pairs.create(user_id: params[str.to_sym])
 				count += 1
 			end
 
