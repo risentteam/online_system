@@ -80,8 +80,8 @@ class RequistionsController < ApplicationController
 				count += 1
 			end
 
-			flash[:success] += "Заявка успешно изменена"
-			text = 'По вашей заявке №'+ @requistion.id.to_s+' выслан(ы) '
+			flash[:success] = "Заявка успешно изменена"
+			text = 'По вашей заявке №' + @requistion.id.to_s + ' выслан(ы) '
 			all_workers.each { |id| text += ' ' + User.find(id).name}
 			text += "."
 			flash[:info] = text
