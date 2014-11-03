@@ -70,20 +70,26 @@ class RequistionsController < ApplicationController
 			status: "Бригада отправлена")
 
 			@pair = @requistion.pairs.new(user_id: params[:worker])
+			all_workers = [params[:worker]]
 			count = 1
 			
 			until (params[("worker" + count.to_s).to_sym].nil?) do
-				str ="worker" + count.to_s
-				flash[:success] += str + ' '
-				@requistion.pairs.create(user_id: params[str.to_sym])
+				str = ("worker" + count.to_s).to_sym
+				all_workers += params[str]
+				@requistion.pairs.create(user_id: params[str])
 				count += 1
 			end
 
 			if @pair.save
 				flash[:success] += "Заявка успешно изменена"
+				text = 'По вашей заявке №'+@requistion.id.to_s+' выслан(ы) '
+				all_workers.each { |id| 
+					tex	+= ' ' + User.find(id).name}
+				text += "."
+				flass[:info] = text
 				message = MainsmsApi::Message.new(
 					sender: '3B-online',
-					message: 'По вашей заявке №'+@requistion.id.to_s+' выслан '+User.find(params[:worker]).name,
+					message: text,
 					recipients: ['89611600018'])
 				response = message.deliver
 				redirect_to @requistion
