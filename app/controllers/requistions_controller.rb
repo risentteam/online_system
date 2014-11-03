@@ -74,16 +74,16 @@ class RequistionsController < ApplicationController
 			count = 1
 			
 			until (params[("worker" + count.to_s).to_sym].nil?) do
-				str = ("worker" + count.to_s).to_sym
-				all_workers << params[str]
-				@requistion.pairs.create(user_id: params[str])
+				#str = ("worker" + count.to_s).to_sym
+				#all_workers << params[str]
+				#@requistion.pairs.create(user_id: params[str])
 				count += 1
 			end
 
 			if @pair.save
 				flash[:success] += "Заявка успешно изменена"
 				text = 'По вашей заявке №'+ @requistion.id.to_s+' выслан(ы) '
-				all_workers.each { |id| text += ' ' + User.find(id).name}
+				#all_workers.each { |id| text += ' ' + User.find(id).name}
 				text += "."
 				flass[:info] = text
 				message = MainsmsApi::Message.new(
@@ -99,6 +99,7 @@ class RequistionsController < ApplicationController
 					status: "Заявка принята")
 				render 'new'
 			end
+
 		else 
 #вот здесь падает
 			render 'new'
