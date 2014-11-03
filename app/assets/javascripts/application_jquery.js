@@ -142,7 +142,20 @@ $(document).ready(function() {
     $('#addbtn').click (function(){
         var new_work = $("#worker_row").clone().attr('id', count);
         new_work.wrap ("<div class='row'></div>").parent().insertBefore('#submut');
-        new_work.find("select").attr('id', "worker" + count.toString());
+        new_work.find("select").attr('name', "worker" + count.toString()).blur(function() {
+                if($.trim($(this).val()) == '') {
+                    $(this).parent().addClass('has-error')    
+                    $(this).after('<span class="error">Поле не должно быть пустым!</span>');
+                }else{
+                    $(this).parent().removeClass('has-error') 
+                }
+                });
+                $('.form-control').focus(function() {
+                    $(this)
+                        .removeClass('error')
+                        .next('span')
+                        .remove();
+                });
         console.log("inserted " + count);
         // new_work.insertBefore ("#submut");
         count++;

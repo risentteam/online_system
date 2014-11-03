@@ -66,8 +66,18 @@ class RequistionsController < ApplicationController
 #!params[:contract].blank? and !params[:requistion][:category].blank? and 
 		if @requistion.update_attributes(:contract_id => params[:contract], :category => params[:requistion][:category], :status => "Бригада отправлена")
 			@pair = @requistion.pairs.create!(:user_id => params[:worker])
+			count = 1;
+			flash[:success] = "worker0 "
+			while !params[("worker" + count.to_s).to_sym].nil?
+				str ="worker" + count.to_s
+				flash[:success] += str + ' '
+				@requistion.pairs.create!(:user_id => params[str.to_sym]).save
+				count++
+			end
+
+			
 			if @pair.save
-				flash[:success] = "Заявка успешно изменена"
+				flash[:success] += "Заявка успешно изменена"
 				message = MainsmsApi::Message.new(sender: '3B-online', message: 'По вашей заявке №'+@requistion.id.to_s+' выслан '+User.find(params[:worker]).name, recipients: ['89611600018'])
 				response = message.deliver
 				redirect_to @requistion
