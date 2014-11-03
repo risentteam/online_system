@@ -69,36 +69,28 @@ class RequistionsController < ApplicationController
 			category: params[:requistion][:category], 
 			status: "Бригада отправлена")
 
-			@pair = @requistion.pairs.new(user_id: params[:worker])
+			@pair = @requistion.pairs.create(user_id: params[:worker])
 			all_workers = [params[:worker]]
 			count = 1
 			
 			until (params[("worker" + count.to_s).to_sym].nil?) do
-				#str = ("worker" + count.to_s).to_sym
-				#all_workers << params[str]
-				#@requistion.pairs.create(user_id: params[str])
+				str = ("worker" + count.to_s).to_sym
+				all_workers << params[str]
+				@requistion.pairs.create(user_id: params[str])
 				count += 1
 			end
 
-			if @pair.save
-				flash[:success] += "Заявка успешно изменена"
-				text = 'По вашей заявке №'+ @requistion.id.to_s+' выслан(ы) '
-				#all_workers.each { |id| text += ' ' + User.find(id).name}
-				text += "."
-				flass[:info] = text
-				message = MainsmsApi::Message.new(
-					sender: '3B-online',
-					message: text,
-					recipients: ['89611600018'])
-				response = message.deliver
-				redirect_to @requistion
-			else
-				@requistion.update_attributes(
-					contract: '',
-					category: '', 
-					status: "Заявка принята")
-				render 'new'
-			end
+			flash[:success] += "Заявка успешно изменена"
+			text = 'По вашей заявке №'+ @requistion.id.to_s+' выслан(ы) '
+			all_workers.each { |id| text += ' ' + User.find(id).name}
+			text += "."
+			flash[:info] = text
+			message = MainsmsApi::Message.new(
+				sender: '3B-online',
+				message: text,
+				recipients: ['89611600018'])
+			response = message.deliver
+			redirect_to @requistion
 
 		else 
 #вот здесь падает
