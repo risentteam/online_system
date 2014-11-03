@@ -64,10 +64,14 @@ class RequistionsController < ApplicationController
 	def update
 		@requistion = Requistion.find(params[:id])
 
-		if @requistion.update_attributes(:contract_id => params[:contract], :category => params[:requistion][:category], :status => "Бригада отправлена")
+		if @requistion.update_attributes(
+			:contract_id => params[:contract],
+			:category => params[:requistion][:category],
+			:status => "Бригада отправлена")
+
 			@pair = @requistion.pairs.create!(:user_id => params[:worker])
+			
 			count = 1
-			flash[:success] = "worker0 "
 			until (params[("worker" + count.to_s).to_sym].nil?) do
 				str ="worker" + count.to_s
 				flash[:success] += str + ' '
@@ -77,11 +81,17 @@ class RequistionsController < ApplicationController
 
 			if @pair.save
 				flash[:success] += "Заявка успешно изменена"
-				message = MainsmsApi::Message.new(sender: '3B-online', message: 'По вашей заявке №'+@requistion.id.to_s+' выслан '+User.find(params[:worker]).name, recipients: ['89611600018'])
+				message = MainsmsApi::Message.new(
+					sender: '3B-online', 
+					message: 'По вашей заявке №'+@requistion.id.to_s+' выслан '+User.find(params[:worker]).name,
+					recipients: ['89611600018']})
 				response = message.deliver
 				redirect_to @requistion
 			else
-				@requistion.update_attributes(:contract => '', :category => '', :status => "Заявка принята")
+				@requistion.update_attributes(
+					:contract => '',
+					:category => '', 
+					:status => "Заявка принята")
 				render 'new'
 			end
 		else 
