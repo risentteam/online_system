@@ -2,7 +2,7 @@
 @import "bootstrap";
 
 $bgDefault      : #0059A7;
-$bgHighlight    : #43a2ff;
+$bgHighlight    : rgb(95, 141, 218);
 $colDefault     : rgb(54, 54, 54);
 $colHighlight   : rgb(95, 141, 218);
 
@@ -50,8 +50,7 @@ $darkblue1 : rgb (68, 73, 156);
 				background-color: $bgHighlight; }}}
 	.navbar-toggle {
 		border-color: $bgHighlight;
-		&:hover, &:focus {
-			background-color: $bgHighlight; }
+		
 		.icon-bar {
 			background-color: $colDefault; }}
 	.navbar-collapse,
@@ -155,3 +154,17 @@ h1, .btn, p, label {
 .form-vertical .row {
 	margin-top: 6px;
 }
+
+@media all and (max-width: 767px) {
+#myNavbar {
+	width:40%;
+	margin-left:60%;
+	background-color: hsl(203, 100%, 32%) !important;
+	background-image: linear-gradient(rgb(0, 125, 204), rgb(0, 100, 163));
+	a {
+		z-index:10;
+	}
+}
+}
+
+
