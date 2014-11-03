@@ -68,10 +68,10 @@ class RequistionsController < ApplicationController
 			@pair = @requistion.pairs.create!(:user_id => params[:worker])
 			count = 1
 			flash[:success] = "worker0 "
-			while false #!params[("worker" + count.to_s).to_sym].nil?
-			#	str ="worker" + count.to_s
-			#	flash[:success] += str + ' '
-			#	@requistion.pairs.create!(:user_id => params[str.to_sym]).save
+			while !params[("worker" + count.to_s).to_sym].nil? do
+				str ="worker" + count.to_s
+				flash[:success] += str + ' '
+				@requistion.pairs.create!(:user_id => params[str.to_sym]).save
 				count++
 			end
 
