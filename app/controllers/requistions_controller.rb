@@ -9,6 +9,10 @@ class RequistionsController < ApplicationController
 	# show create index edit update new
 	helper_method :sort_column, :sort_direction
 	
+	def count
+		render text: Requistion.all.count.to_s
+	end
+
 	def show
 		@requistion = Requistion.find(params[:id])
 	end

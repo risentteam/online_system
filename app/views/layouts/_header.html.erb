@@ -14,8 +14,16 @@
 		<div class="collapse navbar-collapse" id="myNavbar">			
 		<% if signed_in? %>
 			<% if current_user.admin? %>
-
+<script>
+$(document).ready(function(){
+	$('#count').load("/count");
+	setInterval(function(){
+    $('#count').load("/count");
+      }, 5000);
+});
+</script>
 				<ul class="nav navbar-nav navbar-right">
+					<li role="presentation"><a href="/requistions">Новые заявки <span id="count" class="badge"></span></a></li>
 					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
 						<span class="caret"></span>&nbspУправление</a>
 						<ul class="dropdown-menu">

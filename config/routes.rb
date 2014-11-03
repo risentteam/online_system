@@ -14,6 +14,7 @@ App::Application.routes.draw do
 	match '/help',    to: 'static_pages#help',    via: 'get'
 
 	resources :requistions
+	match '/count', to: 'requistions#count', via: 'get'
 	match '/new', to: 'requistions#new', via: 'get'
 	match '/requistions', to: 'requistions#index', via: 'get'
 	match "/update_contracts", to: "requistions#update_contracts", via: 'get'	
