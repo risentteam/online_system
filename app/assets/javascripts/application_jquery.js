@@ -82,7 +82,6 @@ $(document).ready(function() {
 
 
 
-
 $(document).ready(function() {
     $("#company").change(function () {
 //        alert($("#company :selected").text());
@@ -122,25 +121,22 @@ $(document).ready(function() {
 
 });
 
-function error_status(){
-    if($.trim($(this).val()) == '') {
-        $(this).parent().addClass('has-error')    
-        $(this).after('<span class="error">Поле не должно быть пустым!</span>');
-    }else{
-        $(this).parent().removeClass('has-error') 
-    }
-}
-
-function focus_status(){
-    $(this)
-        .removeClass('error')
-        .next('span')
-        .remove();
-}
 
 $(document).ready(function(){
-    $('.form-control[required]').blur(new error_status);
-    $('.form-control').focus(new focus_status);
+    $('.form-control[required]').blur(function() {
+        if($.trim($(this).val()) == '') {
+            $(this).parent().addClass('has-error')    
+            $(this).after('<span class="error">Поле не должно быть пустым!</span>');
+        }else{
+            $(this).parent().removeClass('has-error') 
+        }
+    });
+    $('.form-control').focus(function() {
+        $(this)
+            .removeClass('error')
+            .next('span')
+            .remove();
+    });
 });
 
 var count = 1;
@@ -148,10 +144,20 @@ $(document).ready(function() {
     $('#addbtn').click (function(){
         var new_work = $("#worker_row").clone().attr('id', count);
         new_work.wrap ("<div class='row'></div>").parent().insertBefore('#submut');
-        new_work.find("select").attr('name', "worker" + count.toString())
-            .blur(new error_status)
-            .focus(new focus_status);
-        console.log("inserted " + count);
+        new_work.find("select").attr('name', "worker" + count.toString()).blur(function() {
+                if($.trim($(this).val()) == '') {
+                    $(this).parent().addClass('has-error')    
+                    $(this).after('<span class="error">Поле не должно быть пустым!</span>');
+                }else{
+                    $(this).parent().removeClass('has-error') 
+                }
+                });
+                $('.form-control').focus(function() {
+                    $(this)
+                        .removeClass('error')
+                        .next('span')
+                        .remove();
+                });
         count++;
     })
 });
