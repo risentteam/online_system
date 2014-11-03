@@ -66,7 +66,7 @@ class RequistionsController < ApplicationController
 #!params[:contract].blank? and !params[:requistion][:category].blank? and 
 		if @requistion.update_attributes(:contract_id => params[:contract], :category => params[:requistion][:category], :status => "Бригада отправлена")
 			@pair = @requistion.pairs.create!(:user_id => params[:worker])
-			count = 1;
+			count = 1
 			flash[:success] = "worker0 "
 			while !params[("worker" + count.to_s).to_sym].nil?
 				str ="worker" + count.to_s
@@ -85,9 +85,9 @@ class RequistionsController < ApplicationController
 				@requistion.update_attributes(:contract => '', :category => '', :status => "Заявка принята")
 				render 'new'
 			end
-#		else 
+		else 
 #вот здесь падает
-#			render 'new'
+			render 'new'
 		end
 	end
 
