@@ -85,9 +85,9 @@ class RequistionsController < ApplicationController
 				@requistion.update_attributes(:contract => '', :category => '', :status => "Заявка принята")
 				render 'new'
 			end
-		else 
+#		else 
 #вот здесь падает
-			render 'new'
+#			render 'new'
 		end
 	end
 
