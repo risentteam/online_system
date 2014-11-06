@@ -19,6 +19,10 @@ class UsersController < ApplicationController
 	def new
 		@user = User.new
 	end
+	#пробное действие
+	def test
+		render text: "Hello World"
+	end
 
 	def destroy
 		User.find(params[:id]).destroy

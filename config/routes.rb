@@ -1,6 +1,6 @@
 App::Application.routes.draw do
 
-	#root  'static_pages#home'
+	root  'static_pages#home'
 	post "static_pages/ajaxPages"
 	match '/ajax', to: 'static_pages#ajaxPages', via: 'post'
 

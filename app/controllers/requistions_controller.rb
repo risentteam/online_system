@@ -62,6 +62,7 @@ class RequistionsController < ApplicationController
 
 
 	def update
+		#Необходимо добавить проверку корректности данных
 		@requistion = Requistion.find(params[:id])
 
 		if @requistion.update_attributes(
@@ -93,8 +94,7 @@ class RequistionsController < ApplicationController
 			redirect_to @requistion
 
 		else 
-#вот здесь падает
-			render 'new'
+			render 'edit'
 		end
 	end
 
