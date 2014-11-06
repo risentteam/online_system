@@ -1,6 +1,6 @@
 App::Application.routes.draw do
 
-	root  'static_pages#home'
+	#root  'static_pages#home'
 	post "static_pages/ajaxPages"
 	match '/ajax', to: 'static_pages#ajaxPages', via: 'post'
 
@@ -26,6 +26,8 @@ App::Application.routes.draw do
   	match 'buildings/:id/check_in', to: 'buildings#check_in', via: 'get'
   	match 'buildings/:id/check_out', to: 'buildings#check_out', via: 'get'
   	match 'no_build', to: 'buildings#no_build', via: 'get'
+
+  	#match 'tests/:id', to: 'users#test', via: 'get', constraints: {id: /\d+/}
 
 	# The priority is based upon order of creation: first created -> highest priority.
 	# See how all your routes lay out with "rake routes".
