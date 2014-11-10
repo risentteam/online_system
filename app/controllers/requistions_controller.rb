@@ -89,7 +89,7 @@ class RequistionsController < ApplicationController
 			message = MainsmsApi::Message.new(
 				sender: '3B-online',
 				message: text,
-				recipients: ['89611600018'])
+				recipients: ['89885333165'])
 			response = message.deliver
 			redirect_to @requistion
 
