@@ -43,7 +43,6 @@ class RequistionsController < ApplicationController
 		@list_contract = @requistion.building.contracts
 		@list_company = Contract.all
 		@list_boss = Boss.all
-		@list_building = Building.all
 	end
 
 	def update_contracts
