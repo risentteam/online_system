@@ -102,7 +102,7 @@ class RequistionsController < ApplicationController
 		@list = Building.where(
 		"id in (SELECT building_id FROM buildingscontracts 
 		WHERE contract_id in 
-		(SELECT contract_id FROM contracts t WHERE user_id = ?))", current_user[:id])
+		(SELECT id FROM contracts t WHERE user_id = ?))", current_user[:id])
 	end
 
 
