@@ -29,7 +29,7 @@
 						<% for contract in @user.contracts %>
 							<tr>
 								<td> <%= contract.name_contract %> </td>
-								<td> <% contract.buildings.each do |p| %> <%= Main_address.find(p.main_address_id).name %> <br>  <% end %> </td>
+								<td> <% contract.company %> </td>
 								<td> <% contract.buildings.each do |p| %> <%= p.arrival_address %> <br>  <% end %> </td>
 								<td> <%= contract.description %> </td>
 								<td> <%= Russian::strftime(contract.date_of_signing, "%e %B %Y") %> </td>
