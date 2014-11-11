@@ -32,7 +32,7 @@
 								<td> <%= contract.company %> </td>
 								<td> <% contract.buildings.each do |p| %> <%= p.arrival_address %> <br>  <% end %> </td>
 								<td> <%= contract.description %> </td>
-								<td> <%= Russian::strftime(contract.date_of_signing, "%e %B %Y") %> </td>
+								<td> <%= С Russian::strftime(contract.begin_time, "%e %B %Y") до Russian::strftime(contract.end_time, "%e %B %Y") %> </td>
 							</tr>
 						<% end %>
 					</table>
