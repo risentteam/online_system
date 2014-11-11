@@ -1,6 +1,7 @@
 
 $(document).ready(function() {
     table = $('#all_requistion').DataTable( {
+        tableClass: "mytable",
         initComplete: function () {
             var api = this.api();
  
@@ -22,11 +23,10 @@ $(document).ready(function() {
             } );
         },
 
-        "dom": '<"top"i>rt<"bottom"flp><"clear">', 
         "language": {
             "emptyTable":     "В таблице отсутствуют данные",
             "info":           "Показаны с _START_ по _END_ из _TOTAL_ записей",
-            "infoEmpty":      "Ппоказаны 0 из 0 записей",
+            "infoEmpty":      "Показаны 0 из 0 записей",
             "infoFiltered":   "(filtered from _MAX_ total entries)",
             "infoPostFix":    "",
             "thousands":      ",",
@@ -81,22 +81,6 @@ $(document).ready(function() {
 })
 
 
-$(document).ready(function(){
-    $('.form-control[required]').blur(function() {
-        if($(this).val().length == 0) {
-            $(this).parent().addClass('has-error')    
-            $(this).after('<span class="error">Поле не должно быть пустым!</span>');
-        }else{
-            $(this).parent().removeClass('has-error') 
-        }
-    });
-    $('.form-control').focus(function() {
-        $(this)
-            .removeClass('error')
-            .next('span')
-            .remove();
-    });
-});
 
 $(document).ready(function() {
     $("#company").change(function () {
@@ -137,11 +121,43 @@ $(document).ready(function() {
 
 });
 
+
+$(document).ready(function(){
+    $('.form-control[required]').blur(function() {
+        if($.trim($(this).val()) == '') {
+            $(this).parent().addClass('has-error')    
+            $(this).after('<span class="error">Поле не должно быть пустым!</span>');
+        }else{
+            $(this).parent().removeClass('has-error') 
+        }
+    });
+    $('.form-control').focus(function() {
+        $(this)
+            .removeClass('error')
+            .next('span')
+            .remove();
+    });
+});
+
 var count = 1;
 $(document).ready(function() {
     $('#addbtn').click (function(){
-        var new_work = $("#worker_row").clone().attr('id', count++);
+        var new_work = $("#worker_row").clone().attr('id', count);
         new_work.wrap ("<div class='row'></div>").parent().insertBefore('#submut');
-        // new_work.insertBefore ("#submut");
+        new_work.find("select").attr('name', "worker" + count.toString()).blur(function() {
+                if($.trim($(this).val()) == '') {
+                    $(this).parent().addClass('has-error')    
+                    $(this).after('<span class="error">Поле не должно быть пустым!</span>');
+                }else{
+                    $(this).parent().removeClass('has-error') 
+                }
+                });
+                $('.form-control').focus(function() {
+                    $(this)
+                        .removeClass('error')
+                        .next('span')
+                        .remove();
+                });
+        count++;
     })
 });

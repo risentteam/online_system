@@ -12,7 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap
 //= require turbolinks
-//= require_tree .
-//= require dataTables/jquery.dataTables
 //= require jquery_nested_form
+
+
+//= require jquery.dataTables
+//= require dataTables.bootstrap
+
+//= require application_jquery.js

@@ -3,9 +3,16 @@
 <div class="pagination">
 <%= will_paginate previous_label:"предыдущая", next_label:"следующая" %>
 </div>
-<ul class="users-list">
+<div class="row">
+<div class="col-md-4">
+<table class="table">
+	<tr>
+	<th>Имя</th>
+	</tr>
   <% @users.each do |user| %>
     <%= render user %>
   <% end %>
-</ul>
+</table>
+</div>
+</div>
 <%= will_paginate previous_label:"предыдущая", next_label:"следующая" %>

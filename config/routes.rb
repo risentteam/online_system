@@ -14,6 +14,7 @@ App::Application.routes.draw do
 	match '/help',    to: 'static_pages#help',    via: 'get'
 
 	resources :requistions
+	match '/count', to: 'requistions#count', via: 'get'
 	match '/new', to: 'requistions#new', via: 'get'
 	match '/requistions', to: 'requistions#index', via: 'get'
 	match "/update_contracts", to: "requistions#update_contracts", via: 'get'	
@@ -25,6 +26,8 @@ App::Application.routes.draw do
   	match 'buildings/:id/check_in', to: 'buildings#check_in', via: 'get'
   	match 'buildings/:id/check_out', to: 'buildings#check_out', via: 'get'
   	match 'no_build', to: 'buildings#no_build', via: 'get'
+
+  	#match 'tests/:id', to: 'users#test', via: 'get', constraints: {id: /\d+/}
 
 	# The priority is based upon order of creation: first created -> highest priority.
 	# See how all your routes lay out with "rake routes".

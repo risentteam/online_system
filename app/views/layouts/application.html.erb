@@ -5,9 +5,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title><%= yield(:title) %></title>
 	<link rel="shortcut icon" href="http://3v-service.ru/a/favicon.ico" type="image/x-icon">
-	<%= stylesheet_link_tag "application", {media: "all", "data-turbolinks-track" => true} %>
-	<%= javascript_include_tag "application", {media: "all", "data-turbolinks-track" => true} %>
-	<%= csrf_meta_tags %>
+
+		
+<%= stylesheet_link_tag "application", {media: "all", type: "text/css", "data-turbolinks-track" => true} %>
+
+
+<%= javascript_include_tag "application", {media: "all", "data-turbolinks-track" => true} %>
+
+<%= csrf_meta_tags %>
+
 	<!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
@@ -30,7 +36,4 @@
 		</footer>
 
 	</body>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-	<script src="http://cdn.datatables.net/1.10.3/js/jquery.dataTables.min.js"></script>
 </html>

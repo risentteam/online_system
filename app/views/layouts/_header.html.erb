@@ -7,18 +7,23 @@
             <span class="icon-bar"></span>                        
         	</button>
 			<a class="navbar-brand" href="/">
-			<%=image_tag("Logo.png", size: "39x50", class: "logo", alt: "ЗВ")%>
+			<span><%=image_tag("LogoNew.png", size: "36x50", class: "logo", alt: "ЗВ")%></span>
 			&nbspЗаявки онлайн</a>
+
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">			
 		<% if signed_in? %>
 			<% if current_user.admin? %>
-				<ul class="nav navbar-nav">
-					<li><a href="/new"><span class="glyphicon glyphicon-envelope">
-					</span>&nbsp Подать заявку</a></li>
-				</ul>
-
+<script>
+$(document).ready(function(){
+	$('#count').load("/count");
+	setInterval(function(){
+    $('#count').load("/count");
+      }, 5000);
+});
+</script>
 				<ul class="nav navbar-nav navbar-right">
+					<li role="presentation"><a href="/requistions">Новые заявки <span id="count" class="badge"></span></a></li>
 					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
 						<span class="caret"></span>&nbspУправление</a>
 						<ul class="dropdown-menu">
