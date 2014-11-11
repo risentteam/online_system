@@ -20,7 +20,7 @@ class RequistionsController < ApplicationController
 	def create
 		@requistion = Requistion.new(requistions_params)
 		if @requistion.save
-			@requistion.update_attributes(:status => 'Заявка принята')
+			
 			flash[:success] = "Заявка отправлена "
 			current_user.pairs.create!(requistion_id: @requistion.id)
 			message = MainsmsApi::Message.new(sender: '3B-online', message: 'Ваша заявка №'+@requistion.id.to_s+' принята', recipients: ['89611600018'])
@@ -43,7 +43,7 @@ class RequistionsController < ApplicationController
 
 	def edit
 		@requistion = Requistion.find(params[:id])
-		@list_worker = User.where("status = 0")
+		@list_worker = User.worker
 		@list_contract = @requistion.building.contracts
 		@list_company = Contract.all
 		@list_boss = Boss.all
@@ -67,7 +67,7 @@ class RequistionsController < ApplicationController
 		if @requistion.update_attributes(
 			contract_id: params[:contract], 
 			category: params[:requistion][:category], 
-			status: "Бригада отправлена")
+			status: "sended")
 
 			@pair = @requistion.pairs.create(user_id: params[:worker])
 			all_workers = [params[:worker]]
