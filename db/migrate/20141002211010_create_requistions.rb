@@ -2,7 +2,7 @@ class CreateRequistions < ActiveRecord::Migration
   def change
     create_table "requistions", force: true do |t|
       t.string   "object",                      null: false
-      t.integer  "status", default: 0
+      t.integer  "status", limit: 3, default: 0
       t.datetime "created_at",                  null: false
       t.datetime "updated_at",                  null: false
       t.string   "main_address",                null: false
