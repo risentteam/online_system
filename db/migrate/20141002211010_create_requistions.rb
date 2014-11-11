@@ -8,7 +8,7 @@ class CreateRequistions < ActiveRecord::Migration
       t.string   "arrival_address",             null: false
       t.string   "contact_name",                null: false
       t.string   "contact_phone",               null: false
-      t.string   "type_requistion", limit: nil, null: false
+      t.string   "type_requistion",             null: false
       t.string   "info"
       t.integer  "contract"
       t.integer  "category"
