@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141102191208) do
+ActiveRecord::Schema.define(version: 20141111200750) do
 
   create_table "arrivals", force: true do |t|
     t.integer  "user_id",     null: false
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 20141102191208) do
     t.string   "description"
     t.string   "name_contract"
     t.string   "period"
+    t.datetime "end_time"
+    t.datetime "begin_time"
   end
 
   create_table "main_address", force: true do |t|
@@ -71,8 +73,8 @@ ActiveRecord::Schema.define(version: 20141102191208) do
     t.string   "status"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
-    t.string   "main_address",        null: false
-    t.string   "arrival_address",     null: false
+    t.string   "main_address"
+    t.string   "arrival_address"
     t.string   "contact_name",        null: false
     t.string   "contact_phone",       null: false
     t.string   "type_requistion",     null: false
