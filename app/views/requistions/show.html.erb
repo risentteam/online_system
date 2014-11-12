@@ -44,7 +44,7 @@
   </tr>
   <tr>
     <th>Статус</th>
-    <td><%= @requistion.status %></td>
+    <td><%= status_names[@requistion.status.to_sym] %></td>
   </tr>
 </table>
 

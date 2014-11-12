@@ -17,11 +17,4 @@ module RequistionsHelper
           'Данные не введены'
       end
     end
-    def status_names
-      { received: "получено",
-      done: "сделано",
-      worker_sended: "рабочие_отправлены",
-      worker_arrived: "рабочие_прибыли",
-      worker_gone: "рабочие_ушли"}
-    end
 end
