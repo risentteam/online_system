@@ -9,10 +9,6 @@ module ApplicationHelper
 			"#{base_title} | #{page_title}"
 		end
 	end
-
-	def not_found
-		render :text => 'Not Found', :status => '404'
-	end
 	
 	def replacement_empty(page_title)
 		if page_title.nil?
