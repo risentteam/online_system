@@ -52,7 +52,7 @@ class BuildingsController < ApplicationController
 		if pairs != []
 			arrival = Arrival.create(user_id: current_user[:id], check_type: "check_in", building_id: params[:id], time: Time.zone.now.to_s)
 			pairs.each do |pair|
-				pair.requistion.update_attributes(status: "Рабочие прибыли")
+				pair.requistion.update_attributes(status: "worker_arrived")
 			end
 			flash[:success] = "Ваше прибытие отмечено!"
 			redirect_to current_user
@@ -66,9 +66,9 @@ class BuildingsController < ApplicationController
 		pairs = Pair.where("user_id = ? and requistion_id in (SELECT id FROM requistions WHERE building_id = ?)", current_user[:id], params[:id])
 		if pairs != []
 			arrival = Arrival.create(user_id: current_user[:id], check_type: "check_out", building_id: params[:id], time: Time.zone.now.to_s)
-			#pairs.each do |pair|
-			#	pair.requistion.update_attributes(status: "Рабочие отбыли")
-			#end
+			pairs.each do |pair|
+				pair.requistion.update_attributes(status: "worker_gone")
+			end
 			flash[:success] = "Ваше отбытие отмечено!"
 			redirect_to current_user
 		else
