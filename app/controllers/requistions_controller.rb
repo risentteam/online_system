@@ -52,7 +52,7 @@ class RequistionsController < ApplicationController
 		render :json => { :contract_id => @contract.contract_id, 
 						  :description => @contract.description, 
 						  :name_contract => @contract.name_contract, 
-						  :time =>  Russian::strftime(@contract.begin_time, "%e %B %Y")}
+						  :time =>  "С "+Russian::strftime(@contract.begin_time, "%e %B %Y")+" до "+Russian::strftime(@contract.end_time, "%e %B %Y")}
 	end
 
 	def update
