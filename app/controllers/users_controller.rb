@@ -4,10 +4,12 @@ class UsersController < ApplicationController
 	before_action :admin_user,     only: [:index, :workers, :destroy ]
 
 	def index
+		@name = "Клиенты"
 		@users = User.client.paginate(page: params[:page])
 	end
 
 	def workers
+		@name = "Рабочие"
 		@users = User.worker.paginate(page: params[:page])
 		render "index"
 	end
