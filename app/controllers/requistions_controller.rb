@@ -10,7 +10,7 @@ class RequistionsController < ApplicationController
 	helper_method :sort_column, :sort_direction
 	
 	def count
-		render text: Requistion.all.count.to_s
+		render text: Requistion.received.count.to_s
 	end
 
 	def show
@@ -24,19 +24,11 @@ class RequistionsController < ApplicationController
 			current_user.pairs.create!(requistion_id: @requistion.id)
 			message = MainsmsApi::Message.new(sender: '3B-online', message: 'Ваша заявка №'+@requistion.id.to_s+' принята', recipients: ['89611600018'])
 			response = message.deliver
-#			flash[:warning] = response['status']
-#			flash[:warning] = response['error']
-#			flash[:warning] = response['message']
-<<<<<<< HEAD
 			#UserMailer.welcome_email(@requistion).deliver
-=======
-# 			UserMailer.welcome_email(@requistion).deliver
->>>>>>> 1f8cabff22740b9041ee4458423e6683d4d4d27f
 			redirect_to @requistion
 		else
 			flash[:warning] = "Вы ошиблись при заполнении формы"
-				redirect_to "/requistions/new"
-#			render "new" //почему не работает render?
+			redirect_to "/requistions/new"
 		end
 	end
 
