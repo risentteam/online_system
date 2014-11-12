@@ -14,7 +14,7 @@
 				<span style="color:red" href="#">Рабочий</span>
 			<% end %>
 			<br>
-			<% if @user.contracts.any? %>
+			<% if @user.client? && @user.contracts.any? %>
 				<div class="row">
 				<div class="col-md-7">
 					<h3>Ваши контракты (<%= @user.contracts.count %>)</h3>
