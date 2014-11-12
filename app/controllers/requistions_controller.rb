@@ -14,7 +14,7 @@ class RequistionsController < ApplicationController
 	end
 
 	def show
-		@requistion = Requistion.find(params[:id])
+		not_found unless @requistion = Requistion.find(params[:id]) 
 	end
 
 	def create
@@ -22,7 +22,7 @@ class RequistionsController < ApplicationController
 		if @requistion.save
 			flash[:success] = "Заявка отправлена"
 			current_user.pairs.create!(requistion_id: @requistion.id)
-			message = MainsmsApi::Message.new(sender: '3B-online', message: 'Ваша заявка №'+@requistion.id.to_s+' принята', recipients: ['89611600018'])
+			message = MainsmsApi::Message.new(sender: '3B-online', message: 'Ваша заявка №'+@requistion.id.to_s+' принята', recipients: ['89885333165'])
 			response = message.deliver
 			#UserMailer.welcome_email(@requistion).deliver
 			redirect_to @requistion
@@ -45,7 +45,7 @@ class RequistionsController < ApplicationController
 	end
 
 	def update_contracts
-		@list_company =  Contract.where("company = '#{params[:company]}' "	)
+		@list_company =  Contract.where("company = '#{params[:company]}'")
 		render :partial => "versions", :object => @list_company
 	end
 
