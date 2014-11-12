@@ -31,7 +31,7 @@ class RequistionsController < ApplicationController
 	end
 
 	def index
-		@requistions = Requistion.order(sort_column + " " + sort_direction)
+		@requistions = Requistion.all
 	end
 
 	def edit
