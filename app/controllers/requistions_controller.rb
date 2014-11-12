@@ -65,9 +65,8 @@ class RequistionsController < ApplicationController
 			status: "worker_sended")
 				
 
-			rescue Exception => e
 				
-			end			@pair = @requistion.pairs.create(user_id: params[:worker])
+			@pair = @requistion.pairs.create(user_id: params[:worker])
 			all_workers = [params[:worker]]
 			count = 1
 			
