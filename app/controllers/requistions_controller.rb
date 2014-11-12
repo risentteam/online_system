@@ -28,7 +28,7 @@ class RequistionsController < ApplicationController
 #			flash[:warning] = response['error']
 #			flash[:warning] = response['message']
 			#UserMailer.welcome_email(@requistion).deliver
-#			redirect_to @requistion
+			redirect_to @requistion
 		else
 			flash[:warning] = "Вы ошиблись при заполнении формы"
 				redirect_to "/requistions/new"
@@ -107,7 +107,7 @@ class RequistionsController < ApplicationController
 
 	private
 		def requistions_params
-				params.require(:requistion).permit(:object, :contact_name, :contact_phone, :type_requistion, :subtype_requistion, :building_id, :requistion_comment)
+			params.require(:requistion).permit(:object, :contact_name, :contact_phone, :type_requistion, :subtype_requistion, :building_id, :requistion_comment)
 		end
 
 		def manager_params
