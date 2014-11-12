@@ -104,13 +104,13 @@ $(document).ready(function() {
 $(document).ready(function() {
     $("#company").blur(function(){
         $("#version_id").change(function () {
-//            alert($("#version_id :selected").val());
+            alert($("#version_id :selected").val());
             $.ajax({url: "/update_date",
                 type: 'GET',
                 dataType: 'json',
                 data: "contract=" + $('#version_id :selected').val(),
                 success: function (data, status) {
-//                  alert("Data: " + data.description + "\nStatus: " + status);
+                  alert("Data: " + data.description + "\nStatus: " + status);
                     $('#contract').val(data.contract_id);
                     $('#period_contract').val(data.date_of_signing);
                     $('#description').val(data.description);
