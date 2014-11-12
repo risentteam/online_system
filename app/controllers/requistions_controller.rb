@@ -61,8 +61,6 @@ class RequistionsController < ApplicationController
 			category: params[:requistion][:category],
 			status: "worker_sended")
 				
-
-				
 			@pair = @requistion.pairs.create(user_id: params[:worker])
 			all_workers = [params[:worker]]
 			count = 1
@@ -84,10 +82,8 @@ class RequistionsController < ApplicationController
 				message: text,
 				recipients: ['89885333165'])
 			response = message.deliver
-
-
+			
 			redirect_to @requistion
-
 		else 
 			render 'edit'
 		end
@@ -96,9 +92,9 @@ class RequistionsController < ApplicationController
 	def new
 		@requistion = Requistion.new
 		@list = Building.where(	
-		"id in (SELECT building_id FROM buildingscontracts 
-		WHERE contract_id in 
-		(SELECT id FROM contracts t WHERE user_id = ?))", current_user[:id])
+			"id in (SELECT building_id FROM buildingscontracts 
+			WHERE contract_id in 
+			(SELECT id FROM contracts t WHERE user_id = ?))", current_user[:id])
 	end
 
 
@@ -106,17 +102,4 @@ class RequistionsController < ApplicationController
 		def requistions_params
 			params.require(:requistion).permit(:object, :contact_name, :contact_phone, :type_requistion, :subtype_requistion, :building_id, :requistion_comment)
 		end
-
-		def manager_params
-			params.require(:requistion).permit(:contract)
-		end
-
-		def sort_column
-			Requistion.column_names.include?(params[:sort]) ? params[:sort] : "status"
-		end
-
-		def sort_direction
-			%w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-		end
-		
 end
