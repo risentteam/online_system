@@ -45,7 +45,7 @@ class RequistionsController < ApplicationController
 	end
 
 	def update_contracts
-		@list_company =  Contract.where("company = '?' ", params[:company])
+		@list_company =  Contract.where("company = '#{params[:company]}' ")
 		render :partial => "versions", :object => @list_company
 	end
 
