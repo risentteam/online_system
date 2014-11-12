@@ -45,13 +45,13 @@ class RequistionsController < ApplicationController
 	end
 
 	def update_contracts
-		@list_company =  Contract.where("company = '#{params[:company]}' ")
+		@list_company =  Contract.where("company = '#{params[:company]}' "	)
 		render :partial => "versions", :object => @list_company
 	end
 
 	def update_date
  		@contract = Contract.find(params[:contract])
-		render json: @contract, methods: [:contract_id, :description, :date_of_signing]
+		render json: @contract, methods: [:contract_id, :description, :name_contract, :end_time, :begin_time]
 	end
 
 

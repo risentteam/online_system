@@ -84,7 +84,7 @@ $(document).ready(function() {
 
 $(document).ready(function() {
     $("#company").change(function () {
-        alert($("#company :selected").text());
+//        alert($("#company :selected").text());
         $.ajax({url: "/update_contracts",
             type: 'GET',
             dataType: 'html',
@@ -93,7 +93,7 @@ $(document).ready(function() {
 //                xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
 //            },
             success: function (data, status) {
-                alert("Data: " + data + "\nStatus: " + status);
+//                alert("Data: " + data + "\nStatus: " + status);
                 console.log(data[0].description);
                 $("#versionsDiv").html(data);
             }
@@ -104,13 +104,13 @@ $(document).ready(function() {
 $(document).ready(function() {
     $("#company").blur(function(){
         $("#version_id").change(function () {
-            alert($("#version_id :selected").val());
+//            alert($("#version_id :selected").val());
             $.ajax({url: "/update_date",
                 type: 'GET',
                 dataType: 'json',
                 data: "contract=" + $('#version_id :selected').val(),
                 success: function (data, status) {
-                  alert("Data: " + data.description + "\nStatus: " + status);
+//                  alert("Data: " + data.description + "\nStatus: " + status);
                     $('#contract').val(data.contract_id);
                     $('#period_contract').val(data.date_of_signing);
                     $('#description').val(data.description);
