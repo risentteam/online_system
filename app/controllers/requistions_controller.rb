@@ -27,7 +27,7 @@ class RequistionsController < ApplicationController
 #			flash[:warning] = response['status']
 #			flash[:warning] = response['error']
 #			flash[:warning] = response['message']
-			#UserMailer.welcome_email(@requistion).deliver
+# 			UserMailer.welcome_email(@requistion).deliver
 #			redirect_to @requistion
 		else
 			flash[:warning] = "Вы ошиблись при заполнении формы"
