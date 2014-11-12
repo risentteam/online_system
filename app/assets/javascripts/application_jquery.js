@@ -112,7 +112,7 @@ $(document).ready(function() {
                 success: function (data, status) {
 //                  alert("Data: " + data.description + "\nStatus: " + status);
                     $('#contract').val(data.name_contract);
-                    $('#period_contract').val(data.end_time);
+                    $('#period_contract').val(data.time);
                     $('#description').val(data.description);
                 }
             });

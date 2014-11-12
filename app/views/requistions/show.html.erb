@@ -23,7 +23,7 @@
   <% if @requistion.type_requistion == 'А' %>
   <tr>
     <th>Тип аварийного обслуживания</th>
-    <td><%= replacement_empty(@requistion.subtype_requistions) %></td>
+    <td><%= transcript_of_the_messages(@requistion.subtype_requistions) %></td>
   </tr>
   <% end %>
   <tr>
