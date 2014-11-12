@@ -10,7 +10,7 @@ class RequistionsController < ApplicationController
 	end
 
 	def show
-		not_found unless @requistion = Requistion.find(params[:id]) 
+		@requistion = Requistion.find(params[:id]) 
 	end
 
 	def create
