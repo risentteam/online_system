@@ -1,28 +1,8 @@
-#encoding: utf-8
 class BuildingsController < ApplicationController
 	before_action :signed_in_user
-	#before_action :admin_user, only: [:index]
+	before_action :admin_user, only: [:index]
 	before_action :client_admin_user, only: [:create, :new,]
 	before_action :worker_user, only: [:check_in, :check_out]
-
-	def for_worker
-		@building = Building.find (params[:id])
-		@list_requistion = Requistion.where(object: @building.name).take	#получаем заявку с данным объектом
-		
-		if @list_requistion.nil?
-			flash[:error] = "No such request"
-			#redirect_to action: 'no_build' and return
-			#render 'no_build'
-			render 'show'
-		else
-			@id_users = Pair.find_by(requistion_id: @list_requistion.id).attributes['user_id']	#находим айди рабочих на данном объекте через айди заявки
-			@list_users = User.find (params[:@id_users])	#получаем список рабочих
-			if (@list_users.name != current_user.name)
-				flash[:error] = "No such worker"
-				redirect_to action: 'no_build' and return 
-			end
-		end
-	end
 
 	def create 
 		@building = Building.new (building_params)
@@ -46,7 +26,6 @@ class BuildingsController < ApplicationController
 		@buildings = Building.all;
 	end
 	
-
 	def check_in
 		pairs = Pair.where("user_id = ? and requistion_id in (SELECT id FROM requistions WHERE building_id = ?)", current_user[:id], params[:id])
 		if pairs != []
@@ -76,7 +55,6 @@ class BuildingsController < ApplicationController
 			redirect_to current_user
 		end
 	end
-
 
 	private
 		def building_params
