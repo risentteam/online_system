@@ -61,8 +61,8 @@ class RequistionsController < ApplicationController
 
 		if @requistion.update_attributes(
 			contract_id: params[:contract], 
-			category: params[:requistion][:category], 
-			status: "sended")
+			category: params[:requistion][:category])
+#		,status: "sended")
 				
 =begin
 			rescue Exception => e
