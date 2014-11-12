@@ -51,7 +51,7 @@ class RequistionsController < ApplicationController
 
 	def update_date
  		@contract = Contract.find(params[:contract])
-		render json: @contract, methods: [:contract_id, :description, :name_contract, :end_time, :begin_time]
+		render json: @contract, methods: [:contract_id, :description, :name_contract, :end_time, :begin_time	]
 	end
 
 
@@ -63,8 +63,11 @@ class RequistionsController < ApplicationController
 			contract_id: params[:contract], 
 			category: params[:requistion][:category], 
 			status: "sended")
-
-			@pair = @requistion.pairs.create(user_id: params[:worker])
+				
+=begin
+			rescue Exception => e
+				
+			end			@pair = @requistion.pairs.create(user_id: params[:worker])
 			all_workers = [params[:worker]]
 			count = 1
 			
@@ -85,6 +88,8 @@ class RequistionsController < ApplicationController
 				message: text,
 				recipients: ['89885333165'])
 			response = message.deliver
+=end
+
 			redirect_to @requistion
 
 		else 
