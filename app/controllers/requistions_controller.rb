@@ -10,7 +10,7 @@ class RequistionsController < ApplicationController
 	end
 
 	def show
-		@requistion = Requistion.find(params[:id])
+		not_found unless @requistion = Requistion.find(params[:id]) 
 	end
 
 	def create
@@ -43,7 +43,7 @@ class RequistionsController < ApplicationController
 	end
 
 	def update_contracts
-		@list_company =  Contract.where("company = '#{params[:company]}' "	)
+		@list_company =  Contract.where("company = '#{params[:company]}'")
 		render :partial => "versions", :object => @list_company
 	end
 
