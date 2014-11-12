@@ -1,4 +1,3 @@
-#encoding: utf-8
 class RequistionsController < ApplicationController
 	before_action :signed_in_user
 	before_action :admin_user, only: [:index]

@@ -1,4 +1,3 @@
-#encoding: utf-8
 class UsersController < ApplicationController
 	before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
 	before_action :correct_user,   only: [:edit, :update]
@@ -18,10 +17,6 @@ class UsersController < ApplicationController
 	
 	def new
 		@user = User.new
-	end
-	#пробное действие
-	def test
-		render text: "Hello World"
 	end
 
 	def destroy
