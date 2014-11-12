@@ -4,11 +4,7 @@ class RequistionsController < ApplicationController
 	before_action :admin_user, only: [:index]
 	before_action :client_user, only: [:new, :create]
 	before_action :client_admin_user, only: [:edit, :update]
-	
-
-	# show create index edit update new
-	helper_method :sort_column, :sort_direction
-	
+		
 	def count
 		render text: Requistion.received.count.to_s
 	end
@@ -22,7 +18,9 @@ class RequistionsController < ApplicationController
 		if @requistion.save
 			flash[:success] = "Заявка отправлена"
 			current_user.pairs.create!(requistion_id: @requistion.id)
-			message = MainsmsApi::Message.new(sender: '3B-online', message: 'Ваша заявка №'+@requistion.id.to_s+' принята', recipients: ['89611600018'])
+			message = MainsmsApi::Message.new(sender: '3B-online',
+				message: 'Ваша заявка №'+@requistion.id.to_s+' принята',
+				recipients: ['89611600018'])
 			response = message.deliver
 			#UserMailer.welcome_email(@requistion).deliver
 			redirect_to @requistion
@@ -53,7 +51,6 @@ class RequistionsController < ApplicationController
  		@contract = Contract.find(params[:contract])
 		render json: @contract, methods: [:contract_id, :description, :name_contract, :end_time, :begin_time	]
 	end
-
 
 	def update
 		#Необходимо добавить проверку корректности данных
