@@ -84,7 +84,7 @@ $(document).ready(function() {
 
 $(document).ready(function() {
     $("#company").change(function () {
-//        alert($("#company :selected").text());
+        alert($("#company :selected").text());
         $.ajax({url: "/update_contracts",
             type: 'GET',
             dataType: 'html',
@@ -93,7 +93,7 @@ $(document).ready(function() {
 //                xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
 //            },
             success: function (data, status) {
-//                alert("Data: " + data + "\nStatus: " + status);
+                alert("Data: " + data + "\nStatus: " + status);
                 console.log(data[0].description);
                 $("#versionsDiv").html(data);
             }
