@@ -20,8 +20,7 @@ class RequistionsController < ApplicationController
 	def create
 		@requistion = Requistion.new(requistions_params)
 		if @requistion.save
-			
-			flash[:success] = "Заявка отправлена "
+			flash[:success] = "Заявка отправлена"
 			current_user.pairs.create!(requistion_id: @requistion.id)
 			message = MainsmsApi::Message.new(sender: '3B-online', message: 'Ваша заявка №'+@requistion.id.to_s+' принята', recipients: ['89611600018'])
 			response = message.deliver
@@ -99,7 +98,7 @@ class RequistionsController < ApplicationController
 
 	def new
 		@requistion = Requistion.new
-		@list = Building.where(
+		@list = Building.where(	
 		"id in (SELECT building_id FROM buildingscontracts 
 		WHERE contract_id in 
 		(SELECT id FROM contracts t WHERE user_id = ?))", current_user[:id])
