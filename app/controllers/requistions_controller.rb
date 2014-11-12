@@ -37,7 +37,7 @@ class RequistionsController < ApplicationController
 	def edit
 		@requistion = Requistion.find(params[:id])
 		@list_worker = User.worker
-		@list_contract = @requistion.building.contracts.select("company")
+		@list_contract = @requistion.building.contracts.select("company").distinct
 		@list_company = Contract.all
 		@list_boss = Boss.all
 	end
