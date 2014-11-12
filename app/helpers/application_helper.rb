@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 module ApplicationHelper
 	def full_title(page_title)
 		base_title = "Заявки"
@@ -18,37 +16,11 @@ module ApplicationHelper
 		end
 	end
 
-	def transcript_of_the_messages(message)
-		case message
-			when 'Э'
-				'Электрика'
-			when 'Г'
-				'Сантехника ГВС'
-			when 'Х'
-				'Сантехника ХВС'
-			when 'К'
-				'Канализация'
-			when 'О'
-				'Отопление'
-			when 'Д'
-				'Другое'
-			else
-				'Данные не введены'
-		end
-	end
-
-	def sortable(column, title = nil)
-		title ||= column.titleize
-		css_class = column == sort_column ? "current #{sort_direction}" : nil
-		direction = column == sort_column && sort_direction == "asc" ? "desc" : "asc"
-		link_to title, {:sort => column, :direction => direction}
-	end
-
 	def status_names
 		{ received: "получено",
 		done: "сделано",
-		worker_sended: "рабочие_отправлены",
-		worker_arrived: "рабочие_прибыли",
-		worker_gone: "рабочие_ушли"}
+		worker_sended: "рабочие отправлены",
+		worker_arrived: "рабочие прибыли",
+		worker_gone: "рабочие ушли"}
 	end
 end
