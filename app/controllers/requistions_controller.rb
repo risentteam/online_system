@@ -64,7 +64,7 @@ class RequistionsController < ApplicationController
 			category: params[:requistion][:category],
 			status: "worker_sended")
 				
-=begin
+
 			rescue Exception => e
 				
 			end			@pair = @requistion.pairs.create(user_id: params[:worker])
@@ -88,7 +88,7 @@ class RequistionsController < ApplicationController
 				message: text,
 				recipients: ['89885333165'])
 			response = message.deliver
-=end
+
 
 			redirect_to @requistion
 
