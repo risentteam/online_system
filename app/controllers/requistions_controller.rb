@@ -24,6 +24,7 @@ class RequistionsController < ApplicationController
 			current_user.pairs.create!(requistion_id: @requistion.id)
 			message = MainsmsApi::Message.new(sender: '3B-online', message: 'Ваша заявка №'+@requistion.id.to_s+' принята', recipients: ['89611600018'])
 			response = message.deliver
+			#UserMailer.welcome_email(@requistion).deliver
 			redirect_to @requistion
 		else
 			flash[:warning] = "Вы ошиблись при заполнении формы"
@@ -44,13 +45,13 @@ class RequistionsController < ApplicationController
 	end
 
 	def update_contracts
-		@list_company =  Contract.where("company = ? ", params[:company])
+		@list_company =  Contract.where("company = '#{params[:company]}' "	)
 		render :partial => "versions", :object => @list_company
 	end
 
 	def update_date
  		@contract = Contract.find(params[:contract])
-		render json: @contract, methods: [:contract_id, :description, :date_of_signing]
+		render json: @contract, methods: [:contract_id, :description, :name_contract, :end_time, :begin_time	]
 	end
 
 
@@ -60,9 +61,11 @@ class RequistionsController < ApplicationController
 
 		if @requistion.update_attributes(
 			contract_id: params[:contract], 
-			category: params[:requistion][:category], 
-			status: "sended")
+			category: params[:requistion][:category],
+			status: "worker_sended")
+				
 
+				
 			@pair = @requistion.pairs.create(user_id: params[:worker])
 			all_workers = [params[:worker]]
 			count = 1
@@ -84,6 +87,8 @@ class RequistionsController < ApplicationController
 				message: text,
 				recipients: ['89885333165'])
 			response = message.deliver
+
+
 			redirect_to @requistion
 
 		else 
@@ -102,7 +107,7 @@ class RequistionsController < ApplicationController
 
 	private
 		def requistions_params
-				params.require(:requistion).permit(:object, :contact_name, :contact_phone, :type_requistion, :subtype_requistion, :building_id, :requistion_comment)
+			params.require(:requistion).permit(:object, :contact_name, :contact_phone, :type_requistion, :subtype_requistion, :building_id, :requistion_comment)
 		end
 
 		def manager_params

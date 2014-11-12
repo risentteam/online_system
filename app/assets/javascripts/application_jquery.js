@@ -111,8 +111,8 @@ $(document).ready(function() {
                 data: "contract=" + $('#version_id :selected').val(),
                 success: function (data, status) {
 //                  alert("Data: " + data.description + "\nStatus: " + status);
-                    $('#contract').val(data.contract_id);
-                    $('#period_contract').val(data.date_of_signing);
+                    $('#contract').val(data.name_contract);
+                    $('#period_contract').val(data.end_time);
                     $('#description').val(data.description);
                 }
             });
