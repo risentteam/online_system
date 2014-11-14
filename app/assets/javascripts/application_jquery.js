@@ -51,7 +51,7 @@ $(document).ready(function() {
 */
 $(document).ready(function() {
     $('#all_requistion').DataTable( {
-        initComplete: function () {
+        function () {
             var api = this.api();
  
             api.columns().indexes().flatten().each( function ( i ) {
