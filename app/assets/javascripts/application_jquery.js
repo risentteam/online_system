@@ -1,9 +1,8 @@
 $(document).ready(function() {
     var table = $('#example').DataTable();
-    var tt = new $.fn.dataTable.TableTools( table );
+     var colvis = new $.fn.dataTable.ColVis( table );
  
-    $( tt.fnContainer() ).insertAfter('div.info');
-} );
+    $( colvis.button() ).insertAfter('div.info'); );
 /*        initComplete: function () {
             var api = this.api();
  
