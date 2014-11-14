@@ -1,6 +1,5 @@
 $(document).ready(function() {
     var table = $('#example').DataTable( {
-        dom: 'T<"clear">lfrtip',
         tableClass: "table",
         initComplete: function () {
             var api = this.api();
@@ -55,6 +54,9 @@ $(document).ready(function() {
             }
         }
         } );
+    var tt = new $.fn.dataTable.TableTools( table );
+ 
+    $( tt.fnContainer() ).insertAfter('div.info');
 });
 
 //Добавление поля описания, для "другого"
