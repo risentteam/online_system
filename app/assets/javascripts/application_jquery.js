@@ -1,6 +1,8 @@
 $(document).ready(function() {
     var table = $('#example').DataTable(     {
         dom: 'T<"clear">lfrtip'
+    } );
+} );
 /*        initComplete: function () {
             var api = this.api();
  
@@ -53,10 +55,10 @@ $(document).ready(function() {
                 "sortDescending": ": активировать для сортировки по убыванию"
             }
         },
-*/
+
         } );
 });
-
+*/
 //Добавление поля описания, для "другого"
 $(document).ready(function() {
     if ($('#requistion_type_requistion :selected').text()!='Другое')
