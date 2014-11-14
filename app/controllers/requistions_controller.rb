@@ -44,6 +44,9 @@ class RequistionsController < ApplicationController
 
 	def edit
 		@requistion = Requistion.find(params[:id])
+		if @requistion.status=="done"
+			redirect_to @requistion
+		end
 		@list_worker = User.worker
 		@list_contract = @requistion.building.contracts.select("company").distinct
 		@list_company = Contract.all
