@@ -25,7 +25,7 @@
     <tbody>
 	<% for requistion in @requistions %>
 	<tr>
-	    <th><%= link_to requistion.object,  {:action => :show, :id => requistion.id}, {:method => :get} %></th>
+	    <td><%= link_to requistion.object,  {:action => :show, :id => requistion.id}, {:method => :get} %></td>
 		<td><%= requistion.arrival_address %></td>
 		<td><%= Russian::strftime(requistion.created_at, "%e %B %Y %H:%M") %></td>
 		<td><%= status_names[requistion.status.to_sym] %></td>
@@ -36,7 +36,6 @@
  -->    </tr>
 	<% end %>
 	</tbody>
-<
     </table>
 <!-- <%# provide(:title, 'All users') %>
 <h1>Все заявки</h1>
