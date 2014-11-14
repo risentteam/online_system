@@ -7,9 +7,9 @@
 				<th>Адрес прибытия</th>
 				<th>Время заявки</th>
 			    <th>Статус</th>
-<!-- 		        <th></th>
 		        <th></th>
- -->            </tr>
+		        <th></th>
+            </tr>
         </thead>
  
         <tfoot>
@@ -18,9 +18,9 @@
 				<th>Адрес прибытия</th>
 				<th>Время заявки</th>
 			    <th>Статус</th>
-<!-- 		        <th></th>
 		        <th></th>
- -->            </tr>
+		        <th></th>
+            </tr>
         </tfoot>
     <tbody>
 	<% for requistion in @requistions %>
@@ -29,11 +29,11 @@
 		<td><%= requistion.arrival_address %></td>
 		<td><%= Russian::strftime(requistion.created_at, "%e %B %Y %H:%M") %></td>
 		<td><%= status_names[requistion.status.to_sym] %></td>
-	    <th><%#= link_to edit_requistion_path(requistion) do%>
-	    	<span class="glyphicon glyphicon-pencil"></span>&nbsp
-	    	<% end %>
+<!-- 	    <th><%#= link_to edit_requistion_path(requistion) do%>
+	    	<span class="glyphicon glyphicon-pencil"></span>
+	    	<%# end %>
 	    </th>
-    </tr>
+ -->    </tr>
 	<% end %>
 	</tbody>
 <
