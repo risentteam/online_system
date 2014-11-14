@@ -17,8 +17,9 @@ $(document).ready(function() {
                     } );
  
                 column.data().unique().sort().each( function ( d, j ) {
-                    var val = d.split('>')[1]
-                    select.append( '<option value="'+val+'">'+val+'</option>' )
+                    var val = d.split('>')[1];
+                    console.log(d.split('>')[0], d.split('>')[1])
+                    select.append( '<option value="'+val+'">'+val+"</a"+'</option>' )
                 } );
             } );
         },
