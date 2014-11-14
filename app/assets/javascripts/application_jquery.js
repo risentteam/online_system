@@ -1,6 +1,6 @@
 $(document).ready(function() {
     var table = $('#example').DataTable(     {
-        dom: 'T<"clear">lfrtip',
+        "dom": 'T<"clear">lfrtip',
         initComplete: function () {
             var api = this.api();
  
@@ -52,7 +52,19 @@ $(document).ready(function() {
                 "sortAscending":  ": активировать для сортировки по возрастанию",
                 "sortDescending": ": активировать для сортировки по убыванию"
             }
+        },
+        "tableTools": {
+            "aButtons": [
+                "copy",
+                "print",
+                {
+                    "sExtends":    "collection",
+                    "sButtonText": "Save",
+                    "aButtons":    [ "csv", "xls", "pdf" ]
+                }
+            ]
         }
+
         } );
 });
 
