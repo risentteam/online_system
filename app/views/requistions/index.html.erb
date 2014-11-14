@@ -4,7 +4,7 @@
 	<thead>
 	<tr>
 		<th>Объект</th>
-		<th>Главный адрес</th>
+		<th>Адрес прибытия</th>
 		<th>Время заявки</th>
 	    <th>Статус</th>
         <th></th>
@@ -14,7 +14,7 @@
 	<% for requistion in @requistions %>
 	<tr>
 	    <th><%= link_to requistion.object,  {:action => :show, :id => requistion.id}, {:method => :get} %></th>
-		<td><%= requistion.main_address %></td>
+		<td><%= requistion.arrival_address %></td>
 		<td><%= Russian::strftime(requistion.created_at, "%e %B %Y %H:%M") %></td>
 		<td><%= status_names[requistion.status.to_sym] %></td>
 	    <th><%= link_to edit_requistion_path(requistion) do%>
