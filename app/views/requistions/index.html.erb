@@ -5,7 +5,10 @@
             <tr>
 				<th>Объект</th>
 				<th>Адрес прибытия</th>
-				<th>Время заявки</th>
+				<th>Время</th>
+				<th>Число</th>
+				<th>Месяц</th>
+				<th>Год</th>
 			    <th>Статус</th>
 		        <th></th>
             </tr>
@@ -15,7 +18,10 @@
             <tr>
 				<th>Объект</th>
 				<th>Адрес прибытия</th>
-				<th>Время заявки</th>
+				<th>Время</th>
+				<th>Число</th>
+				<th>Месяц</th>
+				<th>Год</th>
 			    <th>Статус</th>
 		        <th></th>
             </tr>
@@ -25,7 +31,10 @@
 		<tr>
 	    	<td><%= link_to requistion.object,  {:action => :show, :id => requistion.id}, {:method => :get} %></td>
 			<td><%= requistion.building.arrival_address %></td>
-			<td><%= Russian::strftime(requistion.created_at, "%e %B %Y %H:%M") %></td>
+			<td><%= Russian::strftime(requistion.created_at, "%H:%M") %></td>
+			<td><%= Russian::strftime(requistion.created_at, "%e") %></td>
+			<td><%= Russian::strftime(requistion.created_at, "%B") %></td>
+			<td><%= Russian::strftime(requistion.created_at, "%Y") %></td>
 			<td><%= status_names[requistion.status.to_sym] %></td>
  	    	<th><%= link_to edit_requistion_path(requistion) do%>
 	    		<span class="glyphicon glyphicon-pencil"></span>

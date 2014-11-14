@@ -10,7 +10,6 @@ $(document).ready(function() {
                     .appendTo( $(column.footer()).empty() )
                     .on( 'change', function () {
                         var val = $(this).val();
-                        console.log(val);
                         column
                             .search( val ? '^'+val+'$' : '', true, false )
                             .draw();
@@ -22,7 +21,6 @@ $(document).ready(function() {
                         var d1=d;
                         var val = d.split('>')[1].split('<')[0];
                         select.append( '<option value="'+val+'">'+d1+'</option>' );
-                        console.log(d1, val);
                     }
                     else
                     {
