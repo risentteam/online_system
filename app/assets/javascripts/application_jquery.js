@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    table = $('#example').DataTable( {
+    var table = $('#example').DataTable( {
         tableClass: "table",
         initComplete: function () {
             var api = this.api();
