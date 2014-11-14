@@ -10,7 +10,7 @@ $(document).ready(function() {
                     .appendTo( $(column.footer()).empty() )
                     .on( 'change', function () {
                         var val = $(this).val();
- 
+                        aler($(this).val());
                         column
                             .search( val ? '^'+val+'$' : '', true, false )
                             .draw();
