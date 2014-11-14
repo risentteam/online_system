@@ -10,13 +10,13 @@ $(document).ready(function() {
                     .appendTo( $(column.footer()).empty() )
                     .on( 'change', function () {
                         var val = $(this).val();
-                        alert(val);
                         column
                             .search( val ? '^'+val+'$' : '', true, false )
                             .draw();
                     } );
  
                 column.data().unique().sort().each( function ( d, j ) {
+                    alert(d, j);
                     select.append( '<option value="'+d+'">'+d+'</option>' )
                 } );
             } );
