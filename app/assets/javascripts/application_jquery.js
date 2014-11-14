@@ -10,10 +10,7 @@ $(document).ready(function() {
                     .appendTo( $(column.footer()).empty() )
                     .on( 'change', function () {
                         var val = $(this).val();
-                        if (typeof val[3] == "undefined")
-                            console.log(val[0], val[2], val[3]);
-                        else
-                            console.log(val[3]);
+                        console.log(val);
                         column
                             .search( val ? '^'+val+'$' : '', true, false )
                             .draw();
