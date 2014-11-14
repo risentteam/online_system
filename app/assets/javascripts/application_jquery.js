@@ -51,8 +51,7 @@ $(document).ready(function() {
                 "sortAscending":  ": активировать для сортировки по возрастанию",
                 "sortDescending": ": активировать для сортировки по убыванию"
             }
-        }
-        } )
+        };
         dom: 'T<"clear">lfrtip',
         tableTools: {
             "aButtons": [
@@ -67,6 +66,8 @@ $(document).ready(function() {
                 "print"
             ]
         };
+
+        } )
 });
 
 //Добавление поля описания, для "другого"
