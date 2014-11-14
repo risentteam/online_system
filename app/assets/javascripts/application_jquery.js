@@ -1,7 +1,7 @@
 $(document).ready(function() {
     var table = $('#example').DataTable(     {
         "dom": 'T<"clear">lfrtip',
-        initComplete: function () {
+/*        initComplete: function () {
             var api = this.api();
  
               api.columns().indexes().flatten().each( function ( i ) {
@@ -53,7 +53,7 @@ $(document).ready(function() {
                 "sortDescending": ": активировать для сортировки по убыванию"
             }
         },
-        "tableTools": {
+*/        "tableTools": {
             "aButtons": [
                 "copy",
                 "print",
