@@ -19,8 +19,8 @@ $(document).ready(function() {
                 column.data().unique().sort().each( function ( d, j ) {
                     var d1=d;
                     var val = d.split('>')[1].split('<')[0];
-                    select.append( '<option value="'+var+'">'+d1+'</option>' );
-                    console.log(d1, var);
+                    select.append( '<option value="'+val+'">'+d1+'</option>' );
+                    console.log(d1, val);
                 } );
             } );
         },
