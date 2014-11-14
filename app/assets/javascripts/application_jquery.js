@@ -50,8 +50,7 @@ $(document).ready(function() {
 });
 */
 $(document).ready(function() {
-    $('#all_requistion').DataTable( {
-        function () {
+    $('#all_requistion').DataTable(function () {
             var api = this.api();
  
             api.columns().indexes().flatten().each( function ( i ) {
@@ -72,8 +71,7 @@ $(document).ready(function() {
                     select.append( '<option value="'+d+'">'+d+'</option>' )
                 } );
             } );
-        }
-    } );
+        } );
 } );
 
 //Добавление поля описания, для "другого"
