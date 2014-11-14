@@ -36,10 +36,10 @@
 			<td><%= Russian::strftime(requistion.created_at, "%B") %></td>
 			<td><%= Russian::strftime(requistion.created_at, "%Y") %></td>
 			<td><%= status_names[requistion.status.to_sym] %></td>
- 	    	<th><%= link_to edit_requistion_path(requistion) do%>
+ 	    	<td><%= link_to edit_requistion_path(requistion) do%>
 	    		<span class="glyphicon glyphicon-pencil"></span>
 	    		<% end %>
-	    	</th>
+	    	</td>
 		</tr>
 		<% end %>
 	</tbody>
