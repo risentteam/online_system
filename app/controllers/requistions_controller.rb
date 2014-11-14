@@ -13,7 +13,7 @@ class RequistionsController < ApplicationController
 	end
 
 	def close
-			flash[:warning] = "Вы ошиблись при заполнении формы"
+		flash[:warning] = "Вы ошиблись при заполнении формы"
 	end
 
 	def create

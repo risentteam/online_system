@@ -104,7 +104,7 @@
 					<div class="col-md-5">
 						<%= text_field_tag :description, nil, :placeholder => "Введите время окончания договора", class: "form-control", required: "" %>
 					</div>
-				</div>
+ 				</div>
 			</div>
 			<div class="row">
 				<div class="form-group">
@@ -131,5 +131,5 @@
 
 			
 			<%#= f.submit "Сохранить", class: "btn btn-large btn-primary", id: "submut" %>
-			<%= link_to "Закрыть заявку", {:action => 'close'}, {:class => "btn btn-large btn-primary"} %>		
 		<% end %>
+<%= link_to "Закрыть заявку", {:action => 'close'}, {:class => "btn btn-large btn-primary"} %>		
