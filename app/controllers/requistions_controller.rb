@@ -13,7 +13,11 @@ class RequistionsController < ApplicationController
 	end
 
 	def close
-		flash[:warning] = "Вы ошиблись при заполнении формы"
+		@requistion = Requistion.find(params[:id]) 
+		if @requistion.update_attributes(
+			status: "done")
+			flash[:success] = "Заявка сдана в архив"
+			redirect_to @requistion
 	end
 
 	def create
