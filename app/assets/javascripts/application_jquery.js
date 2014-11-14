@@ -1,8 +1,8 @@
 $(document).ready(function() {
-    var table = $('#example').DataTable(     {
+    var table = $('#example').DataTable();
     var tt = new $.fn.dataTable.TableTools( table );
  
-    $( tt.fnContainer() ).insertAfter('div.info');    } );
+    $( tt.fnContainer() ).insertAfter('div.info');
 } );
 /*        initComplete: function () {
             var api = this.api();
