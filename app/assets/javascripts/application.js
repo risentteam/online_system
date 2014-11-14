@@ -18,8 +18,8 @@
 
 
 //= require jquery.dataTables
-//= require dataTables.colVis.js
-//= require dataTables.tableTools.js
+//= require dataTables.colVis
+//= require dataTables.tableTools
 
 //= require dataTables.bootstrap
 
