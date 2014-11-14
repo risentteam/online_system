@@ -1,5 +1,6 @@
 $(document).ready(function() {
     var table = $('#example').DataTable( {
+        dom: 'T<"clear">lfrtip',
         tableClass: "table",
         initComplete: function () {
             var api = this.api();
@@ -54,8 +55,6 @@ $(document).ready(function() {
             }
         }
         } );
-    var colvis = new $.fn.dataTable.ColVis( table );
-    $( colvis.button() ).insertAfter('div.info');
 });
 
 //Добавление поля описания, для "другого"
