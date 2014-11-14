@@ -2,7 +2,8 @@ $(document).ready(function() {
     var table = $('#example').DataTable();
      var colvis = new $.fn.dataTable.ColVis( table );
  
-    $( colvis.button() ).insertAfter('div.info'); );
+    $( colvis.button() ).insertAfter('div.info'); 
+});
 /*        initComplete: function () {
             var api = this.api();
  
