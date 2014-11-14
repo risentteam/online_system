@@ -1,5 +1,19 @@
 $(document).ready(function() {
     var table = $('#example').DataTable(     {
+        dom: 'T<"clear">lfrtip',
+        tableTools: {
+            "aButtons": [
+                "copy",
+                "csv",
+                "xls",
+                {
+                    "sExtends": "pdf",
+                    "sPdfOrientation": "landscape",
+                    "sPdfMessage": "Your custom message would go here."
+                },
+                "print"
+            ]
+        };
         initComplete: function () {
             var api = this.api();
  
@@ -51,23 +65,8 @@ $(document).ready(function() {
                 "sortAscending":  ": активировать для сортировки по возрастанию",
                 "sortDescending": ": активировать для сортировки по убыванию"
             }
-        },
-        dom: 'T<"clear">lfrtip',
-        tableTools: {
-            "aButtons": [
-                "copy",
-                "csv",
-                "xls",
-                {
-                    "sExtends": "pdf",
-                    "sPdfOrientation": "landscape",
-                    "sPdfMessage": "Your custom message would go here."
-                },
-                "print"
-            ]
-        };
-
-        } )
+        }
+        } );
 });
 
 //Добавление поля описания, для "другого"
