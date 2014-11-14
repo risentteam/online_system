@@ -1,11 +1,11 @@
-/*
 $(document).ready(function() {
     table = $('#all_requistion').DataTable( {
-        tableClass: "mytable",
+        tableClass: "table",
         initComplete: function () {
             var api = this.api();
  
             api.columns().indexes().flatten().each( function ( i ) {
+                alert("!");
                 var column = api.column( i );
                 var select = $('<select><option value=""></option></select>')
                     .appendTo( $(column.footer()).empty() )
@@ -48,27 +48,6 @@ $(document).ready(function() {
         }
         } );
 });
-*/
-$(document).ready(function() {
-    // Setup - add a text input to each footer cell
-    $('#all_requistion tfoot th').each( function () {
-        var title = $('#all_requistion thead th').eq( $(this).index() ).text();
-        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
-    } );
- 
-    // DataTable
-    var table = $('#all_requistione').DataTable();
- 
-    // Apply the search
-    table.columns().eq( 0 ).each( function ( colIdx ) {
-        $( 'input', table.column( colIdx ).footer() ).on( 'keyup change', function () {
-            table
-                .column( colIdx )
-                .search( this.value )
-                .draw();
-        } );
-    } );
-} );
 
 //Добавление поля описания, для "другого"
 $(document).ready(function() {
