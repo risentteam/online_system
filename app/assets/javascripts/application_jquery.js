@@ -17,9 +17,10 @@ $(document).ready(function() {
                     } );
  
                 column.data().unique().sort().each( function ( d, j ) {
-                    console.log(d, d.split('>')[0], d.split('>')[1])
-//                    var val = d.split('>')[1];
-                    select.append( '<option value="'+d+'">'+d+"</a"+'</option>' )
+                    var d1=d;
+                    var val = d.split('>')[1].split('<')[0];
+                    select.append( '<option value="'+var+'">'+d1+'</option>' );
+                    console.log(d1, var);
                 } );
             } );
         },
