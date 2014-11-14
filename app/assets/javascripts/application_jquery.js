@@ -1,5 +1,6 @@
 $(document).ready(function() {
-    var table = $('#example').DataTable();
+    var table = $('#example').DataTable( {
+        tableClass: "table",
         initComplete: function () {
             var api = this.api();
  
@@ -52,7 +53,6 @@ $(document).ready(function() {
                 "sortDescending": ": активировать для сортировки по убыванию"
             }
         }
-
         } );
 });
 
