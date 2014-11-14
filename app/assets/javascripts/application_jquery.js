@@ -20,7 +20,7 @@ $(document).ready(function() {
                     var d1=d;
                     var val = d.split('>')[1].split('<')[0];
                     select.append( '<option value="'+val+'">'+d1+'</option>' );
-                    console.log(d1, val);
+                    console.log(d1, val, j);
                 } );
             } );
         },
