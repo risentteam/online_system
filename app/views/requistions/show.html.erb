@@ -50,7 +50,11 @@
 
 <br>
 <% if current_user.status == "admin" %>
-  <%= button_to "Обработать заявку", edit_requistion_path, method: :get, class: "btn btn-large btn-primary" %>
+  <% if @requistion.status == "done" %>
+    <%= button_to "Обработать заявку", edit_requistion_path, method: :get, class: "btn btn-large btn-primary" %>
+  <% else %>
+    <%= button_to "Обработать заявку", edit_requistion_path, method: :get, class: "disabled"%>
+  <% end %>
 <% end %>
 
 </div>
