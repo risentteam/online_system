@@ -5,7 +5,7 @@ $(document).ready(function() {
             var api = this.api();
  
             api.columns().indexes().flatten().each( function ( i ) {
-                alert("!");
+                alert(i);
                 var column = api.column( i );
                 var select = $('<select><option value=""></option></select>')
                     .appendTo( $(column.footer()).empty() )
