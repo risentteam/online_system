@@ -1,6 +1,6 @@
 $(document).ready(function() {
-    table = $('#all_requistion').DataTable( {
-        tableClass: "table",
+    table = $('#example').DataTable( {
+//        tableClass: "table",
         initComplete: function () {
             var api = this.api();
  
@@ -11,14 +11,14 @@ $(document).ready(function() {
                     .on( 'change', function () {
                         var val = $(this).val();
  
-//                        column
-//                            .search( val ? '^'+val+'$' : '', true, false )
-//                            .draw();
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
                     } );
  
-//                column.data().unique().sort().each( function ( d, j ) {
-//                    select.append( '<option value="'+d+'">'+d+'</option>' )
-//                } );
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
             } );
         },
 
