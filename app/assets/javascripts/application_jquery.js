@@ -1,7 +1,8 @@
 $(document).ready(function() {
     var table = $('#example').DataTable(     {
-        dom: 'T<"clear">lfrtip'
-    } );
+    var tt = new $.fn.dataTable.TableTools( table );
+ 
+    $( tt.fnContainer() ).insertAfter('div.info');    } );
 } );
 /*        initComplete: function () {
             var api = this.api();
