@@ -12,6 +12,10 @@ class RequistionsController < ApplicationController
 		@requistion = Requistion.find(params[:id]) 
 	end
 
+	def close
+		
+	end
+
 	def create
 		@requistion = Requistion.new(requistions_params)
 		if @requistion.save
