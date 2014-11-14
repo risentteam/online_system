@@ -20,10 +20,10 @@ App::Application.routes.draw do
 	match '/requistions', to: 'requistions#index', via: 'get'
 	match "/update_contracts", to: "requistions#update_contracts", via: 'get'	
 	match "/update_date", to: "requistions#update_date", via: 'get'	
+  	match 'requistions/:id/close', to: 'requistions#close', via: 'get'
   	resources :contracts
 
   	resources :buildings
-  	match 'buildings/:id/for_worker', to: 'buildings#for_worker', via: 'get'
   	match 'buildings/:id/check_in', to: 'buildings#check_in', via: 'get'
   	match 'buildings/:id/check_out', to: 'buildings#check_out', via: 'get'
   	match 'no_build', to: 'buildings#no_build', via: 'get'
