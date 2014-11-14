@@ -18,6 +18,7 @@ class RequistionsController < ApplicationController
 			status: "done")
 			flash[:success] = "Заявка сдана в архив"
 			redirect_to @requistion
+		end
 	end
 
 	def create
