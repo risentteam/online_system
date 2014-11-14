@@ -1,6 +1,6 @@
 $(document).ready(function() {
     var table = $('#example').DataTable(     {
-        "dom": 'T<"clear">lfrtip',
+        "dom": 'T<"clear">lfrtip'
 /*        initComplete: function () {
             var api = this.api();
  
