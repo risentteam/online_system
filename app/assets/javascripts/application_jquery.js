@@ -53,18 +53,7 @@ $(document).ready(function() {
                 "sortDescending": ": активировать для сортировки по убыванию"
             }
         },
-*/        "tableTools": {
-            "aButtons": [
-                "copy",
-                "print",
-                {
-                    "sExtends":    "collection",
-                    "sButtonText": "Save",
-                    "aButtons":    [ "csv", "xls", "pdf" ]
-                }
-            ]
-        }
-
+*/
         } );
 });
 
