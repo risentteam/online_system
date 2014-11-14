@@ -1,10 +1,6 @@
 $(document).ready(function() {
     var table = $('#example').DataTable();
-     var colvis = new $.fn.dataTable.ColVis( table );
- 
-    $( colvis.button() ).insertAfter('div.info'); 
-});
-/*        initComplete: function () {
+        initComplete: function () {
             var api = this.api();
  
               api.columns().indexes().flatten().each( function ( i ) {
@@ -55,11 +51,11 @@ $(document).ready(function() {
                 "sortAscending":  ": активировать для сортировки по возрастанию",
                 "sortDescending": ": активировать для сортировки по убыванию"
             }
-        },
+        }
 
         } );
 });
-*/
+
 //Добавление поля описания, для "другого"
 $(document).ready(function() {
     if ($('#requistion_type_requistion :selected').text()!='Другое')
