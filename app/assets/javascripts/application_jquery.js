@@ -1,6 +1,42 @@
 $(document).ready(function() {
     var table = $('#example').DataTable( {
         tableClass: "table",
+        "dom": 'T<"clear">lfrtip',
+        "tableTools": {
+            "sSwfPath": "http://cdn.datatables.net/tabletools/2.2.2/swf/copy_csv_xls_pdf.swf",
+            "aButtons": [
+                {
+                    "sExtends": "copy",
+                    "sButtonText": "Скопировать",
+                    "bFooter": false,                   
+                },
+//                "csv",
+                {
+                    "sExtends": "xls",
+                    "sButtonText": "Экспорт в xls",
+                    "bFooter": false,                     
+                    "sCharSet" : "utf16le",
+                    "sFileName" : "Заявки.xls",
+                    "sFieldSeperator" : ';'  
+                },
+                {
+                    "sExtends": "pdf",
+                    "sPdfOrientation": "landscape",
+                    "bFooter": false, 
+                    "sFileName" : "Заявки.pdf",
+                    "sPdfMessage": "Your custom message would go here.",
+                    "sCharSet" : "utf8" 
+                },
+                {
+                    "sExtends": "print",
+                    "sButtonText": "Предварительный просмотр",
+                    "bFooter": false,
+                    "sInfo": "Нажмите esc для выхода"                     
+                },
+            ]
+
+        },
+
         initComplete: function () {
             var api = this.api();
  
@@ -55,6 +91,51 @@ $(document).ready(function() {
         }
         } );
 });
+
+
+// $(document).ready( function () {
+//     $('#example').dataTable( {
+//         "dom": 'T<"clear">lfrtip',
+//         "tableTools": {
+//             "sSwfPath": "http://cdn.datatables.net/tabletools/2.2.2/swf/copy_csv_xls_pdf.swf",
+//             "aButtons": [
+//                 {
+//                     "sExtends": "copy",
+//                     "sButtonText": "Скопировать",
+//                     "bFooter": false,                   
+//                 },
+// //                "csv",
+//                 {
+//                     "sExtends": "xls",
+//                     "sButtonText": "Экспорт в xls",
+//                     "bFooter": false,                     
+//                     "sCharSet" : "utf16le",
+//                     "sFileName" : "Заявки.xls",
+//                     "sFieldSeperator" : ';'  
+//                 },
+//                 {
+//                     "sExtends": "pdf",
+//                     "sPdfOrientation": "landscape",
+//                     "bFooter": false, 
+//                     "sFileName" : "Заявки.pdf",
+//                     "sPdfMessage": "Your custom message would go here.",
+//                     "sCharSet" : "utf8" 
+//                 },
+//                 {
+//                     "sExtends": "print",
+//                     "sButtonText": "Предварительный просмотр",
+//                     "bFooter": false,
+//                     "sInfo": "Нажмите esc для выхода"                     
+//                 },
+//             ]
+
+//         }
+//     } );
+// } );
+
+
+//Чтение рейтина
+
 
 //Добавление поля описания, для "другого"
 $(document).ready(function() {

@@ -17,9 +17,9 @@
 //= require jquery_nested_form
 
 
-//= require jquery.dataTables
-//= require dataTables.colVis
-//= require dataTables.tableTools
+//= require dataTables/jquery.dataTables
+//= require dataTables/extras/dataTables.tableTools
+//= require jquery-star-rating
 
 //= require dataTables.bootstrap
 

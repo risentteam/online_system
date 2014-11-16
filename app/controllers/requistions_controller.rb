@@ -21,6 +21,12 @@ class RequistionsController < ApplicationController
 		end
 	end
 
+	def raiting
+		@requistion = Requistion.find(params[:id]) 
+		flash[:success] = "Оценка поставлена"
+		redirect_to @current_user
+	end
+
 	def create
 		@requistion = Requistion.new(requistions_params)
 		if @requistion.save

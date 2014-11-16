@@ -3,4 +3,10 @@
  <td> <%= transcript_of_the_messages(requistion.type_requistion) %> </td>
  <td> <%= status_names[requistion.status.to_sym] %> </td>
  <td> <%= time_ago_in_words(requistion.created_at) %> назад </td>
- 	
+ <td><input name="star1" type="radio" class="star"/>
+ 	 <input name="star1" type="radio" class="star"/> 
+ 	 <input name="star1" type="radio" class="star"/> 
+ 	 <input name="star1" type="radio" class="star"/> 
+ 	 <input name="star1" type="radio" class="star"/>
+ 	 <%= link_to "Поставить оценку", {:controller => 'requistions', :action => 'raiting', :name => '!'}, {:class => "btn btn-large btn-primary"} %>		
+ </td>

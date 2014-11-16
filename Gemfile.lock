@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/mcallaway/jquery-datatables-tabletools-rails.git
+  revision: 4a4036d4567217f0cf3cd7e66169f7fb80c8cb8e
+  specs:
+    jquery-datatables-tabletools-rails (2.0.3)
+      jquery-datatables-rails
+
+GIT
   remote: git://github.com/rweng/jquery-datatables-rails.git
   revision: 729a7fd576c3b119212762b8617814b720595fd6
   specs:
@@ -102,6 +109,8 @@ GEM
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-star-rating-rails (4.0.4)
+      rails (>= 3.1.0)
     json (1.8.1)
     listen (2.7.11)
       celluloid (>= 0.15.2)
@@ -245,7 +254,9 @@ DEPENDENCIES
   guard-spork (= 1.5.0)
   jbuilder (= 1.0.2)
   jquery-datatables-rails!
+  jquery-datatables-tabletools-rails!
   jquery-rails (= 3.0.4)
+  jquery-star-rating-rails
   mainsms_api
   nested_form
   pg (= 0.15.1)

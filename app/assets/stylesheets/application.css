@@ -12,6 +12,7 @@
  *= require custom
  *= require requistions
  *= require dataTables.bootstrap 
+ *= require jquery-star-rating
  */
 
 .hidden{
