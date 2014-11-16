@@ -19,8 +19,9 @@
 
 //= require dataTables/jquery.dataTables
 //= require dataTables/extras/dataTables.tableTools
+//= require dataTables/extras/dataTables.colVis
 //= require jquery-star-rating
 
-//= require dataTables.bootstrap
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 
 //= require application_jquery.js

@@ -1,9 +1,30 @@
 $(document).ready(function() {
     var table = $('#example').DataTable( {
-        tableClass: "table",
-        "dom": 'T<"clear">lfrtip',
+        tableClass: "table-bordered",
+        "dom": 'CT<"clear">lfrtip',
+        "colVis": {
+            "buttonText": "Показать/скрыть столбцы"
+        },
+        "createdRow": function ( row, data, index ) {
+            if ( data[16]=="получено" ) {
+                $('td', row).addClass('danger');
+            };
+            if ( data[16]=="сделано" ) {
+                $('td', row).addClass('success');
+            };
+            if ( data[16]=="рабочие отправлены" ) {
+                $('td', row).addClass('warning');
+            };
+            if ( data[16]=="рабочие прибыли" ) {
+                $('td', row).addClass('warning');
+            };
+            if ( data[16]=="рабочие ушли" ) {
+                $('td', row).addClass('warning');
+            };
+        },
         "tableTools": {
             "sSwfPath": "http://cdn.datatables.net/tabletools/2.2.2/swf/copy_csv_xls_pdf.swf",
+            "sRowSelect": "os",
             "aButtons": [
                 {
                     "sExtends": "copy",
@@ -16,6 +37,8 @@ $(document).ready(function() {
                     "sButtonText": "Экспорт в xls",
                     "bFooter": false,                     
                     "sCharSet" : "utf16le",
+                    "bSelectedOnly" : true, 
+                    "mColumns": "visible",
                     "sFileName" : "Заявки.xls",
                     "sFieldSeperator" : ';'  
                 },
@@ -49,8 +72,10 @@ $(document).ready(function() {
                         column
                             .search( val ? '^'+val+'$' : '', true, false )
                             .draw();
+
+
                     } );
- 
+                
                 column.data().unique().sort().each( function ( d, j ) {
                     if (i==0)
                     {
@@ -63,14 +88,16 @@ $(document).ready(function() {
                         select.append( '<option value="'+d+'">'+d+'</option>' );
                     }
                 } );
+
             } );
+
         },
 
         "language": {
             "emptyTable":     "В таблице отсутствуют данные",
             "info":           "Показаны с _START_ по _END_ из _TOTAL_ записей",
             "infoEmpty":      "Показаны 0 из 0 записей",
-            "infoFiltered":   "(filtered from _MAX_ total entries)",
+            "infoFiltered":   "(отфильтровано из всех _MAX_ записей)",
             "infoPostFix":    "",
             "thousands":      ",",
             "lengthMenu":     "Показывать по _MENU_ записей",
@@ -90,7 +117,9 @@ $(document).ready(function() {
             }
         }
         } );
-});
+    });
+
+
 
 
 // $(document).ready( function () {

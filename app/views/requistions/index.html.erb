@@ -9,7 +9,18 @@
 				<th>Число</th>
 				<th>Месяц</th>
 				<th>Год</th>
+				<th>Имя</th>
+				<th>Телефон</th>
+				<th>Тип</th>
+				<th>Поддтип</th>
+				<th>Комментарий</th>
+				<th>Катеория</th>
+				<th>Время</th>
+				<th>Число</th>
+				<th>Месяц</th>
+				<th>Год</th>
 			    <th>Статус</th>
+		        <th>Рейтинг</th>
 		        <th></th>
             </tr>
         </thead>
@@ -22,7 +33,18 @@
 				<th>Число</th>
 				<th>Месяц</th>
 				<th>Год</th>
+				<th>Имя</th>
+				<th>Телефон</th>
+				<th>Тип</th>
+				<th>Поддтип</th>
+				<th>Комментарий</th>
+				<th>Катеория</th>
+				<th>Время</th>
+				<th>Число</th>
+				<th>Месяц</th>
+				<th>Год</th>
 			    <th>Статус</th>
+		        <th>Рейтинг</th>
 		        <th></th>
             </tr>
         </tfoot>
@@ -35,7 +57,18 @@
 			<td><%= Russian::strftime(requistion.created_at, "%e") %></td>
 			<td><%= Russian::strftime(requistion.created_at, "%B") %></td>
 			<td><%= Russian::strftime(requistion.created_at, "%Y") %></td>
-			<td><%= status_names[requistion.status.to_sym] %></td>
+			<td><%= requistion.contact_name %></td>			
+			<td><%= requistion.contact_phone %></td>	
+			<td><%= requistion.type_requistion %></td>			
+			<td><%= requistion.subtype_requistions %></td>			
+			<td><%= requistion.requistion_comment %></td>			
+			<td><%= requistion.category %></td>	
+			<td><%= Russian::strftime(requistion.updated_at, "%H:%M") %></td>
+			<td><%= Russian::strftime(requistion.updated_at, "%e") %></td>
+			<td><%= Russian::strftime(requistion.updated_at, "%B") %></td>
+			<td><%= Russian::strftime(requistion.updated_at, "%Y") %></td>
+ 			<td><%= status_names[requistion.status.to_sym] %></td>
+			<td><%= requistion.raiting %></td>	
  	    	<td><%= link_to edit_requistion_path(requistion) do%>
 	    		<span class="glyphicon glyphicon-pencil"></span>
 	    		<% end %>
