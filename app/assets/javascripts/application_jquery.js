@@ -1,7 +1,7 @@
-$.datepicker.regional[''] = {
+$.datepicker.setDefaults({
     closeText: 'Закрыть',
-    prevText: '&#x3c;Пред',
-    nextText: 'След&#x3e;',
+    prevText: 'Предыдущий',
+    nextText: 'Следующий',
     currentText: 'Сегодня',
     monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь',
         'Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
@@ -13,9 +13,8 @@ $.datepicker.regional[''] = {
     dateFormat:'dd.mm.yy',
     firstDay: 1,
     isRTL: false
-};
+});
 
-$.datepicker.setDefaults($.datepicker.regional['']);
 
 $(document).ready(function() {
     var table = $('#example').dataTable( {
