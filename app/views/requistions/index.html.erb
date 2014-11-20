@@ -1,41 +1,23 @@
-<% provide(:title, 'All users') %>
+<% provide(:title, 'Все заявки') %>
 <h1>Все заявки</h1>
 <table id="example" class="table" cellspacing="0" width="100%">
-        <thead>
-            <tr>
-				<th>Объект</th>
-				<th>Адрес прибытия</th>
-				<th>Время</th>
-				<th>Имя</th>
-				<th>Телефон</th>
-				<th>Тип</th>
-				<th>Поддтип</th>
-				<th>Комментарий</th>
-				<th>Катеория</th>
-				<th>Время</th>
-			    <th>Статус</th>
-		        <th>Рейтинг</th>
-		        <th></th>
-            </tr>
-        </thead>
- 
-        <tfoot>
-            <tr>
-				<th>Объект</th>
-				<th>Адрес прибытия</th>
-				<th>Время</th>
-				<th>Имя</th>
-				<th>Телефон</th>
-				<th>Тип</th>
-				<th>Поддтип</th>
-				<th>Комментарий</th>
-				<th>Катеория</th>
-				<th>Время</th>
-			    <th>Статус</th>
-		        <th>Рейтинг</th>
-		        <th></th>
-            </tr>
-        </tfoot>
+	<thead>
+		<tr>
+			<th>Объект</th>
+			<th>Адрес прибытия</th>
+			<th>Время</th>
+			<th>Имя</th>
+			<th>Телефон</th>
+			<th>Тип</th>
+			<th>Поддтип</th>
+			<th>Комментарий</th>
+			<th>Катеория</th>
+			<th>Время</th>
+			<th>Статус</th>
+			<th>Рейтинг</th>
+			<th></th>
+		</tr>
+	</thead>    
     <tbody>
 		<% for requistion in @requistions %>
 		<tr>
@@ -58,4 +40,21 @@
 		</tr>
 		<% end %>
 	</tbody>
+	<tfoot>
+		<tr>
+			<th>Объект</th>
+			<th>Адрес прибытия</th>
+			<th>Время</th>
+			<th>Имя</th>
+			<th>Телефон</th>
+			<th>Тип</th>
+			<th>Поддтип</th>
+			<th>Комментарий</th>
+			<th>Катеория</th>
+			<th>Время</th>
+			<th>Статус</th>
+			<th>Рейтинг</th>
+			<th></th>
+		</tr>
+	</tfoot>
 </table>
