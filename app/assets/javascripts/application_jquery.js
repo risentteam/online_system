@@ -17,9 +17,9 @@ $.datepicker.setDefaults({
 
 
 $(document).ready(function() {
-    var table = $('#example').dataTable( {
+    var table = $('#example').dataTable({
         tableClass: "table-bordered",
-        "dom": 'CT<"clear">lfrtip',
+        "dom": 'C<lfrtip> <T>',
         "colVis": {
               "buttonText": "Показать/скрыть столбцы"
         },

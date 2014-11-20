@@ -25,6 +25,6 @@
 // require jquery-dateFormat
 //= require dataTables.columnFilter
 
-//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+// require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 
 //= require application_jquery.js
