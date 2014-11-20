@@ -1,0 +1,13 @@
+<div class="list">
+<tr>
+  <td>
+  <%= link_to user.name, user %>
+  <%= user.arrivals.where(begin_or_end: 0).order(:time).latest.time.strftime("%e %B %Y")%>
+  <% if current_user.admin? && !current_user?(user) %>
+    <%= link_to user, method: :delete, data: { confirm: "You sure?" } do%>
+    <span class="glyphicon glyphicon-trash" style="float:right"></span>
+    <% end %>
+  <% end %>
+  </td>
+</tr>
+</div>  

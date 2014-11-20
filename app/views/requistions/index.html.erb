@@ -41,14 +41,14 @@
 		<tr>
 	    	<td><%= link_to requistion.object,  {:action => :show, :id => requistion.id}, {:method => :get} %></td>
 			<td><%= requistion.building.arrival_address %></td>
-			<td><%= requistion.created_at.strftime ("%d %m %Y") %></td>
+			<td><%= requistion.created_at.strftime("%e.%m.%Y %H:%M") %></td>
 			<td><%= requistion.contact_name %></td>			
 			<td><%= requistion.contact_phone %></td>	
 			<td><%= transcript_of_the_messages(requistion.type_requistion) %></td>			
 			<td><%= transcript_of_the_messages(requistion.subtype_requistions)  %></td>			
 			<td><%= requistion.requistion_comment %></td>			
 			<td><%= transcript_of_the_messages_category(requistion.category) %></td>	
-			<td><%= Russian::strftime(requistion.updated_at, "%e %B %Y %H:%M") %></td>
+			<td><%= requistion.updated_at.strftime("%e.%m.%Y %H:%M") %></td>
  			<td><%= status_names[requistion.status.to_sym] %></td>
 			<td><%= requistion.raiting %></td>	
  	    	<td><%= link_to edit_requistion_path(requistion) do%>

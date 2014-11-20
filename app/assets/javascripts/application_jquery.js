@@ -1,5 +1,4 @@
-//$.datepicker.setDefaults( $.datepicker.regional[ "ru" ] );
-$.datepicker.regional['ru'] = {
+$.datepicker.regional[''] = {
     closeText: 'Закрыть',
     prevText: '&#x3c;Пред',
     nextText: 'След&#x3e;',
@@ -11,14 +10,12 @@ $.datepicker.regional['ru'] = {
     dayNames: ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'],
     dayNamesShort: ['вск','пнд','втр','срд','чтв','птн','сбт'],
     dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
+    dateFormat:'dd.mm.yy',
     firstDay: 1,
     isRTL: false
 };
 
-//$.datepicker.setDefaults($.datepicker.regional['ru']); 
-
-                $.datepicker.regional['ru'].dateFormat = 'dd mm yy';
-                $.datepicker.setDefaults($.datepicker.regional['ru']);
+$.datepicker.setDefaults($.datepicker.regional['']);
 
 $(document).ready(function() {
     var table = $('#example').dataTable( {
