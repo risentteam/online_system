@@ -28,17 +28,22 @@ class BuildingsController < ApplicationController
 	
 	def check_in
 		pairs = Pair.where("user_id = ? and requistion_id in (SELECT id FROM requistions WHERE building_id = ?)", current_user[:id], params[:id])
-		if pairs != []
-			arrival = Arrival.create(user_id: current_user[:id], check_type: "check_in", building_id: params[:id], time: Time.zone.now.to_s)
+#		if pairs != []
+			if current_user.arrivals.where(check_type: 0).order(:time).last().time.strftime("%e")!=Time.zone.now.strftime("%e") 
+#			if Time.zone.now.strftime("%H").to_i<=10 and Time.zone.now.strftime("%H").to_i>=8
+				arrival = Arrival.create(user_id: current_user[:id], check_type: "check_in", building_id: params[:id], time: Time.zone.now.to_s, begin_or_end: 0)
+			else
+				arrival = Arrival.create(user_id: current_user[:id], check_type: "check_in", building_id: params[:id], time: Time.zone.now.to_s)
+			end
 			pairs.each do |pair|
 				pair.requistion.update_attributes(status: "worker_arrived")
 			end
-			flash[:success] = "Ваше прибытие отмечено!"
+#			flash[:success] = "Ваше прибытие отмечено!"
 			redirect_to current_user
-		else
-			flash[:warning] = "Вы зашли не на то здание!"
-			redirect_to current_user
-		end
+		# else
+		# 	flash[:warning] = "Вы зашли не на то здание!"
+		# 	redirect_to current_user
+		# end
 	end
 
 	def check_out

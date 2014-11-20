@@ -46,6 +46,8 @@ class RequistionsController < ApplicationController
 
 	def index
 		@requistions = Requistion.all
+#		@requistions = Requistion.this_month
+
 	end
 
 	def edit

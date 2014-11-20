@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 //= require bootstrap
 //= require turbolinks
@@ -21,6 +22,8 @@
 //= require dataTables/extras/dataTables.tableTools
 //= require dataTables/extras/dataTables.colVis
 //= require jquery-star-rating
+//= require jquery-dateFormat
+//= require dataTables.columnFilter
 
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 

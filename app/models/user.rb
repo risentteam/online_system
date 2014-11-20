@@ -27,6 +27,7 @@ class User < ActiveRecord::Base
     end
 
   has_many :pairs
+  has_many :arrivals
   has_many :requistions, through: :pairs
   has_many :contracts
 end

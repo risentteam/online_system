@@ -6,9 +6,6 @@
 				<th>Объект</th>
 				<th>Адрес прибытия</th>
 				<th>Время</th>
-				<th>Число</th>
-				<th>Месяц</th>
-				<th>Год</th>
 				<th>Имя</th>
 				<th>Телефон</th>
 				<th>Тип</th>
@@ -16,9 +13,6 @@
 				<th>Комментарий</th>
 				<th>Катеория</th>
 				<th>Время</th>
-				<th>Число</th>
-				<th>Месяц</th>
-				<th>Год</th>
 			    <th>Статус</th>
 		        <th>Рейтинг</th>
 		        <th></th>
@@ -30,9 +24,6 @@
 				<th>Объект</th>
 				<th>Адрес прибытия</th>
 				<th>Время</th>
-				<th>Число</th>
-				<th>Месяц</th>
-				<th>Год</th>
 				<th>Имя</th>
 				<th>Телефон</th>
 				<th>Тип</th>
@@ -40,9 +31,6 @@
 				<th>Комментарий</th>
 				<th>Катеория</th>
 				<th>Время</th>
-				<th>Число</th>
-				<th>Месяц</th>
-				<th>Год</th>
 			    <th>Статус</th>
 		        <th>Рейтинг</th>
 		        <th></th>
@@ -53,24 +41,18 @@
 		<tr>
 	    	<td><%= link_to requistion.object,  {:action => :show, :id => requistion.id}, {:method => :get} %></td>
 			<td><%= requistion.building.arrival_address %></td>
-			<td><%= Russian::strftime(requistion.created_at, "%H:%M") %></td>
-			<td><%= Russian::strftime(requistion.created_at, "%e") %></td>
-			<td><%= Russian::strftime(requistion.created_at, "%B") %></td>
-			<td><%= Russian::strftime(requistion.created_at, "%Y") %></td>
+			<td><%= requistion.created_at.strftime ("%d %m %Y") %></td>
 			<td><%= requistion.contact_name %></td>			
 			<td><%= requistion.contact_phone %></td>	
-			<td><%= requistion.type_requistion %></td>			
-			<td><%= requistion.subtype_requistions %></td>			
+			<td><%= transcript_of_the_messages(requistion.type_requistion) %></td>			
+			<td><%= transcript_of_the_messages(requistion.subtype_requistions)  %></td>			
 			<td><%= requistion.requistion_comment %></td>			
-			<td><%= requistion.category %></td>	
-			<td><%= Russian::strftime(requistion.updated_at, "%H:%M") %></td>
-			<td><%= Russian::strftime(requistion.updated_at, "%e") %></td>
-			<td><%= Russian::strftime(requistion.updated_at, "%B") %></td>
-			<td><%= Russian::strftime(requistion.updated_at, "%Y") %></td>
+			<td><%= transcript_of_the_messages_category(requistion.category) %></td>	
+			<td><%= Russian::strftime(requistion.updated_at, "%e %B %Y %H:%M") %></td>
  			<td><%= status_names[requistion.status.to_sym] %></td>
 			<td><%= requistion.raiting %></td>	
  	    	<td><%= link_to edit_requistion_path(requistion) do%>
-	    		<span class="glyphicon glyphicon-pencil"></span>
+	    		<span class="glyphicon glyphicon-pencil " ></span>
 	    		<% end %>
 	    	</td>
 		</tr>

@@ -29,4 +29,15 @@ module RequistionsHelper
           'Данные не введены'
       end
     end
+
+    def transcript_of_the_messages_category(message)
+      case message
+        when 1
+          'Немедленно'
+        when 2
+          'Очень срочно'
+        when 3
+          'Срочно'
+      end
+    end
 end

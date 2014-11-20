@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 	def workers
 		@name = "Рабочие"
 		@users = User.worker.paginate(page: params[:page])
+    	@arrivals = Arrival.where("begin_or_end is not null")
 		render "index"
 	end
 
@@ -67,4 +68,8 @@ class UsersController < ApplicationController
 			params.require(:user).permit(:name, :email, :password,
 				:password_confirmation)
 		end
+
+	include TableHelper
+	include CalendarHelper
+
 end

@@ -1,24 +1,46 @@
+//$.datepicker.setDefaults( $.datepicker.regional[ "ru" ] );
+$.datepicker.regional['ru'] = {
+    closeText: 'Закрыть',
+    prevText: '&#x3c;Пред',
+    nextText: 'След&#x3e;',
+    currentText: 'Сегодня',
+    monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь',
+        'Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+    monthNamesShort: ['Янв','Фев','Мар','Апр','Май','Июн',
+        'Июл','Авг','Сен','Окт','Ноя','Дек'],
+    dayNames: ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'],
+    dayNamesShort: ['вск','пнд','втр','срд','чтв','птн','сбт'],
+    dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
+    firstDay: 1,
+    isRTL: false
+};
+
+//$.datepicker.setDefaults($.datepicker.regional['ru']); 
+
+                $.datepicker.regional['ru'].dateFormat = 'dd mm yy';
+                $.datepicker.setDefaults($.datepicker.regional['ru']);
+
 $(document).ready(function() {
-    var table = $('#example').DataTable( {
+    var table = $('#example').dataTable( {
         tableClass: "table-bordered",
         "dom": 'CT<"clear">lfrtip',
         "colVis": {
-            "buttonText": "Показать/скрыть столбцы"
+              "buttonText": "Показать/скрыть столбцы"
         },
         "createdRow": function ( row, data, index ) {
-            if ( data[16]=="получено" ) {
+            if ( data[10]=="получено" ) {
                 $('td', row).addClass('danger');
             };
-            if ( data[16]=="сделано" ) {
+            if ( data[10]=="сделано" ) {
                 $('td', row).addClass('success');
             };
-            if ( data[16]=="рабочие отправлены" ) {
+            if ( data[10]=="рабочие отправлены" ) {
                 $('td', row).addClass('warning');
             };
-            if ( data[16]=="рабочие прибыли" ) {
+            if ( data[10]=="рабочие прибыли" ) {
                 $('td', row).addClass('warning');
             };
-            if ( data[16]=="рабочие ушли" ) {
+            if ( data[10]=="рабочие ушли" ) {
                 $('td', row).addClass('warning');
             };
         },
@@ -60,38 +82,38 @@ $(document).ready(function() {
 
         },
 
-        initComplete: function () {
-            var api = this.api();
+        // initComplete: function () {
+        //     var api = this.api();
  
-              api.columns().indexes().flatten().each( function ( i ) {
-                var column = api.column( i );
-                var select = $('<select><option value=""></option></select>')
-                    .appendTo( $(column.footer()).empty() )
-                    .on( 'change', function () {
-                        var val = $(this).val();
-                        column
-                            .search( val ? '^'+val+'$' : '', true, false )
-                            .draw();
+        //       api.columns().indexes().flatten().each( function ( i ) {
+        //         var column = api.column( i );
+        //         var select = $('<select><option value=""></option></select>')
+        //             .appendTo( $(column.footer()).empty() )
+        //             .on( 'change', function () {
+        //                 var val = $(this).val();
+        //                 column
+        //                     .search( val ? '^'+val+'$' : '', true, false )
+        //                     .draw();
 
 
-                    } );
+        //             } );
                 
-                column.data().unique().sort().each( function ( d, j ) {
-                    if (i==0)
-                    {
-                        var d1=d;
-                        var val = d.split('>')[1].split('<')[0];
-                        select.append( '<option value="'+val+'">'+d1+'</option>' );
-                    }
-                    else
-                    {
-                        select.append( '<option value="'+d+'">'+d+'</option>' );
-                    }
-                } );
+        //         column.data().unique().sort().each( function ( d, j ) {
+        //             if (i==0)
+        //             {
+        //                 var d1=d;
+        //                 var val = d.split('>')[1].split('<')[0];
+        //                 select.append( '<option value="'+val+'">'+d1+'</option>' );
+        //             }
+        //             else
+        //             {
+        //                 select.append( '<option value="'+d+'">'+d+'</option>' );
+        //             }
+        //         } );
 
-            } );
+        //     } );
 
-        },
+        // },
 
         "language": {
             "emptyTable":     "В таблице отсутствуют данные",
@@ -117,50 +139,22 @@ $(document).ready(function() {
             }
         }
         } );
+    table.columnFilter({
+                    aoColumns: [    { type: "text" },
+                                    { type: "select" },
+                                    { type: "date-range" },
+                                    { type: "text"},
+                                    { type: "text"},
+                                    { type: "select" },
+                                    { type: "select" },
+                                    { type: "text"},
+                                    { type: "select" },
+                                    { type: "date-range" },
+                                    { type: "select" },
+                                    { type: "number-range" }                                    
+                        ]
+                    });
     });
-
-
-
-
-// $(document).ready( function () {
-//     $('#example').dataTable( {
-//         "dom": 'T<"clear">lfrtip',
-//         "tableTools": {
-//             "sSwfPath": "http://cdn.datatables.net/tabletools/2.2.2/swf/copy_csv_xls_pdf.swf",
-//             "aButtons": [
-//                 {
-//                     "sExtends": "copy",
-//                     "sButtonText": "Скопировать",
-//                     "bFooter": false,                   
-//                 },
-// //                "csv",
-//                 {
-//                     "sExtends": "xls",
-//                     "sButtonText": "Экспорт в xls",
-//                     "bFooter": false,                     
-//                     "sCharSet" : "utf16le",
-//                     "sFileName" : "Заявки.xls",
-//                     "sFieldSeperator" : ';'  
-//                 },
-//                 {
-//                     "sExtends": "pdf",
-//                     "sPdfOrientation": "landscape",
-//                     "bFooter": false, 
-//                     "sFileName" : "Заявки.pdf",
-//                     "sPdfMessage": "Your custom message would go here.",
-//                     "sCharSet" : "utf8" 
-//                 },
-//                 {
-//                     "sExtends": "print",
-//                     "sButtonText": "Предварительный просмотр",
-//                     "bFooter": false,
-//                     "sInfo": "Нажмите esc для выхода"                     
-//                 },
-//             ]
-
-//         }
-//     } );
-// } );
 
 
 //Чтение рейтина

@@ -7,6 +7,7 @@ App::Application.routes.draw do
 	resources :users
 	match '/workers',  to: 'users#workers',       via: 'get'
 	resources :sessions, only: [:new, :create, :destroy]
+	resources :arrivals
 
 	match '/signup',  to: 'users#new',            via: 'get'
 	match '/signin',  to: 'sessions#new',         via: 'get'

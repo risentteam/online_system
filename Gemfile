@@ -35,12 +35,16 @@ end
 gem 'uglifier', '2.1.1'
 gem 'coffee-rails', '4.0.1'
 gem 'jquery-rails', '3.0.4'
+gem 'jquery-ui-rails'
 gem 'turbolinks', '1.1.1'
 gem 'jbuilder', '1.0.2'
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 gem 'jquery-datatables-tabletools-rails', github: 'mcallaway/jquery-datatables-tabletools-rails'
 gem 'russian', '~> 0.6.0'
 gem 'mainsms_api'
+gem "simple_calendar", "~> 1.1.0"
+#gem "watu_table_builder", :require => "table_builder"
+#gem 'whenever', :require => false
 gem 'jquery-star-rating-rails'
 
 group :doc do
