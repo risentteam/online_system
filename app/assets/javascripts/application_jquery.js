@@ -16,10 +16,17 @@ $.datepicker.setDefaults({
 });
 
 
+
+
 $(document).ready(function() {
 	var table = $('#requistions').dataTable({
 		tableClass: "table-bordered",
-		"dom": '<"container"lCfrtip> <"container"T>',
+		
+		//"dom": '<"container"lCfrtip> <"container"T>',
+		dom:
+		"<'row'<'col-xs-6'lC><'col-xs-6'f>r>" +
+		"<'row'<'col-xs-12't>>" +
+		"<'row'<'col-xs-3'i><'col-xs-6'T><'col-xs-3'p>>",
 		"colVis": {
 			  "buttonText": "Показать/скрыть столбцы"
 		},
