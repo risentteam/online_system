@@ -32,10 +32,12 @@ class RequistionsController < ApplicationController
 		if @requistion.save
 			flash[:success] = "Заявка отправлена"
 			current_user.pairs.create!(requistion_id: @requistion.id)
-			message = MainsmsApi::Message.new(sender: '3B-online',
-				message: 'Ваша заявка №'+@requistion.id.to_s+' принята',
-				recipients: ['89611600018'])
-			response = message.deliver
+			if (current_user.phone != "")
+				message = MainsmsApi::Message.new(sender: '3B-online',
+					message: 'Ваша заявка №'+@requistion.id.to_s+' принята',
+					recipients: [current_user.phone])
+				response = message.deliver
+			end
 			#UserMailer.welcome_email(@requistion).deliver
 			redirect_to @requistion
 		else
