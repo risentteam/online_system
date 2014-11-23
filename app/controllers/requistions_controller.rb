@@ -8,6 +8,10 @@ class RequistionsController < ApplicationController
 		render text: Requistion.received.count.to_s
 	end
 
+	def count_all
+		render :json => { :count => Requistion.count.to_s} 
+	end
+
 	def show
 		@requistion = Requistion.find(params[:id]) 
 	end
@@ -85,7 +89,8 @@ class RequistionsController < ApplicationController
 			contract_id: params[:contract], 
 			category: params[:requistion][:category],
 			status: "worker_sended")
-				
+			
+			client = @requistion.users.client
 			@pair = @requistion.pairs.create(user_id: params[:worker])
 			all_workers = [params[:worker]]
 			send_to_boss params[:worker]
@@ -104,11 +109,13 @@ class RequistionsController < ApplicationController
 			all_workers.each { |id| text += ' ' + User.find(id).name}
 			text += "."
 			flash[:info] = text
-			message = MainsmsApi::Message.new(
-				sender: '3B-online',
-				message: text,
-				recipients: ['89885333165'])
-			response = message.deliver
+			if (client.phone != "")
+				message = MainsmsApi::Message.new(
+					sender: '3B-online',
+					message: text,
+					recipients: [client.phone])
+				response = message.deliver
+			end
 			
 			redirect_to @requistion
 		else 
@@ -130,8 +137,8 @@ class RequistionsController < ApplicationController
 			params.require(:requistion).permit(:object, :contact_name, :contact_phone, :type_requistion, :subtype_requistion, :building_id, :requistion_comment)
 		end
 
-		def send_to_boss(id)
-			user = User.find(id)
+		def send_to_boss(worker_id)
+			user = User.find(worker_id)
 			boss = user.boss
 			if (boss.phone != "")
 				message = MainsmsApi::Message.new(

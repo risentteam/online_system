@@ -1,5 +1,23 @@
 <% provide(:title, 'Все заявки') %>
 <h1>Все заявки</h1>
+<script type="text/javascript">
+	old_count = <%= @requistions.count %>;
+	set = false;
+	$(document).ready(function(){
+	setInterval(function(){
+    	$.ajax({url: "/count_all",
+				type: 'GET',
+				dataType: 'json',
+				success: function (data, status) {
+					if (data.count > old_count && !set){
+						set = true
+						$('h1').before('<div class="alert alert-info" role="alert"> Появились новые заявки</div>');
+					}
+				}
+			});
+    	}, 5000);
+});
+</script>
 <table id="requistions" class="table">
 	<thead>
 		<tr>

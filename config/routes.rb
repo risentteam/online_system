@@ -17,6 +17,7 @@ App::Application.routes.draw do
 
 	resources :requistions
 	match '/count', to: 'requistions#count', via: 'get'
+	match '/count_all', to: 'requistions#count_all', via: 'get'
 	match '/new', to: 'requistions#new', via: 'get'
 	match '/requistions', to: 'requistions#index', via: 'get'
 	match "/update_contracts", to: "requistions#update_contracts", via: 'get'	
