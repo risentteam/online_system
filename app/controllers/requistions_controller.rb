@@ -88,11 +88,13 @@ class RequistionsController < ApplicationController
 				
 			@pair = @requistion.pairs.create(user_id: params[:worker])
 			all_workers = [params[:worker]]
+			send_to_boss params[:worker]
 			count = 1
 			
 			until (params[("worker" + count.to_s).to_sym].nil?) do
 				str = ("worker" + count.to_s).to_sym
 				all_workers << params[str]
+				send_to_boss params[str]
 				@requistion.pairs.create(user_id: params[str])
 				count += 1
 			end
@@ -126,5 +128,13 @@ class RequistionsController < ApplicationController
 	private
 		def requistions_params
 			params.require(:requistion).permit(:object, :contact_name, :contact_phone, :type_requistion, :subtype_requistion, :building_id, :requistion_comment)
+		end
+
+		def send_to_boss(id)
+			message = MainsmsApi::Message.new(
+				sender: '3B-online',
+				message: "boss message #{id}",
+				recipients: ['89885333165'])
+			response = message.deliver
 		end
 end
