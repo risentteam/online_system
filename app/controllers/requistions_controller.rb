@@ -131,10 +131,14 @@ class RequistionsController < ApplicationController
 		end
 
 		def send_to_boss(id)
-			message = MainsmsApi::Message.new(
-				sender: '3B-online',
-				message: "boss message #{id}",
-				recipients: ['89885333165'])
-			response = message.deliver
+			user = User.find(id)
+			boss = user.boss
+			if (boss.phone != "")
+				message = MainsmsApi::Message.new(
+					sender: '3B-online',
+					message: "Проконтролируйте #{user.name}",
+					recipients: [boss.phone])
+				response = message.deliver
+			end
 		end
 end
