@@ -10,32 +10,32 @@
 	<th>Имя</th>
 	</tr>
   <% @users.each do |user| %>
-    <% if @name == "Клиенты"%>
-    	<%= render user %>
-    <% else %>
+	<% if @name == "Клиенты"%>
+		<%= render user %>
+	<% else %>
 		<div class="list">
 		<tr>
-		  <td>
-		  <%= link_to user.name, user %>
-		  <div id="calendar">
-		  <%= calendar_for @arrivals, :first_day_of_week => 1 do |t| %>
-			<%= t.head('Пон', 'Вт', 'Ср', 'Чет', 'Пят', 'Суб', 'Воск') %>
-			<%= t.day do |day, arrivals| %>
-  					<%= day.day %>
+			<td>
+			<%= link_to user.name, user %>
+			<% if current_user.admin? && !current_user?(user) %>
+				<%= link_to user, method: :delete, data: { confirm: "You sure?" } do%>
+				<span class="glyphicon glyphicon-trash" style="float:right"></span>
+				<% end %>
 			<% end %>
-		  <% end %>
- 		  </div>
+			<div id="calendar">
+				<%= calendar_for @arrivals, :first_day_of_week => 1 do |t| %>
+				<%= t.head('Пон', 'Вт', 'Ср', 'Чет', 'Пят', 'Суб', 'Воск') %>
+					<%= t.day do |day, arrivals| %>
+						<%= day.day %>
+					<% end %>
+				<% end %>
+			</div>
 
-		  <%#= user.arrivals.where(begin_or_end: 0).order(:time).last.time.strftime("%e %B %Y")%>
-		  <% if current_user.admin? && !current_user?(user) %>
-		    <%= link_to user, method: :delete, data: { confirm: "You sure?" } do%>
-		    <span class="glyphicon glyphicon-trash" style="float:right"></span>
-		    <% end %>
-		  <% end %>
-		  </td>
+			<%#= user.arrivals.where(begin_or_end: 0).order(:time).last.time.strftime("%e %B %Y")%>
+			</td>
 		</tr>
 		</div> 
-    <% end %>  
+	<% end %>  
   <% end %>
 </table>
 </div>
