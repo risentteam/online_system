@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141117184115) do
+ActiveRecord::Schema.define(version: 20141123202931) do
 
   create_table "arrivals", force: true do |t|
     t.integer  "user_id",      null: false
@@ -70,22 +70,22 @@ ActiveRecord::Schema.define(version: 20141117184115) do
   end
 
   create_table "requistions", force: true do |t|
-    t.string   "object",                                      null: false
-    t.integer  "status",              limit: 255, default: 0
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
-    t.string   "main_address"
-    t.string   "arrival_address"
-    t.string   "contact_name",                                null: false
-    t.string   "contact_phone",                               null: false
-    t.string   "type_requistion",                             null: false
+    t.string   "object",                          null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.string   "main_address",                    null: false
+    t.string   "arrival_address",                 null: false
+    t.string   "contact_name",                    null: false
+    t.string   "contact_phone",                   null: false
+    t.string   "type_requistion",                 null: false
     t.string   "info"
     t.integer  "building_id"
     t.string   "subtype_requistions"
     t.string   "requistion_comment"
     t.integer  "category"
     t.integer  "contract_id"
-    t.integer  "raiting",                         default: 0
+    t.integer  "status",              default: 0
+    t.integer  "raiting",             default: 0
   end
 
   create_table "users", force: true do |t|
@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 20141117184115) do
     t.integer  "boss_id",         default: 0
     t.string   "remember_token"
     t.integer  "status",          default: 0
+    t.string   "phone"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
