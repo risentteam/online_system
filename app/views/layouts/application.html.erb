@@ -22,7 +22,8 @@
 		<header>
 			<%= render 'layouts/header' %>
 		</header>
-		<div class="container">
+		<!-- <div class="container">	 -->
+		<!-- main page is becoming crazy because of that^ -->
 
 			<% flash.each do |key, value| %>
 				<div class="alert alert-<%= key %>" style="margin:5px"><%= value %></div>
@@ -30,10 +31,7 @@
 			<%= yield %>
 			<br>
 		</div>
-		<footer class="footer">
-			<%#= render 'layouts/footer' %>
-			<%= debug(params) if Rails.env.development? %> 
-		</footer>
+		
 
 	</body>
 </html>
