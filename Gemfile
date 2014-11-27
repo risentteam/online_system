@@ -43,6 +43,7 @@ gem 'jquery-datatables-tabletools-rails', github: 'mcallaway/jquery-datatables-t
 gem 'russian', '~> 0.6.0'
 gem 'mainsms_api'
 gem "simple_calendar", "~> 1.1.0"
+gem 'roo'
 #gem "watu_table_builder", :require => "table_builder"
 #gem 'whenever', :require => false
 gem 'jquery-star-rating-rails'
