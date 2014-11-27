@@ -65,16 +65,20 @@ $(document).ready(function() {
 					"bSelectedOnly" : true, 
 					"mColumns": "visible",
 					"sFileName" : "Заявки.xls",
-					"sFieldSeperator" : ';'  
+					"sFieldSeperator" : ';',  
+					"oSelectorOpts": {
+                		page: 'current'
+           		 	}
 				},
-				{
+				/*{
+					"sCharSet" : "utf16", 
 					"sExtends": "pdf",
 					"sPdfOrientation": "landscape",
 					"bFooter": false, 
 					"sFileName" : "Заявки.pdf",
-					"sPdfMessage": "Your custom message would go here.",
-					"sCharSet" : "utf8" 
-				},
+					"sPdfMessage": "Hello world"
+					
+				},*/
 				{
 					"sExtends": "print",
 					"sButtonText": "Предварительный просмотр",
@@ -84,6 +88,7 @@ $(document).ready(function() {
 			]
 
 		},
+
 
 //***********************
 		"language": {
