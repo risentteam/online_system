@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
   validates :email, presence:   true,
                     format:     { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
+  VALID_PHONE_REGEX = /\A[\d]{11}\z/i
+  validates :phone, format: { with: VALID_PHONE_REGEX }                  
+
   has_secure_password
   validates :password, length: { minimum: 6 }
   

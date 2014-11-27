@@ -1,17 +1,17 @@
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+		<!-- <div class="navbar-header"> -->
+			<!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>                        
-        	</button>
+        	</button> -->
 			<a class="navbar-brand" href="/">
 			<span><%=image_tag("LogoNew.png", size: "36x50", class: "logo", alt: "ЗВ")%></span>
 			&nbspЗаявки онлайн</a>
 
-		</div>
-		<div class="collapse navbar-collapse" id="myNavbar">			
+		<!-- </div> -->
+		<!-- <div class="collapse navbar-collapse" id="myNavbar">			 -->
 		<% if signed_in? %>
 			<% if current_user.admin? %>
 <script>
@@ -22,107 +22,131 @@ $(document).ready(function(){
       }, 5000);
 });
 </script>
-				<ul class="nav navbar-nav navbar-right">
-					<li role="presentation"><a href="/requistions">Новые заявки <span id="count" class="badge"></span></a></li>
-					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
-						<span class="caret"></span>&nbspУправление</a>
-						<ul class="dropdown-menu">
-						<li>
-							<%= link_to user_path(current_user) do %>
-							<span class="glyphicon glyphicon-user"></span>&nbspМой профиль
+				<!-- <ul class="nav navbar-nav navbar-right"> -->
+					
+					<!-- <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> -->
+						<!-- <span class="caret"></span>&nbspУправление</a> -->
+						<!-- <ul class="dropdown-menu"> -->
+
+						<li class = "pull-right">
+							<%= link_to signout_path, method: "delete" do %>
+							<span class="glyphicon glyphicon-log-out"></span>&nbspВыйти
 							<% end %>
 						</li>
-						<li>
+						<li class = "pull-right">
 							<%= link_to edit_user_path(current_user) do %>
 							<span class="glyphicon glyphicon-wrench"></span>&nbspРедактировать профиль
 							<% end %>
 						</li>
-						<li>
+						<li class = "pull-right">
+							<%= link_to user_path(current_user) do %>
+							<span class="glyphicon glyphicon-user"></span>&nbspМой профиль
+							<% end %>
+						</li>
+						<li class = "pull-right">
 							<%= link_to requistions_path do %>
 							<span class="glyphicon glyphicon-list"></span>&nbspВсе заявки
 							<% end %>
 						</li>
-						<li>
+						<li class = "pull-right">
 							<%= link_to users_path do %>
 							<span class="glyphicon glyphicon-list"></span>&nbsp Клиенты
 							<% end %>
 						</li>
-						<li>
+						<li class = "pull-right">
 							<%= link_to workers_path do %>
 							<span class="glyphicon glyphicon-list"></span>&nbsp Рабочие
 							<% end %>
 						</li>
-						<li>
+						<li class = "pull-right">
 							<%= link_to buildings_path do %>
 							<span class="glyphicon glyphicon-list"></span>&nbspВсе здания
 							<% end %>
-						</li>
-						</ul>
-					</li><li>
-					<%= link_to signout_path, method: "delete" do %>
-					<span class="glyphicon glyphicon-log-out"></span>&nbspВыйти
-					<% end %>
-					</li>
+						</li class = "pull-right">
+						<!-- </ul> -->
+					<!-- </li> -->
+					<li class = "pull-right" role="presentation"><a href="/requistions">Новые заявки <span id="count" class="badge"></span></a></li>
+
 				</ul>
 			<% elsif current_user.client? %>
-				<ul class="nav navbar-nav">
-					<li><a href="/new"><span class="glyphicon glyphicon-envelope">
+				<!-- <ul class="nav navbar-nav"> -->
+					<li class="pull-left"><a href="/new"><span class="glyphicon glyphicon-envelope">
 					</span>&nbsp Подать заявку</a></li>
-				</ul>
+				<!-- </ul> -->
 
-				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
+				<!-- <ul class="nav navbar-nav navbar-right"> -->
+					<!-- <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
 						<span class="caret"></span>&nbspУправление</a>
-						<ul class="dropdown-menu">
-						<li>
-							<%= link_to user_path(current_user) do %>
-							<span class="glyphicon glyphicon-user"></span>&nbspМой профиль
-							<% end %>
-						</li>
-						<li>
-							<%= link_to edit_user_path(current_user) do %>
-							<span class="glyphicon glyphicon-wrench"></span>&nbspРедактировать профиль
-							<% end %>
-						</li>
-						<li><a href="#">Мои заявки</a></li>
-						<li><a href="#">Мои договора</a></li>
-						</ul>
-					</li><li>
-					<%= link_to signout_path, method: "delete" do %>
-					<span class="glyphicon glyphicon-log-out"></span>&nbspВыйти
-					<% end %>
+						<ul class="dropdown-menu"> -->
+
+					<li class = "pull-right">
+						<%= link_to signout_path, method: "delete" do %>
+						<span class="glyphicon glyphicon-log-out"></span>&nbspВыйти
+						<% end %>
 					</li>
-				</ul>
+					<li class = "pull-right">
+						<%= link_to edit_user_path(current_user) do %>
+						<span class="glyphicon glyphicon-wrench"></span>&nbspРедактировать профиль
+						<% end %>
+					</li>
+
+					<li class = "pull-right">
+						<%= link_to user_path(current_user) do %>
+						<span class="glyphicon glyphicon-user"></span>&nbspМой профиль
+						<% end %>
+					</li>
+
+					<li class = "pull-right">
+						<%= link_to edit_user_path(current_user) do %>
+						<span class="glyphicon glyphicon-export"></span>&nbspМои заявки
+						<% end %>
+					</li>
+					<li class = "pull-right">
+						<%= link_to edit_user_path(current_user) do %>
+						<span class="glyphicon glyphicon-briefcase"></span>&nbspМои договора
+						<% end %>
+					</li>
+						
+						<!-- </ul> -->
+					</li>
+					
+				<!-- </ul> -->
 			<% else #worker%>
-				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
-						<span class="caret"></span>&nbspУправление</a>
-						<ul class="dropdown-menu">
-						<li>
-							<%= link_to user_path(current_user) do %>
-							<span class="glyphicon glyphicon-user"></span>&nbspМой профиль
+				<!-- <ul class="nav navbar-nav navbar-right"> -->
+					<!-- <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> -->
+						<!-- <span class="caret"></span>&nbspУправление</a> -->
+						<!-- <ul class="dropdown-menu"> -->
+						<li class = "pull-right">
+							<%= link_to signout_path, method: "delete" do %>
+							<span class="glyphicon glyphicon-log-out"></span>&nbspВыйти
 							<% end %>
 						</li>
-						<li>
+						<li class = "pull-right">
 							<%= link_to edit_user_path(current_user) do %>
 							<span class="glyphicon glyphicon-wrench"></span>&nbspРедактировать профиль
 							<% end %>
 						</li>
-						<li><a href="#">Объекты работы</a></li>
-						</ul>
-					</li><li>
-					<%= link_to signout_path, method: "delete" do %>
-					<span class="glyphicon glyphicon-log-out"></span>&nbspВыйти
-					<% end %>
-					</li>
-				</ul>
+						<li class = "pull-right">
+							<%= link_to user_path(current_user) do %>
+							<span class="glyphicon glyphicon-user"></span>&nbspМой профиль
+							<% end %>
+						</li>
+						<li class = "pull-right">
+							<%= link_to user_path(current_user) do %>
+							<span class="glyphicon glyphicon-briefcase"></span>&nbspОбъекты работы
+							<% end %>
+						</li>
+						<!-- </ul> -->
+					<!-- </li> -->
+
+				<!-- </ul> -->
 			<% end %>	
 		<% else %>
-		<ul class="nav navbar-nav navbar-right">
-			<li><a href="/signup"><span class="glyphicon glyphicon-user"></span>&nbsp Зарегистрироваться</a></li>
-			<li><a href="/sessions/new"><span class="glyphicon glyphicon-log-in"></span>&nbsp Войти</a></li>
-		</ul>
+		<!-- <ul class="nav navbar-nav navbar-right"> -->
+			<li class = "pull-right"><a href="/signup"><span class="glyphicon glyphicon-user"></span>&nbsp Зарегистрироваться</a></li>
+			<li class = "pull-right"><a href="/sessions/new"><span class="glyphicon glyphicon-log-in"></span>&nbsp Войти</a></li>
+		<!-- </ul> -->
 		<% end %>
-		</div>
+		<!-- </div> -->
 	</div>	
 </nav>

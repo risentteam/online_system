@@ -1,10 +1,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-$bgDefault      : #0059A7;
-$bgHighlight    : rgb(95, 141, 218);
-$colDefault     : rgb(54, 54, 54);
-$colHighlight   : rgb(95, 141, 218);
+$bgDefault      : #ffffff  ; 
+$bgHighlight    : #23519a ;
+$colDefault     : #23519a ;
+$colHighlight   : #66a0ff ;
 
 $blue1 : rgb (0, 71, 187);
 $gray1 : rgb (131, 148, 184);
@@ -12,6 +12,7 @@ $purple1 : rgb (104, 71, 141);
 $lightblue1 : rgb(95, 141, 218);
 $darkblue1 : rgb (68, 73, 156);
 .navbar-default {
+	min-width: 1200px;
 	font-family: "Din Round Pro";
 	background-color: rgb(255, 255, 255);
 	height: 70px;
@@ -20,16 +21,23 @@ $darkblue1 : rgb (68, 73, 156);
 	border-bottom-color: rgb(138, 182, 198);
 	border-bottom-style: solid;
 	border-bottom-width: 1px;
-	// border:none;
-	// border-radius: 0;
 	.logo {
 		margin-top: -6px;
 	}
+
+	.pull-right, .pull-left {
+		list-style: none;
+		margin-left: 20px;
+		margin-top: 29px;
+
+	}
+
 	.navbar-brand {
 		color: $colDefault;
 		font-size: 25px;
 		&:hover, &:focus { 
-			color: $colHighlight; }}
+			color: $colHighlight; 
+			}}
 	.navbar-text {
 		color: $colDefault; 
 	}
@@ -39,37 +47,50 @@ $darkblue1 : rgb (68, 73, 156);
 			> a {
 				color: $colDefault;
 				&:hover,  &:focus {
-					color: $colHighlight; }}}
+					color: $colHighlight; 
+					}}
+				}
 		> .active {
 			> a, > a:hover, > a:focus {
 				color: $colHighlight;
-				background-color: $bgHighlight; }}
+				background-color: $bgHighlight; 
+			}
+			}
 		> .open {
 			> a, > a:hover, > a:focus {
 				color: $colHighlight;
-				background-color: $bgHighlight; }}}
+				background-color: $bgHighlight; 
+				}
+			}
+			}
 	.navbar-toggle {
 		border-color: $bgHighlight;
 		
 		.icon-bar {
-			background-color: $colDefault; }}
+			background-color: $colDefault; 
+		}
+		}
 	.navbar-collapse,
 	.navbar-form {
-		border-color: $colDefault; }
+		border-color: $colDefault; 
+	}
 	.navbar-link {
 		color: $colDefault;
 		&:hover {
-			color: $colHighlight; }}}
+			color: $colHighlight; 
+			}}}
 @media (max-width: 767px) {
 	.navbar-default .navbar-nav .open .dropdown-menu {
 		> li > a {
 			color: $colDefault;
 			&:hover, &:focus {
-				color: $colHighlight; }}
+				color: $colHighlight; 
+				}}
 		> .active {
 			> a, > a:hover, > a:focus, {
 				color: $colHighlight;
-				background-color: $bgHighlight; }}}
+				background-color: $bgHighlight; 
+				}}}
 }
 
 .form-control:focus{
@@ -155,16 +176,57 @@ h1, .btn, p, label {
 	margin-top: 6px;
 }
 
-@media all and (max-width: 767px) {
-#myNavbar {
-	width:40%;
-	margin-left:60%;
-	background-color: hsl(203, 100%, 32%) !important;
-	background-image: linear-gradient(rgb(0, 125, 204), rgb(0, 100, 163));
-	a {
-		z-index:10;
+@media all and (max-width: 768px) {
+	#myNavbar {
+		width:40%;
+		margin-left:60%;
+		background-color: hsl(203, 100%, 32%) !important;
+		background-image: linear-gradient(rgb(0, 125, 204), rgb(0, 100, 163));
+		a {
+			z-index:10;
+		}
+	}
+	.navbar-brand {
+		margin-left: -15px;
 	}
 }
+
+body {
+	background: url(<%= asset_data_uri "BackGroundEmpty2.jpg" %>) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center center;
 }
 
+.homebg {
+	
+
+	margin-top: -20px;
+	font-family: "Din Round Pro";
+	position: relative;
+	.textAndButton {
+		position: absolute;
+			h1 {
+			font-weight: 600;
+			margin-top: 111px;
+			margin-left: 160px;
+
+		}
+		.btn {
+			margin-top: 160px;
+			margin-left: 160px;
+		}
+	}
+	
+
+}
+
+.hat {
+	position: absolute;
+
+}
 
