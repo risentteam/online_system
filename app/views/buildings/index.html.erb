@@ -12,9 +12,8 @@
 	
 		<% @buildings.each do |b| %>
 			<tr>
-				<td><%= b.main_address %></td>
 				<td><%= b.id %></td>
-				<td><%= b.arrival_address %></td>
+				<td><%= link_to b.arrival_address,  {:action => :show, :id => b.id}, {:method => :get} %></td>
 			</tr>
 		<% end %>
 	</table>

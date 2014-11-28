@@ -11,11 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20141123202931) do
-=======
+
 ActiveRecord::Schema.define(version: 20141123223817) do
->>>>>>> 4294177d3fda68a0cd11f7d0545e16fa5fa105c4
+
 
   create_table "arrivals", force: true do |t|
     t.integer  "user_id",      null: false
