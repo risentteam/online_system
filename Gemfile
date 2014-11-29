@@ -13,7 +13,7 @@ gem 'faker', '1.1.2'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 
-
+gem 'whenever', :require => false
 
 group :development, :test do
 	gem 'sqlite3', '1.3.8'
