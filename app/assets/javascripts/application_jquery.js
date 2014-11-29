@@ -1,4 +1,4 @@
-$.datepicker.setDefaults({
+$.datepicker.regional[""] = {
 	closeText: 'Закрыть',
 	prevText: 'Предыдущий',
 	nextText: 'Следующий',
@@ -13,20 +13,19 @@ $.datepicker.setDefaults({
 	dateFormat:'dd.mm.yy',
 	firstDay: 1,
 	isRTL: false
-});
-
-
-
+};
+$.datepicker.setDefaults($.datepicker.regional['']);
 
 $(document).ready(function() {
 	var table = $('#requistions').dataTable({
+		
 		tableClass: "table-bordered",
 
 		//"dom": '<"container"lCfrtip> <"container"T>',
 		dom:
 		"<'row'<'col-xs-6'lC><'col-xs-6'f>r>" +
 		"<'row'<'col-xs-12't>>" +
-		"<'row'<'col-xs-4'i><'col-xs-5'T><'col-xs-3'p>>",
+		"<'row'<'col-xs-4'i><'col-xs-3'T><'col-xs-5'p>>",
 		"colVis": {
 			  "buttonText": "Показать/скрыть столбцы"
 		},
@@ -48,15 +47,16 @@ $(document).ready(function() {
 			};
 		},
 //***********************
+
 		"tableTools": {
 			"sSwfPath": "http://cdn.datatables.net/tabletools/2.2.2/swf/copy_csv_xls_pdf.swf",
 			"sRowSelect": "os",
 			"aButtons": [
-				{
-					"sExtends": "copy",
-					"sButtonText": "Скопировать",
-					"bFooter": false,                   
-				},
+				// {
+				// 	"sExtends": "copy",
+				// 	"sButtonText": "Скопировать",
+				// 	"bFooter": false,                   
+				// },
 				{
 					"sExtends": "xls",
 					"sButtonText": "Экспорт в xls",
@@ -69,7 +69,7 @@ $(document).ready(function() {
 					"oSelectorOpts": {
                 		page: 'current'
            		 	}
-				},
+				}
 				/*{
 					"sCharSet" : "utf16", 
 					"sExtends": "pdf",
@@ -79,12 +79,12 @@ $(document).ready(function() {
 					"sPdfMessage": "Hello world"
 					
 				},*/
-				{
-					"sExtends": "print",
-					"sButtonText": "Предварительный просмотр",
-					"bFooter": false,
-					"sInfo": "Нажмите esc для выхода"                     
-				},
+				// {
+				// 	"sExtends": "print",
+				// 	"sButtonText": "Предварительный просмотр",
+				// 	"bFooter": false,
+				// 	"sInfo": "Нажмите esc для выхода"                     
+				// },
 			]
 
 		},
@@ -134,6 +134,13 @@ $(document).ready(function() {
 	});
 });
 
+//#########################################################################################
+//Таблица контрактов
+//#########################################################################################
+$(document).ready(function(){
+     $('#example').dataTable()
+          .makeEditable();
+});
 
 //Чтение рейтина
 

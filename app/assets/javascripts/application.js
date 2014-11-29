@@ -18,9 +18,12 @@
 //= require jquery_nested_form
 
 
-//= require dataTables.columnFilter
 
 //= require dataTables/jquery.dataTables
+//= require jquery.jeditable
+//= require dataTables/jquery.dataTables.editable
+//= require dataTables.columnFilter
+//= require dataTables.editable
 
 
 //= require dataTables/extras/dataTables.tableTools

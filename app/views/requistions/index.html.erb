@@ -24,14 +24,14 @@
 		<tr>
 			<th>Объект</th>
 			<th>Адрес прибытия</th>
-			<th>Время</th>
+			<th>Время подачи</th>
 			<th>Имя</th>
 			<th>Телефон</th>
 			<th>Тип</th>
 			<th>Поддтип</th>
 			<th>Комментарий</th>
 			<th>Катеория</th>
-			<th>Время</th>
+			<th>Время последнего изменения</th>
 			<th>Статус</th>
 			<th>Рейтинг</th>
 			<th></th>
@@ -42,7 +42,7 @@
 		<tr>
 	    	<td><%= link_to requistion.object,  {:action => :show, :id => requistion.id}, {:method => :get} %></td>
 			<td><%= requistion.building.arrival_address %></td>
-			<td><%= requistion.created_at.strftime("%e.%m.%Y %H:%M") %></td>
+			<td><%= requistion.created_at.strftime("%d.%m.%Y %H:%M") %></td>
 			<td><%= requistion.contact_name %></td>			
 			<td><%= requistion.contact_phone %></td>	
 			<td><%= transcript_of_the_messages(requistion.type_requistion) %></td>			
@@ -76,14 +76,4 @@
 			<th></th>
 		</tr>
 	</tfoot>
-</table
-
-
-
-<h2>Import Products</h2>
-
-<%= form_tag import_contracts_path, multipart: true do %>
-  <%= file_field_tag :file %>
-  <%= submit_tag "Import" %>
-<% end %>
-
+</table>
