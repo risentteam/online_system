@@ -18,12 +18,22 @@
 		<tr>
 			<td>
 			<%= link_to user.name, user %>
+			<%= user.arrivals.where('begin_or_end >= 0').order(:date).first%>
+			<%= countOfMissings(current_user) %>
+
+			<% user.arrivals.where('begin_or_end >= 0').each do |a| %>
+				<%= a.date %>
+			<% end%>
+
 			<% if current_user.admin? && !current_user?(user) %>
 				<%= link_to user, method: :delete, data: { confirm: "You sure?" } do%>
+				
 				<span class="glyphicon glyphicon-trash" style="float:right"></span>
 				<% end %>
 			<% end %>
-			<div id="calendar">
+
+
+			<!-- <div id="calendar">
 				<%= calendar_for @arrivals, :first_day_of_week => 1 do |t| %>
 				<%= t.head('Пон', 'Вт', 'Ср', 'Чет', 'Пят', 'Суб', 'Воск') %>
 					<%= t.day do |day, arrivals| %>
@@ -31,6 +41,8 @@
 					<% end %>
 				<% end %>
 			</div>
+ -->
+
 
 			<%#= user.arrivals.where(begin_or_end: 0).order(:time).last.time.strftime("%e %B %Y")%>
 			</td>
