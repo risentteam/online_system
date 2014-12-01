@@ -90,7 +90,7 @@ class RequistionsController < ApplicationController
 			category: params[:requistion][:category],
 			status: "worker_sended")
 			
-			client = @requistion.users.client
+			client = @requistion.users.client[0]
 			@pair = @requistion.pairs.create(user_id: params[:worker])
 			all_workers = [params[:worker]]
 			send_to_boss params[:worker]
@@ -109,13 +109,13 @@ class RequistionsController < ApplicationController
 			all_workers.each { |id| text += ' ' + User.find(id).name}
 			text += "."
 			flash[:info] = text
-#			if (not client.phone.nil? )
-#				message = MainsmsApi::Message.new(
-#					sender: '3B-online',
-#					message: text,
-#					recipients: [client.phone])
-#				response = message.deliver
-#			end
+			if (not client.phone.nil? )
+				message = MainsmsApi::Message.new(
+					sender: '3B-online',
+					message: text,
+					recipients: [client.phone])
+				response = message.deliver
+			end
 			
 			redirect_to @requistion
 		else 
