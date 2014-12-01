@@ -90,16 +90,17 @@ class RequistionsController < ApplicationController
 			category: params[:requistion][:category],
 			status: "worker_sended")
 			
+
 			client = @requistion.users.client[0]
 			@pair = @requistion.pairs.create(user_id: params[:worker])
 			all_workers = [params[:worker]]
-			send_to_boss params[:worker]
+#			send_to_boss params[:worker]
 			count = 1
 			
 			until (params[("worker" + count.to_s).to_sym].nil?) do
 				str = ("worker" + count.to_s).to_sym
 				all_workers << params[str]
-				send_to_boss params[str]
+#				send_to_boss params[str]
 				@requistion.pairs.create(user_id: params[str])
 				count += 1
 			end
@@ -110,6 +111,7 @@ class RequistionsController < ApplicationController
 			text += "."
 			flash[:info] = text
 
+
 			if (client.phone != "")
 				message = MainsmsApi::Message.new(
 					sender: '3B-online',
@@ -117,6 +119,8 @@ class RequistionsController < ApplicationController
 					recipients: [client.phone])
 				response = message.deliver
 			end
+
+
 
 
 			
