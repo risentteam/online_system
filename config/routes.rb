@@ -24,7 +24,12 @@ App::Application.routes.draw do
 	match "/update_date", to: "requistions#update_date", via: 'get'	
   	match 'requistions/:id/close', to: 'requistions#close', via: 'get'
   	match 'requistions/:id/raiting', to: 'requistions#raiting', via: 'get'
-  	resources :contracts
+
+  	resources :contracts do
+  		collection { post :import }
+	end
+	match "/contracts", to: 'contracts#index', via: 'get' 
+	match "/UpdateData", to: 'contracts#update', via: 'post'
 
   	resources :buildings
   	match 'buildings/:id/check_in', to: 'buildings#check_in', via: 'get'

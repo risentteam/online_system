@@ -20,7 +20,7 @@ class RequistionsController < ApplicationController
 		@requistion = Requistion.find(params[:id]) 
 		if @requistion.update_attributes(
 			status: "done")
-			flash[:success] = "Заявка сдана в архив"
+			flash[:success] = "Заявка сдана в архи	в"
 			redirect_to @requistion
 		end
 	end
@@ -109,13 +109,13 @@ class RequistionsController < ApplicationController
 			all_workers.each { |id| text += ' ' + User.find(id).name}
 			text += "."
 			flash[:info] = text
-			if (client.phone != "")
-				message = MainsmsApi::Message.new(
-					sender: '3B-online',
-					message: text,
-					recipients: [client.phone])
-				response = message.deliver
-			end
+#			if (not client.phone.nil? )
+#				message = MainsmsApi::Message.new(
+#					sender: '3B-online',
+#					message: text,
+#					recipients: [client.phone])
+#				response = message.deliver
+#			end
 			
 			redirect_to @requistion
 		else 

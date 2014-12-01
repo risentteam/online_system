@@ -36,4 +36,5 @@ class User < ActiveRecord::Base
   has_many :arrivals
   has_many :requistions, through: :pairs
   has_many :contracts
+  belongs_to :boss
 end
