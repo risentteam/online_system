@@ -13,7 +13,7 @@ gem 'faker', '1.1.2'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 
-gem 'whenever', :require => false
+#gem 'whenever', :require => false
 
 group :development, :test do
 	gem 'sqlite3', '1.3.8'
@@ -40,12 +40,12 @@ gem 'turbolinks', '1.1.1'
 gem 'jbuilder', '1.0.2'
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 gem 'jquery-datatables-tabletools-rails', github: 'mcallaway/jquery-datatables-tabletools-rails'
-gem 'jquery-datatables-editable-rails', github: 'mcallaway/jquery-datatables-editable-rails'
+#gem 'jquery-datatables-editable-rails', github: 'mcallaway/jquery-datatables-editable-rails'
 
 gem 'russian', '~> 0.6.0'
 gem 'mainsms_api'
 gem "simple_calendar", "~> 1.1.0"
-gem 'roo'
+#gem 'roo'
 #gem "watu_table_builder", :require => "table_builder"
 #gem 'whenever', :require => false
 gem 'jquery-star-rating-rails'

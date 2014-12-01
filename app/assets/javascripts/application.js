@@ -21,7 +21,7 @@
 
 //= require dataTables/jquery.dataTables
 //= require jquery.jeditable
-//= require dataTables/jquery.dataTables.editable
+// require dataTables/jquery.dataTables.editable
 //= require dataTables.columnFilter
 //= require dataTables.editable
 
