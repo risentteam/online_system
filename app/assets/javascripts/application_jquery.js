@@ -278,14 +278,14 @@ $(document).ready(function() {
 
 
 
-jQuery(function($){
-   $("#requistions_range_from_2").Watermark("С");
-   $("#requistions_range_from_9").Watermark("С");
-   $("#requistions_range_to_2").Watermark("По");
-   $("#requistions_range_to_9").Watermark("По");
-   $("#requistions_range_from_11").Watermark("С");
-   $("#requistions_range_to_11").Watermark("По");
-});
+// jQuery(function($){
+//    $("#requistions_range_from_2").Watermark("С");
+//    $("#requistions_range_from_9").Watermark("С");
+//    $("#requistions_range_to_2").Watermark("По");
+//    $("#requistions_range_to_9").Watermark("По");
+//    $("#requistions_range_from_11").Watermark("С");
+//    $("#requistions_range_to_11").Watermark("По");
+// });
 
 
 
