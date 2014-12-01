@@ -1,19 +1,30 @@
 <% provide(:title, @name) %>
 <div class="container">	
 <h1><%= @name %></h1>
-<div class="pagination">
-<%= will_paginate previous_label:"предыдущая", next_label:"следующая" %>
-</div>
 <div class="row">
-<div class="col-md-4">
+<div class="col-md-1">
+</div>
+<div class="col-md-3">
 <table class="table">
-	<tr>
+	<!-- <tr>
 	<th>Имя</th>
-	</tr>
-  <% @users.each do |user| %>
+	</tr> -->
+  <% @users.each_with_index do |user, index| %>
 	<% if @name == "Клиенты"%>
 		<%= render user %>
 	<% else %>
+
+		<% if index == @users.count / 2 %>
+			</table>
+			</div>
+			<div class="row">
+			<div class="col-md-2">
+			</div>
+			<div class="col-md-3">
+			<table class="table">
+
+
+		<% end %>
 		<div class="list">
 		<tr>
 			<td>
@@ -23,13 +34,16 @@
 				<%= link_to user, method: :delete, data: { confirm: "You sure?" } do%>
 					<span class="glyphicon glyphicon-trash" style="float:right"></span>
 				<% end %>
-				<%= countOfEntries(user) %>
+				
 
 				<% div_id = "calendarBut-#{user.id}" -%>
 
-				<button id="<%= div_id -%>" type="button" class="btn btn-default btn-xs calendarButton">
+				<button id="<%= div_id -%>" type="button" class="btn btn-default btn-xs calendarButton pull-right">
 					<span class="glyphicon glyphicon-calendar"></span>
 				</button>
+				<div class = "pull-right calendarValue">
+				<%= countOfEntries(user) %>
+				</div>
 
 				<% div_id = "calendar-#{user.id}" -%>
 
@@ -57,4 +71,3 @@
 </table>
 </div>
 </div>
-<%= will_paginate previous_label:"предыдущая", next_label:"следующая" %>

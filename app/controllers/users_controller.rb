@@ -14,8 +14,7 @@ class UsersController < ApplicationController
 
 	def workers
 		@name = "Рабочие"
-		@users = User.worker.paginate(page: params[:page])
-    	@arrivals = Arrival.where("begin_or_end is not null")
+		@users = User.worker
 		render "index"
 	end
 
