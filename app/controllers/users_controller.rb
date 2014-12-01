@@ -6,6 +6,9 @@ class UsersController < ApplicationController
 	def index
 		@name = "Клиенты"
 		@users = User.client.paginate(page: params[:page])
+
+
+
 		
 	end
 

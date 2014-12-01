@@ -18,30 +18,34 @@
 		<tr>
 			<td>
 			<%= link_to user.name, user %>
-			<%= user.arrivals.where('begin_or_end >= 0').order(:date).first%>
-			<%= countOfMissings(current_user) %>
-
-			<% user.arrivals.where('begin_or_end >= 0').each do |a| %>
-				<%= a.date %>
-			<% end%>
 
 			<% if current_user.admin? && !current_user?(user) %>
 				<%= link_to user, method: :delete, data: { confirm: "You sure?" } do%>
-				
-				<span class="glyphicon glyphicon-trash" style="float:right"></span>
+					<span class="glyphicon glyphicon-trash" style="float:right"></span>
 				<% end %>
-			<% end %>
+				<%= countOfEntries(user) %>
+
+				<% div_id = "calendarBut-#{user.id}" -%>
+
+				<button id="<%= div_id -%>" type="button" class="btn btn-default btn-xs calendarButton">
+					<span class="glyphicon glyphicon-calendar"></span>
+				</button>
+
+				<% div_id = "calendar-#{user.id}" -%>
 
 
-			<!-- <div id="calendar">
+				<div id="<%= div_id -%>" style="display:none" class="calendar">
 				<%= calendar_for @arrivals, :first_day_of_week => 1 do |t| %>
 				<%= t.head('Пон', 'Вт', 'Ср', 'Чет', 'Пят', 'Суб', 'Воск') %>
 					<%= t.day do |day, arrivals| %>
 						<%= day.day %>
 					<% end %>
 				<% end %>
-			</div>
- -->
+				</div>
+
+			<% end %>
+
+
 
 
 			<%#= user.arrivals.where(begin_or_end: 0).order(:time).last.time.strftime("%e %B %Y")%>

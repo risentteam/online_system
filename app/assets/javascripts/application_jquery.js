@@ -254,3 +254,20 @@ $(document).ready(function() {
 		count++;
 	})
 });
+
+//#########################################################################################
+//Отображение календаря
+//#########################################################################################
+
+$(document).ready(function() {
+	$('button.calendarButton').click (function() {
+		var id_of_btn = $(this).attr('id');
+		id_of_btn = id_of_btn.split('-')[1];
+		var id_of_calendar = "calendar-".concat(id_of_btn);
+		$('#'+id_of_calendar).toggle();
+		$('#cal').toggle();
+	})
+});
+
+
+

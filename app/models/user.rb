@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
 
 
 
+
   enum status: { worker: 0, admin: 1, client: 2 }
 
   private
