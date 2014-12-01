@@ -29,3 +29,5 @@
 //= require dataTables.bootstrap
 
 //= require application_jquery.js
+
+//= require jquery.watermarkinput
