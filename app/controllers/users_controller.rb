@@ -34,6 +34,7 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.new(user_new_params)
+		@user.status = "client"
 		if @user.save
 			sign_in @user
 			flash[:success] = "Вы успешно зарегестрировались!"
