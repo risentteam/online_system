@@ -60,9 +60,15 @@ class RequistionsController < ApplicationController
 	end
 
 	def index
+		@name = "Все заявки"
 		@requistions = Requistion.all
 #		@requistions = Requistion.this_month
 
+	end
+	def all_new
+		@name = "Новые заявки"
+		@requistions = Requistion.received
+		render "index"
 	end
 
 	def edit

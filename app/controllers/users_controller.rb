@@ -1,15 +1,11 @@
 class UsersController < ApplicationController
-	before_action :signed_in_user , except: [:new]
+	before_action :signed_in_user , except: [:new, :create]
 	before_action :correct_user,   only: [:edit, :update]
 	before_action :admin_user,     only: [:index, :workers, :destroy ]
 
 	def index
 		@name = "Клиенты"
 		@users = User.client.paginate(page: params[:page])
-
-
-
-		
 	end
 
 	def workers
@@ -37,7 +33,8 @@ class UsersController < ApplicationController
 	end
 
 	def create
-		@user = User.new(user_params)
+		@user = User.new(user_new_params)
+		@user.status = "client"
 		if @user.save
 			sign_in @user
 			flash[:success] = "Вы успешно зарегестрировались!"
@@ -68,6 +65,10 @@ class UsersController < ApplicationController
 	private
 		def user_params
 			params.require(:user).permit(:name, :email, :phone)
+		end
+
+		def user_new_params
+			params.require(:user).permit(:name, :email, :phone, :password, :password_confirmation)
 		end
 
 	include TableHelper

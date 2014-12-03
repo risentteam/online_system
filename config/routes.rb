@@ -20,6 +20,7 @@ App::Application.routes.draw do
 	match '/count_all', to: 'requistions#count_all', via: 'get'
 	match '/new', to: 'requistions#new', via: 'get'
 	match '/requistions', to: 'requistions#index', via: 'get'
+	match '/new_requistions',  to: 'requistions#all_new',            via: 'get'
 	match "/update_contracts", to: "requistions#update_contracts", via: 'get'	
 	match "/update_date", to: "requistions#update_date", via: 'get'	
   	match 'requistions/:id/close', to: 'requistions#close', via: 'get'

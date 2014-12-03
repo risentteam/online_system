@@ -1,22 +1,32 @@
 <% provide(:title, @user.name) %>
 <div class="container">
 <div class="row">
-	<aside class="span4">
+	<div class="col-md-4">
 		<section>
-			<h1>
-				<%= @user.name %>
-			</h1>
+			
 			
 			<% if @user.admin? %>
+				<h1>
+					Администратор
+				</h1>
 				<span style="color:red" href="#">Администратор</span>
 			<% elsif @user.client? %>
+				<h1>
+					Клиент
+				</h1>
 				<span style="color:red" href="#">Клиент</span>
 			<% else #worker%>
+				<h1>
+					Рабочий
+				</h1>
 				<span style="color:red" href="#">Рабочий</span>
 			<% end %>
 			<br>
 			<% if @user.client? && @user.contracts.any? %>
+
 				<div class="row">
+					<div class = "col-md-4">
+					</div>
 				<div class="col-md-7">
 					<h3>Ваши контракты (<%= @user.contracts.count %>)</h3>
 					<table class="table table-bordered table-striped">
@@ -43,6 +53,8 @@
 			<br>
 			<% if @user.pairs.any? %>
 				<div class="row">
+					<div class="col-md-4">
+					</div>
 				<div class="col-md-7">
 					<h3>Ваши заявки (<%= @user.pairs.count %>)</h3>
 
