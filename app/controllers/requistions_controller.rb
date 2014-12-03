@@ -1,7 +1,7 @@
 class RequistionsController < ApplicationController
-	before_action :signed_in_user
+	before_action :signed_in_user, except: [:mark]
 	before_action :admin_user, only: [:index]
-	before_action :client_user, only: [:new, :create]
+	before_action :client_user, only: [:new, :create, :mark]
 	before_action :client_admin_user, only: [:edit, :update]
 		
 	def count
@@ -34,6 +34,7 @@ class RequistionsController < ApplicationController
 		end
 	end
 
+
 	def cancel
 		@requistion = Requistion.find(params[:id])
 		render "cancel"
@@ -49,10 +50,10 @@ class RequistionsController < ApplicationController
 	end
 	
 
-	def raiting
+	def mark
 		@requistion = Requistion.find(params[:id]) 
 		flash[:success] = "Оценка поставлена"
-		redirect_to @current_user
+		redirect_to root_path
 	end
 
 	def create
@@ -80,10 +81,18 @@ class RequistionsController < ApplicationController
 #		@requistions = Requistion.this_month
 
 	end
+
 	def all_new
 		@name = "Новые заявки"
 		@requistions = Requistion.fresh	
 		render "index"
+	end
+
+	def mark
+		r = Requistion.find(params[:id])
+		r.update_attribute :raiting, params[:mark]
+		flash[:success] = "Ваша оценка учтена."
+		redirect_to current_user
 	end
 
 	def edit
