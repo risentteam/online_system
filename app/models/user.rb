@@ -8,7 +8,8 @@ class User < ActiveRecord::Base
                     format:     { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   VALID_PHONE_REGEX = /\A[\d]{11}\z/i
-  validates :phone, format: { with: VALID_PHONE_REGEX }                  
+  validates :phone, presence: false,
+                    format: { with: VALID_PHONE_REGEX }                  
 
   has_secure_password
   validates :password, length: { minimum: 6 }
@@ -26,15 +27,14 @@ class User < ActiveRecord::Base
 
   enum status: { worker: 0, admin: 1, client: 2 }
 
-  private
-
-    def create_remember_token
-      self.remember_token = User.encrypt(User.new_remember_token)
-    end
-
   has_many :pairs
   has_many :arrivals
   has_many :requistions, through: :pairs
   has_many :contracts
   belongs_to :boss
+
+  private
+    def create_remember_token
+      self.remember_token = User.encrypt(User.new_remember_token)
+    end  
 end
