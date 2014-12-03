@@ -17,8 +17,8 @@ module ApplicationHelper
 	end
 
 	def status_names
-		{ fresh: "новая",
-		done: "исполнена",
+		{ fresh: 'новая',
+		done: 'исполнена',
 		assigned: 'назначена',
 		adopted_in_work: 'принята в работу',
 		running: 'выполняется',

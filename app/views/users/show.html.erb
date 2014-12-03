@@ -76,36 +76,34 @@
 					<table id="requistion_for_workers" class="table">
 						<thead>
 						<tr>
-							<th><%= "Объект" %></th>
-							<th><%= "Адрес вызова" %></th>
-							<th><%= "Тип вызова" %></th>
-							<th><%= 'Контакты' %></th>						
-							<th><%= "Статус" %></th>
-							<th><%= "Время подачи заявки" %></th>
-							<th><%= "Контакты" %></th>  
-							<th><%= "Оценка" %></th>  
+							<th>Объект</th>
+							<th>Адрес вызова</th>
+							<th>Тип вызова</th>
+							<th>Контакты</th>						
+							<th>Статус</th>
+							<th>Время подачи заявки</th>
+							<th>Оценка</th>  
 							<th></th>
 						</tr>
 						</thead>
 						<tbody>
 							<% for pair in @user.pairs %>
-							<% @requistion = pair.requistion %>
+							<% requistion = pair.requistion %>
+							<% building = Building.find(requistion.building_id) %>
 							<tr>
-								 <td><%= link_to @requistion.object,  {:controller => :requistions, :action => :show, :id => @requistion.id}, {:method => :get} %></td>
-								 <td><%= link_to Building.find(@requistion.building_id).arrival_address,  {:controller => :buildings, :action => :show, :id => @requistion.building_id}, {:method => :get} %></td>
-								 <td> <%= transcript_of_the_messages(@requistion.type_requistion)+' '+transcript_of_the_messages(@requistion.subtype_requistions) %> </td>
-								 <td><%= @requistion.contact_phone+' '+@requistion.contact_name %></td>
-								 <td> <%= status_names[@requistion.status.to_sym] %> </td>
-								 <td> <%= time_ago_in_words(@requistion.created_at) %> назад </td>
-								 <td> <%= link_to "Принято в работу",  {:controller => :requistions, :action => :to_take_in_work, :id => @requistion.id}, {:method => :get, :class=>"btn"} %>
-								 	<%= link_to "Отменить",  {:controller => :requistions, :action => :cancel, :id => @requistion.id}, {:method => :get, :class=>"btn", data: { confirm: "Отменить заявку?" }} %>
-								 </td>
-								<td><%= @requistion.raiting %></td>
-      							<td><button class="btn btn-danger mark" name="<%= @requistion.id %>" data-toggle="modal" data-target="#myModal" >
+								 <td><%= link_to requistion.object, requistion_path(requistion) %></td>
+								 <td><%= link_to building.arrival_address,  building_path(building)%></td>
+								 <td> <%= transcript_of_the_messages(requistion.type_requistion)+' '+transcript_of_the_messages(requistion.subtype_requistions) %> </td>
+								 <td><%= requistion.contact_phone+' '+requistion.contact_name %></td>
+								 <td><%#= status_names[requistion.status.to_sym] %></td>
+								 <td><%= time_ago_in_words(requistion.created_at) %> назад </td>
+								 
+								<td><%= requistion.raiting %></td>
+      							<td><button class="btn btn-danger mark" name="<%= requistion.id %>" data-toggle="modal" data-target="#myModal" >
 				        		Оценить
 				      			</button></td>
 							</tr>
-						<% end %>
+							<% end %>
 						</tbody>
 						<tfoot>
 							<tr>
