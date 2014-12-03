@@ -21,7 +21,8 @@ $(document).ready(function() {
 	var table = $('#requistions').dataTable({
 		
 		tableClass: "table-bordered",
-
+//новая часть часть отвечяющая за сохранение настроек таблицы
+        stateSave: true,
 		//"dom": '<"container"lCfrtip> <"container"T>',
 		dom:
 		"<'row'<'col-xs-6'lC><'col-xs-6'f>r>" +
@@ -130,10 +131,12 @@ $(document).ready(function() {
 			{ type: "select" },
 			{ type: "date-range" },
 			{ type: "select" },
-			{ type: "number-range" }                                    
+			{ type: "number-range" },
+			{ type: "null" }                                   
 		]
 	});
 });
+
 
 //#########################################################################################
 //Таблица заявок у рабочего
@@ -141,11 +144,15 @@ $(document).ready(function() {
 $(document).ready(function(){
      var table = $('#requistion_for_workers').dataTable({
      		tableClass: "table-bordered",
+     		"bLengthChange": false,
+     		"bPaginate": false,
+     		"bInfo": false,
      		"createdRow": function ( row, data, index ) {
 				if ( data[2]=="Видеокамера" ) {
 					$('td', row).addClass('danger');
 				};
 			},
+
      		"language": {
 			"emptyTable":     "В таблице отсутствуют данные",
 			"info":           "Показаны с _START_ по _END_ из _TOTAL_ записей",
@@ -168,8 +175,20 @@ $(document).ready(function(){
 				"sortAscending":  ": активировать для сортировки по возрастанию",
 				"sortDescending": ": активировать для сортировки по убыванию"
 			}
-		}
+		},
+
      });
+     table.columnFilter({
+		aoColumns: [    
+			{ type: "null" },
+			{ type: "null" },
+			{ type: "null" },
+			{ type: "null" },			
+			{ type: "select"},
+			{ type: "null"},
+			{ type: "null" }
+		]
+	});
 });
 
 //#########################################################################################

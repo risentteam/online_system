@@ -84,18 +84,17 @@ $(document).ready(function(){
 						<span class="glyphicon glyphicon-log-out"></span>&nbspВыйти
 						<% end %>
 					</li>
-					<li class = "pull-right">
-						<%= link_to edit_user_path(current_user) do %>
-						<span class="glyphicon glyphicon-wrench"></span>&nbspРедактировать профиль
-						<% end %>
-					</li>
+
 
 					<li class = "pull-right">
 						<%= link_to user_path(current_user) do %>
 						<span class="glyphicon glyphicon-user"></span>&nbspМой профиль
 						<% end %>
 					</li>
-<!--
+
+
+
+
 					<li class = "pull-right">
 						<%= link_to edit_user_path(current_user) do %>
 						<span class="glyphicon glyphicon-export"></span>&nbspМои заявки
@@ -105,10 +104,7 @@ $(document).ready(function(){
 						<%= link_to edit_user_path(current_user) do %>
 						<span class="glyphicon glyphicon-briefcase"></span>&nbspМои договора
 						<% end %>
-					</li>
--->						
-						<!-- </ul> -->
-					</li>
+					
 					
 				<!-- </ul> -->
 			<% else #worker%>
