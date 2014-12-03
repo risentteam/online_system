@@ -44,7 +44,7 @@ class RequistionsController < ApplicationController
 		@requistion = Requistion.find(params[:id])
 
 		@requistion.requistion_comment = @requistion.requistion_comment + "/n" + params[:subject]
-		@requistion.status = "received"
+		@requistion.status = "canceled"
 
 	end
 	
