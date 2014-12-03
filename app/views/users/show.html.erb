@@ -1,6 +1,5 @@
 <% provide(:title, @user.name) %>
 <div class="container">
-<div class="row">
 		<section>
 			
 			
@@ -23,31 +22,27 @@
 			<br>
 			<% if @user.client? && @user.contracts.any? %>
 
-				<div class="row">
-					<div class = "col-md-4">
-					</div>
-				<div class="col-md-8">
-					<h3>Ваши контракты (<%= @user.contracts.count %>)</h3>
-					<table class="table table-bordered table-striped">
+				
+				<h3>Ваши контракты (<%= @user.contracts.count %>)</h3>
+				<table class="table table-bordered table-striped">
+					<tr>
+						<th><%= "Контракт" %></th>
+						<th><%= "Название"	 %></th>
+						<th><%= "Адреса" %></th>
+						<th><%= "Описание" %></th>
+						<th><%= "Заключен" %></th>
+					</tr>
+					<% for contract in @user.contracts %>
 						<tr>
-							<th><%= "Контракт" %></th>
-							<th><%= "Название"	 %></th>
-							<th><%= "Адреса" %></th>
-							<th><%= "Описание" %></th>
-							<th><%= "Заключен" %></th>
+							<td> <%= contract.name_contract %> </td>
+							<td> <%= contract.company %> </td>
+							<td> <% contract.buildings.each do |p| %> <%= p.arrival_address %> <br>  <% end %> </td>
+							<td> <%= contract.description %> </td>
+							<td> C <%=Russian::strftime(contract.begin_time, "%e %B %Y") %> до  <%= Russian::strftime(contract.end_time, "%e %B %Y") %> </td>
 						</tr>
-						<% for contract in @user.contracts %>
-							<tr>
-								<td> <%= contract.name_contract %> </td>
-								<td> <%= contract.company %> </td>
-								<td> <% contract.buildings.each do |p| %> <%= p.arrival_address %> <br>  <% end %> </td>
-								<td> <%= contract.description %> </td>
-								<td> C <%=Russian::strftime(contract.begin_time, "%e %B %Y") %> до  <%= Russian::strftime(contract.end_time, "%e %B %Y") %> </td>
-							</tr>
-						<% end %>
-					</table>
-				</div>
-				</div>
+					<% end %>
+				</table>
+				
 			<% end %>
 			<br>
 			<% if @user.pairs.any? %>
@@ -75,10 +70,7 @@
     </div>
   </div>
 </div>
-
-				<div class = "col-md-2">
-				</div>
-				<div class = "col-md-8">
+				
 					<h3>Ваши заявки (<%= @user.pairs.count %>)</h3>
 
 					<table id="requistion_for_workers" class="table">
@@ -127,10 +119,8 @@
 							</tr>
 						</tfoot>
 					</table>
-				</div>
+
 			<% end %>
 		</section>
-	</aside>
-
 </div>
 
