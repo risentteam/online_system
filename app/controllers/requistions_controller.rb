@@ -19,8 +19,17 @@ class RequistionsController < ApplicationController
 	def close
 		@requistion = Requistion.find(params[:id]) 
 		if @requistion.update_attributes(
+			status: "to_take_the_work")
+			flash[:success] = "Заявка сдана в архив"
+			redirect_to @requistion
+		end
+	end
+
+	def to_take_the_work
+		@requistion = Requistion.find(params[:id]) 
+		if @requistion.update_attributes(
 			status: "done")
-			flash[:success] = "Заявка сдана в архи	в"
+			flash[:success] = "Заявка сдана в архив"
 			redirect_to @requistion
 		end
 	end

@@ -22,7 +22,7 @@
 					<table class="table table-bordered table-striped">
 						<tr>
 							<th><%= "Контракт" %></th>
-							<th><%= "Название" %></th>
+							<th><%= "Название"	 %></th>
 							<th><%= "Адреса" %></th>
 							<th><%= "Описание" %></th>
 							<th><%= "Заключен" %></th>
@@ -46,19 +46,30 @@
 				<div class="col-md-7">
 					<h3>Ваши заявки (<%= @user.pairs.count %>)</h3>
 
-					<table class="table table-bordered table-striped">
+					<table id="requistion_for_workers" class="table">
+						<thead>
 						<tr>
 							<th><%= "Объект" %></th>
 							<th><%= "Адрес вызова" %></th>
 							<th><%= "Тип вызова" %></th>						
 							<th><%= "Статус" %></th>
-							<th><%= "Время подачи заявки" %></th>  
+							<th><%= "Время подачи заявки" %></th>
+							<th></th>  
 						</tr>
-						<% for pair in @user.pairs %>
+						</thead>
+						<tbody>
+							<% for pair in @user.pairs %>
+							<% @requistion = pair.requistion %>
 							<tr>
-								<%= render pair.requistion %>
+								 <th><%= link_to @requistion.object,  {:controller => :requistions, :action => :show, :id => @requistion.id}, {:method => :get} %></th>
+								 <td> <%= Building.find(@requistion.building_id).arrival_address %></td>
+								 <td> <%= transcript_of_the_messages(@requistion.type_requistion) %> </td>
+								 <td> <%= status_names[@requistion.status.to_sym] %> </td>
+								 <td> <%= time_ago_in_words(@requistion.created_at) %> назад </td>
+								 <th> <%= link_to "Принято в работу",  {:controller => :requistions, :action => :to_take_in_work, :id => @requistion.id}, {:method => :get} %></th>
 							</tr>
 						<% end %>
+						</tbody>
 					</table>
 				</div>
 				</div>
