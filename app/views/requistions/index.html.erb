@@ -1,6 +1,6 @@
-<% provide(:title, 'Все заявки') %>
+<% provide(:title, @name) %>
 <div class="container">
-<h1>Все заявки</h1>
+<h1><%= @name %></h1>
 <script type="text/javascript">
 	old_count = <%= @requistions.count %>;
 	set = false;
