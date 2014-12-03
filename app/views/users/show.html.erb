@@ -52,6 +52,29 @@
 			<% end %>
 			<br>
 			<% if @user.pairs.any? %>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Ваша Оценка</h4>
+      </div>
+      <div class="modal-body">
+        	<%= form_tag(mark_path, :html => {:class => "form-vertical"}) do |f| %>
+	        	<div class="form-group">
+					<label   >Пожалуйста оцените по десятибальной шкале.</label>
+					<input required name="mark" type="number" min="1" max="10"></input>
+				</div>
+				<input style="display: none" id="mark_id" name='id'></input>
+				<button type="submit" class="btn btn-success">Оценить</button>
+			<% end %>
+	
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
 				<div class="row">
 					<div class="col-md-2">
 					</div>
@@ -67,6 +90,8 @@
 							<th><%= "Статус" %></th>
 							<th><%= "Время подачи заявки" %></th>
 							<th><%= "Контакты" %></th>  
+							<th><%= "Оценка" %></th>  
+							<th></th>
 						</tr>
 						</thead>
 						<tbody>
@@ -81,6 +106,10 @@
 								 <td> <%= link_to "Принято в работу",  {:controller => :requistions, :action => :to_take_in_work, :id => @requistion.id}, {:method => :get, :class=>"btn"} %>
 								 	<%= link_to "Отменить",  {:controller => :requistions, :action => :to_take_in_work, :id => @requistion.id}, {:method => :get, :class=>"btn"} %>
 								 </td>
+								<td><%= @requistion.raiting %></td>
+      							<td><button class="btn btn-danger mark" name="<%= @requistion.id %>" data-toggle="modal" data-target="#myModal" >
+				        		Оценить
+				      			</button></td>
 							</tr>
 						<% end %>
 						</tbody>

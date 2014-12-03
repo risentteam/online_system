@@ -330,6 +330,12 @@ $(document).ready(function() {
 	})
 });
 
+$(document).ready(function(){
+	$('button.mark').click(function() {
+		$("#mark_id").val($(this).attr("name"));
+	});
+});
+
 
 
 // jQuery(function($){
