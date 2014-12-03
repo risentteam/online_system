@@ -36,7 +36,7 @@ class BuildingsController < ApplicationController
 			arrival.update_attributes(begin_or_end: 0)
 		end
 		pairs.each do |pair|
-			pair.requistion.update_attributes(status: "worker_arrived")
+			pair.requistion.update_attributes(status: "running", time_running: Time.zone.now.to_s)
 		end
 		flash[:success] = "Ваше прибытие отмечено!"
 		redirect_to current_user
@@ -48,9 +48,9 @@ class BuildingsController < ApplicationController
     	if Time.zone.now.strftime("%H").to_i<=7 and Time.zone.now.strftime("%H").to_i>=5	
 			arrival.update_attributes(begin_or_end: 1)
 		end
-		pairs.each do |pair|
-			pair.requistion.update_attributes(status: "worker_gone")
-		end
+#		pairs.each do |pair|
+#			pair.requistion.update_attributes(status: "worker_gone")
+#		end
 		flash[:success] = "Ваше отбытие отмечено!"
 		redirect_to current_user
 	end

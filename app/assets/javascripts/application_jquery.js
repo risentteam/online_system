@@ -21,7 +21,8 @@ $(document).ready(function() {
 	var table = $('#requistions').dataTable({
 		
 		tableClass: "table-bordered",
-
+//новая часть часть отвечяющая за сохранение настроек таблицы
+        stateSave: true,
 		//"dom": '<"container"lCfrtip> <"container"T>',
 		dom:
 		"<'row'<'col-xs-6'lC><'col-xs-6'f>r>" +
@@ -31,14 +32,14 @@ $(document).ready(function() {
 			  "buttonText": "Показать/скрыть столбцы"
 		},
 		"createdRow": function ( row, data, index ) {
-			if ( data[10]=="получено" ) {
+			if ( data[10]=="новая" ) {
 				$('td', row).addClass('danger');
 			};
-			if ( data[10]=="сделано" ) {
+			if ( data[10]=="завершено" ) {
 				$('td', row).addClass('success');
 			};
-			if ( data[10]=="рабочие отправлены" ) {
-				$('td', row).addClass('warning');
+			if ( data[10]=="назначена" ) {
+				$('td', row).addClass('info');
 			};
 			if ( data[10]=="рабочие прибыли" ) {
 				$('td', row).addClass('warning');
@@ -130,7 +131,8 @@ $(document).ready(function() {
 			{ type: "select" },
 			{ type: "date-range" },
 			{ type: "select" },
-			{ type: "number-range" }                                    
+			{ type: "number-range" },
+			{ type: "null" }                                   
 		]
 	});
 });
@@ -181,9 +183,10 @@ $(document).ready(function(){
 			{ type: "null" },
 			{ type: "null" },
 			{ type: "null" },
+			{ type: "null" },			
 			{ type: "select"},
 			{ type: "null"},
-			{ type: "null" },
+			{ type: "null" }
 		]
 	});
 });

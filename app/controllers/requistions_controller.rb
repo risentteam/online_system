@@ -5,7 +5,7 @@ class RequistionsController < ApplicationController
 	before_action :client_admin_user, only: [:edit, :update]
 		
 	def count
-		render text: Requistion.received.count.to_s
+		render text: Requistion.fresh.count.to_s
 	end
 
 	def count_all
@@ -16,25 +16,42 @@ class RequistionsController < ApplicationController
 		@requistion = Requistion.find(params[:id]) 
 	end
 
+	def to_take_in_work
+		@requistion = Requistion.find(params[:id]) 
+		if @requistion.update_attributes(
+			status: "adopted_in_work", time_adopted_in_work: Time.zone.now.to_s)
+			flash[:success] = "Заявка принята в разработку"
+			redirect_to @requistion
+		end
+	end
+
 	def close
 		@requistion = Requistion.find(params[:id]) 
 		if @requistion.update_attributes(
-			status: "to_take_the_work")
+			status: "comleted", time_comleted: Time.zone.now.to_s)
 			flash[:success] = "Заявка сдана в архив"
 			redirect_to @requistion
 		end
 	end
 
-	def to_take_the_work
-		@requistion = Requistion.find(params[:id]) 
-		if @requistion.update_attributes(
-			status: "done")
-			flash[:success] = "Заявка сдана в архив"
-			redirect_to @requistion
-		end
+
+	def cancel
+		@requistion = Requistion.find(params[:id])
+		render "cancel"
+
 	end
+
+	def canceldone
+		@requistion = Requistion.find(params[:id])
+
+		@requistion.requistion_comment = @requistion.requistion_comment + "/n" + params[:subject]
+		@requistion.status = "received"
+
+	end
+	
 
 	def mark
+		@requistion = Requistion.find(params[:id]) 
 		flash[:success] = "Оценка поставлена"
 		redirect_to root_path
 	end
@@ -67,7 +84,7 @@ class RequistionsController < ApplicationController
 
 	def all_new
 		@name = "Новые заявки"
-		@requistions = Requistion.received
+		@requistions = Requistion.fresh	
 		render "index"
 	end
 
@@ -80,9 +97,9 @@ class RequistionsController < ApplicationController
 
 	def edit
 		@requistion = Requistion.find(params[:id])
-		if @requistion.status=="done"
-			redirect_to @requistion
-		end
+#		if @requistion.status=="comleted"
+#			redirect_to @requistion
+#		end
 		@list_worker = User.worker
 		@list_contract = @requistion.building.contracts.select("company").distinct
 		@list_company = Contract.all
@@ -110,9 +127,28 @@ class RequistionsController < ApplicationController
 		if @requistion.update_attributes(
 			contract_id: params[:contract], 
 			category: params[:requistion][:category],
-			status: "worker_sended")
+			status: params[:requistion][:status])
 			
-
+			case params[:requistion][:status]
+			when "fresh"
+				@requistion.update_attributes(
+					created_at: Time.zone.now.to_s)
+			when "assigned"
+				@requistion.update_attributes(
+					time_assgned: Time.zone.now.to_s)
+			when "adopted_in_work"
+				@requistion.update_attributes(
+					time_adopted_in_work: Time.zone.now.to_s)
+			when "running"
+				@requistion.update_attributes(
+					time_running: Time.zone.now.to_s)
+			when "done"
+				@requistion.update_attributes(
+					time_done: Time.zone.now.to_s)
+			when "comleted"
+				@requistion.update_attributes(
+					time_comleted: Time.zone.now.to_s)
+			end
 			client = @requistion.users.client[0]
 			@pair = @requistion.pairs.create(user_id: params[:worker])
 			all_workers = [params[:worker]]
@@ -134,7 +170,7 @@ class RequistionsController < ApplicationController
 			flash[:info] = text
 
 
-			if (client.phone != "")
+			if (not client.phone.nil?)
 				message = MainsmsApi::Message.new(
 					sender: '3B-online',
 					message: text,

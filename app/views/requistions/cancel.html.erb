@@ -1,0 +1,25 @@
+<% provide(:title, 'Отмена заявки') %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-4">
+		</div>
+		<div class="col-md-4">
+			<h1>Отмена зявки</h1>
+
+
+
+				<%= form_tag('canceldone', :method=>'post' , :multipart => true) do %>
+						<p>
+						   Комментарий:<br />
+						   <%= text_field_tag "subject", nil, class: "commentarea"%>
+						</p>
+					<%= submit_tag "Отменить заявку", class: "btn btn-large btn-primary" %>
+				<% end %>
+				<br>
+				<%= link_to "Не отменять", user_path(current_user), :class=>"btn"%>
+		</div>
+
+	</div>
+</div>
+

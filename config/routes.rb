@@ -27,6 +27,8 @@ App::Application.routes.draw do
   	match 'requistions/:id/close', to: 'requistions#close', via: 'get'
   	match 'requistions/:id/raiting', to: 'requistions#raiting', via: 'get'
   	match 'requistions/:id/to_take_in_work', to: 'requistions#to_take_in_work', via: 'get'
+  	match 'requistions/:id/cancel', to: 'requistions#cancel', via: 'get'
+  	match 'requistions/:id/canceldone', to: 'requistions#canceldone', via: 'post'
 
   	resources :contracts do
   		collection { post :import }

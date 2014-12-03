@@ -17,10 +17,11 @@ module ApplicationHelper
 	end
 
 	def status_names
-		{ received: "получено",
-		done: "сделано",
-		worker_sended: "рабочие отправлены",
-		worker_arrived: "рабочие прибыли",
-		worker_gone: "рабочие ушли"}
+		{ fresh: "новая",
+		done: "исполнена",
+		assigned: 'назначена',
+		adopted_in_work: 'принята в работу',
+		running: 'выполняется',
+		comleted: 'завершено'}
 	end
 end

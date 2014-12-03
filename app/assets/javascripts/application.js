@@ -24,7 +24,7 @@
 // require dataTables/jquery.dataTables.editable
 //= require dataTables.columnFilter
 //= require dataTables.editable
-
+//= require chartkick.js
 
 //= require dataTables/extras/dataTables.tableTools
 //= require dataTables/extras/dataTables.colVis

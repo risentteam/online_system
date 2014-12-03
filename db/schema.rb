@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141123223817) do
+ActiveRecord::Schema.define(version: 20141203190958) do
 
   create_table "arrivals", force: true do |t|
     t.integer  "user_id",      null: false
@@ -71,22 +71,27 @@ ActiveRecord::Schema.define(version: 20141123223817) do
   end
 
   create_table "requistions", force: true do |t|
-    t.string   "object",                                      null: false
-    t.integer  "status",              limit: 255, default: 0
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.string   "object",                                       null: false
+    t.integer  "status",               limit: 255, default: 0
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
     t.string   "main_address"
     t.string   "arrival_address"
-    t.string   "contact_name",                                null: false
-    t.string   "contact_phone",                               null: false
-    t.string   "type_requistion",                             null: false
+    t.string   "contact_name",                                 null: false
+    t.string   "contact_phone",                                null: false
+    t.string   "type_requistion",                              null: false
     t.string   "info"
     t.integer  "building_id"
     t.string   "subtype_requistions"
     t.string   "requistion_comment"
     t.integer  "category"
     t.integer  "contract_id"
-    t.integer  "raiting",                         default: 0
+    t.integer  "raiting",                          default: 0
+    t.datetime "time_assgned"
+    t.datetime "time_adopted_in_work"
+    t.datetime "time_running"
+    t.datetime "time_done"
+    t.datetime "time_comleted"
   end
 
   create_table "users", force: true do |t|

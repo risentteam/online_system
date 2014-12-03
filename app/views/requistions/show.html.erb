@@ -52,11 +52,11 @@
 
 <br>
 <% if current_user.status == "admin" %>
-  <% if @requistion.status != "done" %>
+  <%# if @requistion.status != "comleted" %>
     <%= button_to "Обработать заявку", edit_requistion_path, method: :get, class: "btn btn-large btn-primary" %>
-  <% else %>
-    <%= button_to "Обработать заявку", edit_requistion_path, method: :get, class: "disabled"%>
-  <% end %>
+  <%# else %>
+    <%#= button_to "Обработать заявку", edit_requistion_path, method: :get, class: "disabled"%>
+  <%# end %>
 <% end %>
 
 </div>

@@ -6,7 +6,7 @@ class Requistion < ActiveRecord::Base
   validates :contact_phone, presence: true
   validates :type_requistion, presence: true
 
-  enum status: { received: 0, done: 1, worker_sended: 2, worker_arrived: 3, worker_gone: 4, to_take_the_work: 5 }
+  enum status: { fresh: 0, assigned: 2, adopted_in_work: 4, running: 6, done: 8, comleted: 10}
   #enum status: { получено: 0, сделано: 1, рабочие_отправлены: 2, рабочие_прибыли: 3, рабочие_ушли: 4 }
   has_many :pairs
   has_many :users, through: :pairs
