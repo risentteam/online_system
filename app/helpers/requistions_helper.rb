@@ -26,7 +26,7 @@ module RequistionsHelper
         when 'Д'
           'Другое'
         else
-          'Данные не введены'
+          ''
       end
     end
 

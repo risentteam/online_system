@@ -20,13 +20,6 @@ GIT
       jquery-rails
       sass-rails
 
-GIT
-  remote: https://github.com/velhas-net/Google-Maps-for-Rails.git
-  revision: 5f563f799561e082a535bd01402288951cdef354
-  branch: Yandex.Maps
-  specs:
-    gmaps4rails (2.0.0.pre)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -279,7 +272,6 @@ DEPENDENCIES
   coffee-rails (= 4.0.1)
   factory_girl_rails (= 4.2.1)
   faker (= 1.1.2)
-  gmaps4rails!
   guard-rspec (= 2.5.0)
   guard-spork (= 1.5.0)
   jbuilder (= 1.0.2)

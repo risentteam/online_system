@@ -5,7 +5,7 @@ class RequistionsController < ApplicationController
 	before_action :client_admin_user, only: [:edit, :update]
 		
 	def count
-		render text: Requistion.received.count.to_s
+		render text: Requistion.fresh.count.to_s
 	end
 
 	def count_all
@@ -16,19 +16,19 @@ class RequistionsController < ApplicationController
 		@requistion = Requistion.find(params[:id]) 
 	end
 
-	def close
+	def to_take_in_work
 		@requistion = Requistion.find(params[:id]) 
 		if @requistion.update_attributes(
-			status: "to_take_the_work")
-			flash[:success] = "Заявка сдана в архив"
+			status: "adopted_in_work")
+			flash[:success] = "Заявка принята в разработку"
 			redirect_to @requistion
 		end
 	end
 
-	def to_take_the_work
+	def close
 		@requistion = Requistion.find(params[:id]) 
 		if @requistion.update_attributes(
-			status: "done")
+			status: "comleted")
 			flash[:success] = "Заявка сдана в архив"
 			redirect_to @requistion
 		end
@@ -67,15 +67,15 @@ class RequistionsController < ApplicationController
 	end
 	def all_new
 		@name = "Новые заявки"
-		@requistions = Requistion.received
+		@requistions = Requistion.fresh	
 		render "index"
 	end
 
 	def edit
 		@requistion = Requistion.find(params[:id])
-		if @requistion.status=="done"
-			redirect_to @requistion
-		end
+#		if @requistion.status=="comleted"
+#			redirect_to @requistion
+#		end
 		@list_worker = User.worker
 		@list_contract = @requistion.building.contracts.select("company").distinct
 		@list_company = Contract.all
@@ -103,7 +103,7 @@ class RequistionsController < ApplicationController
 		if @requistion.update_attributes(
 			contract_id: params[:contract], 
 			category: params[:requistion][:category],
-			status: "worker_sended")
+			status: params[:requistion][:status])
 			
 
 			client = @requistion.users.client[0]
@@ -127,7 +127,7 @@ class RequistionsController < ApplicationController
 			flash[:info] = text
 
 
-			if (client.phone != "")
+			if (not client.phone.nil?)
 				message = MainsmsApi::Message.new(
 					sender: '3B-online',
 					message: text,

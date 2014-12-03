@@ -31,14 +31,14 @@ $(document).ready(function() {
 			  "buttonText": "Показать/скрыть столбцы"
 		},
 		"createdRow": function ( row, data, index ) {
-			if ( data[10]=="получено" ) {
+			if ( data[10]=="новая" ) {
 				$('td', row).addClass('danger');
 			};
-			if ( data[10]=="сделано" ) {
+			if ( data[10]=="завершено" ) {
 				$('td', row).addClass('success');
 			};
-			if ( data[10]=="рабочие отправлены" ) {
-				$('td', row).addClass('warning');
+			if ( data[10]=="назначена" ) {
+				$('td', row).addClass('info');
 			};
 			if ( data[10]=="рабочие прибыли" ) {
 				$('td', row).addClass('warning');
