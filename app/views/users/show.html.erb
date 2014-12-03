@@ -27,7 +27,7 @@
 				<div class="row">
 					<div class = "col-md-4">
 					</div>
-				<div class="col-md-7">
+				<div class="col-md-8">
 					<h3>Ваши контракты (<%= @user.contracts.count %>)</h3>
 					<table class="table table-bordered table-striped">
 						<tr>
@@ -53,9 +53,9 @@
 			<br>
 			<% if @user.pairs.any? %>
 				<div class="row">
-					<div class="col-md-4">
+					<div class="col-md-2">
 					</div>
-				<div class="col-md-7">
+				<div class = "col-md-10">
 					<h3>Ваши заявки (<%= @user.pairs.count %>)</h3>
 
 					<table id="requistion_for_workers" class="table">
@@ -66,22 +66,35 @@
 							<th><%= "Тип вызова" %></th>						
 							<th><%= "Статус" %></th>
 							<th><%= "Время подачи заявки" %></th>
-							<th></th>  
+							<th><%= "Контакты" %></th>  
 						</tr>
 						</thead>
 						<tbody>
 							<% for pair in @user.pairs %>
 							<% @requistion = pair.requistion %>
 							<tr>
-								 <th><%= link_to @requistion.object,  {:controller => :requistions, :action => :show, :id => @requistion.id}, {:method => :get} %></th>
+								 <td><%= link_to @requistion.object,  {:controller => :requistions, :action => :show, :id => @requistion.id}, {:method => :get} %></td>
 								 <td> <%= Building.find(@requistion.building_id).arrival_address %></td>
 								 <td> <%= transcript_of_the_messages(@requistion.type_requistion) %> </td>
 								 <td> <%= status_names[@requistion.status.to_sym] %> </td>
 								 <td> <%= time_ago_in_words(@requistion.created_at) %> назад </td>
-								 <th> <%= link_to "Принято в работу",  {:controller => :requistions, :action => :to_take_in_work, :id => @requistion.id}, {:method => :get} %></th>
+								 <td> <%= link_to "Принято в работу",  {:controller => :requistions, :action => :to_take_in_work, :id => @requistion.id}, {:method => :get, :class=>"btn"} %>
+								 	<%= link_to "Отменить",  {:controller => :requistions, :action => :to_take_in_work, :id => @requistion.id}, {:method => :get, :class=>"btn"} %>
+								 </td>
 							</tr>
 						<% end %>
 						</tbody>
+						<tfoot>
+		<tr>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th>Статус</th>
+			<th></th>
+			<th></th>
+			
+		</tr>
+	</tfoot>
 					</table>
 				</div>
 				</div>
