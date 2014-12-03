@@ -1,4 +1,3 @@
-<%= javascript_include_tag "//www.google.com/jsapi" %>
 <% provide(:title, @name) %>
 <div class="container">
 <h1><%= @name %></h1>
@@ -55,9 +54,7 @@
 			<td><%= requistion.updated_at.strftime("%e.%m.%Y %H:%M") %></td>
  			<td><%= status_names[requistion.status.to_sym] %></td>
 			<td><%= requistion.raiting %></td>	
-	    	<td>  <div id="chart-2" style="height: 300px;"></div> 
-	    		 <script> new Chartkick.PieChart("chart-2", [["Blueberry",44],["Strawberry",23],["Banana",22],["Apple",21],["Grape",13]]);
-				</script>
+	    	<td>  
 			</td>
  	    	<td><%= link_to edit_requistion_path(requistion) do%>
 	    		<span class="glyphicon glyphicon-pencil " ></span>
