@@ -6,6 +6,10 @@ App::Application.routes.draw do
 
 	resources :users
 	match '/workers',  to: 'users#workers',       via: 'get'
+	match 'users/:id/req', to: 'users#req', via: 'get'
+	match 'users/:id/contract', to: 'users#contract', via: 'get'
+	match 'users/:id/reqclient', to: 'users#reqclient', via: 'get'
+
 	resources :sessions, only: [:new, :create, :destroy]
 	resources :arrivals
 
@@ -19,6 +23,7 @@ App::Application.routes.draw do
 	match '/count', to: 'requistions#count', via: 'get'
 	match '/count_all', to: 'requistions#count_all', via: 'get'
 	match '/new', to: 'requistions#new', via: 'get'
+	match '/mark', to: 'requistions#mark', via: 'post'
 	match '/requistions', to: 'requistions#index', via: 'get'
 	match '/new_requistions',  to: 'requistions#all_new',            via: 'get'
 	match "/update_contracts", to: "requistions#update_contracts", via: 'get'	

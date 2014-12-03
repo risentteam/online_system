@@ -14,6 +14,18 @@ class UsersController < ApplicationController
 		render "index"
 	end
 
+	def req
+		@user = User.find(params[:id])
+	end
+
+	def reqclient
+		@user = User.find(params[:id])
+	end
+
+	def contract
+		@user = User.find(params[:id])
+	end
+
 	def show
 		if !signed_in?
 			flash[:warning] = "Для просмотра своего профиля необходимо авторизироваться!"

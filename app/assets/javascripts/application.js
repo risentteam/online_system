@@ -26,11 +26,6 @@
 //= require dataTables.editable
 
 
-//= require jsapi
-
-//= require chartkick
-
-
 //= require dataTables/extras/dataTables.tableTools
 //= require dataTables/extras/dataTables.colVis
 //= require jquery-star-rating

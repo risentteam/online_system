@@ -1,0 +1,32 @@
+<% provide(:title, "Мои контракты") %>
+<div class="container">
+<div class="row">
+					<div class = "col-md-2">
+					</div>
+				<div class="col-md-8">
+					<h3>Мои контракты (<%= @user.contracts.count %>)</h3>
+					<table class="table table-bordered table-striped">
+						<tr>
+							<th><%= "Контракт" %></th>
+							<th><%= "Название"	 %></th>
+							<th><%= "Адреса" %></th>
+							<th><%= "Описание" %></th>
+							<th><%= "Дата начала" %></th>
+							<th><%= "Дата окончания" %></th>
+
+						</tr>
+						<% for contract in @user.contracts %>
+							<tr>
+								<td> <%= contract.name_contract %> </td>
+								<td> <%= contract.company %> </td>
+								<td> <% contract.buildings.each do |p| %> <%= p.arrival_address %> <br>  <% end %> </td>
+								<td> <%= contract.description %> </td>
+								<td> C <%=Russian::strftime(contract.begin_time, "%e %B %Y") %> </td>
+								<td> До <%= Russian::strftime(contract.end_time, "%e %B %Y") %> </td>
+							</tr>
+						<% end %>
+					</table>
+				</div>
+				</div>
+			</div>
+		</div>
