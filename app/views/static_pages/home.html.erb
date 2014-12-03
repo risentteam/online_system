@@ -2,7 +2,21 @@
 <div class="homebg bg">
   <span><%=image_tag("HatTextForHome.png", size: "500x170", class: "hat")%></span>
   <div class ="textAndButton">
-    <h1>Добро пожаловать в онлайн диспетчерскую заявок!</h1> 
-    <%= link_to "Зарегистрируйтесь!", signup_path, class: "btn btn-large btn-primary btnhome" %>
+    <h1>Добро пожаловать в сервис онлайн заявок!</h1> 
+    <% if !signed_in? %>
+    	<div class = "container">
+    		<div class = "row">
+    			<div class = "col-md-2">
+    				<%= link_to "Зарегистрируйтесь!", signup_path, class: "btn btn-large btn-primary btnhome" %>
+    			</div>
+    			<div class = "col-md-1">
+    				<%= link_to "Войдите", signin_path, class: "btn btn-large btn-primary btnhome" %>
+    			</div>
+    		</div>
+    	</div>
+    <%elsif%>
+    	<% current_user.client? %>
+    		<%= link_to "Подать заявку", "/new", class: "btn btn-large btn-primary btnhome" %>
+    	<%end%>
   </div>
 </div>
