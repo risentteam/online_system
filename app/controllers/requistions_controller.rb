@@ -34,6 +34,21 @@ class RequistionsController < ApplicationController
 		end
 	end
 
+	def cancel
+		@requistion = Requistion.find(params[:id])
+		render "cancel"
+
+	end
+
+	def canceldone
+		@requistion = Requistion.find(params[:id])
+
+		@requistion.requistion_comment = @requistion.requistion_comment + "/n" + params[:subject]
+		@requistion.status = "received"
+
+	end
+	
+
 	def raiting
 		@requistion = Requistion.find(params[:id]) 
 		flash[:success] = "Оценка поставлена"
