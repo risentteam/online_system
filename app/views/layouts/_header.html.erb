@@ -34,11 +34,6 @@ $(document).ready(function(){
 							<% end %>
 						</li>
 						<li class = "pull-right">
-							<%= link_to edit_user_path(current_user) do %>
-							<span class="glyphicon glyphicon-wrench"></span>&nbspРедактировать профиль
-							<% end %>
-						</li>
-						<li class = "pull-right">
 							<%= link_to user_path(current_user) do %>
 							<span class="glyphicon glyphicon-user"></span>&nbspМой профиль
 							<% end %>
@@ -92,18 +87,18 @@ $(document).ready(function(){
 						<% end %>
 					</li>
 
-
-
-
 					<li class = "pull-right">
-						<%= link_to edit_user_path(current_user) do %>
-						<span class="glyphicon glyphicon-export"></span>&nbspМои заявки
+						<%= link_to controller: "users", action: "contract", id: current_user do %>
+							<span class="glyphicon glyphicon-briefcase"></span>&nbspКонтракты
 						<% end %>
 					</li>
+
+
 					<li class = "pull-right">
-						<%= link_to edit_user_path(current_user) do %>
-						<span class="glyphicon glyphicon-briefcase"></span>&nbspМои договора
+						<%= link_to controller: "users", action: "reqclient", id: current_user do %>
+							<span class="glyphicon glyphicon-export"></span>&nbspЗаявки
 						<% end %>
+					</li>
 					
 					
 				<!-- </ul> -->
@@ -118,18 +113,13 @@ $(document).ready(function(){
 							<% end %>
 						</li>
 						<li class = "pull-right">
-							<%= link_to edit_user_path(current_user) do %>
-							<span class="glyphicon glyphicon-wrench"></span>&nbspРедактировать профиль
-							<% end %>
-						</li>
-						<li class = "pull-right">
 							<%= link_to user_path(current_user) do %>
 							<span class="glyphicon glyphicon-user"></span>&nbspМой профиль
 							<% end %>
 						</li>
 						<li class = "pull-right">
-							<%= link_to user_path(current_user) do %>
-							<span class="glyphicon glyphicon-briefcase"></span>&nbspОбъекты работы
+							<%= link_to controller: "users", action: "req", id: current_user do %>
+							<span class="glyphicon glyphicon-briefcase"></span>&nbspЗаявки
 							<% end %>
 						</li>
 						<!-- </ul> -->

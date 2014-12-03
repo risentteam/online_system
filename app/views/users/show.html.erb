@@ -1,25 +1,15 @@
 <% provide(:title, @user.name) %>
 <div class="container">
 		<section>
-			
-			
-			<% if @user.admin? %>
-				<h1>
-					Администратор
-				</h1>
-				<span style="color:red" href="#">Администратор</span>
-			<% elsif @user.client? %>
-				<h1>
-					Клиент
-				</h1>
-				<span style="color:red" href="#">Клиент</span>
-			<% else #worker%>
-				<h1>
-					Рабочий
-				</h1>
-				<span style="color:red" href="#">Рабочий</span>
-			<% end %>
+			<h2>
+				<%= @user.name %>
+				<br>
+				<%= @user.email %>
+				<br>
+				<%= @user.phone %>
+			</h2>
 			<br>
+
 			<% if @user.client? && @user.contracts.any? %>
 
 				
@@ -120,5 +110,8 @@
 
 			<% end %>
 		</section>
-</div>
 
+			<%= link_to "Изменить данные профиля", edit_user_path(current_user) %>
+
+</div>
+</div>

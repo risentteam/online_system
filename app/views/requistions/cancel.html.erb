@@ -17,7 +17,9 @@
 					<%= submit_tag "Отменить заявку", class: "btn btn-large btn-primary" %>
 				<% end %>
 				<br>
-				<%= link_to "Не отменять", user_path(current_user), :class=>"btn"%>
+			<%= link_to "Не отменять заявку", {controller: "users", action: "req"}, id: current_user, class: "btn"%>
+
+
 		</div>
 
 	</div>

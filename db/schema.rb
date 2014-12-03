@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203190958) do
+ActiveRecord::Schema.define(version: 20141203223040) do
 
   create_table "arrivals", force: true do |t|
     t.integer  "user_id",      null: false
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 20141203190958) do
     t.datetime "time_running"
     t.datetime "time_done"
     t.datetime "time_comleted"
+    t.datetime "time_deadline"
   end
 
   create_table "users", force: true do |t|

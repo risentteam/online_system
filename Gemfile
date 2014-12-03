@@ -41,6 +41,7 @@ gem 'jbuilder', '1.0.2'
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 gem 'jquery-datatables-tabletools-rails', github: 'mcallaway/jquery-datatables-tabletools-rails'
 gem 'jquery-datatables-editable-rails', github: 'mcallaway/jquery-datatables-editable-rails'
+gem 'chartkick'
 
 gem 'russian', '~> 0.6.0'
 gem 'mainsms_api'

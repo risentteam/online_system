@@ -45,7 +45,7 @@ class RequistionsController < ApplicationController
 		@requistion = Requistion.find(params[:id])
 
 		@requistion.requistion_comment = @requistion.requistion_comment + "/n" + params[:subject]
-		@requistion.status = "received"
+		@requistion.status = "canceled"
 
 	end
 	
@@ -120,15 +120,19 @@ class RequistionsController < ApplicationController
 						  :time =>  "С "+Russian::strftime(@contract.begin_time, "%e %B %Y")+" до "+Russian::strftime(@contract.end_time, "%e %B %Y")}
 	end
 
+	def change_status
+
+			flash[:success] = "Заявка успешно изменена"
+			redirect_to @requistion
+	end
+
 	def update
 		#Необходимо добавить проверку корректности данных
 		@requistion = Requistion.find(params[:id])
-
 		if @requistion.update_attributes(
 			contract_id: params[:contract], 
 			category: params[:requistion][:category],
 			status: params[:requistion][:status])
-			
 			case params[:requistion][:status]
 			when "fresh"
 				@requistion.update_attributes(
@@ -149,6 +153,7 @@ class RequistionsController < ApplicationController
 				@requistion.update_attributes(
 					time_comleted: Time.zone.now.to_s)
 			end
+			
 			client = @requistion.users.client[0]
 			@pair = @requistion.pairs.create(user_id: params[:worker])
 			all_workers = [params[:worker]]
