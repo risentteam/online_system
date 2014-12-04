@@ -191,6 +191,59 @@ $(document).ready(function(){
 	});
 });
 
+
+//#########################################################################################
+//Таблица заявок у клиента
+//#########################################################################################
+$(document).ready(function(){
+     var table = $('#requistion_for_clients').dataTable({
+     		tableClass: "table-bordered",
+     		"bLengthChange": false,
+     		"bPaginate": false,
+     		"bInfo": false,
+     		"createdRow": function ( row, data, index ) {
+				if ( data[2]=="Видеокамера" ) {
+					$('td', row).addClass('danger');
+				};
+			},
+
+     		"language": {
+			"emptyTable":     "В таблице отсутствуют данные",
+			"info":           "Показаны с _START_ по _END_ из _TOTAL_ записей",
+			"infoEmpty":      "Показаны 0 из 0 записей",
+			"infoFiltered":   "(отфильтровано из всех _MAX_ записей)",
+			"infoPostFix":    "",
+			"thousands":      ",",
+			"lengthMenu":     "Показывать по _MENU_ записей",
+			"loadingRecords": "Подождите...",
+			"processing":     "Обработка...",
+			"search":         "Поиск:",
+			"zeroRecords":    "Записей не найдено",
+			"paginate": {
+				"first":      "Первый",
+				"last":       "Последний",
+				"next":       "Следующий",
+				"previous":   "Предыдущий"
+			 },
+			"aria": {
+				"sortAscending":  ": активировать для сортировки по возрастанию",
+				"sortDescending": ": активировать для сортировки по убыванию"
+			}
+		},
+
+     });
+     table.columnFilter({
+		aoColumns: [    
+			{ type: "null" },
+			{ type: "null" },
+			{ type: "null" },
+			{ type: "select" },			
+			{ type: "null"}
+		]
+	});
+});
+
+
 //#########################################################################################
 //Таблица контрактов
 //#########################################################################################
