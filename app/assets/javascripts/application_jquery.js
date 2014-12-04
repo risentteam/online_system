@@ -148,7 +148,7 @@ $(document).ready(function(){
      		"bPaginate": false,
      		"bInfo": false,
      		"createdRow": function ( row, data, index ) {
-				if ( data[2]=="Видеокамера" ) {
+				if ( data[4]=="новая" ) {
 					$('td', row).addClass('danger');
 				};
 			},
