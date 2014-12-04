@@ -1,21 +1,24 @@
 <% provide(:title, 'Все объекты') %>
 <div class="container">
-<div class="row">
-<div class="col-md-7">
-	<h1 style="text-align:center">Все объекты</h1>
+	<div class="row">
+		<div class="col-md-2">
+		</div>
+		<div class="col-md-7">
+			<h1 style="text-align:center">Все объекты</h1>
 
-	<table class="table table-bordered table-striped">
-		<tr>
-			<th>Номер</th>
-			<th>Адрес</th>
-		</tr>
-	
-		<% @buildings.each do |b| %>
-			<tr>
-				<td><%= b.id %></td>
-				<td><%= link_to b.arrival_address,  {:action => :show, :id => b.id}, {:method => :get} %></td>
-			</tr>
-		<% end %>
-	</table>
-</div>
+			<table class="table table-bordered table-striped">
+				<tr>
+					<th>Номер</th>
+					<th>Адрес</th>
+				</tr>
+			
+				<% @buildings.each do |b| %>
+					<tr>
+						<td><%= b.id %></td>
+						<td><%= link_to b.arrival_address,  {:action => :show, :id => b.id}, {:method => :get} %></td>
+					</tr>
+				<% end %>
+			</table>
+		</div>
+	</div>
 </div>

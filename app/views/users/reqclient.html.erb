@@ -13,7 +13,6 @@
 							<th><%= "Объект" %></th>
 							<th><%= "Адрес вызова" %></th>
 							<th><%= "Тип вызова" %></th>
-							<th><%= 'Контакты' %></th>						
 							<th><%= "Статус" %></th>
 							<th><%= "Время подачи заявки" %></th>
 						</tr>
@@ -25,7 +24,6 @@
 								 <td><%= link_to @requistion.object,  {:controller => :requistions, :action => :show, :id => @requistion.id}, {:method => :get} %></td>
 								 <td><%= link_to Building.find(@requistion.building_id).arrival_address,  {:controller => :buildings, :action => :show, :id => @requistion.building_id}, {:method => :get} %></td>
 								 <td> <%= transcript_of_the_messages(@requistion.type_requistion)+' '+transcript_of_the_messages(@requistion.subtype_requistions) %> </td>
-								 <td><%= @requistion.contact_phone+' '+@requistion.contact_name %></td>
 								 <td> <%= status_names[@requistion.status.to_sym] %> </td>
 								 <td> <%= time_ago_in_words(@requistion.created_at) %> назад </td>
 							</tr>

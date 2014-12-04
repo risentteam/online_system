@@ -51,6 +51,7 @@
 </table>
 
 <br>
+
 <% if current_user.status == "admin" %>
   <%# if @requistion.status != "comleted" %>
     <%= button_to "Обработать заявку", edit_requistion_path, method: :get, class: "btn btn-large btn-primary" %>
@@ -58,6 +59,9 @@
     <%#= button_to "Обработать заявку", edit_requistion_path, method: :get, class: "disabled"%>
   <%# end %>
 <% end %>
+
+<br>
+<%= link_to "Вернуться к объектам", {controller: "users", action: "req", id: current_user}, class: "btn"%>
 
 </div>
 

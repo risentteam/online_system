@@ -16,7 +16,7 @@
 							<th><%= 'Контакты' %></th>						
 							<th><%= "Статус" %></th>
 							<th><%= "Время подачи заявки" %></th>
-							<th><%= "Контакты" %></th>  
+							<th><%= "Действия" %> </th>
 						</tr>
 						</thead>
 						<tbody>
@@ -29,7 +29,7 @@
 								 <td><%= @requistion.contact_phone+' '+@requistion.contact_name %></td>
 								 <td> <%= status_names[@requistion.status.to_sym] %> </td>
 								 <td> <%= time_ago_in_words(@requistion.created_at) %> назад </td>
-								 <td> <%= link_to "Принято в работу",  {:controller => :requistions, :action => :to_take_in_work, :id => @requistion.id}, {:method => :get, :class=>"btn"} %>
+								 <td> <%= link_to "Принять в работу",  {:controller => :requistions, :action => :to_take_in_work, :id => @requistion.id}, {:method => :get, :class=>"btn"} %>
 								 	<%= link_to "Отменить",  {:controller => :requistions, :action => :cancel, :id => @requistion.id}, {:method => :get, :class=>"btn", data: { confirm: "Отменить заявку?" }} %>
 								 </td>
 							</tr>
