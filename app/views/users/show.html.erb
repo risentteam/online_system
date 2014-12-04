@@ -1,15 +1,22 @@
 <% provide(:title, @user.name) %>
 <div class="container">
 <div class="row">
+	<div class ="col-md-4">
+	</div>
+	<div class = "col-md-4">
 		<section>
 			<h2>
 				<%= @user.name %>
 				<br>
+			</h2>
+			<h3>
 				<%= @user.email %>
 				<br>
 				<%= @user.phone %>
-			</h2>
+			</h3>
 			<br>
-			<%= link_to "Изменить данные профиля", edit_user_path(current_user) %>
+
+			<%= link_to "Изменить данные профиля", edit_user_path(current_user), class:"btn" %>
+		</div>
 </div>
 </div>
