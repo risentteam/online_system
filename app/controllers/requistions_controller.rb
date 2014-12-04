@@ -130,7 +130,8 @@ class RequistionsController < ApplicationController
 		#Необходимо добавить проверку корректности данных
 		@requistion = Requistion.find(params[:id])
 		if @requistion.update_attributes(
-			contract_id: params[:contract], 
+			contract_id: params[:contract],
+			time_deadline: params[:deadline], 
 			category: params[:requistion][:category],
 			status: params[:requistion][:status])
 			case params[:requistion][:status]

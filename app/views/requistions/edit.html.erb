@@ -102,7 +102,7 @@
 				<div class="form-group">
 					<%= f.label :'Описание договора:', class: "col-md-3 control-label" %>
 					<div class="col-md-5">
-						<%= text_field_tag :description, nil, :placeholder => "Введите время окончания договора", class: "form-control", required: "" %>
+						<%= text_field_tag :description, nil, :placeholder => "Введите время  договора", class: "form-control", required: "" %>
 					</div>
  				</div>
 			</div>
@@ -129,17 +129,27 @@
 				
 			</div>
 			
-
 			<div class="row">
 				<div class="form-group" id="worker_row">
 					<%= f.label :'Статус:', class: "col-md-3 control-label" %>
-					<div id="workerfield" class="col-md-5">
+					<div class="col-md-5">
 						<%= f.select :status, [['Новая', 'fresh'], ['Назначена', 'assigned'], ['Принята в работу', 'adopted_in_work'], ['Выполняется', 'running'], ['Исполнено', 'done'], ['Завершено', 'comleted']], {:prompt => "Выберите из списка"}, {:class =>  "form-control", required: ""} %>
 						</div>
 				</div>
 			</div>
-			<%= f.submit "Сохранить", class: "btn btn-large btn-primary", id: "submut" %>
-			<%= link_to "Закрыть заявку", {:action => 'close'}, {:class => "btn btn-large btn-primary"} %>				
+
+			<div class="row">
+				<div class="form-group" id="worker_row">
+					<%= f.label :'Дата окончания заявки:', class: "col-md-3 control-label" %>
+					<div class="col-md-5">
+						<%= date_field_tag :deadline, nil, :placeholder => "Введите время окончания заявки", class: "form-control", required: "" %>		
+					</div>
+				</div>
+			</div>
+
+	<%= f.submit "Сохранить", class: "btn btn-large btn-primary", id: "submut" %>
+	<%= link_to "Закрыть заявку", {:action => 'close'}, {:class => "btn btn-large btn-primary"} %>	
+			
 
 <% end %>
 <!--  -->
