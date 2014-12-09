@@ -40,7 +40,7 @@ class ContractsController < ApplicationController
 	 #      			Buildingscontract.create(building_id: building.id, contract_id: contract.id)
 	 #      		end
   #     		end
-		# end			
+		end			
       render :text => params['value']
 	end
 end
