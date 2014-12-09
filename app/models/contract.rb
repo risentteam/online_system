@@ -15,22 +15,52 @@ def self.import(file)
       row = spreadsheet.row(i)
       if not row[0].nil? and Contract.where("name_contract = ? ", row[0]).empty?
       	contract = Contract.create(name_contract: row[0], company: row[2], date_of_signing: row[6], description: row[7], begin_time: row[8], end_time: row[9], comment: row[10])
-      	user = User.create()
         adress = row[3].split(';')
       	adress.each do |address|
-      		if Building.where("arrival_address = ? ", address).empty?
+      		  address.gsub!(/ +/, ' ')
+            if address[0]==' '
+              address=address[1..-1]
+            end
+            if address[-1]==' '
+              address=address[0..-2]
+            end
+          if Building.where("arrival_address = ? ", address).empty?
       			building = Building.create(arrival_address: address)
       		else
       			building = Building.where("arrival_address = ? ", address).first
       		end
-      		Buildingscontract.create(building_id: building.id, contract_id: contract.id)
+      		if Buildingscontract.where("building_id = ? and contract_id = ?", building.id, contract.id).empty?
+            Buildingscontract.create(building_id: building.id, contract_id: contract.id)
+          end
       	end
+     end
+     if not Contract.where("name_contract = ?", row[0]).empty?
+        contract = Contract.where("name_contract = ? ", row[0]).first
+        contract.update_attributes(name_contract: row[0], company: row[2], date_of_signing: row[6], description: row[7], begin_time: row[8], end_time: row[9], comment: row[10])
+        adress = row[3].split(';')
+        adress.each do |address|
+          address.gsub!(/ +/, ' ')
+            if address[0]==' '
+              address=address[1..-1]
+            end
+            if address[-1]==' '
+              address=address[0..-2]
+            end
+          if Building.where("arrival_address = ? ", address).empty?
+            building = Building.create(arrival_address: address)
+          else
+            building = Building.where("arrival_address = ? ", address).first
+          end
+          if Buildingscontract.where("building_id = ? and contract_id = ?", building.id, contract.id).empty?
+            Buildingscontract.create(building_id: building.id, contract_id: contract.id)
+          end
+          end
      end
 #    Contract.new()
 #    product = find_by_id(row["id"]) || new
 #    product.attributes = row.to_hash.slice(*accessible_attributes)
 #    product.save!
-  	end
+     end
   end
 end
 

@@ -1,4 +1,4 @@
-<table id="example" class="table">
+<table id="contracts" class="table">
 	<thead>
 		<tr>
 			<th>Номер</th>
@@ -15,7 +15,7 @@
 		<tr>
 			<td > <%= contract.name_contract %></td>
 	    	<td id = "company"> <%= contract.company %></td>
-	    	<td id = "building"> <% contract.buildings[0..-2].each do |building| %> <li><%=building.arrival_address%></li> <% end %> <li><%=contract.buildings[-1].arrival_address%></li> </td>
+	    	<td id = "building"> <% contract.buildings[0..-2].each do |building| %> <%=building.arrival_address + ";" %> <% end %> <%=contract.buildings[-1].arrival_address%> </td>
 	    	<td id = "description"> <%= contract.description %></td>
 	    	<td id = "comment"> <%= contract.comment %></td>
 	    	<td id = "begin_time"> <%= contract.begin_time.strftime("%d.%m.%Y") %></td>
@@ -40,8 +40,12 @@
 <h2>Импорт контрактов</h2>
 
 <%= form_tag import_contracts_path, multipart: true do %>
-  <%= file_field_tag :file %>
-  <%= submit_tag "Отправить" %>
+  <%= file_field_tag :file, class: "btn btn-file" %>
+  <%= submit_tag "Отправить" , class: "btn btn-large btn-primary" %>
 <% end %>
+
+Выберите файл с котнтрактами. Номер контракта должен быть уникальным. Разные адреса внутри одного контракта должны быть разделены ";"
+Вы можете изменить любую из ячеек двойным щелчком по ней.
+
 
 

@@ -38,15 +38,19 @@ $(document).ready(function() {
 			if ( data[10]=="завершено" ) {
 				$('td', row).addClass('success');
 			};
-			if ( data[10]=="назначена" ) {
+			if ( data[10]=="отменена" ) {
 				$('td', row).addClass('info');
 			};
-			if ( data[10]=="рабочие прибыли" ) {
+			if ( data[10]=="принята в работу" ) {
 				$('td', row).addClass('warning');
 			};
-			if ( data[10]=="рабочие ушли" ) {
+			if ( data[10]=="выполняется" ) {
 				$('td', row).addClass('warning');
 			};
+			if ( data[10]=="исполнена" ) {
+				$('td', row).addClass('warning');
+			};
+
 		},
 //***********************
 
@@ -248,8 +252,33 @@ $(document).ready(function(){
 //Таблица контрактов
 //#########################################################################################
 $(document).ready(function(){
-     $('#example').dataTable()
-          .makeEditable();
+     $('#contracts').dataTable({
+     		tableClass: "table-bordered",  
+        	stateSave: true,   		
+     		"language": {
+			"emptyTable":     "В таблице отсутствуют данные",
+			"info":           "Показаны с _START_ по _END_ из _TOTAL_ записей",
+			"infoEmpty":      "Показаны 0 из 0 записей",
+			"infoFiltered":   "(отфильтровано из всех _MAX_ записей)",
+			"infoPostFix":    "",
+			"thousands":      ",",
+			"lengthMenu":     "Показывать по _MENU_ записей",
+			"loadingRecords": "Подождите...",
+			"processing":     "Обработка...",
+			"search":         "Поиск:",
+			"zeroRecords":    "Записей не найдено",
+			"paginate": {
+				"first":      "Первый",
+				"last":       "Последний",
+				"next":       "Следующий",
+				"previous":   "Предыдущий"
+			 },
+			"aria": {
+				"sortAscending":  ": активировать для сортировки по возрастанию",
+				"sortDescending": ": активировать для сортировки по убыванию"
+			}
+		}	
+     }).makeEditable();
 });
 
 //Чтение рейтина
