@@ -81,7 +81,7 @@
           <%= form_tag(mark_path(@requistion), :html => {:class => "form-vertical"}) do |f| %>
             <div class="form-group">
           <label   >Пожалуйста оцените по десятибальной шкале.</label>
-          <input id="input-21e" value="0" type="number" class="rating" name="mark" min=0 max=10 step=1 data-size="xs" >
+          <input id="mark" name="mark" required >
         </div>
         <button type="submit" class="btn btn-success">Оценить</button>
       <% end %>
@@ -91,5 +91,37 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+jQuery(document).ready(function () {
+
+$('#mark').rating({'showCaption':true, 
+  "starCaptions": {
+    1: "1 балл", 
+    2: "2 балла", 
+    3: "3 балла",
+    4: "4 балла",
+    5: "5 баллов",
+    6: "6 баллов",
+    7: "7 баллов",
+    8: "8 баллов",
+    9: "9 баллов",
+    10: "10 баллов"},
+  "starCaptionClasses": {
+    1: "text-danger",
+    2: "text-danger",
+    3: "text-warning",
+    4: "text-warning",
+    5: "text-info",
+    6: "text-info",
+    7: "text-primary",
+    8: "text-primary",
+    9: "text-success",
+    10: "text-success"},
+  "clearCaption" : "Нет оценки",
+  "clearButtonTitle":"Очистить",
+  'stars':'10', 'min':'0', 'max':'10', 'step':'1', 'size':'xs', 
+  });
+});
+</script>
 <% end %>
 </div>
