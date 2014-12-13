@@ -1,17 +1,27 @@
-<%= javascript_include_tag 'http://api-maps.yandex.ru/2.1/?lang=ru_RU' %>
 <% provide(:title, @name) %>
 <% if @name == "Клиенты"%>
-  	<% @users.each do |user| %>
-		<%= render user %>
-	<%end%>
-<%else %>
-<div class="container">	
 <h1><%= @name %></h1>
 <div class="row">
-<div class="col-md-1">
+	<div class="col-md-4">
+	</div>
+	<div class="col-md-4">
+		<table class="table tablework">
+	  	<% @users.each do |user| %>
+			<%= render user %>
+		<%end%>
+		</table>
+	</div>
+	<div class="col-md-4">
+	</div>
 </div>
-<div class="col-md-4">
-<table class="table tablework">
+<%else %>
+<div class="container">	
+	<h1><%= @name %></h1>
+	<div class="row">
+	<div class="col-md-1">
+	</div>
+	<div class="col-md-4">
+	<table class="table tablework">
 	<!-- <tr>
 	<th>Имя</th>
 	</tr> -->
@@ -74,7 +84,7 @@
 		</tr>
 		</div> 
 	<% end %>  
-  <% end %>
 </table>
 </div>
 </div>
+<% end %>
