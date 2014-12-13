@@ -52,8 +52,10 @@ class RequistionsController < ApplicationController
 
 	def mark
 		@requistion = Requistion.find(params[:id]) 
+		@requistion.update_attribute( :raiting, params[:mark])
 		flash[:success] = "Оценка поставлена"
-		redirect_to root_path
+		
+		redirect_to requistion_path(@requistion)
 	end
 
 	def create
@@ -86,13 +88,6 @@ class RequistionsController < ApplicationController
 		@name = "Новые заявки"
 		@requistions = Requistion.fresh	
 		render "index"
-	end
-
-	def mark
-		r = Requistion.find(params[:id])
-		r.update_attribute :raiting, params[:mark]
-		flash[:success] = "Ваша оценка учтена."
-		redirect_to current_user
 	end
 
 	def edit

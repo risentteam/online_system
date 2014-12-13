@@ -34,3 +34,5 @@
 //= require application_jquery.js
 
 //= require jquery.watermarkinput
+//= require star-rating.min
+

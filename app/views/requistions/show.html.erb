@@ -48,6 +48,10 @@
     <th>Статус</th>
     <td><%= status_names[@requistion.status.to_sym] %></td>
   </tr>
+  <tr>
+    <th>Оценка</th>
+    <td><%= @requistion.raiting %></td>
+  </tr>
 </table>
 
 <br>
@@ -61,8 +65,28 @@
 <% end %>
 
 <br>
+<button class="btn btn-danger mark" data-toggle="modal" data-target="#myModal" >Оценить</button>
 <%= link_to "Вернуться к объектам", {controller: "users", action: "req", id: current_user}, class: "btn"%>
 
 </div>
-
-
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Ваша Оценка</h4>
+      </div>
+      <div class="modal-body">
+          <%= form_tag(mark_path(@requistion), :html => {:class => "form-vertical"}) do |f| %>
+            <div class="form-group">
+          <label   >Пожалуйста оцените по десятибальной шкале.</label>
+          <input id="input-21e" value="0" type="number" class="rating" name="mark" min=0 max=10 step=1 data-size="xs" >
+        </div>
+        <button type="submit" class="btn btn-success">Оценить</button>
+      <% end %>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>

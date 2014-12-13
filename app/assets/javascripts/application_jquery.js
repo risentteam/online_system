@@ -22,7 +22,7 @@ $(document).ready(function() {
 		
 		tableClass: "table-bordered",
 //новая часть часть отвечяющая за сохранение настроек таблицы
-        stateSave: true,
+		stateSave: true,
 		//"dom": '<"container"lCfrtip> <"container"T>',
 		dom:
 		"<'row'<'col-xs-6'lC><'col-xs-6'f>r>" +
@@ -73,8 +73,8 @@ $(document).ready(function() {
 					"sFileName" : "Заявки.xls",
 					"sFieldSeperator" : ';',  
 					"oSelectorOpts": {
-                		page: 'current'
-           		 	}
+						page: 'current'
+					}
 				}
 				/*{
 					"sCharSet" : "utf16", 
@@ -146,18 +146,18 @@ $(document).ready(function() {
 //Таблица заявок у рабочего
 //#########################################################################################
 $(document).ready(function(){
-     var table = $('#requistion_for_workers').dataTable({
-     		tableClass: "table-bordered",
-     		"bLengthChange": false,
-     		"bPaginate": false,
-     		"bInfo": false,
-     		"createdRow": function ( row, data, index ) {
+	 var table = $('#requistion_for_workers').dataTable({
+			tableClass: "table-bordered",
+			"bLengthChange": false,
+			"bPaginate": false,
+			"bInfo": false,
+			"createdRow": function ( row, data, index ) {
 				if ( data[4]=="новая" ) {
 					$('td', row).addClass('danger');
 				};
 			},
 
-     		"language": {
+			"language": {
 			"emptyTable":     "В таблице отсутствуют данные",
 			"info":           "Показаны с _START_ по _END_ из _TOTAL_ записей",
 			"infoEmpty":      "Показаны 0 из 0 записей",
@@ -181,8 +181,8 @@ $(document).ready(function(){
 			}
 		},
 
-     });
-     table.columnFilter({
+	 });
+	 table.columnFilter({
 		aoColumns: [    
 			{ type: "null" },
 			{ type: "null" },
@@ -200,18 +200,18 @@ $(document).ready(function(){
 //Таблица заявок у клиента
 //#########################################################################################
 $(document).ready(function(){
-     var table = $('#requistion_for_clients').dataTable({
-     		tableClass: "table-bordered",
-     		"bLengthChange": false,
-     		"bPaginate": false,
-     		"bInfo": false,
-     		"createdRow": function ( row, data, index ) {
+	 var table = $('#requistion_for_clients').dataTable({
+			tableClass: "table-bordered",
+			"bLengthChange": false,
+			"bPaginate": false,
+			"bInfo": false,
+			"createdRow": function ( row, data, index ) {
 				if ( data[2]=="Видеокамера" ) {
 					$('td', row).addClass('danger');
 				};
 			},
 
-     		"language": {
+			"language": {
 			"emptyTable":     "В таблице отсутствуют данные",
 			"info":           "Показаны с _START_ по _END_ из _TOTAL_ записей",
 			"infoEmpty":      "Показаны 0 из 0 записей",
@@ -235,8 +235,8 @@ $(document).ready(function(){
 			}
 		},
 
-     });
-     table.columnFilter({
+	 });
+	 table.columnFilter({
 		aoColumns: [    
 			{ type: "null" },
 			{ type: "null" },
@@ -252,10 +252,10 @@ $(document).ready(function(){
 //Таблица контрактов
 //#########################################################################################
 $(document).ready(function(){
-     $('#contracts').dataTable({
-     		tableClass: "table-bordered",  
-        	stateSave: true,   		
-     		"language": {
+	 $('#contracts').dataTable({
+			tableClass: "table-bordered",  
+			stateSave: true,   		
+			"language": {
 			"emptyTable":     "В таблице отсутствуют данные",
 			"info":           "Показаны с _START_ по _END_ из _TOTAL_ записей",
 			"infoEmpty":      "Показаны 0 из 0 записей",
@@ -278,7 +278,7 @@ $(document).ready(function(){
 				"sortDescending": ": активировать для сортировки по убыванию"
 			}
 		}	
-     }).makeEditable();
+	 }).makeEditable();
 });
 
 //Чтение рейтина
@@ -425,22 +425,22 @@ $(document).ready(function(){
 
 jQuery(function($){
 	$("#requistions_range_from_2").attr("placeholder", "C").each(function () {
-    	this.previousSibling.parentNode.removeChild(this.previousSibling);
+		this.previousSibling.parentNode.removeChild(this.previousSibling);
 	});
 	$("#requistions_range_from_9").attr("placeholder", "C").each(function () {
-    	this.previousSibling.parentNode.removeChild(this.previousSibling);
+		this.previousSibling.parentNode.removeChild(this.previousSibling);
 	});
 	$("#requistions_range_from_11").attr("placeholder", "C").each(function () {
-    	this.previousSibling.parentNode.removeChild(this.previousSibling);
+		this.previousSibling.parentNode.removeChild(this.previousSibling);
 	});
 	$("#requistions_range_to_2").attr("placeholder", "По").each(function () {
-    	this.previousSibling.parentNode.removeChild(this.previousSibling);
+		this.previousSibling.parentNode.removeChild(this.previousSibling);
 	});
 	$("#requistions_range_to_9").attr("placeholder", "По").each(function () {
-    	this.previousSibling.parentNode.removeChild(this.previousSibling);
+		this.previousSibling.parentNode.removeChild(this.previousSibling);
 	});
 	$("#requistions_range_to_11").attr("placeholder", "По").each(function () {
-    	this.previousSibling.parentNode.removeChild(this.previousSibling);
+		this.previousSibling.parentNode.removeChild(this.previousSibling);
 	});
 
 });
