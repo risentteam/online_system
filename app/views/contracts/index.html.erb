@@ -1,4 +1,4 @@
-<div class="container"
+<div class="container">
 <table id="contracts" class="table">
 	<thead>
 		<tr>
@@ -23,17 +23,30 @@
 	    	<td id = "end_time"> <%= contract.end_time.strftime("%d.%m.%Y") %></td>
 		</tr>
 		<% end %>
-	</tbody>	
+	</tbody>
+	<tfoot>
+		<tr>
+			<th>Номер</th>
+			<th>Компания</th>
+			<th>Здания</th>
+			<th>Описание</th>
+			<th>Комментарий</th>
+			<th>Начало</th>
+			<th>Конец</th>			
+		</tr>
+	</tfoot>
 </table>
-
+</div>
 
 <h2>Импорт контрактов</h2>
 
 <%= form_tag import_contracts_path, multipart: true do %>
-  <%= file_field_tag :file, class: "btn btn-file" %>
-  <%= submit_tag "Отправить" , class: "btn btn-large btn-primary" %>
+	<div class="btn-group">
+	<%= file_field_tag :file, class: "btn" %>
+	<%= submit_tag "Отправить" , class: "btn" %>
+	</div>
 <% end %>
 
 Выберите файл с контрактами. Номер контракта должен быть уникальным. Разные адреса внутри одного контракта должны быть разделены ";"
 Вы можете изменить любую из ячеек двойным щелчком по ней.
-</div>
+
