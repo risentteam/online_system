@@ -1,10 +1,10 @@
 <%= javascript_include_tag 'http://api-maps.yandex.ru/2.1/?lang=ru_RU' %>
 <% provide(:title, @name) %>
 <% if @name == "Клиенты"%>
-  <% @users.each do |user| %>
+  	<% @users.each do |user| %>
 		<%= render user %>
-		<%end%>
-		<%else %>
+	<%end%>
+<%else %>
 <div class="container">	
 <h1><%= @name %></h1>
 <div class="row">
@@ -55,7 +55,7 @@
 					<% end %>
 				<% end %>
 				</div>
-				<div class = "pull-right calendarValue">
+				<div class = "pull-right">
 				<%= link_to user, method: :delete, data: { confirm: "Вы уверены, что хотите удалить?" } do%>
 					<span class="glyphicon glyphicon-trash" title="удалить"></span>
 				<% end %>
