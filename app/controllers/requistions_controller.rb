@@ -9,7 +9,7 @@ class RequistionsController < ApplicationController
 	end
 
 	def count_all
-		render :json => { :count => Requistion.count.to_s} 
+		render :json => { :count => Requistion.fresh.count.to_s} 
 	end
 
 	def show

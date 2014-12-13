@@ -2,7 +2,7 @@
 <div class="container">
 <h1><%= @name %></h1>
 <script type="text/javascript">
-	old_count = <%= @requistions.count %>;
+	old_count = <%= @requistions.fresh.count %>;
 	set = false;
 	$(document).ready(function(){
 	setInterval(function(){
