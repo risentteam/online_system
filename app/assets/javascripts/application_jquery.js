@@ -17,6 +17,7 @@ $.datepicker.regional[""] = {
 
 $.datepicker.setDefaults($.datepicker.regional['']);
 
+
 $(document).ready(function() {
 	var table = $('#requistions').dataTable({
 		
@@ -76,25 +77,9 @@ $(document).ready(function() {
 						page: 'current'
 					}
 				}
-				/*{
-					"sCharSet" : "utf16", 
-					"sExtends": "pdf",
-					"sPdfOrientation": "landscape",
-					"bFooter": false, 
-					"sFileName" : "Заявки.pdf",
-					"sPdfMessage": "Hello world"
-					
-				},*/
-				// {
-				// 	"sExtends": "print",
-				// 	"sButtonText": "Предварительный просмотр",
-				// 	"bFooter": false,
-				// 	"sInfo": "Нажмите esc для выхода"                     
-				// },
 			]
 
 		},
-
 
 //***********************
 		"language": {
@@ -206,9 +191,25 @@ $(document).ready(function(){
 			"bPaginate": false,
 			"bInfo": false,
 			"createdRow": function ( row, data, index ) {
-				if ( data[2]=="Видеокамера" ) {
+				if ( data[3]=="новая" ) {
 					$('td', row).addClass('danger');
 				};
+				if ( data[3]=="завершено" ) {
+					$('td', row).addClass('success');
+				};
+				if ( data[3]=="отменена" ) {
+					$('td', row).addClass('info');
+				};
+				if ( data[3]=="принята в работу" ) {
+					$('td', row).addClass('warning');
+				};
+				if ( data[3]=="выполняется" ) {
+					$('td', row).addClass('warning');
+				};
+				if ( data[3]=="исполнена" ) {
+					$('td', row).addClass('warning');
+				};
+
 			},
 
 			"language": {

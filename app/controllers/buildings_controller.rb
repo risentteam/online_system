@@ -30,13 +30,13 @@ class BuildingsController < ApplicationController
 		pairs = Pair.where("user_id = ? and requistion_id in (SELECT id FROM requistions WHERE building_id = ?)", current_user[:id], params[:id])
 		last = current_user.arrivals.where(check_type: 0).order(:date).last(); 
 		date = Time.zone.now.strftime("%Y-%m-%d")
-		arrival = Arrival.create(user_id: current_user[:id], check_type: "check_in", building_id: params[:id], date: Time.zone.now.to_s)
+		arrival = Arrival.create(user_id: current_user[:id], check_type: "check_in", building_id: params[:id], date: Time.now.to_s)
     	#Time.zone.now.strftime("%H").to_i<=10 and Time.zone.now.strftime("%H").to_i>=8 and
     	if current_user.arrivals.where("date between date('now') AND date('now')").count==0
 			arrival.update_attributes(begin_or_end: 0)
 		end
 		pairs.each do |pair|
-			pair.requistion.update_attributes(status: "running", time_running: Time.zone.now.to_s)
+			pair.requistion.update_attributes(status: "running", time_running: Time.now.to_s)
 		end
 		flash[:success] = "Ваше прибытие отмечено!"
 		redirect_to current_user
@@ -44,7 +44,7 @@ class BuildingsController < ApplicationController
 
 	def check_out
 		pairs = Pair.where("user_id = ? and requistion_id in (SELECT id FROM requistions WHERE building_id = ?)", current_user[:id], params[:id])
-		arrival = Arrival.create(user_id: current_user[:id], check_type: "check_out", building_id: params[:id], time: Time.zone.now.to_s)
+		arrival = Arrival.create(user_id: current_user[:id], check_type: "check_out", building_id: params[:id], date: Time.now.to_s)
     	if Time.zone.now.strftime("%H").to_i<=7 and Time.zone.now.strftime("%H").to_i>=5	
 			arrival.update_attributes(begin_or_end: 1)
 		end

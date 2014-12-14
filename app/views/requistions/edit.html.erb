@@ -25,7 +25,7 @@
 				<div class="form-group">
 					<label class="col-md-3 control-label">Адрес вызова</label>
 					<div class="col-md-5">
-					<input class="form-control" type="text" placeholder="<%= @requistion.building.arrival_address %>" readonly></input>
+						<input class="form-control" type="text" placeholder="<%= @requistion.building.arrival_address %>" readonly></input>
 					</div>
 				</div>
 			</div>
@@ -44,8 +44,8 @@
 				<div class="form-group">
 					<label class="col-md-3 control-label">Тип заявки</label>
 					<div class="col-md-5">
-					<input class="form-control" type="text" placeholder="<%= transcript_of_the_messages(@requistion.type_requistion) %>" readonly></input>
-				</div>
+						<input class="form-control" type="text" placeholder="<%= transcript_of_the_messages(@requistion.type_requistion) %>" readonly></input>
+					</div>
 				</div>
 			</div>
 
@@ -54,8 +54,8 @@
 				<div class="form-group">
 					<label class="col-md-3 control-label">Время заявки</label>
 					<div class="col-md-5">
-					<input class="form-control" type="text" placeholder="<%= Russian::strftime(@requistion.created_at, "%e %B %Y %H:%M") %>" readonly></input>
-				</div>
+						<input class="form-control" type="text" placeholder="<%= Russian::strftime(@requistion.created_at, "%e %B %Y %H:%M") %>" readonly></input>
+					</div>
 				</div>
 			</div>
 
@@ -63,8 +63,8 @@
 				<div class="form-group">
 					<label class="col-md-3 control-label">Контактный телефон</label>
 					<div class="col-md-5">
-					<input class="form-control" type="text" placeholder="<%= @requistion.contact_phone %>" readonly></input>
-				</div>
+						<input class="form-control" type="text" placeholder="<%= @requistion.contact_phone %>" readonly></input>
+					</div>
 				</div>
 			</div>
 
@@ -75,7 +75,7 @@
 						<%= select_tag :company, options_from_collection_for_select(@list_contract, 'company', 'company'), :prompt => "Выберите из списка", :class => "form-control", required: "" %>
 					</div>
 				</div>
-			</div>
+			</div>	
 
 			<div class="row" id="versionsDiv">
   				<%= render :partial => 'versions', :object => @list_contract %>
@@ -129,7 +129,7 @@
 				
 			</div>
 			
-			<div class="row">
+<!-- 			<div class="row">
 				<div class="form-group" id="worker_row">
 					<%= f.label :'Статус:', class: "col-md-3 control-label" %>
 					<div class="col-md-5">
@@ -137,25 +137,18 @@
 						</div>
 				</div>
 			</div>
-<<<<<<< HEAD
-
+ -->
 			<div class="row">
 				<div class="form-group" id="worker_row">
 					<%= f.label :'Дата окончания заявки:', class: "col-md-3 control-label" %>
 					<div class="col-md-5">
+
 						<%= date_field_tag :deadline, nil, :placeholder => "Введите время окончания заявки", class: "form-control", required: "" %>		
 					</div>
 				</div>
 			</div>
 
-	<%= f.submit "Сохранить", class: "btn btn-large btn-primary", id: "submut" %>
-	<%= link_to "Закрыть заявку", {:action => 'close'}, {:class => "btn btn-large btn-primary"} %>	
-=======
-			<%= f.submit "Сохранить", class: "btn btn-large btn-primary", id: "submut" %>
-			<%= link_to "Закрыть заявку", {:action => 'close'}, {:class => "btn btn-large btn-primary"} %>	
-			<%= link_to "Назад к заявкам", {controller: "requistions", action: "index"}, class: "btn"%>
->>>>>>> 6f525a46b227400d849358793a629ab883986e99
-			
+	<%= f.submit "Принять", class: "btn btn-large btn-primary", id: "submut" %>	
+	<%= link_to "Назад к заявкам", {controller: "requistions", action: "index"}, class: "btn"%>			
 
 <% end %>
-<!--  -->

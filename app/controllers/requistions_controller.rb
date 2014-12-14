@@ -34,6 +34,14 @@ class RequistionsController < ApplicationController
 		end
 	end
 
+	def done
+		@requistion = Requistion.find(params[:id]) 
+		if @requistion.update_attributes(
+			status: "done", time_done: Time.zone.now.to_s)
+			flash[:success] = "Заявка закончена"
+			redirect_to @requistion
+		end		
+	end
 
 	def cancel
 		@requistion = Requistion.find(params[:id])
@@ -54,9 +62,37 @@ class RequistionsController < ApplicationController
 		@requistion = Requistion.find(params[:id]) 
 		@requistion.update_attribute( :raiting, params[:mark])
 		flash[:success] = "Оценка поставлена"
-		
 		redirect_to requistion_path(@requistion)
 	end
+
+	def change_status
+		@requistion = Requistion.find(params[:id]) 
+		@requistion.update_attribute( :status, params[:status])
+		case params[:status]
+			when "fresh"
+				@requistion.update_attributes(
+					created_at: Time.zone.now.to_s)
+			when "assigned"
+				@requistion.update_attributes(
+					time_assgned: Time.zone.now.to_s)
+			when "adopted_in_work"
+				@requistion.update_attributes(
+					time_adopted_in_work: Time.zone.now.to_s)
+			when "running"
+				@requistion.update_attributes(
+					time_running: Time.zone.now.to_s)
+			when "done"
+				@requistion.update_attributes(
+					time_done: Time.zone.now.to_s)
+			when "comleted"
+				@requistion.update_attributes(
+					time_comleted: Time.zone.now.to_s)
+			end
+		flash[:success] = "Оценка поставлена"
+		redirect_to requistion_path(@requistion)		
+	end
+
+
 
 	def create
 		@requistion = Requistion.new(requistions_params)
@@ -115,41 +151,16 @@ class RequistionsController < ApplicationController
 						  :time =>  "С "+Russian::strftime(@contract.begin_time, "%e %B %Y")+" до "+Russian::strftime(@contract.end_time, "%e %B %Y")}
 	end
 
-	def change_status
-
-			flash[:success] = "Заявка успешно изменена"
-			redirect_to @requistion
-	end
 
 	def update
 		#Необходимо добавить проверку корректности данных
 		@requistion = Requistion.find(params[:id])
 		if @requistion.update_attributes(
-			contract_id: params[:contract],
+			contract_id: params[:version_id],
 			time_deadline: params[:deadline], 
 			category: params[:requistion][:category],
-			status: params[:requistion][:status])
-			case params[:requistion][:status]
-			when "fresh"
-				@requistion.update_attributes(
-					created_at: Time.zone.now.to_s)
-			when "assigned"
-				@requistion.update_attributes(
-					time_assgned: Time.zone.now.to_s)
-			when "adopted_in_work"
-				@requistion.update_attributes(
-					time_adopted_in_work: Time.zone.now.to_s)
-			when "running"
-				@requistion.update_attributes(
-					time_running: Time.zone.now.to_s)
-			when "done"
-				@requistion.update_attributes(
-					time_done: Time.zone.now.to_s)
-			when "comleted"
-				@requistion.update_attributes(
-					time_comleted: Time.zone.now.to_s)
-			end
-			
+			status: 'assigned',
+			time_assgned: Time.zone.now.to_s)
 			client = @requistion.users.client[0]
 			@pair = @requistion.pairs.create(user_id: params[:worker])
 			all_workers = [params[:worker]]
@@ -169,8 +180,6 @@ class RequistionsController < ApplicationController
 			all_workers.each { |id| text += ' ' + User.find(id).name}
 			text += "."
 			flash[:info] = text
-
-
 			if (not client.phone.nil?)
 				message = MainsmsApi::Message.new(
 					sender: '3B-online',

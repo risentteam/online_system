@@ -58,6 +58,7 @@
 
 
 				<div id="<%= div_id -%>" style="display:none" class="calendar">
+				<% @arrivals = user.arrivals %>
 				<%= calendar_for @arrivals, :first_day_of_week => 1 do |t| %>
 				<%= t.head('Пон', 'Вт', 'Ср', 'Чет', 'Пят', 'Суб', 'Воск') %>
 					<%= t.day do |day, arrivals| %>
@@ -75,10 +76,6 @@
 				<% end %>
 				</div>
 			<% end %>
-
-
-
-
 			<%#= user.arrivals.where(begin_or_end: 0).order(:time).last.time.strftime("%e %B %Y")%>
 			</td>
 		</tr>

@@ -24,6 +24,7 @@ App::Application.routes.draw do
 	match '/count_all', to: 'requistions#count_all', via: 'get'
 	match '/new', to: 'requistions#new', via: 'get'
 	match 'requistions/:id/mark', to: 'requistions#mark', via: 'post', as:"mark"
+ 	match 'requistions/:id/change_status', to: 'requistions#change_status', via: 'post', as: "change_status"
 	match '/requistions', to: 'requistions#index', via: 'get'
 	match '/new_requistions',  to: 'requistions#all_new',            via: 'get'
 	match "/update_contracts", to: "requistions#update_contracts", via: 'get'	
@@ -31,9 +32,9 @@ App::Application.routes.draw do
   	match 'requistions/:id/close', to: 'requistions#close', via: 'get'
   	match 'requistions/:id/raiting', to: 'requistions#raiting', via: 'get'
   	match 'requistions/:id/to_take_in_work', to: 'requistions#to_take_in_work', via: 'get'
+  	match 'requistions/:id/done', to: 'requistions#done', via: 'get'
   	match 'requistions/:id/cancel', to: 'requistions#cancel', via: 'get'
   	match 'requistions/:id/canceldone', to: 'requistions#canceldone', via: 'post'
- 	match 'requistions/:id/change_status', to: 'requistions#change_status', via: 'get'
 
   	resources :contracts do
   		collection { post :import }

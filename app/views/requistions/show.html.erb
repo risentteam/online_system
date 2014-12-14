@@ -37,7 +37,7 @@
     <%if @requistion.contract.nil? %>
       <td><%= replacement_empty('') %></td>
     <% else %>
-      <td><%= replacement_empty(@requistion.contract.company+@requistion.contract.description) %></td>
+      <td><%= replacement_empty(@requistion.contract.company+': '+@requistion.contract.description) %></td>
     <% end %>    
   </tr>
   <tr>
@@ -58,39 +58,61 @@
 
 <% if current_user.admin? %>
   <%# if @requistion.status != "comleted" %>
-    <%= button_to "Обработать заявку", edit_requistion_path, method: :get, class: "btn btn-large btn-primary" %>
+  <%= button_to "Обработать заявку", edit_requistion_path, method: :get, class: "btn btn-large btn-primary" %>
   <%# else %>
     <%#= button_to "Обработать заявку", edit_requistion_path, method: :get, class: "disabled"%>
   <%# end %>
-<% end %>
+  <button class="btn btn-danger mark" data-toggle="modal" data-target="#status" >Изменить статус</button>
+  <%= link_to "Закрыть заявку", {:action => 'close'}, {:class => "btn btn-large btn-primary"} %>
+  <%= link_to "Назад к заявкам", {controller: "requistions", action: "index"}, class: "btn"%> 
 
-<br>
-<%= link_to "Вернуться к объектам", {controller: "users", action: "req", id: current_user}, class: "btn"%>
-<% if current_user.client? %>
-<button class="btn btn-danger mark" data-toggle="modal" data-target="#myModal" >Оценить</button>
-
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Ваша Оценка</h4>
-      </div>
-      <div class="modal-body">
-          <%= form_tag(mark_path(@requistion), :html => {:class => "form-vertical"}) do |f| %>
-            <div class="form-group">
-          <label   >Пожалуйста оцените по десятибальной шкале.</label>
-          <input id="mark" name="mark" required >
+  <div class="modal fade" id="status" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Изменение статуса</h4>
         </div>
-        <button type="submit" class="btn btn-success">Оценить</button>
-      <% end %>
-      </div>
-      <div class="modal-footer">
+        <div class="modal-body">
+            <%= form_tag(change_status_path(@requistion), :html => {:class => "form-vertical"}) do |f| %>
+              <div class="form-group">
+            <!-- "[['Новая', 'fresh'], ['Назначена', 'assigned'], ['Принята в работу', 'adopted_in_work'], ['Выполняется', 'running'], ['Исполнено', 'done'], ['Завершено', 'comleted']] -->
+      <%= select_tag :status, "<option value = fresh>Новая</option><option value=assigned>Назначена</option><option value = adopted_in_work >Принята в работу</option><option value = running>Выполняется</option><option value=done>Исполнено</option><option value = comleted >Завершена</option><option value = canceled >Отменена</option>", :prompt => "Выберите из списка", :class =>  "form-control", required: "" %>          </div>
+          <button type="submit" class="btn btn-success">Изменить</button>
+        <% end %>
+        </div>
+        <div class="modal-footer">
+        </div>
       </div>
     </div>
   </div>
-</div>
+<% end %>
+
+<% if current_user.client? %>
+<button class="btn btn-danger mark" data-toggle="modal" data-target="#myModal" >Оценить</button>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Ваша Оценка</h4>
+        </div>
+        <div class="modal-body">
+            <%= form_tag(mark_path(@requistion), :html => {:class => "form-vertical"}) do |f| %>
+              <div class="form-group">
+            <label   >Пожалуйста оцените по десятибальной шкале.</label>
+            <input id="mark" name="mark" required >
+          </div>
+          <button type="submit" class="btn btn-success">Оценить</button>
+        <% end %>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+
 <script type="text/javascript">
 jQuery(document).ready(function () {
 
@@ -124,4 +146,7 @@ $('#mark').rating({'showCaption':true,
 });
 </script>
 <% end %>
+
 </div>
+</div>
+
