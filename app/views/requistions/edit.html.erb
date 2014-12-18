@@ -142,8 +142,8 @@
 				<div class="form-group" id="worker_row">
 					<%= f.label :'Дата окончания заявки:', class: "col-md-3 control-label" %>
 					<div class="col-md-5">
-
-						<%= date_field_tag :deadline, nil, :placeholder => "Введите время окончания заявки", class: "form-control", required: "" %>		
+<!--  
+ -->						<%= date_field_tag :deadline, nil, :min=> Time.zone.now.strftime("%Y-%m-%d"), :placeholder => "Введите время окончания заявки", class: "form-control", required: ""%>		
 					</div>
 				</div>
 			</div>

@@ -33,22 +33,22 @@ $(document).ready(function() {
 			  "buttonText": "Показать/скрыть столбцы"
 		},
 		"createdRow": function ( row, data, index ) {
-			if ( data[10]=="новая" ) {
+			if ( data[11]=="новая" ) {
 				$('td', row).addClass('danger');
 			};
-			if ( data[10]=="завершено" ) {
+			if ( data[11]=="завершено" ) {
 				$('td', row).addClass('success');
 			};
-			if ( data[10]=="отменена" ) {
+			if ( data[11]=="отменена" ) {
 				$('td', row).addClass('info');
 			};
-			if ( data[10]=="принята в работу" ) {
+			if ( data[11]=="принята в работу" ) {
 				$('td', row).addClass('warning');
 			};
-			if ( data[10]=="выполняется" ) {
+			if ( data[11]=="выполняется" ) {
 				$('td', row).addClass('warning');
 			};
-			if ( data[10]=="исполнена" ) {
+			if ( data[11]=="исполнена" ) {
 				$('td', row).addClass('warning');
 			};
 
@@ -109,8 +109,9 @@ $(document).ready(function() {
 	} );
 	table.columnFilter({
 		aoColumns: [    
+			{ type: "number-range" },
 			{ type: "text" },
-			{ type: "select" },
+			{ type: "text" },
 			{ type: "date-range" },
 			{ type: "text"},
 			{ type: "text"},
@@ -120,6 +121,7 @@ $(document).ready(function() {
 			{ type: "select" },
 			{ type: "date-range" },
 			{ type: "select" },
+			{ type: "date-range" },
 			{ type: "number-range" },
 			{ type: "null" }                                   
 		]
