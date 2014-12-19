@@ -25,11 +25,36 @@
 			<%= f.text_field :phone, class: "form-control", required: ""%>
 		</div>
 
+
 		<br>
 		<%= f.submit "Сохранить", class: "btn btn-large btn-primary" %>
-		<br>
 		<% end %>
+		<button class="btn btn-danger mark" data-toggle="modal" data-target="#myModal" >Изменть пароль</button>
+
+		  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		    <div class="modal-dialog">
+		      <div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		          <h4 class="modal-title" id="myModalLabel">Изменение пароля</h4>
+		        </div>
+		        <div class="modal-body">
+		            <%= form_tag(change_password_path(@user), :html => {:class => "form-vertical"}) do |f| %>
+		              <div class="form-group">
+		      			<%= password_field_tag 'token', '', size: 15%>
+		      			<%#= select_tag :status, "<option value = fresh>Новая</option><option value=assigned>Назначена</option><option value = adopted_in_work >Принята в работу</option><option value = running>Выполняется</option><option value=done>Исполнено</option><option value = comleted >Завершена</option><option value = canceled >Отменена</option>", :prompt => "Выберите из списка", :class =>  "form-control", required: "" %>          
+		      			</div>
+		          <button type="submit" class="btn btn-success">Изменить</button>
+		        <% end %>
+		        </div>
+		        <div class="modal-footer">
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+
+
+		<br>
 	</div>
-	<div class="col-md-4">
 	</div>
 </div>

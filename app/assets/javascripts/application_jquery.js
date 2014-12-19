@@ -71,7 +71,7 @@ var exportTools = {
 // 		"<'row'<'col-xs-4'i><'col-xs-3'T><'col-xs-5'p>>";
 
 //новый ДОМ: бетта версия
-var domvalue =
+var domValue =
 		"<'row'<'col-md-1'ClfT><'col-xs-3'><'col-xs-5'>pr>" +
 		"<'row'<'col-xs-12't>>" +
 		"<'row'<'col-xs-4'i><'col-xs-8'>>";
