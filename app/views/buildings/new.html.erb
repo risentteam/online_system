@@ -1,32 +1,39 @@
 <% provide(:title, 'Добавление объекта') %>
+<div class="container">
 <h2>Добавление объекта</h2>
 
 	<%= form_for @building, :html => {:class => "form-horizontal"} do |f| %>
+		<div class="form-group">
+
+			<label class=" col-md-3">Адрес</label>
+			<div class="col-md-5">
+			<%= f.text_field :arrival_address, :placeholder => "Введите адрес объекта", class: "form-control", required: "" %>
+		</div>
+		</div>
+
+		<div class="form-group">
+
+			<label class=" col-md-3">Ф.И.О контактого лица</label>
+			<div class="col-md-5">
+			<%= f.text_field :contact_name, :placeholder => "Введите Ф.И.О контактого лица", class: "form-control"%>
+		</div>
+		</div>
+
+		<div class="form-group">
+
+			<label class=" col-md-3">Телефон контактного лица</label>
+			<div class="col-md-5">
+			<%= f.text_field :contact_phone, :placeholder => "Введите телефон контактого лица", class: "form-control"%>
+		</div>
+		</div>
+
 	<div class="container">
-		<div class="row"> 
-		<div class="form-group">
-			<label class="control-label col-md-3">Объект</label>
-			<div class="col-md-4">
-			<%= f.text_field :name, :placeholder => "Введите № объекта", class: "form-control", required: "" %>
-			</div>
-		</div>
-		</div>
-		<div class="container">
-		<div class="row"> 
-		<div class="form-group">
-			<label class="control-label col-md-3">Главный адрес объекта</label>
-			<div class="col-md-4">
-			<%= f.text_field :main_address, :placeholder => "Введите главный адрес оъекта", class: "form-control", required: "" %>
-			</div>
-		</div>
-		</div>
-		<div class="container">
 		<div class="row">
 			<div class="col-md-4">
-		<%= f.submit "Сохранить", class: "btn btn-large btn-primary" %>
-	</div>
+			<%= f.submit "Сохранить", class: "btn btn-large btn-primary" %>
+			</div>
 		</div>
+	</div>
 	<% end %>
-  </div>
 </div>
 

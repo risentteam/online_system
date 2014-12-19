@@ -6,19 +6,33 @@
 		<div class="col-md-7">
 			<h1 style="text-align:center">Все объекты</h1>
 
-			<table class="table table-bordered table-striped">
+			<table id="buildings" class="table table-bordered table-striped">
+				<thead>
 				<tr>
 					<th>Номер</th>
+					<th>Наименование</th>
 					<th>Адрес</th>
+					<th>Контактное лицо</th>
+					<th>Контактный телефон</th>
+					<th>Контракты</th>
+					<th>Задачи по объекту</th>
 				</tr>
-			
+				</thead>
+				<tbody>
 				<% @buildings.each do |b| %>
 					<tr>
 						<td><%= b.id %></td>
+						<th><% b.contracts.select('company').distinct.each do |company| %> <%= company.company %> <% end %> </th>
 						<td><%= link_to b.arrival_address,  {:action => :show, :id => b.id}, {:method => :get} %></td>
+						<td><%= b.contact_name %></td>
+						<td><%= b.contact_phone %></td>						
+						<td><% b.contracts.each do |contract| %> <%=contract.description + "\n"%> <% end %> </td>
+						<td></td>
 					</tr>
 				<% end %>
+				</tbody>
 			</table>
 		</div>
 	</div>
+	  <%= link_to "Новый объект", {controller: "buildings", action: "new"}, class: "btn"%> 
 </div>

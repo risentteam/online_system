@@ -1,0 +1,59 @@
+<% provide(:title, 'Редактирование контракта') %>
+<div class="container">
+		<h1>Редактирование контракта</h1>
+		<%= form_for @contract, :html => {:class => "form-vertical"} do |f| %>
+			<div class="row">
+				<div class="form-group">
+					<label class="col-md-3 control-label">Договор</label>
+					<div class="col-md-5">
+						<%= f.text_field :name_contract, {placeholder: "Введите № договора", class: "form-control", required: ""} %>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group">
+					<label class="col-md-3 control-label">Компания</label>
+					<div class="col-md-5">
+						<%= f.text_field :company, {placeholder: "Введите компанию", class: "form-control", required: ""} %>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group">
+					<label class="col-md-3 control-label">Комментарий</label>
+					<div class="col-md-5">
+						<%= f.text_field :comment, {placeholder: "Введите комментарий", class: "form-control"} %>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group">
+					<label class="col-md-3 control-label">Описание</label>
+					<div class="col-md-5">
+						<%= f.text_field :description, {placeholder: "Введите описание", class: "form-control", required: ""} %>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="form-group">
+					<label class="col-md-3 control-label">Дата начала</label>
+					<div class="col-md-5">
+						<%= f.date_field :begin_time, {placeholder: "Введите описание", class: "form-control"} %>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="form-group">
+					<label class="col-md-3 control-label">Дата конца</label>
+					<div class="col-md-5">
+						<%= f.date_field :end_time, {placeholder: "Введите описание", class: "form-control"} %>
+					</div>
+				</div>
+			</div>
+
+
+		<%= f.submit "Принять", class: "btn btn-large btn-primary", id: "submut" %>	
+		<% end %>
+</div>

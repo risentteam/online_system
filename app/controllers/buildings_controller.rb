@@ -7,6 +7,7 @@ class BuildingsController < ApplicationController
 	def create 
 		@building = Building.new (building_params)
 		if @building.save 
+			flash[:success] = "Здание создано"
 			redirect_to @building
 		else
 			render 'new'
@@ -57,7 +58,7 @@ class BuildingsController < ApplicationController
 
 	private
 		def building_params
-			params.require(:building).permit(:name, :main_address)
+			params.require(:building).permit(:arrival_address, :contact_phone, :contact_name)
 		end
 
 end

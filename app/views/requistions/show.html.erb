@@ -63,7 +63,7 @@
     <%#= button_to "Обработать заявку", edit_requistion_path, method: :get, class: "disabled"%>
   <%# end %>
   <button class="btn btn-danger mark" data-toggle="modal" data-target="#status" >Изменить статус</button>
-  <%= link_to "Закрыть заявку", {:action => 'close'}, {:class => "btn btn-large btn-primary"} %>
+  <%#= link_to "Закрыть заявку", {:action => 'close'}, {:class => "btn btn-large btn-primary"} %>
   <%= link_to "Назад к заявкам", {controller: "requistions", action: "index"}, class: "btn"%> 
 
   <div class="modal fade" id="status" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

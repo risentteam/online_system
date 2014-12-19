@@ -3,12 +3,13 @@
 	<thead>
 		<tr>
 			<th>Номер</th>
-			<th>Компания</th>
+			<th>Наименование объекта</th>
 			<th>Здания</th>
 			<th>Описание</th>
 			<th>Комментарий</th>
 			<th>Начало</th>
-			<th>Конец</th>			
+			<th>Конец</th>
+			<th></th>			
 		</tr>
 	</thead>    
     <tbody>
@@ -16,11 +17,15 @@
 		<tr>
 			<td > <%= contract.name_contract %></td>
 	    	<td id = "company"> <%= contract.company %></td>
-	    	<td id = "building"> <% contract.buildings[0..-2].each do |building| %> <%=building.arrival_address + ";" %> <% end %> <%=contract.buildings[-1].arrival_address%> </td>
+	    	<td id = "building"> <% contract.buildings.each do |building| %> <li><%= link_to building.arrival_address, {:controller => :buildings, :action => :show, :id => building.id}, {:method => :get}%> </li><% end %> </td>
 	    	<td id = "description"> <%= contract.description %></td>
 	    	<td id = "comment"> <%= contract.comment %></td>
 	    	<td id = "begin_time"> <%= contract.begin_time.strftime("%d.%m.%Y") %></td>
 	    	<td id = "end_time"> <%= contract.end_time.strftime("%d.%m.%Y") %></td>
+			<td><%= link_to edit_contract_path(contract) do%>
+	    		<span class="glyphicon glyphicon-pencil " ></span>
+	    		<% end %>
+	    	</td>
 		</tr>
 		<% end %>
 	</tbody>
@@ -32,7 +37,8 @@
 			<th>Описание</th>
 			<th>Комментарий</th>
 			<th>Начало</th>
-			<th>Конец</th>			
+			<th>Конец</th>
+			<th></th>			
 		</tr>
 	</tfoot>
 </table>

@@ -17,6 +17,54 @@ $.datepicker.regional[""] = {
 
 $.datepicker.setDefaults($.datepicker.regional['']);
 
+var languageRU= {
+			"emptyTable":     "В таблице отсутствуют данные",
+			"info":           "Показаны с _START_ по _END_ из _TOTAL_ записей",
+			"infoEmpty":      "Показаны 0 из 0 записей",
+			"infoFiltered":   "(отфильтровано из всех _MAX_ записей)",
+			"infoPostFix":    "",
+			"thousands":      ",",
+			"lengthMenu":     "Показывать по _MENU_ записей",
+			"loadingRecords": "Подождите...",
+			"processing":     "Обработка...",
+			"search":         "Поиск:",
+			"zeroRecords":    "Записей не найдено",
+			"paginate": {
+				"first":      "Первый",
+				"last":       "Последний",
+				"next":       "Следующий",
+				"previous":   "Предыдущий"
+			 },
+			"aria": {
+				"sortAscending":  ": активировать для сортировки по возрастанию",
+				"sortDescending": ": активировать для сортировки по убыванию"
+			}
+		};
+
+var exportTools = {
+			"sSwfPath": "http://cdn.datatables.net/tabletools/2.2.2/swf/copy_csv_xls_pdf.swf",
+			"sRowSelect": "os",
+			"aButtons": [
+				// {
+				// 	"sExtends": "copy",
+				// 	"sButtonText": "Скопировать",
+				// 	"bFooter": false,                   
+				// },
+				{
+					"sExtends": "xls",
+					"sButtonText": "Экспорт в xls",
+					"bFooter": false,                     
+					"sCharSet" : "utf16le",
+					"bSelectedOnly" : true, 
+					"mColumns": "visible",
+					"sFileName" : "Заявки.xls",
+					"sFieldSeperator" : ';',  
+					"oSelectorOpts": {
+						page: 'current'
+					}
+				}
+			]
+		};
 
 $(document).ready(function() {
 	var table = $('#requistions').dataTable({
@@ -55,61 +103,14 @@ $(document).ready(function() {
 		},
 //***********************
 
-		"tableTools": {
-			"sSwfPath": "http://cdn.datatables.net/tabletools/2.2.2/swf/copy_csv_xls_pdf.swf",
-			"sRowSelect": "os",
-			"aButtons": [
-				// {
-				// 	"sExtends": "copy",
-				// 	"sButtonText": "Скопировать",
-				// 	"bFooter": false,                   
-				// },
-				{
-					"sExtends": "xls",
-					"sButtonText": "Экспорт в xls",
-					"bFooter": false,                     
-					"sCharSet" : "utf16le",
-					"bSelectedOnly" : true, 
-					"mColumns": "visible",
-					"sFileName" : "Заявки.xls",
-					"sFieldSeperator" : ';',  
-					"oSelectorOpts": {
-						page: 'current'
-					}
-				}
-			]
-
-		},
-
+		"tableTools": exportTools,
 //***********************
-		"language": {
-			"emptyTable":     "В таблице отсутствуют данные",
-			"info":           "Показаны с _START_ по _END_ из _TOTAL_ записей",
-			"infoEmpty":      "Показаны 0 из 0 записей",
-			"infoFiltered":   "(отфильтровано из всех _MAX_ записей)",
-			"infoPostFix":    "",
-			"thousands":      ",",
-			"lengthMenu":     "Показывать по _MENU_ записей",
-			"loadingRecords": "Подождите...",
-			"processing":     "Обработка...",
-			"search":         "Поиск:",
-			"zeroRecords":    "Записей не найдено",
-			"paginate": {
-				"first":      "Первый",
-				"last":       "Последний",
-				"next":       "Следующий",
-				"previous":   "Предыдущий"
-			 },
-			"aria": {
-				"sortAscending":  ": активировать для сортировки по возрастанию",
-				"sortDescending": ": активировать для сортировки по убыванию"
-			}
-		}
+		"language": languageRU
 //***********************       
 	} );
 	table.columnFilter({
 		aoColumns: [    
-			{ type: "number-range" },
+			{ type: "text" },
 			{ type: "text" },
 			{ type: "text" },
 			{ type: "date-range" },
@@ -143,31 +144,7 @@ $(document).ready(function(){
 					$('td', row).addClass('danger');
 				};
 			},
-
-			"language": {
-			"emptyTable":     "В таблице отсутствуют данные",
-			"info":           "Показаны с _START_ по _END_ из _TOTAL_ записей",
-			"infoEmpty":      "Показаны 0 из 0 записей",
-			"infoFiltered":   "(отфильтровано из всех _MAX_ записей)",
-			"infoPostFix":    "",
-			"thousands":      ",",
-			"lengthMenu":     "Показывать по _MENU_ записей",
-			"loadingRecords": "Подождите...",
-			"processing":     "Обработка...",
-			"search":         "Поиск:",
-			"zeroRecords":    "Записей не найдено",
-			"paginate": {
-				"first":      "Первый",
-				"last":       "Последний",
-				"next":       "Следующий",
-				"previous":   "Предыдущий"
-			 },
-			"aria": {
-				"sortAscending":  ": активировать для сортировки по возрастанию",
-				"sortDescending": ": активировать для сортировки по убыванию"
-			}
-		},
-
+			"language": languageRU
 	 });
 	 table.columnFilter({
 		aoColumns: [    
@@ -214,30 +191,7 @@ $(document).ready(function(){
 
 			},
 
-			"language": {
-			"emptyTable":     "В таблице отсутствуют данные",
-			"info":           "Показаны с _START_ по _END_ из _TOTAL_ записей",
-			"infoEmpty":      "Показаны 0 из 0 записей",
-			"infoFiltered":   "(отфильтровано из всех _MAX_ записей)",
-			"infoPostFix":    "",
-			"thousands":      ",",
-			"lengthMenu":     "Показывать по _MENU_ записей",
-			"loadingRecords": "Подождите...",
-			"processing":     "Обработка...",
-			"search":         "Поиск:",
-			"zeroRecords":    "Записей не найдено",
-			"paginate": {
-				"first":      "Первый",
-				"last":       "Последний",
-				"next":       "Следующий",
-				"previous":   "Предыдущий"
-			 },
-			"aria": {
-				"sortAscending":  ": активировать для сортировки по возрастанию",
-				"sortDescending": ": активировать для сортировки по убыванию"
-			}
-		},
-
+			"language": languageRU
 	 });
 	 table.columnFilter({
 		aoColumns: [    
@@ -258,33 +212,31 @@ $(document).ready(function(){
 	 $('#contracts').dataTable({
 			tableClass: "table-bordered",  
 			stateSave: true,   		
-			"language": {
-			"emptyTable":     "В таблице отсутствуют данные",
-			"info":           "Показаны с _START_ по _END_ из _TOTAL_ записей",
-			"infoEmpty":      "Показаны 0 из 0 записей",
-			"infoFiltered":   "(отфильтровано из всех _MAX_ записей)",
-			"infoPostFix":    "",
-			"thousands":      ",",
-			"lengthMenu":     "Показывать по _MENU_ записей",
-			"loadingRecords": "Подождите...",
-			"processing":     "Обработка...",
-			"search":         "Поиск:",
-			"zeroRecords":    "Записей не найдено",
-			"paginate": {
-				"first":      "Первый",
-				"last":       "Последний",
-				"next":       "Следующий",
-				"previous":   "Предыдущий"
-			 },
-			"aria": {
-				"sortAscending":  ": активировать для сортировки по возрастанию",
-				"sortDescending": ": активировать для сортировки по убыванию"
-			}
-		}	
-	 }).makeEditable();
+			"language": languageRU	
+	 });
 });
 
-//Чтение рейтина
+//#########################################################################################
+//Таблица объектов
+//#########################################################################################
+$(document).ready(function(){
+	var table = $('#buildings').DataTable({
+		tableClass: "table-bordered", 
+		dom:
+		"<'row'<'col-xs-6'lC><'col-xs-6'f>r>" +
+		"<'row'<'col-xs-12't>>" +
+		"<'row'<'col-xs-4'i><'col-xs-3'T><'col-xs-5'p>>",
+			stateSave: true,   		
+			"tableTools": exportTools,
+			"language": languageRU
+	 });
+            table
+                .column(0)
+                .search('3')
+                .draw();
+});
+
+
 
 //#########################################################################################
 //Добавление поля описания, для "другого"
