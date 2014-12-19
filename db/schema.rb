@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141219130109) do
+ActiveRecord::Schema.define(version: 20141219213535) do
 
   create_table "arrivals", force: true do |t|
     t.integer  "user_id",      null: false

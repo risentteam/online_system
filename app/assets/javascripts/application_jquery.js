@@ -314,6 +314,27 @@ $(document).ready(function() {
 	});
 
 });
+//#########################################################################################
+//Всплывающее окно изменений во времени
+//#########################################################################################
+function reply_click(clicked_id)
+{
+    $('#testing').val(clicked_id)
+			$.ajax({url: "/view_change_time",
+				type: 'GET',
+				dataType: 'json',
+				data: "id=" + clicked_id,
+				success: function (data, status) {
+					$('#show_time_change_created').val(data.created);
+					$('#show_time_change_assigned').val(data.assigned);
+					$('#show_time_change_adopted').val(data.adopted);
+					$('#show_time_change_running').val(data.running);
+					$('#show_time_change_done').val(data.done);
+					$('#show_time_change_comleted').val(data.completed);
+					$('#show_time_change_deadline').val(data.deadline);
+				}
+			});
+}
 
 //#########################################################################################
 //Выделение пустых полей

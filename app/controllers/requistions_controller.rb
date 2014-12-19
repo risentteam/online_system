@@ -92,7 +92,16 @@ class RequistionsController < ApplicationController
 		redirect_to requistion_path(@requistion)		
 	end
 
-
+	def view_change_time
+		@requistion = Requistion.find(params[:id])
+		render :json => { :created => @requistion.created_at,
+						  :assigned => @requistion.time_assgned,
+						  :adopted => @requistion.time_adopted_in_work,
+						  :running => @requistion.time_running,
+						  :done => @requistion.time_done,
+						  :completed => @requistion.time_comleted,
+						  :deadline => @requistion.time_deadline}
+	end
 
 	def create
 		@requistion = Requistion.new(requistions_params)

@@ -88,7 +88,7 @@
   </div>
 <% end %>
 
-<% if current_user.client? %>
+<% if current_user.client? and @requistion.status == 'comleted'%>
 <button class="btn btn-danger mark" data-toggle="modal" data-target="#myModal" >Оценить</button>
 
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

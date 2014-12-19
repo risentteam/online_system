@@ -54,7 +54,8 @@
 			<td><%= transcript_of_the_messages(requistion.subtype_requistions)  %></td>			
 			<td><%= requistion.requistion_comment %></td>			
 			<td><%= transcript_of_the_messages_category(requistion.category) %></td>	
-			<td><%= requistion.updated_at.strftime("%e.%m.%Y %H:%M") %></td>
+			<td><%= requistion.updated_at.strftime("%e.%m.%Y %H:%M") %>  <button id = <%= requistion.id %> class="btn btn-danger change-time" data-toggle="modal" data-target="#status" onClick="reply_click(this.id)" >Изменения</button>
+</td>
  			<td><%= status_names[requistion.status.to_sym] %></td>
 			<td><%= requistion.time_deadline.strftime("%d.%m.%Y") %></td>
 			<td><%= requistion.raiting %></td>	
@@ -90,3 +91,94 @@
 	</tfoot>
 </table>
 </div>
+
+  <div class="modal fade" id="status" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Изменения</h4>
+        </div>
+        <div class="modal-body">
+            <%#= text_tag(show_changes_requistion_path(@requistion), :html => {:class => "form-vertical"}) do |f| %>
+              <div class="form-group">
+			<div class="row">
+				<div class="form-group">
+				<label class=" col-md-3">Новая</label>
+					<div class="col-md-5">
+						<input id='show_time_change_created' class="form-control" type="text" readonly></input>
+					</div>
+					<div class="col-md-4">
+						<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
+					</div>
+				</div>
+
+				<div class="form-group">
+				<label class=" col-md-3">Назначена</label>
+					<div class="col-md-5">
+						<input id='show_time_change_assigned' class="form-control" type="text" readonly></input>
+					</div>
+					<div class="col-md-4">
+						<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
+					</div>
+				</div>
+
+				<div class="form-group">
+				<label class=" col-md-3">Принята</label>
+					<div class="col-md-5">
+						<input id='show_time_change_adopted' class="form-control" type="text" readonly></input>
+					</div>
+					<div class="col-md-4">
+						<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
+					</div>
+				</div>
+
+				<div class="form-group">
+				<label class=" col-md-3">Выполняется</label>
+					<div class="col-md-5">
+						<input id='show_time_change_running' class="form-control" type="text" readonly></input>
+					</div>
+					<div class="col-md-4">
+						<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
+					</div>
+				</div>
+
+				<div class="form-group">
+				<label class=" col-md-3">Исполнено</label>
+					<div class="col-md-5">
+						<input id='show_time_change_done' class="form-control" type="text" readonly></input>
+					</div>
+					<div class="col-md-4">
+						<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
+					</div>
+				</div>
+
+				<div class="form-group">
+				<label class=" col-md-3">Выполнено</label>
+					<div class="col-md-5">
+						<input id='show_time_change_comleted' class="form-control" type="text" readonly></input>
+					</div>
+					<div class="col-md-4">
+						<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
+					</div>
+				</div>
+
+				<div class="form-group">
+				<label class=" col-md-3">Дедлайн</label>
+					<div class="col-md-5">
+						<input id='show_time_change_deadline' class="form-control" type="text" readonly></input>
+					</div>
+				<div class="col-md-4">
+						<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
+					</div>
+				</div>
+
+			</div>
+
+        <%# end %>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
