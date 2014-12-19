@@ -66,10 +66,15 @@ var exportTools = {
 			]
 		};
 
-var domValue = 		"<'row'<'col-xs-6'lC><'col-xs-6'f>r>" +
-		"<'row'<'col-xs-12't>>" +
-		"<'row'<'col-xs-4'i><'col-xs-3'T><'col-xs-5'p>>";
+// var domValue = 		"<'row'<'col-xs-6'lC><'col-xs-6'f>r>" +
+// 		"<'row'<'col-xs-12't>>" +
+// 		"<'row'<'col-xs-4'i><'col-xs-3'T><'col-xs-5'p>>";
 
+//новый ДОМ: бетта версия
+var domvalue =
+		"<'row'<'col-md-1'ClfT><'col-xs-3'><'col-xs-5'>pr>" +
+		"<'row'<'col-xs-12't>>" +
+		"<'row'<'col-xs-4'i><'col-xs-8'>>";
 
 
 $(document).ready(function() {
