@@ -14,7 +14,23 @@ class ContractsController < ApplicationController
 
 	def  edit
 		@contract = Contract.find(params[:id])
+		@list_buildings = Building.all
 	end
+
+	def new
+		@contract = Contract.new
+	end
+
+	def create 
+		@contract = Contract.new(contracts_params)
+		if @contract.save 
+			flash[:success] = "Контракт создан"
+			redirect_to @contract
+		else
+			render 'new'
+		end
+	end
+
 
 	def update
 		#Необходимо добавить проверку корректности данных

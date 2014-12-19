@@ -1,3 +1,4 @@
+<% provide(:title, 'Все контракты') %>
 <div class="container">
 <table id="contracts" class="table">
 	<thead>
@@ -15,7 +16,7 @@
     <tbody>
 		<% for contract in @contracts %>
 		<tr>
-			<td > <%= contract.name_contract %></td>
+			<td > <%= link_to contract.name_contract, {:controller => :contracts, :action => :show, :id => contract.id}, {:method => :get} %></td>
 	    	<td id = "company"> <%= contract.company %></td>
 	    	<td id = "building"> <% contract.buildings.each do |building| %> <li><%= link_to building.arrival_address, {:controller => :buildings, :action => :show, :id => building.id}, {:method => :get}%> </li><% end %> </td>
 	    	<td id = "description"> <%= contract.description %></td>
@@ -52,7 +53,7 @@
 	<%= submit_tag "Отправить" , class: "btn" %>
 	</div>
 <% end %>
-
+<%= link_to "Новый объект", {controller: "contracts", action: "new"}, class: "btn"%> 
 Выберите файл с контрактами. Номер контракта должен быть уникальным. Разные адреса внутри одного контракта должны быть разделены ";"
 Вы можете изменить любую из ячеек двойным щелчком по ней.
 

@@ -1,12 +1,35 @@
-<% provide(:title, 'Заявка') %>
+<% provide(:title, 'Контракт') %>
 <div class="container">
 <div class="col-md-7 showtable">
   <table class="table table-bordered table-striped">
   <tr>
     <th>Номер</th>
-    <td><%= @contract.company %></td>    
-    <th>Объект</th>
+    <td><%= @contract.name_contract %></td>
+  </tr>
+  <tr>    
+    <th>Организация</th>
     <td><%= @contract.company %></td>
   </tr>
+  <tr>    
+    <th>Комментарий</th>
+    <td><%= @contract.comment %></td>
+  </tr>
+  <tr>    
+    <th>Описание</th>
+    <td><%= @contract.description %></td>
+  </tr>
+  <tr>    
+    <th>Дата начала</th>
+    <td><%= @contract.begin_time.strftime("%d.%m.%Y") %></td>
+  </tr>
+  <tr>    
+    <th>Дата конца</th>
+    <td><%= @contract.end_time.strftime("%d.%m.%Y") %></td>
+  </tr>
+  <tr>    
+    <th>Объекты</th>
+    <td><% @contract.buildings.each do |building| %> <li><%= link_to building.arrival_address, {:controller => :buildings, :action => :show, :id => building.id}, {:method => :get}%> </li><% end %></td>
+  </tr>
+
 </table>
 

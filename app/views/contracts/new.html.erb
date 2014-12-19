@@ -1,0 +1,69 @@
+ <% provide(:title, 'Добавление контракта') %>
+<div class="container">
+<h2>Добавление контракта</h2>
+
+	<%= form_for @contract, :html => {:class => "form-horizontal"} do |f| %>
+		<div class="form-group">
+
+			<label class=" col-md-3">Номер</label>
+			<div class="col-md-5">
+			<%= f.text_field :name_contract, :placeholder => "Введите номер договора", class: "form-control", required: "" %>
+		</div>
+		</div>
+		<div class="form-group">
+
+			<label class=" col-md-3">Организация</label>
+			<div class="col-md-5">
+			<%= f.text_field :company, :placeholder => "Введите организацию", class: "form-control", required: "" %>
+		</div>
+		</div>
+
+		<div class="form-group">
+
+			<label class=" col-md-3">Комментарий</label>
+			<div class="col-md-5">
+			<%= f.text_field :comment, :placeholder => "Комментарий", class: "form-control"%>
+		</div>
+		</div>
+
+		<div class="form-group">
+
+			<label class=" col-md-3">Описание</label>
+			<div class="col-md-5">
+			<%= f.text_field :description, :placeholder => "Описание", class: "form-control", required: "" %>
+		</div>
+		</div>
+
+		<div class="form-group">
+
+			<label class=" col-md-3">Дата подписания</label>
+			<div class="col-md-5">
+			<%= f.date_field :date_of_signing, :placeholder => "Введите дату подписания", class: "form-control", required: "" %>
+		</div>
+		</div>
+
+		<div class="form-group">
+
+			<label class=" col-md-3">Начало действия договора</label>
+			<div class="col-md-5">
+			<%= f.date_field :begin_time, :placeholder => "Введите дату начала действия договора", class: "form-control", required: "" %>
+		</div>
+		</div>
+
+		<div class="form-group">
+
+			<label class=" col-md-3">Начало действия договора</label>
+			<div class="col-md-5">
+			<%= f.date_field :end_time, :placeholder => "Введите дату окончания действия договора", class: "form-control", required: "" %>
+		</div>
+		</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+			<%= f.submit "Сохранить", class: "btn btn-large btn-primary" %>
+			</div>
+		</div>
+	</div>
+	<% end %>
+</div>
+

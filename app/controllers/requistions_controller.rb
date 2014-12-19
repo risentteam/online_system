@@ -88,7 +88,7 @@ class RequistionsController < ApplicationController
 				@requistion.update_attributes(
 					time_comleted: Time.zone.now.to_s)
 			end
-		flash[:success] = "Оценка поставлена"
+		flash[:success] = "Статус изменен"
 		redirect_to requistion_path(@requistion)		
 	end
 
@@ -159,9 +159,10 @@ class RequistionsController < ApplicationController
 			contract_id: params[:version_id],
 			time_deadline: params[:deadline], 
 			category: params[:requistion][:category],
+			requistion_comment: params[:requistion][:requistion_comment],
 			status: 'assigned',
 			time_assgned: Time.zone.now.to_s)
-			client = @requistion.users.client[0]
+			client = @requistion.users.client.first
 			@pair = @requistion.pairs.create(user_id: params[:worker])
 			all_workers = [params[:worker]]
 #			send_to_boss params[:worker]

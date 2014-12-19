@@ -115,6 +115,26 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="row">
+				<div class="form-group" id="worker_row">
+					<%= f.label :'Дата окончания заявки:', class: "col-md-3 control-label" %>
+					<div class="col-md-5">
+  						<%= date_field_tag :deadline, nil, :min=> Time.zone.now.strftime("%Y-%m-%d"), :placeholder => "Введите время окончания заявки", class: "form-control", required: ""%>		
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="form-group" id="worker_row">
+					<%= f.label :'Комментарий', class: "col-md-3 control-label" %>
+					<div class="col-md-5">
+  						<%= f.text_field :requistion_comment, :placeholder => "Введите время окончания заявки", class: "form-control"%>		
+					</div>
+				</div>
+			</div>
+
+
 			<div class="row">
 				<div class="form-group" id="worker_row">
 					<%= f.label :'Исполнитель:', class: "col-md-3 control-label" %>
@@ -138,15 +158,7 @@
 				</div>
 			</div>
  -->
-			<div class="row">
-				<div class="form-group" id="worker_row">
-					<%= f.label :'Дата окончания заявки:', class: "col-md-3 control-label" %>
-					<div class="col-md-5">
-<!--  
- -->						<%= date_field_tag :deadline, nil, :min=> Time.zone.now.strftime("%Y-%m-%d"), :placeholder => "Введите время окончания заявки", class: "form-control", required: ""%>		
-					</div>
-				</div>
-			</div>
+
 
 	<%= f.submit "Принять", class: "btn btn-large btn-primary", id: "submut" %>	
 	<%= link_to "Назад к заявкам", {controller: "requistions", action: "index"}, class: "btn"%>			

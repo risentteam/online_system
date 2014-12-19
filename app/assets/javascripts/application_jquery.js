@@ -66,6 +66,12 @@ var exportTools = {
 			]
 		};
 
+var domValue = 		"<'row'<'col-xs-6'lC><'col-xs-6'f>r>" +
+		"<'row'<'col-xs-12't>>" +
+		"<'row'<'col-xs-4'i><'col-xs-3'T><'col-xs-5'p>>";
+
+
+
 $(document).ready(function() {
 	var table = $('#requistions').dataTable({
 		
@@ -73,10 +79,7 @@ $(document).ready(function() {
 //новая часть часть отвечяющая за сохранение настроек таблицы
 		stateSave: true,
 		//"dom": '<"container"lCfrtip> <"container"T>',
-		dom:
-		"<'row'<'col-xs-6'lC><'col-xs-6'f>r>" +
-		"<'row'<'col-xs-12't>>" +
-		"<'row'<'col-xs-4'i><'col-xs-3'T><'col-xs-5'p>>",
+		dom: domValue,
 		"colVis": {
 			  "buttonText": "Показать/скрыть столбцы"
 		},
@@ -211,7 +214,12 @@ $(document).ready(function(){
 $(document).ready(function(){
 	 $('#contracts').dataTable({
 			tableClass: "table-bordered",  
-			stateSave: true,   		
+			stateSave: true,
+			dom: domValue,
+			"colVis": {
+			  "buttonText": "Показать/скрыть столбцы"
+			}, 
+			"tableTools": exportTools, 		
 			"language": languageRU	
 	 });
 });
@@ -222,18 +230,14 @@ $(document).ready(function(){
 $(document).ready(function(){
 	var table = $('#buildings').DataTable({
 		tableClass: "table-bordered", 
-		dom:
-		"<'row'<'col-xs-6'lC><'col-xs-6'f>r>" +
-		"<'row'<'col-xs-12't>>" +
-		"<'row'<'col-xs-4'i><'col-xs-3'T><'col-xs-5'p>>",
+		dom: domValue,
+		"colVis": {
+			  "buttonText": "Показать/скрыть столбцы"
+		},
 			stateSave: true,   		
 			"tableTools": exportTools,
 			"language": languageRU
 	 });
-            table
-                .column(0)
-                .search('3')
-                .draw();
 });
 
 
