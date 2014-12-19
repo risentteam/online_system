@@ -1,6 +1,6 @@
 <% provide(:title, 'Все контракты') %>
 <div class="container">
-<table id="contracts" class="table">
+<table id="contracts" class="table table-striped">
 	<thead>
 		<tr>
 			<th>Номер</th>
@@ -30,30 +30,51 @@
 		</tr>
 		<% end %>
 	</tbody>
-	<tfoot>
-		<tr>
-			<th>Номер</th>
-			<th>Компания</th>
-			<th>Здания</th>
-			<th>Описание</th>
-			<th>Комментарий</th>
-			<th>Начало</th>
-			<th>Конец</th>
-			<th></th>			
-		</tr>
-	</tfoot>
 </table>
+Вы можете изменить любую из ячеек двойным щелчком по ней.
+
 </div>
 
-<h2>Импорт контрактов</h2>
+<br>
 
-<%= form_tag import_contracts_path, multipart: true do %>
-	<div class="btn-group">
-	<%= file_field_tag :file, class: "btn" %>
-	<%= submit_tag "Отправить" , class: "btn" %>
+
+<div class="container">
+	<div class = "row">
+		<h3 style="text-align:left;  margin-left:15px;">Добавить контракт</h3>
+		<div class ="col-md-2">
+			<%= link_to controller: "contracts", action: "new", class: "" do%> 
+				<div class="btn btn-default">
+ 		 		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+ 		 	</div>
+			<%end%> 
+		</div>
+
 	</div>
-<% end %>
-<%= link_to "Новый объект", {controller: "contracts", action: "new"}, class: "btn"%> 
-Выберите файл с контрактами. Номер контракта должен быть уникальным. Разные адреса внутри одного контракта должны быть разделены ";"
-Вы можете изменить любую из ячеек двойным щелчком по ней.
+</div>
+
+<br>
+<div class="container">
+	<div class = "row">
+
+		<h3 style="text-align:left;  margin-left:15px;">Импортировать контракты</h3>
+
+		<%= form_tag import_contracts_path, multipart: true do %>
+			<!-- <div class="btn-group"> -->
+			<div class="col-md-2">
+				<%= file_field_tag :file%>
+			</div>
+			<div class = "col-md-3">
+				Выберите файл с контрактами. Номер контракта должен быть уникальным. Разные адреса внутри одного контракта должны быть разделены ";"
+			</div>
+		</div>
+		<div class = "row">
+			<div class="col-md-3">
+			<%= submit_tag "Отправить" , class: "btn" %>
+			</div>
+			<!-- </div> -->
+		<% end %>
+
+<br>
+<br>
+		
 
