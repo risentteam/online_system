@@ -72,9 +72,10 @@ var exportTools = {
 
 //новый ДОМ: бетта версия
 var domValue =
-		"<'row'<'col-md-1'ClfT><'col-xs-3'><'col-xs-5'>pr>" +
-		"<'row'<'col-xs-12't>>" +
-		"<'row'<'col-xs-4'i><'col-xs-8'>>";
+		"<'row'<'col-md-8'l><'col-md-4'r>><'row'<'col-md-1'f><'col-md-11'C>><'row'<'col-md-8'T><'col-md-4'p>>" +
+		// "<'row'<'col-md-1'lfT><'col-md-3'><'col-md-5'>prC>" +
+		"<'row'<'col-md-12't>>" +
+		"<'row'<'col-md-4'i><'col-md-8'>>";
 
 
 $(document).ready(function() {
