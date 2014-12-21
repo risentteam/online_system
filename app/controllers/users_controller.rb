@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_action :signed_in_user , except: [:new, :create]
+	before_action :signed_in_user , except: [:new, :create, :reset_password]
 	#before_action :correct_user,   only: [:edit, :update]
 	before_action :admin_user,     only: [:index, :workers, :destroy ]
 
@@ -67,6 +67,7 @@ class UsersController < ApplicationController
 
 	def update
 		@user = User.find(params[:id])
+		#@user.password = "not password" необходимо чтобы не выдавало ошибки длины пароля
 		if @user.update_attributes(user_params)
 			flash[:success] = "Профиль успешно изменен"
 			redirect_to @user

@@ -1,6 +1,7 @@
 <% provide(:title, 'Заявка') %>
 <div class="container">
-<div class="col-md-7 showtable">
+  <div class="row">
+<div class="col-xs-6 showtable">
   <table class="table table-bordered table-striped">
   <tr>
     <th>Объект</th>
@@ -53,19 +54,32 @@
     <td><%= @requistion.raiting %></td>
   </tr>
 </table>
+</div>
+</div>
 
 <br>
 
 <% if current_user.admin? %>
   <%# if @requistion.status != "comleted" %>
-  <%= button_to "Обработать заявку", edit_requistion_path, method: :get, class: "btn btn-large btn-primary" %>
+  <div class="row">
+    <div class = "col-md-1">
+    <%= button_to "Редактировать заявку", edit_requistion_path, method: :get, class: "btn btn-large btn-primary" %>
+  </div>
+</div>
+<br>
+  <div class = "row">
   <%# else %>
     <%#= button_to "Обработать заявку", edit_requistion_path, method: :get, class: "disabled"%>
   <%# end %>
-  <button class="btn btn-danger mark" data-toggle="modal" data-target="#status" >Изменить статус</button>
+  <div class = "col-xs-2">
+    <button class="btn btn-danger mark" data-toggle="modal" data-target="#status" >Изменить статус</button>
+  </div>
   <%#= link_to "Закрыть заявку", {:action => 'close'}, {:class => "btn btn-large btn-primary"} %>
-  <%= link_to "Назад к заявкам", {controller: "requistions", action: "index"}, class: "btn"%> 
+  <div class = "col-xs-2">
+    <%= link_to "Назад к заявкам", {controller: "requistions", action: "index"}, class: "btn"%> 
+  </div>
 
+  </div>
   <div class="modal fade" id="status" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">

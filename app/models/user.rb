@@ -14,14 +14,16 @@ class User < ActiveRecord::Base
   has_secure_password
   #validates :password, length: { minimum: 6 }
   
-  def User.new_remember_token
-    SecureRandom.urlsafe_base64
-  end
-
   def User.encrypt(token)
     Digest::SHA1.hexdigest(token.to_s)
   end
 
+  def User.new_remember_token
+    begin
+    new_token = SecureRandom.urlsafe_base64
+    end while User.exists?(remember_token: User.encrypt(new_token))
+    new_token
+  end
 
 
 
@@ -32,6 +34,12 @@ class User < ActiveRecord::Base
   has_many :requistions, through: :pairs
   has_many :contracts
   belongs_to :boss
+
+  def send_password_reset
+    self.update_attribute :password_reset_token, User.new_remember_token
+    self.update_attribute :password_reset_sent_at, Time.zone.now
+    UserMailer.password_reset(self).deliver
+  end
 
   private
     def create_remember_token

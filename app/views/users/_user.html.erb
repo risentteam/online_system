@@ -1,9 +1,25 @@
+<<<<<<< HEAD
 <tr>
   <td><%= link_to user.name, user %></td>
   <td><%= user.email %></td>
   <td><%= user.phone %></td>
   <% if current_user.admin? %>
   <td><div class = "pull-right">
+=======
+
+  <td>
+  <%= link_to user.name, user %>
+  </td>
+  <% if current_user.admin? %>
+    <td>
+      <%= user.email %>
+    </td>
+    <td>
+      <%= user.phone %>
+    </td>
+    <td>
+    <div class = "pull-right">
+>>>>>>> 8647fd5a48f2010e2326b02d61f19184416deca3
         <%= link_to user, method: :delete, data: { confirm: "Вы уверены, что хотите удалить?" } do%>
           <span class="glyphicon glyphicon-trash" title="удалить"></span>
         <% end %>
@@ -16,4 +32,3 @@
     </div>
   <% end %>
   </td>
-</tr>

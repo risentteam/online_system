@@ -1,5 +1,7 @@
 App::Application.routes.draw do
 
+  get 'password_resets/new'
+
 	root  'static_pages#home'
 	post "static_pages/ajaxPages"
 	match '/ajax', to: 'static_pages#ajaxPages', via: 'post'
@@ -17,6 +19,7 @@ App::Application.routes.draw do
 	match '/signup',  to: 'users#new',            via: 'get'
 	match '/signin',  to: 'sessions#new',         via: 'get'
 	match '/signout', to: 'sessions#destroy',     via: 'delete'
+	resources :password_resets
 	
 	match '/help',    to: 'static_pages#help',    via: 'get'
 
