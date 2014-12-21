@@ -81,10 +81,6 @@ class UsersController < ApplicationController
 			flash[:success] = "Заглушка"
 	end
 
-	def reset_password
-
-	end
-
 	private
 		def user_params
 			params.require(:user).permit(:name, :email, :phone)
