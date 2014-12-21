@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_action :signed_in_user , except: [:new, :create]
+	before_action :signed_in_user , except: [:new, :create, :reset_password]
 	#before_action :correct_user,   only: [:edit, :update]
 	before_action :admin_user,     only: [:index, :workers, :destroy ]
 

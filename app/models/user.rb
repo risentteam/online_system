@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
     begin
     new_token = SecureRandom.urlsafe_base64
     end while User.exists?(remember_token: User.encrypt(new_token))
+    new_token
   end
 
 
