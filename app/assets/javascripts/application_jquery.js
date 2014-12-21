@@ -148,8 +148,24 @@ $(document).ready(function(){
 			"bPaginate": false,
 			"bInfo": false,
 			"createdRow": function ( row, data, index ) {
-				if ( data[4]=="новая" ) {
+				if ( data[4]=="назначена" ) {
 					$('td', row).addClass('danger');
+				};
+				if ( data[4]=="завершено" ) {
+					$('td', row).addClass('success');
+				};
+				if ( data[4]=="отменена" ) {
+					$('td', row).addClass('info');
+				};
+				if ( data[4]=="принята в работу" ) {
+					$('td', row).addClass('warning');
+				};
+				if ( data[4]=="выполняется" ) {
+					$('td', row).addClass('warning');
+				};
+				if ( data[4]=="исполнена" ) {
+					$('td', row).addClass('warning');
+				
 				};
 			},
 			"language": languageRU
