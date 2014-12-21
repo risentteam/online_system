@@ -267,19 +267,18 @@ $(document).ready(function(){
 //Таблица рабочих
 //#########################################################################################
 $(document).ready(function(){
-	var table = $('#workerTable').DataTable({
+	var table = $('#tablework').DataTable({
 		tableClass: "table-bordered", 
-		dom: domValue,
-		"colVis": {
+			"bInfo": false,
+			"colVis": {
 			  "buttonText": "Показать/скрыть столбцы"
 		},
-			stateSave: true,   		
+		dom: domValue,
+		
 			"tableTools": exportTools,
 			"language": languageRU
 	 });
 });
-
-
 
 
 
