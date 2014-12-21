@@ -5,9 +5,19 @@
 	<div class="col-md-4">
 	</div>
 	<div class="col-md-4">
-		<table class="table tablework">
-	  	<% @users.each do |user| %>
-			<%= render user %>
+		<table id="requistions" class="table">
+			<thead>
+				<tr>
+					<th>Номер</th>
+					<th>Почта</th>
+					<th>Телефон</th>
+					<th></th>
+				</tr>
+			</thead>    
+		    <tbody>	  	
+    			<% @users.each do |user| %>
+					<%= render user %>
+			</tbody>
 		<%end%>
 		</table>
 	</div>
@@ -67,6 +77,8 @@
 				<% end %>
 				</div>
 				<div class = "pull-right">
+				<%= link_to 'test', controller: :requistions, action: :index, position: 12, value: user.id%>
+
 				<%= link_to user, method: :delete, data: { confirm: "Вы уверены, что хотите удалить?" } do%>
 					<span class="glyphicon glyphicon-trash" title="удалить"></span>
 				<% end %>

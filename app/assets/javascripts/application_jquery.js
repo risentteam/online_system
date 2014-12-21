@@ -1,3 +1,20 @@
+$.extend({
+  getUrlVars: function(){
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+      hash = hashes[i].split('=');
+      vars.push(hash[0]);
+      vars[hash[0]] = hash[1];
+    }
+    return vars;
+  },
+  getUrlVar: function(name){
+    return $.getUrlVars()[name];
+  },
+});
+
 $.datepicker.regional[""] = {
 	closeText: 'Закрыть',
 	prevText: 'Предыдущий',
@@ -66,6 +83,8 @@ var exportTools = {
 			]
 		};
 
+
+
 // var domValue = 		"<'row'<'col-xs-6'lC><'col-xs-6'f>r>" +
 // 		"<'row'<'col-xs-12't>>" +
 // 		"<'row'<'col-xs-4'i><'col-xs-3'T><'col-xs-5'p>>";
@@ -75,6 +94,7 @@ var domValue =
 		"<'row'<'col-md-1'ClfT><'col-xs-3'><'col-xs-5'>pr>" +
 		"<'row'<'col-xs-12't>>" +
 		"<'row'<'col-xs-4'i><'col-xs-8'>>";
+
 
 
 $(document).ready(function() {
@@ -110,15 +130,14 @@ $(document).ready(function() {
 
 		},
 //***********************
-
 		"tableTools": exportTools,
 //***********************
 		"language": languageRU
 //***********************       
-	} );
+	});
 	table.columnFilter({
 		aoColumns: [    
-			{ type: "text" },
+			{ type: "text"},
 			{ type: "text" },
 			{ type: "text" },
 			{ type: "date-range" },
@@ -130,13 +149,34 @@ $(document).ready(function() {
 			{ type: "select" },
 			{ type: "date-range" },
 			{ type: "select" },
+			{ type: "text" },
 			{ type: "date-range" },
 			{ type: "number-range" },
 			{ type: "null" }                                   
 		]
-	});
+	});      
 });
 
+$(document).ready(function(){
+	var pos = $.getUrlVars()['position'];
+	var value = $.getUrlVars()['value'];
+	if (pos == '11')
+	{
+		$("select[rel="+pos+"]").find("option:contains('завершено')").attr("selected", "selected");
+		$("select[rel="+pos+"]").trigger('change');
+	}
+	else
+	{
+	    value = ($("#for_filter").val());
+	    $("input[rel="+pos+"]").val(value);
+	    e = $.Event('keyup');
+		for (var j in value)
+		{
+		    e.which = value.charCodeAt(j);
+		    $("input[rel="+pos+"]").trigger(e);
+		}
+	}	
+})
 
 //#########################################################################################
 //Таблица заявок у рабочего

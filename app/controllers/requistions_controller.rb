@@ -125,8 +125,14 @@ class RequistionsController < ApplicationController
 	def index
 		@name = "Все заявки"
 		@requistions = Requistion.all
-#		@requistions = Requistion.this_month
-
+		@pos = params[:position]
+		@value = params[:value]
+		case @pos
+			when '2'
+				@object = Building.find(@value).arrival_address
+			when '12'
+				@object = User.find(@value).name
+		end
 	end
 
 	def all_new
