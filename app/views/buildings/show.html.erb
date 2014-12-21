@@ -4,7 +4,7 @@
 <h2>Информация об объкте</h2>
 <div class="row">
 <div class="col-md-7">
-  <table class="table table-bordered">
+  <table class="table table-bordered table-striped">
     <tr>
       <th>Объект</th>
       <th><%= @building.name %></th>
@@ -50,8 +50,8 @@ function init() {
 <div id="map" style="width: 600px; height: 400px"></div>
 
 <% if @list_requistion.any? %>
-<h3>На объект подано заявок (<%= @list_requistion.count %>)</h3>
-<table class="pretty">
+<h3 class="leftH">На объекте (<%= @list_requistion.count %>) заявки:</h3>
+<table class="table table-striped">
   <tr>
     <th><%= "Время подачи заявки" %></th>
     <th><%= "Контактный телефон" %></th>
