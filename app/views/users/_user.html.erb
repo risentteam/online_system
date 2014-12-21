@@ -1,23 +1,19 @@
-
-  <td>
-  <%= link_to user.name, user %>
-  </td>
+<tr>
+  <td><%= link_to user.name, user %></td>
+  <td><%= user.email %></td>
+  <td><%= user.phone %></td>
   <% if current_user.admin? %>
-    <td>
-      <%= user.email %>
-    </td>
-    <td>
-      <%= user.phone %>
-    </td>
-    <td>
-    <div class = "pull-right">
+  <td><div class = "pull-right">
         <%= link_to user, method: :delete, data: { confirm: "Вы уверены, что хотите удалить?" } do%>
           <span class="glyphicon glyphicon-trash" title="удалить"></span>
         <% end %>
         &nbsp
+        <%= link_to 'Заявки', controller: :users, action: :reqclient, id: user.id%>
+        <%= link_to 'Контракты', controller: :users, action: :contract, id: user.id%>
         <%= link_to edit_user_path(user) do%>
           <span class="glyphicon glyphicon-pencil" title="редактировать"></span>
         <% end %>
     </div>
   <% end %>
   </td>
+</tr>

@@ -25,7 +25,7 @@
 						<td><%= b.contact_name %></td>
 						<td><%= b.contact_phone %></td>						
 						<td><% b.contracts.each do |contract| %> <%=contract.description + "\n"%> <% end %> </td>
-						<td></td>
+						<td><%= link_to 'Заявки', {:controller => :requistions, :action => :index, :position =>2, :value => b.id}, {:method => :get} %></td>
 					</tr>
 				<% end %>
 				</tbody>

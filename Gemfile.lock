@@ -58,6 +58,9 @@ GEM
     autoprefixer-rails (4.0.1.1)
       execjs
     bcrypt (3.1.9)
+    bootstrap-glyphicons (0.0.1)
+      railties (>= 3.0)
+      sass (>= 3.2)
     bootstrap-sass (3.3.1.0)
       sass (~> 3.2)
     bootstrap-will_paginate (0.0.10)
@@ -268,6 +271,7 @@ PLATFORMS
 DEPENDENCIES
   autoprefixer-rails
   bcrypt
+  bootstrap-glyphicons
   bootstrap-sass
   bootstrap-will_paginate
   capybara (= 2.1.0)

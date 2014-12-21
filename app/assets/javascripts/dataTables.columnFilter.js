@@ -20,7 +20,6 @@
 */
 (function ($) {
 
-
     $.fn.columnFilter = function (options) {
 
         var asInitVals, i, label, th;
