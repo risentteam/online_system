@@ -5,7 +5,7 @@
 	<div class="col-md-4">
 	</div>
 	<div class="col-md-4">
-		<table class="table tablework">
+		<table class="table">
 	  	<% @users.each do |user| %>
 			<%= render user %>
 		<%end%>
@@ -18,62 +18,63 @@
 <div class="container">	
 	<h1><%= @name %></h1>
 	<div class="row">
-	<div class="col-md-1">
-	</div>
-	<div class="col-md-4">
-	<table class="table tablework">
+		<div class = 'col-xs-1'>
+		</div>
+	<div class="col-xs-9">
+
+
+	<table class="table table-bordered table-striped table-condensed">
+
 	<!-- <tr>
 	<th>Имя</th>
 	</tr> -->
   <% @users.each_with_index do |user, index| %>
 
-		<% if index == @users.count / 2 %>
-			</table>
-			</div>
-
-			<div class="col-md-2">
-			</div>
-			<div class="col-md-4">
-			<table class="table tablework">
-
-
-		<% end %>
+		
 		<div class="list">
 		<tr>
 			<td>
+				<%= user.id %>
+			</td>
+			<td>
 			<%= link_to user.name, user %>
-
 			<% if current_user.admin? %>
-				
 				<% div_id = "calendarBut-#{user.id}" -%>
-
+			</td>
+			<td>
+				<%= user.email %>
+			</td>
+			<td>
+				<%= user.phone %>
+			</td>
+			<td>
 				<button id="<%= div_id -%>" type="button" class="btn btn-default btn-xs calendarButton pull-right">
 					<span class="glyphicon glyphicon-calendar"></span>
 				</button>
 				<div class = "pull-right calendarValue">
-				<%= countOfEntries(user) %>
+					<%= countOfEntries(user) %>
 				</div>
 
 				<% div_id = "calendar-#{user.id}" -%>
 
 
 				<div id="<%= div_id -%>" style="display:none" class="calendar">
-				<% @arrivals = user.arrivals %>
-				<%= calendar_for @arrivals, :first_day_of_week => 1 do |t| %>
-				<%= t.head('Пон', 'Вт', 'Ср', 'Чет', 'Пят', 'Суб', 'Воск') %>
-					<%= t.day do |day, arrivals| %>
-						<%= day.day %>
+					<% @arrivals = user.arrivals %>
+					<%= calendar_for @arrivals, :first_day_of_week => 1 do |t| %>
+						<%= t.head('Пон', 'Вт', 'Ср', 'Чет', 'Пят', 'Суб', 'Воск') %>
+							<%= t.day do |day, arrivals| %>
+								<%= day.day %>
+							<% end %>
 					<% end %>
-				<% end %>
 				</div>
 				<div class = "pull-right">
-				<%= link_to user, method: :delete, data: { confirm: "Вы уверены, что хотите удалить?" } do%>
-					<span class="glyphicon glyphicon-trash" title="удалить"></span>
-				<% end %>
+					<%= link_to user, method: :delete, data: { confirm: "Вы уверены, что хотите удалить?" } do%>
+						<span class="glyphicon glyphicon-trash" title="удалить"></span>
+					<% end %>
 				&nbsp
-				<%= link_to edit_user_path(user) do%>
-					<span class="glyphicon glyphicon-pencil" title="редактировать"></span>
-				<% end %>
+					<%= link_to edit_user_path(user) do%>
+						<span class="glyphicon glyphicon-pencil" title="редактировать"></span>
+					<% end %>
 				</div>
 			<% end %>
 			<%#= user.arrivals.where(begin_or_end: 0).order(:time).last.time.strftime("%e %B %Y")%>
