@@ -2,16 +2,41 @@
 <% if @name == "Клиенты"%>
 <h1><%= @name %></h1>
 <div class="row">
-	<div class="col-md-4">
+	<div class="col-xs-3">
 	</div>
-	<div class="col-md-4">
-		<table class="table">
-	  	<% @users.each do |user| %>
-			<%= render user %>
-		<%end%>
+	<div class="col-xs-6">
+
+
+
+
+		<table class="table table table-bordered table-striped table-condensed" id="tablework">
+			<thead>
+				<th>Номер</th>
+				<th>Имя</th>
+				<th>Почта</th>
+				<th>Телефон</th>
+				<th></th>
+			</thead>
+			<tbody>
+				<tr>
+					<% @users.each_with_index do |user, index| %>
+					 	<td>
+	    					<%= index + 1 %>
+	  					</td>
+							<%= render user %>
+					<%end%>
+				</tr>
+			</tbody>
+	  		<tfoot>
+	  		</tfoot>
 		</table>
+
+
+
+
+
 	</div>
-	<div class="col-md-4">
+	<div class="col-xs-4">
 	</div>
 </div>
 <%else %>
@@ -35,7 +60,7 @@
 				<th>Имя</th>
 				<th>Почта</th>
 				<th>Телефон</th>
-				<th>Посещения</th>
+				<th>Посещения за месяц</th>
 				<th></th>
 			</tr>
 		</thead>
@@ -94,7 +119,7 @@
 			<% end %>  
 
 
-	</tbody>
+		</tbody>
 </table>
 </div>
 </div>
