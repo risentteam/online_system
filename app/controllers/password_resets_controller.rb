@@ -18,7 +18,7 @@ class PasswordResetsController < ApplicationController
 		if @user.password_reset_sent_at < 2.hours.ago
 			flash[:warning] = "Срок действия ссылки истек"
 			redirect_to new_password_reset_path
-		elsif @user.update_attributes(params[:user])
+		elsif @user.update_attributes(password_params)
 			flash[:success] = "Пароль успешно изменен"
 			redirect_to user_path(@user)
 		else
@@ -26,5 +26,10 @@ class PasswordResetsController < ApplicationController
 			render :edit
 		end
 	end
+
+	private
+		def password_params
+      params.require(:user).permit(:password, :password_confirmation)
+    end
 
 end

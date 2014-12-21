@@ -20,10 +20,10 @@ App::Application.configure do
   config.action_mailer.smtp_settings = {
       address:      'smtp.gmail.com',
       port:         587,
-      domain:       "phystech.edu",
+      domain:       "gmail.com",
       authentication:   "plain",
-      user_name:      "andrey.rizshnikov@phystech.edu",
-      password:      'ffa1243444',
+      user_name:      "onlinesys3v@gmail.com",
+      password:      'onlinesys',
       enable_starttls_auto: true
     }
   # Print deprecation notices to the Rails logger.
