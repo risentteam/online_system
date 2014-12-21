@@ -17,6 +17,7 @@ App::Application.routes.draw do
 	match '/signup',  to: 'users#new',            via: 'get'
 	match '/signin',  to: 'sessions#new',         via: 'get'
 	match '/signout', to: 'sessions#destroy',     via: 'delete'
+	match '/reset_password',  to: 'users#reset_password',  via: 'get'
 	
 	match '/help',    to: 'static_pages#help',    via: 'get'
 
