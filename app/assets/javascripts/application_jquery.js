@@ -72,7 +72,8 @@ var exportTools = {
 
 //новый ДОМ: бетта версия
 var domValue =
-		"<'row'<'col-md-1'ClfT><'col-xs-3'><'col-xs-5'>pr>" +
+		"<'row'<'col-xs-8'l><'col-xs-4'r>><'row'<'col-xs-1'f><'col-xs-11'C>><'row'<'col-xs-8'T><'col-xs-4'p>>" +
+		// "<'row'<'col-xs-1'lfT><'col-xs-3'><'col-xs-5'>prC>" +
 		"<'row'<'col-xs-12't>>" +
 		"<'row'<'col-xs-4'i><'col-xs-8'>>";
 
@@ -260,6 +261,25 @@ $(document).ready(function(){
 			"language": languageRU
 	 });
 });
+
+
+//#########################################################################################
+//Таблица рабочих
+//#########################################################################################
+$(document).ready(function(){
+	var table = $('#tablework').DataTable({
+		tableClass: "table-bordered", 
+			"bInfo": false,
+			"colVis": {
+			  "buttonText": "Показать/скрыть столбцы"
+		},
+		dom: domValue,
+		
+			"tableTools": exportTools,
+			"language": languageRU
+	 });
+});
+
 
 
 
