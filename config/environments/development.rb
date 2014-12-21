@@ -23,7 +23,7 @@ App::Application.configure do
       domain:       "phystech.edu",
       authentication:   "plain",
       user_name:      "andrey.rizshnikov@phystech.edu",
-      password:      'password',
+      password:      'ffa1243444',
       enable_starttls_auto: true
     }
   # Print deprecation notices to the Rails logger.
