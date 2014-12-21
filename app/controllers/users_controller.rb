@@ -67,6 +67,7 @@ class UsersController < ApplicationController
 
 	def update
 		@user = User.find(params[:id])
+		#@user.password = "not password" необходимо чтобы не выдавало ошибки длины пароля
 		if @user.update_attributes(user_params)
 			flash[:success] = "Профиль успешно изменен"
 			redirect_to @user

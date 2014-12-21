@@ -12,8 +12,15 @@
 			<%= f.text_field :email, class: "form-control", required: "" %>
 		</div>
 		<div class="form-group">
-		<label> Пароль </label>
-		<%= f.password_field :password, class: "form-control", required: "" %>
+			<label> Пароль </label>
+			<%= f.password_field :password, class: "form-control", required: "" %>
+		</div>
+
+		<div class="checkbox">
+			<label>
+			<%= f.check_box :not_remember_me, {}, 1%>
+			Не запоминать меня
+			</label>
 		</div>
 
 		<%= f.submit "Войти", class: "btn btn-large btn-primary" %>
