@@ -78,12 +78,21 @@ class UsersController < ApplicationController
 
 	def change_password
 		@user = User.find(params[:id])
-			flash[:success] = "Заглушка"
+		if @user.update_attributes(pass_params)
+			flash[:success] = "Пароль успешно изменен"
+		else
+			flash[:warning] = "Введеные пароли не совпадают"
+		end
+		redirect_to @user
 	end
 
 	private
 		def user_params
 			params.require(:user).permit(:name, :email, :phone)
+		end
+
+		def pass_params
+			params.require(:user).permit(:password, :password_confirmation)
 		end
 
 		def user_new_params

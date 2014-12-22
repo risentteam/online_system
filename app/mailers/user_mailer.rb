@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "andrey.rizshnikov@phystech.edu"
+  default from: "onlinesys3v@gmail.com"
 
   def welcome_email(requistion)
     @requistion = requistion

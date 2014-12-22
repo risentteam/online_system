@@ -5,10 +5,10 @@
 	<div class="col-md-4">
 		<h1>Сброс пароля</h1>
 
-		<%= form_for @user, :url => password_reset_path(params[:id] html: {:class => "form-vertical center"}) do |f| %>
+		<%= form_for( @user, url: password_reset_path(params[:id]), html: {:class => "form-vertical center"}) do |f| %>
 			<% if @user.errors.any? %>
 				<div class="error_messages">
-					<h2>Form is invalid</h2>
+					<h2>Ошибка</h2>
 					<ul>
 						<% for message in @user.errors.full_messages %>
 							<li><%= message %></li>
@@ -16,15 +16,16 @@
 					</ul>
 				</div>
 			<% end %>
-			<div class="field">
-				<%= f.label :password %>
-				<%= f.password_field :password %>
+			<div class="form-group">
+			<label> Новый пароль </label>
+			<%= f.password_field :password, class: "form-control", required: "", minlength:"6" %>
 			</div>
-			<div class="field">
-				<%= f.label :password_confirmation %>
-				<%= f.password_field :password_confirmation %>
+			<div class="form-group">
+				<label> подтверждение пароля </label>
+				<%= f.password_field :password_confirmation, class: "form-control", required: "", minlength:"6" %>
 			</div>
-			<div class="actions"><%= f.submit "Update Password" %></div>
+
+			<%= f.submit "Обновить пароль", class: "btn btn-large btn-primary" %>
 		<% end %>
 		</div>
 	<div class="col-md-4">

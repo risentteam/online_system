@@ -27,12 +27,12 @@
 
 		<div class="form-group">
 			<label>Пароль</label>
-			<%= f.password_field :password, class: "form-control", required: "" %>
+			<%= f.password_field :password, class: "form-control", required: "", minlength:"6" %>
 		</div>
 
 		<div class="form-group">
 			<label>Подтверждение пароля</label>
-			<%= f.password_field :password_confirmation, class: "form-control", required: "" %>
+			<%= f.password_field :password_confirmation, class: "form-control", required: "", minlength:"6" %>
 		</div>
 
 		<br>
