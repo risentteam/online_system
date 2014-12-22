@@ -52,20 +52,20 @@
 					</div>
 				</div>
 			</div>
-<!-- 			<div class="row">
-				<div class="form-group">
-					<label class="col-md-3 control-label">Объекты</label>
+			<% for building in @contract.buildings %>
+ 			<div class="row">
+				<div class="form-group" id ="building_group">
+					<label class="col-md-3 control-label">Объект</label>
 					  <div class="col-md-5">
-					  <%= select_tag :building, options_from_collection_for_select(@list_buildings, 'id', 'arrival_address'), :prompt => "Выберите из списка", :class => "form-control", required: "" %>
+					  <%= select_tag :building, options_from_collection_for_select(@list_buildings, 'id', 'arrival_address', building.id), :prompt => "Выберите из списка", :class => "form-control", required: ""%>
 					</div>
 				</div>
-				
-					<button id="addbtn" type="button" class="btn btn-default btn-xs">
+			</div>
+			<% end %>
+			<button id="addbtn" type="button" class="btn btn-default btn-xs">
 						<span class="glyphicon glyphicon-plus"></span>
-					</button>	
-				
-			</div> -->
-
+			</button>	
+			<br>
 		<%= f.submit "Принять", class: "btn btn-large btn-primary", id: "submut" %>	
 		<% end %>
 </div>

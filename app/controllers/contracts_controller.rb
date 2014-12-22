@@ -34,14 +34,25 @@ class ContractsController < ApplicationController
 
 	def update
 		#Необходимо добавить проверку корректности данных
-		@contract = Contract.find(params[:id])					
+		@contract = Contract.find(params[:id])
+		@buildings=@contract.buildings
+		allBuild = [params[:building]]
+		@contract.buildingscontracts.find_or_create_by(building_id: params[:building])
+		count=2
+		until (params[("building" + count.to_s).to_sym].nil?) do
+				str = ("building" + count.to_s).to_sym
+				allBuild << params[str]
+				@contract.buildingscontracts.find_or_create_by(building_id: params[str])
+				count += 1
+		end
 		if @contract.update_attributes(contracts_params)
 			flash[:success] = "Контракт изменен"
 			redirect_to @contract
-		else 
+		else
 			render 'edit'
 		end
 	end
+
 	# def update
 	#     contract = Contract.limit(1).offset(params["rowId"]).first
 	#     case params["id"]

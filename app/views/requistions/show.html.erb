@@ -57,25 +57,20 @@
 </div>
 </div>
 
-<br>
 
 <% if current_user.admin? %>
   <%# if @requistion.status != "comleted" %>
   <div class="row">
-    <div class = "col-md-1">
-    <%= button_to "Редактировать заявку", edit_requistion_path, method: :get, class: "btn btn-large btn-primary" %>
-  </div>
+
 </div>
-<br>
-  <div class = "row">
-  <%# else %>
-    <%#= button_to "Обработать заявку", edit_requistion_path, method: :get, class: "disabled"%>
-  <%# end %>
-  <div class = "col-xs-2">
+  <div class = "col-xs-1">
     <button class="btn btn-danger mark" data-toggle="modal" data-target="#status" >Изменить статус</button>
   </div>
-  <%#= link_to "Закрыть заявку", {:action => 'close'}, {:class => "btn btn-large btn-primary"} %>
-  <div class = "col-xs-2">
+    <div class = "col-xs-1">
+    <%= button_to "Редактировать заявку", edit_requistion_path, method: :get, class: "btn btn-large btn-primary" %>
+  </div>
+  <br><br>
+  <div class = "col-md-1">
     <%= link_to "Назад к заявкам", {controller: "requistions", action: "index"}, class: "btn"%> 
   </div>
 

@@ -176,6 +176,7 @@ class RequistionsController < ApplicationController
 			requistion_comment: params[:requistion][:requistion_comment],
 			status: 'assigned',
 			time_assgned: Time.zone.now.to_s)
+		
 			client = @requistion.users.client.first
 			@pair = @requistion.pairs.create(user_id: params[:worker])
 			all_workers = [params[:worker]]

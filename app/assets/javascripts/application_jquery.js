@@ -463,6 +463,32 @@ $(document).ready(function() {
 });
 
 //#########################################################################################
+//Добавление зданий к контракту
+//#########################################################################################
+var count = 1;
+$(document).ready(function() {
+	$('#addbtn').click (function(){
+		var new_work = $("#building_group").clone().attr('id', count);
+		new_work.wrap ("<div class='row'></div>").parent().insertBefore('#submut');
+		new_work.find("select").attr('name', "building" + count.toString()).blur(function() {
+				if($.trim($(this).val()) == '') {
+					$(this).parent().addClass('has-error')    
+					$(this).after('<span class="error">Поле не должно быть пустым!</span>');
+				}else{
+					$(this).parent().removeClass('has-error') 
+				}
+				});
+				$('.form-control').focus(function() {
+					$(this)
+						.removeClass('error')
+						.next('span')
+						.remove();
+				});
+		count++;
+	})
+});
+
+//#########################################################################################
 //Отображение календаря
 //#########################################################################################
 
