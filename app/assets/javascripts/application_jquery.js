@@ -90,12 +90,12 @@ var exportTools = {
 // 		"<'row'<'col-xs-4'i><'col-xs-3'T><'col-xs-5'p>>";
 
 //новый ДОМ: бетта версия
+
 var domValue =
 		"<'row'<'col-xs-8'l><'col-xs-4'r>><'row'<'col-xs-1'f><'col-xs-11'C>><'row'<'col-xs-8'T><'col-xs-4'p>>" +
-		// "<'row'<'col-xs-1'lfT><'col-xs-3'><'col-xs-5'>prC>" +
+		//"<'row'<'col-xs-1'lfT><'col-xs-3'><'col-xs-5'>prC>" +
 		"<'row'<'col-xs-12't>>" +
 		"<'row'<'col-xs-4'i><'col-xs-8'>>";
-
 
 
 $(document).ready(function() {
@@ -235,22 +235,22 @@ $(document).ready(function(){
 			"bPaginate": false,
 			"bInfo": false,
 			"createdRow": function ( row, data, index ) {
-				if ( data[3]=="новая" ) {
+				if ( data[5]=="новая" ) {
 					$('td', row).addClass('danger');
 				};
-				if ( data[3]=="завершено" ) {
+				if ( data[5]=="завершено" ) {
 					$('td', row).addClass('success');
 				};
-				if ( data[3]=="отменена" ) {
+				if ( data[5]=="отменена" ) {
 					$('td', row).addClass('info');
 				};
-				if ( data[3]=="принята в работу" ) {
+				if ( data[5]=="принята в работу" ) {
 					$('td', row).addClass('warning');
 				};
-				if ( data[3]=="выполняется" ) {
+				if ( data[5]=="выполняется" ) {
 					$('td', row).addClass('warning');
 				};
-				if ( data[3]=="исполнена" ) {
+				if ( data[5]=="исполнена" ) {
 					$('td', row).addClass('warning');
 				};
 
@@ -285,6 +285,18 @@ $(document).ready(function(){
 			"language": languageRU	
 	 });
 });
+
+//#########################################################################################
+//Таблица контрактов у клиента
+//#########################################################################################
+$(document).ready(function(){
+	 $('#contracts_clinet').dataTable({
+			tableClass: "table-bordered",  
+			stateSave: true,
+			"language": languageRU	
+	 });
+});
+
 
 //#########################################################################################
 //Таблица объектов
@@ -469,7 +481,7 @@ var count = 1;
 $(document).ready(function() {
 	$('#addbtn').click (function(){
 		var new_work = $("#building_group").clone().attr('id', count);
-		new_work.wrap ("<div class='row'></div>").parent().insertBefore('#submut');
+		new_work.wrap ("<div class='row'></div>").parent().insertBefore('#addbtn');
 		new_work.find("select").attr('name', "building" + count.toString()).blur(function() {
 				if($.trim($(this).val()) == '') {
 					$(this).parent().addClass('has-error')    

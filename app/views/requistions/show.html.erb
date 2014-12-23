@@ -49,10 +49,12 @@
     <th>Статус</th>
     <td><%= status_names[@requistion.status.to_sym] %></td>
   </tr>
+  <% if @requistion.status == 'comleted' %>
   <tr>
     <th>Оценка</th>
     <td><%= @requistion.raiting %></td>
   </tr>
+  <% end %>
 </table>
 </div>
 </div>

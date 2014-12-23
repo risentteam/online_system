@@ -5,7 +5,8 @@
 					</div>
 				<div class="col-md-8">
 					<h3>Контракты (<%= @user.contracts.count %>)</h3>
-					<table class="table table-bordered table-striped">
+					<table id = 'contracts_clinet' class="table table-bordered table-striped">
+						<thead>
 						<tr>
 							<th><%= "Контракт" %></th>
 							<th><%= "Название"	 %></th>
@@ -15,16 +16,19 @@
 							<th><%= "Дата окончания" %></th>
 
 						</tr>
+						</thead>
+						<tbody>
 						<% for contract in @user.contracts %>
 							<tr>
 								<td> <%= contract.name_contract %> </td>
 								<td> <%= contract.company %> </td>
 								<td> <% contract.buildings.each do |p| %> <%= p.arrival_address %> <br>  <% end %> </td>
 								<td> <%= contract.description %> </td>
-								<td> C <%=Russian::strftime(contract.begin_time, "%e %B %Y") %> </td>
-								<td> До <%= Russian::strftime(contract.end_time, "%e %B %Y") %> </td>
+								<td> <%= contract.begin_time.strftime("%d.%m.%Y") %> </td>
+								<td> <%= contract.end_time.strftime("%d.%m.%Y") %> </td>
 							</tr>
 						<% end %>
+						</tbody>
 					</table>
 				</div>
 				</div>

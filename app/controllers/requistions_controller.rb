@@ -178,7 +178,7 @@ class RequistionsController < ApplicationController
 			time_assgned: Time.zone.now.to_s)
 		
 			client = @requistion.users.client.first
-			@pair = @requistion.pairs.create(user_id: params[:worker])
+			@pair = @requistion.pairs.find_or_create_by(user_id: params[:worker])
 			all_workers = [params[:worker]]
 #			send_to_boss params[:worker]
 			count = 1
@@ -187,7 +187,7 @@ class RequistionsController < ApplicationController
 				str = ("worker" + count.to_s).to_sym
 				all_workers << params[str]
 #				send_to_boss params[str]
-				@requistion.pairs.create(user_id: params[str])
+				@requistion.pairs.find_or_create_by(user_id: params[str])
 				count += 1
 			end
 
@@ -203,7 +203,6 @@ class RequistionsController < ApplicationController
 					recipients: [client.phone])
 				response = message.deliver
 			end
-
 
 
 

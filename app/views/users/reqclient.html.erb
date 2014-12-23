@@ -10,24 +10,27 @@
 					<table id="requistion_for_clients" class="table">
 						<thead>
 						<tr>
-							<th><%= "Объект" %></th>
-							<th><%= "Адрес вызова" %></th>
-							<th><%= "Тип вызова" %></th>
-							<th><%= "Статус" %></th>
-							<th><%= "Время подачи заявки" %></th>
+							<th>Номер</th>
+              <th>Объект</th>
+							<th>Адрес вызова</th>
+							<th>Тип вызова</th>
+              <th>Комментарий</th>
+							<th>Статус</th>
+							<th>Время подачи заявки</th>
 							<th></th>
 						</tr>
 						</thead>
 						<tbody>
-							<% for pair in @user.pairs %>
-							<% @requistion = pair.requistion %>
+							<% for requistion in @user.requistions %>
 							<tr>
-								 <td><%= link_to @requistion.object,  {:controller => :requistions, :action => :show, :id => @requistion.id}, {:method => :get} %></td>
-								 <td><%= link_to Building.find(@requistion.building_id).arrival_address,  {:controller => :buildings, :action => :show, :id => @requistion.building_id}, {:method => :get} %></td>
-								 <td> <%= transcript_of_the_messages(@requistion.type_requistion)+' '+transcript_of_the_messages(@requistion.subtype_requistions) %> </td>
-								 <td> <%= status_names[@requistion.status.to_sym] %> </td>
-								 <td> <%= time_ago_in_words(@requistion.created_at) %> назад </td>
-								 <td><% if current_user.client? and @requistion.status == 'comleted'%> 
+								 <td><%= link_to requistion.id, {:controller => :requistions, :action => :show, :id => requistion.id}, {:method => :get} %></td>
+                 <td><%= link_to requistion.object,  {:controller => :buildings, :action => :show, :id => requistion.building_id}, {:method => :get} %></td>
+								 <td><%= link_to Building.find(requistion.building_id).arrival_address,  {:controller => :buildings, :action => :show, :id => requistion.building_id}, {:method => :get} %></td>
+								 <td> <%= transcript_of_the_messages(requistion.type_requistion)+' '+transcript_of_the_messages(requistion.subtype_requistions) %> </td>
+								 <td> <%= requistion.requistion_comment %></td>
+                 <td> <%= status_names[requistion.status.to_sym] %> </td>
+								 <td> <%= requistion.created_at.strftime("%d.%m.%Y %H:%M") %></td>
+								 <td><% if current_user.client? and requistion.status == 'comleted'%> 
 <button class="btn btn-danger mark" data-toggle="modal" data-target="#myModal" >Оценить</button>
 
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -38,7 +41,7 @@
           <h4 class="modal-title" id="myModalLabel">Ваша Оценка</h4>
         </div>
         <div class="modal-body">
-            <%= form_tag(mark_path(@requistion), :html => {:class => "form-vertical"}) do |f| %>
+            <%= form_tag(mark_path(requistion), :html => {:class => "form-vertical"}) do |f| %>
               <div class="form-group">
             <label   >Пожалуйста оцените по десятибальной шкале.</label>
             <input id="mark" name="mark" required >

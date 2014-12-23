@@ -72,7 +72,10 @@
 				<div class="form-group">
 					<%= f.label :'Компания:', class: "col-md-3 control-label" %>
 					<div class="col-md-5">
+					<% if not @requistion.contract.nil?%>
+						<%= select_tag :company, options_from_collection_for_select(@list_contract, 'company', 'company', @requistion.contract.company), :prompt => "Выберите из списка", :class => "form-control", required: "" %>					<% else %>
 						<%= select_tag :company, options_from_collection_for_select(@list_contract, 'company', 'company'), :prompt => "Выберите из списка", :class => "form-control", required: "" %>
+					<% end %>
 					</div>
 				</div>
 			</div>	
@@ -85,7 +88,11 @@
 				<div class="form-group">
 					<%= f.label :'№ договора:', class: "col-md-3 control-label" %>
 					<div class="col-md-5">
-						<%= text_field_tag :contract, nil, :placeholder => "Введите № договора", class: "form-control", required: "" %>
+					<% if not @requistion.contract.nil?%>
+						<%= text_field_tag :contract, nil, :placeholder => "Введите № договора", class: "form-control", required: "", value: @requistion.contract.name_contract %>
+					<% else %>
+						<%= text_field_tag :contract, nil, :placeholder => "Введите № договора", class: "form-control", required: ""%>						
+					<% end %>
 					</div>
 				</div>
 			</div>
@@ -94,7 +101,12 @@
 				<div class="form-group">
 					<%= f.label :'Период договора:', class: "col-md-3 control-label" %>
 					<div class="col-md-5">
+					<% if not @requistion.contract.nil?%>
+						<%= text_field_tag :period_contract, nil, :placeholder => "Введите время окончания договора", class: "form-control", required: "", value: "C "+Russian::strftime(@requistion.contract.begin_time, "%d %B %Y")+' до '+Russian::strftime(@requistion.contract.end_time, "%d %B %Y") %>
+					<% else %>
 						<%= text_field_tag :period_contract, nil, :placeholder => "Введите время окончания договора", class: "form-control", required: "" %>
+					<% end %>
+
 					</div>
 				</div>
 			</div>
@@ -102,7 +114,10 @@
 				<div class="form-group">
 					<%= f.label :'Описание договора:', class: "col-md-3 control-label" %>
 					<div class="col-md-5">
+					<% if not @requistion.contract.nil?%>
+						<%= text_field_tag :description, nil, :placeholder => "Введите время  договора", class: "form-control", required: "", value: @requistion.contract.description %>					<% else %>
 						<%= text_field_tag :description, nil, :placeholder => "Введите время  договора", class: "form-control", required: "" %>
+					<% end %>
 					</div>
  				</div>
 			</div>
@@ -120,7 +135,7 @@
 				<div class="form-group">
 					<%= f.label :'Дата окончания заявки:', class: "col-md-3 control-label" %>
 					<div class="col-md-5">
-  						<%= date_field_tag :deadline, nil, :min=> Time.zone.now.strftime("%Y-%m-%d"), :placeholder => "Введите время окончания заявки", class: "form-control", required: ""%>		
+  						<%= date_field_tag :deadline, nil, :min=> Time.zone.now.strftime("%Y-%m-%d"), :placeholder => "Введите время окончания заявки", class: "form-control", required: "", value: @requistion.time_deadline %>		
 					</div>
 				</div>
 			</div>
@@ -129,25 +144,36 @@
 				<div class="form-group">
 					<%= f.label :'Комментарий', class: "col-md-3 control-label" %>
 					<div class="col-md-5">
-  						<%= f.text_field :requistion_comment, :placeholder => "Введите время окончания заявки", class: "form-control"%>		
+  						<%= f.text_field :requistion_comment, :placeholder => "Введите комментарий", class: "form-control" %>		
 					</div>
 				</div>
 			</div>
-
-
-			<div class="row">
-				<div class="form-group" id="worker_row">
-					<%= f.label :'Исполнитель:', class: "col-md-3 control-label" %>
-					<div id="workerfield" class="col-md-5">
-					  <%= select_tag :worker, options_from_collection_for_select(@list_worker, 'id', 'name'), :prompt => "Выберите из списка", :class => "form-control", required: "" %>
+			<% if @requistion.users.where('status=0').count>0 %>
+				<% for user in @requistion.users.where('status=0') %>
+				<div class="row">
+					<div class="form-group" id="worker_row">
+						<%= f.label :'Исполнитель:', class: "col-md-3 control-label" %>
+						<div id="workerfield" class="col-md-5">
+						  <%= select_tag :worker, options_from_collection_for_select(@list_worker, 'id', 'name', user.id), :prompt => "Выберите из списка", :class => "form-control", required: "" %>
+						</div>
 					</div>
 				</div>
-				
+				<% end %>
+			<% else %>
+				<div class="row">
+					<div class="form-group" id="worker_row">
+						<%= f.label :'Исполнитель:', class: "col-md-3 control-label" %>
+						<div id="workerfield" class="col-md-5">
+						  <%= select_tag :worker, options_from_collection_for_select(@list_worker, 'id', 'name' ), :prompt => "Выберите из списка", :class => "form-control", required: "" %>
+						</div>
+					</div>
+				</div>
+			<% end %>				
 					<button id="addbtn" type="button" class="btn btn-default btn-xs">
 						<span class="glyphicon glyphicon-plus"></span>
 					</button>	
 				
-			</div>
+
 			
 <!-- 			<div class="row">
 				<div class="form-group" id="worker_row">
