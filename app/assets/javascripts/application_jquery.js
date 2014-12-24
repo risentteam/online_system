@@ -263,8 +263,10 @@ $(document).ready(function(){
 			{ type: "null" },
 			{ type: "null" },
 			{ type: "null" },
-			{ type: "select" },			
-			{ type: "null"}
+					
+			{ type: "null"},
+			{ type: "null" },
+			{ type: "select"}	
 		]
 	});
 });
