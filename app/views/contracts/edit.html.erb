@@ -64,9 +64,15 @@
 				</div>
 				<% end %>
 			<% end %>
+				<div class = "row" id = "rowaddbtn">
+				<div class = "col-xs-4">
+				</div>
+				<div class = "col-xs 8">
 			<button id="addbtn" type="button" class="btn btn-default btn-xs">
 						<span class="glyphicon glyphicon-plus"></span>
 			</button>
+				</div>
+				</div>
 			<br>	
 		<%= f.submit "Принять", class: "btn btn-large btn-primary", id: "submut" %>
 		<%= link_to "Назад к контрактам", {controller: "contracts", action: "index"}, class: "btn"%>		

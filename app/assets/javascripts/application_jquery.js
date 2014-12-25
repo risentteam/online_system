@@ -488,7 +488,7 @@ var count = 1;
 $(document).ready(function() {
 	$('#addbtn').click (function(){
 		var new_work = $("#building_group").clone().attr('id', count);
-		new_work.wrap ("<div class='row'></div>").parent().insertBefore('#addbtn');
+		new_work.wrap ("<div class='row'></div>").parent().insertBefore('#rowaddbtn');
 		new_work.find("select").attr('name', "building" + count.toString()).blur(function() {
 				if($.trim($(this).val()) == '') {
 					$(this).parent().addClass('has-error')    
