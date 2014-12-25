@@ -236,8 +236,8 @@ $(document).ready(function(){
 $(document).ready(function(){
 	 var table = $('#requistion_for_clients').dataTable({
 			tableClass: "table-bordered",
-			"bLengthChange": false,
-			"bPaginate": false,
+//			"bLengthChange": false,
+//			"bPaginate": false,
 			"bInfo": false,
 			"createdRow": function ( row, data, index ) {
 				if ( data[5]=="новая" ) {

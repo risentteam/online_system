@@ -22,6 +22,7 @@ module ApplicationHelper
 		assigned: 'назначена',
 		adopted_in_work: 'принята в работу',
 		running: 'выполняется',
-		comleted: 'завершено'}
+		comleted: 'завершено',
+		canceled: 'отменена'}
 	end
 end

@@ -50,8 +50,8 @@ class RequistionsController < ApplicationController
 
 	def canceldone
 		@requistion = Requistion.find(params[:id])
-		@requistion.requistion_comment = @requistion.requistion_comment + "\nПричина отмены: " + params[:subject] if not params[:subject].nil?
-		@requistion.status = "canceled"
+		@requistion.requistion_comment = @requistion.requistion_comment + "\nПричина отмены: " + params[:subject] if (not params[:subject].nil?)
+		@requistion.update_attribute(:status, 'canceled')
 	end
 	
 
