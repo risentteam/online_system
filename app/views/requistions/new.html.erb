@@ -5,65 +5,65 @@
 	<%= form_for @requistion, :html => {:class => "form-horizontal"} do |f| %>
 		<div class="form-group">
 
-			<label class=" col-md-3">Объект</label>
-			<div class="col-md-5">
+			<label class=" col-xs-3">Объект</label>
+			<div class="col-xs-5">
 			<%= f.text_field :object, :placeholder => "Введите № объекта", class: "form-control", required: "" %>
 		</div>
 		</div>
 
  		<div class="form-group">
-			<label class=" col-md-3">Адресс прибытия для специалистов</label>
-			<div class="col-md-5">
+			<label class=" col-xs-3">Адресс прибытия для специалистов</label>
+			<div class="col-xs-5">
 			<%= f.select :building_id, options_from_collection_for_select(@list, 'id', 'arrival_address'), {:prompt => "Выберите из списка адрес прибытия специалистов"}, {:class => "form-control", required: ""  }%>
 			</div>
 		</div>
  
 		<div class="form-group">
-		  <label class=" col-md-3">ФИО контактного лица заказчика</label>
-		  <div class="col-md-5">
+		  <label class=" col-xs-3">ФИО контактного лица заказчика</label>
+		  <div class="col-xs-5">
 			<%= f.text_field :contact_name, :placeholder =>"Введите контактное лицо", class: "form-control", required: "" %>
 			</div>
 		</div>
 
 		<div class="form-group">
-		  <label class=" col-md-3">Телефон контактного лица заказчика</label>
-		  <div class="col-md-5">
+		  <label class=" col-xs-3">Телефон контактного лица заказчика</label>
+		  <div class="col-xs-5">
 			<%= f.text_field :contact_phone, :placeholder =>"Ввведите контактный телефон", class: "form-control", required: "" %>
 		</div>
 		</div>
 
 		<div class="form-group">
-		  <label class=" col-md-3">Тип работ</label>
-		  <div class="col-md-5">
+		  <label class=" col-xs-3">Тип работ</label>
+		  <div class="col-xs-5">
 			<%= f.select :type_requistion, [['Электрика', 'Э'], ['Сантехника ГВС', 'Г'], ['Сантехника ХВС', 'X'], ['Канализация', 'К'], ['Отопление', 'О'], ['АПС', 'П'], ['АУУ', 'У'], ['Видеокамера', 'В'], ['Системы дымоудаления', 'C'], ['Видеодомофон', 'Д'], ['Аварийное обслуживание', 'А'], ['Другое', 'Д']], { :prompt => "Выберите из списка" }, { :class => "form-control", required: ""  }  %>
 		</div>
 		</div>
 
 		<div class="form-group" id="subtype" style="display:none">
-		  <label class=" col-md-3">Тип аварийных работ</label>
-		  <div class="col-md-5">
+		  <label class=" col-xs-3">Тип аварийных работ</label>
+		  <div class="col-xs-5">
 			<%= f.select :subtype_requistions, [['Электрика', 'Э'], ['Сантехника ГВС', 'Г'], ['Сантехника ХВС', 'X'], ['Канализация', 'К'], ['Отопление', 'О'], ['АПС', 'П'], ['АУУ', 'У'], ['Видеокамера', 'В'], ['Системы дымоудаления', 'C'], ['Видеодомофон', 'Д'], ['Другое', 'Д']], { :prompt => "Выберите из списка" }, { :class => "form-control" }  %>
 		</div>
 		</div>
 
 
 		<div class="form-group" id="info" style="display:none">
-		  <label class=" col-md-3">Дополнительная информация</label>
-		  <div class="col-md-5">
+		  <label class=" col-xs-3">Дополнительная информация</label>
+		  <div class="col-xs-5">
 		  <%= f.text_field :info, :placeholder =>"Опишите проблему", class: "form-control"%>
 		</div>
 		</div>
 
 		<div class="form-group">
-		  <label class=" col-md-3">Комментарий</label>
-		  <div class="col-md-5">
+		  <label class=" col-xs-3">Комментарий</label>
+		  <div class="col-xs-5">
 			<%= f.text_field :requistion_comment, :placeholder =>"Введите описание", class: "form-control"%>
 		</div>
 		</div>
 
 		<div class="form-group">
-			<div class=" col-md-3"></div>
-				<div class="col-md-5">
+			<div class=" col-xs-3"></div>
+				<div class="col-xs-5">
 					<%= f.submit "Подать заявку", class: "btn btn-large btn-primary" %>
 				</div>
 		</div>

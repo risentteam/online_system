@@ -1,7 +1,14 @@
 <% provide(:title, @name) %>
 <div class="container">
 <h1><%= @name %></h1>
-<%= link_to "Архив", controller: "requistions", action: "index", position: '11', value: 'Завершено' %>
+
+<div id = "archive">
+<%= link_to controller: "requistions", action: "index", position: '11', value: 'Завершено' do %>
+				<div class="btn btn-default">
+					<span class="glyphicon glyphicon-briefcase"></span>&nbspАрхив
+				</div>
+			<% end %>
+</div>
 <script type="text/javascript">
 	old_count = <%= @requistions.fresh.count %>;
 	set = false;
@@ -108,71 +115,71 @@
               <div class="form-group">
 			<div class="row">
 				<div class="form-group">
-				<label class=" col-md-3">Новая</label>
-					<div class="col-md-5">
+				<label class=" col-xs-3">Новая</label>
+					<div class="col-xs-5">
 						<input id='show_time_change_created' class="form-control" type="text" readonly></input>
 					</div>
-					<div class="col-md-4">
+					<div class="col-xs-4">
 						<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
 					</div>
 				</div>
 
 				<div class="form-group">
-				<label class=" col-md-3">Назначена</label>
-					<div class="col-md-5">
+				<label class=" col-xs-3">Назначена</label>
+					<div class="col-xs-5">
 						<input id='show_time_change_assigned' class="form-control" type="text" readonly></input>
 					</div>
-					<div class="col-md-4">
+					<div class="col-xs-4">
 						<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
 					</div>
 				</div>
 
 				<div class="form-group">
-				<label class=" col-md-3">Принята</label>
-					<div class="col-md-5">
+				<label class=" col-xs-3">Принята</label>
+					<div class="col-xs-5">
 						<input id='show_time_change_adopted' class="form-control" type="text" readonly></input>
 					</div>
-					<div class="col-md-4">
+					<div class="col-xs-4">
 						<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
 					</div>
 				</div>
 
 				<div class="form-group">
-				<label class=" col-md-3">Выполняется</label>
-					<div class="col-md-5">
+				<label class=" col-xs-3">Выполняется</label>
+					<div class="col-xs-5">
 						<input id='show_time_change_running' class="form-control" type="text" readonly></input>
 					</div>
-					<div class="col-md-4">
+					<div class="col-xs-4">
 						<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
 					</div>
 				</div>
 
 				<div class="form-group">
-				<label class=" col-md-3">Исполнено</label>
-					<div class="col-md-5">
+				<label class=" col-xs-3">Исполнено</label>
+					<div class="col-xs-5">
 						<input id='show_time_change_done' class="form-control" type="text" readonly></input>
 					</div>
-					<div class="col-md-4">
+					<div class="col-xs-4">
 						<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
 					</div>
 				</div>
 
 				<div class="form-group">
-				<label class=" col-md-3">Выполнено</label>
-					<div class="col-md-5">
+				<label class=" col-xs-3">Выполнено</label>
+					<div class="col-xs-5">
 						<input id='show_time_change_comleted' class="form-control" type="text" readonly></input>
 					</div>
-					<div class="col-md-4">
+					<div class="col-xs-4">
 						<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
 					</div>
 				</div>
 
 				<div class="form-group">
-				<label class=" col-md-3">Дедлайн</label>
-					<div class="col-md-5">
+				<label class=" col-xs-3">Дедлайн</label>
+					<div class="col-xs-5">
 						<input id='show_time_change_deadline' class="form-control" type="text" readonly></input>
 					</div>
-				<div class="col-md-4">
+				<div class="col-xs-4">
 						<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
 					</div>
 				</div>

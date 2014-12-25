@@ -41,7 +41,7 @@ var languageRU= {
 			"infoFiltered":   "(отфильтровано из всех _MAX_ записей)",
 			"infoPostFix":    "",
 			"thousands":      ",",
-			"lengthMenu":     "Показывать по _MENU_ записей",
+			"lengthMenu":     "Выводить по: _MENU_",
 			"loadingRecords": "Подождите...",
 			"processing":     "Обработка...",
 			"search":         "Поиск:",
@@ -69,7 +69,7 @@ var exportTools = {
 				// },
 				{
 					"sExtends": "xls",
-					"sButtonText": "Экспорт в xls",
+					"sButtonText": "Экспорт",
 					"bFooter": false,                     
 					"sCharSet" : "utf16le",
 					"bSelectedOnly" : true, 
@@ -92,10 +92,10 @@ var exportTools = {
 //новый ДОМ: бетта версия
 
 var domValue =
-		"<'row'<'col-xs-8'l><'col-xs-4'r>><'row'<'col-xs-1'f><'col-xs-11'C>><'row'<'col-xs-8'T><'col-xs-4'p>>" +
+		"<'row'<'col-xs-8'><'col-xs-4'r>><'row'<'col-xs-1'T><'col-xs-2'C><'col-xs-1 archiver'><'col-xs-7'><'col-xs-1'>><'row'<'col-xs-1'f><'col-xs-10'><'col-xs-1'l>>" +
 		//"<'row'<'col-xs-1'lfT><'col-xs-3'><'col-xs-5'>prC>" +
-		"<'row'<'col-xs-12't>>" +
-		"<'row'<'col-xs-4'i><'col-xs-8'>>";
+		"<'row'<'col-xs-1'><'col-xs-10't<br>p><'col-xs-1'>>" +
+		"<'row'<'col-xs-4'i><'col-xs-6'><'col-xs-1'><'col-xs-1'>>";
 
 
 $(document).ready(function() {
@@ -155,7 +155,12 @@ $(document).ready(function() {
 			{ type: "number-range" },
 			{ type: "null" }                                   
 		]
-	});      
+	});    
+	var archiver = $("#archive").appendTo('.archiver');
+	$('.DTTT_button_xls').prepend ('<span class="glyphicon glyphicon-briefcase"></span>');
+	$('.ColVis_MasterButton').prepend ('<span class="glyphicon glyphicon-briefcase"></span>');
+
+  
 });
 
 $(document).ready(function(){
@@ -263,8 +268,10 @@ $(document).ready(function(){
 			{ type: "null" },
 			{ type: "null" },
 			{ type: "null" },
-			{ type: "select" },			
-			{ type: "null"}
+					
+			{ type: "null"},
+			{ type: "null" },
+			{ type: "select"}	
 		]
 	});
 });

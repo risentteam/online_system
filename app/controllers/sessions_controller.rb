@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
 			if not_remeber
 				flash[:info] = "Не запоминать"
 			else
-				flash[:info] = "Запомнить"
+				# flash[:info] = "Запомнить"
 			end
 			redirect_back_or user
 		else
