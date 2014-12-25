@@ -92,7 +92,7 @@ var exportTools = {
 //новый ДОМ: бетта версия
 
 var domValue =
-		"<'row'<'col-xs-8'><'col-xs-4'r>><'row'<'col-xs-1'T><'col-xs-2'C><'col-xs-1 archiver'><'col-xs-7'><'col-xs-1'>><'row'<'col-xs-1'f><'col-xs-10'><'col-xs-1'l>>" +
+		"<'row'<'col-xs-8'><'col-xs-4'r>><'row'<'col-xs-4 archiver'TC><'col-xs-1 '><'col-xs-5'><'col-xs-1'>><'row'<'col-xs-1'f><'col-xs-10'><'col-xs-1'l>>" +
 		//"<'row'<'col-xs-1'lfT><'col-xs-3'><'col-xs-5'>prC>" +
 		"<'row'<'col-xs-1'><'col-xs-10't<br>p><'col-xs-1'>>" +
 		"<'row'<'col-xs-4'i><'col-xs-6'><'col-xs-1'><'col-xs-1'>>";
@@ -157,10 +157,6 @@ $(document).ready(function() {
 		]
 	});    
 	var archiver = $("#archive").appendTo('.archiver');
-	$('.DTTT_button_xls').prepend ('<span class="glyphicon glyphicon-briefcase"></span>');
-	$('.ColVis_MasterButton').prepend ('<span class="glyphicon glyphicon-briefcase"></span>');
-
-  
 });
 
 $(document).ready(function(){
@@ -193,6 +189,7 @@ $(document).ready(function(){
 			"bLengthChange": false,
 			"bPaginate": false,
 			"bInfo": false,
+			dom: domValue,
 			"createdRow": function ( row, data, index ) {
 				if ( data[4]=="назначена" ) {
 					$('td', row).addClass('danger');
@@ -239,6 +236,7 @@ $(document).ready(function(){
 //			"bLengthChange": false,
 //			"bPaginate": false,
 			"bInfo": false,
+			dom : domValue,
 			"createdRow": function ( row, data, index ) {
 				if ( data[5]=="новая" ) {
 					$('td', row).addClass('danger');
@@ -526,6 +524,18 @@ $(document).ready(function(){
 		$("#mark_id").val($(this).attr("name"));
 	});
 });
+
+
+//#########################################################################################
+//Иконки в кнопках таблицы
+//#########################################################################################
+
+$(document).ready(function() {
+
+$('.DTTT_button_xls').prepend ('<span class="glyphicon glyphicon-download-alt"></span>');
+	$('.ColVis_MasterButton').prepend ('<span class="glyphicon glyphicon-eye-open"></span>');
+
+	});
 
 
 
