@@ -50,10 +50,8 @@ class RequistionsController < ApplicationController
 
 	def canceldone
 		@requistion = Requistion.find(params[:id])
-
-		@requistion.requistion_comment = @requistion.requistion_comment + "/n" + params[:subject]
+		@requistion.requistion_comment = @requistion.requistion_comment + "\nПричина отмены: " + params[:subject] if not params[:subject].nil?
 		@requistion.status = "canceled"
-
 	end
 	
 
@@ -113,7 +111,8 @@ class RequistionsController < ApplicationController
 					recipients: [current_user.phone])
 				response = message.deliver
 			end
-			#UserMailer.welcome_email(@requistion).deliver
+			current_user.send_message_about_new_requistion
+			UserMailer.welcome_email(@requistion).deliver
 			redirect_to @requistion
 		else
 			flash[:warning] = "Вы ошиблись при заполнении формы"

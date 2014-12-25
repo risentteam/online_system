@@ -12,7 +12,7 @@
 				<%= form_tag('canceldone', :method=>'post' , :multipart => true) do %>
 						<p>
 						   Комментарий:<br />
-						   <%= text_field_tag "subject", nil, class: "commentarea"%>
+						   <%= text_field_tag "subject", nil, class: "commentarea", required: ""%>
 						</p>
 					<%= submit_tag "Отменить заявку", class: "btn btn-large btn-primary" %>
 				<% end %>

@@ -11,4 +11,8 @@ class UserMailer < ActionMailer::Base
     mail to: user.email, subject: "Сброс пароля"
   end
 
+  def new_requistion(user)
+  	@user = user
+  		mail to: user.email, subject: "Новая заявка"
+  end
 end

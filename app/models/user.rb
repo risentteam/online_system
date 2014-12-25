@@ -41,6 +41,10 @@ class User < ActiveRecord::Base
     UserMailer.password_reset(self).deliver
   end
 
+  def send_message_about_new_requistion
+    UserMailer.new_requistion(self).deliver    
+  end
+
   private
     def create_remember_token
       self.remember_token = User.encrypt(User.new_remember_token)

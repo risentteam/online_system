@@ -2,7 +2,7 @@ App::Application.routes.draw do
 
   get 'password_resets/new'
 
-	root  'static_pages#home'
+	root  'sessions#new'
 	post "static_pages/ajaxPages"
 	match '/ajax', to: 'static_pages#ajaxPages', via: 'post'
 
@@ -38,7 +38,7 @@ App::Application.routes.draw do
   	match 'requistions/:id/to_take_in_work', to: 'requistions#to_take_in_work', via: 'get'
   	match 'requistions/:id/done', to: 'requistions#done', via: 'get'
   	match 'requistions/:id/cancel', to: 'requistions#cancel', via: 'get'
-  	match 'requistions/:id/canceldone', to: 'requistions#canceldone', via: 'post'
+  	match 'requistions/:id/canceldone', to: 'requistions#canceldone', via: 'post', as: "canceldone"
   	match '/view_change_time', to: 'requistions#view_change_time', via: 'get'
 
   	resources :contracts do

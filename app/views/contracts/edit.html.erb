@@ -68,7 +68,8 @@
 						<span class="glyphicon glyphicon-plus"></span>
 			</button>
 			<br>	
-		<%= f.submit "Принять", class: "btn btn-large btn-primary", id: "submut" %>	
+		<%= f.submit "Принять", class: "btn btn-large btn-primary", id: "submut" %>
+		<%= link_to "Назад к контрактам", {controller: "contracts", action: "index"}, class: "btn"%>		
 		<% end %>
 
 </div>

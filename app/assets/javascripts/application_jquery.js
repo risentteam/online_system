@@ -462,7 +462,7 @@ var count = 1;
 $(document).ready(function() {
 	$('#addbtn').click (function(){
 		var new_work = $("#worker_row").clone().attr('id', count);
-		new_work.wrap ("<div class='row'></div>").parent().insertBefore('#submut');
+		new_work.wrap ("<div class='row'></div>").parent().insertBefore('#addbtn');
 		new_work.find("select").attr('name', "worker" + count.toString()).blur(function() {
 				if($.trim($(this).val()) == '') {
 					$(this).parent().addClass('has-error')    

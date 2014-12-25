@@ -87,9 +87,12 @@ $('#mark').rating({'showCaption':true,
   });
 });
 </script>
-								 <% end %></td>
-                 
-							</tr>
+                 <% else %>
+                    <%= link_to canceldone_path(requistion), method: :post, data: { confirm: "Вы точно хотите отменить заявку на выезд иненера?" } do%>
+                      <span class="glyphicon glyphicon-trash" title="удалить"></span>
+                    <%  end %>                  
+								 <% end %></td> 
+ 						</tr>
 						<% end %>
 						</tbody>
 						<tfoot>
