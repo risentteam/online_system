@@ -236,7 +236,7 @@ $(document).ready(function(){
 //			"bLengthChange": false,
 //			"bPaginate": false,
 			"bInfo": false,
-			dom : domValue,
+//			dom : domValue,
 			"createdRow": function ( row, data, index ) {
 				if ( data[5]=="новая" ) {
 					$('td', row).addClass('danger');

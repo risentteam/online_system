@@ -67,7 +67,7 @@
 </td>
  			<td><%= status_names[requistion.status.to_sym] %></td>
  			<td><% requistion.users.where('status = 0').each do |user|%> <li><%= user.name%></li> <% end %></td>
-			<td><%= requistion.time_deadline.strftime("%d.%m.%Y") %></td>
+			<td><%= requistion.time_deadline.strftime("%d.%m.%Y") if not requistion.time_deadline.nil? %></td>
 			<td><%= requistion.raiting %></td>	
 	    	<td>  
 			</td>
