@@ -28,7 +28,7 @@ class RequistionsController < ApplicationController
 		@requistion = Requistion.find(params[:id]) 
 		if @requistion.update_attributes(
 			status: "comleted", time_comleted: Time.zone.now.to_s)
-			flash[:success] = "Заявка сдана в архив"
+			flash[:success] = "Заявка завершена"
 			redirect_to @requistion
 		end
 	end
@@ -111,8 +111,8 @@ class RequistionsController < ApplicationController
 					recipients: [current_user.phone])
 				response = message.deliver
 			end
-			current_user.send_message_about_new_requistion
-			UserMailer.welcome_email(@requistion).deliver
+			#UserMailer.new_reqistion(current_user).deliver
+			#UserMailer.welcome_email(@requistion).deliver
 			redirect_to @requistion
 		else
 			flash[:warning] = "Вы ошиблись при заполнении формы"
@@ -173,8 +173,9 @@ class RequistionsController < ApplicationController
 			time_deadline: params[:deadline], 
 			category: params[:requistion][:category],
 			requistion_comment: params[:requistion][:requistion_comment],
-			status: 'assigned',
-			time_assgned: Time.zone.now.to_s)
+#			status: 'assigned',
+#			time_assgned: Time.zone.now.to_s
+			)
 		
 			client = @requistion.users.client.first
 			@pair = @requistion.pairs.find_or_create_by(user_id: params[:worker])
@@ -190,11 +191,11 @@ class RequistionsController < ApplicationController
 				count += 1
 			end
 
-			flash[:success] = "Заявка успешно изменена"
-			text = 'По вашей заявке №' + @requistion.id.to_s + ' выслан(ы) '
-			all_workers.each { |id| text += ' ' + User.find(id).name}
-			text += "."
-			flash[:info] = text
+			# flash[:success] = "Заявка успешно изменена"
+			# text = 'По вашей заявке №' + @requistion.id.to_s + ' выслан(ы) '
+			# all_workers.each { |id| text += ' ' + User.find(id).name}
+			# text += "."
+			# flash[:info] = text
 			if (not client.phone.nil?)
 				message = MainsmsApi::Message.new(
 					sender: '3B-online',

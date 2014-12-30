@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 
 	def reqclient
 		@user = User.find(params[:id])
+		@requistions = @user.requistions.order(id: :desc)
 	end
 
 	def contract

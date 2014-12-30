@@ -1,6 +1,10 @@
 <div class ="form-group">
 	<label class=" col-md-3">Описание договора</label>
 	<div class="col-md-5">
-		<%= select_tag "version_id", options_from_collection_for_select(@list_company, "id", "description"), :prompt => "Выберите из списка", :class => "form-control", required: ""  %>	
+		<% if not @requistion.contract.nil?%>
+		<%= select_tag "version_id", options_from_collection_for_select(@list_company, "id", "description", @requistion.contract_id), :prompt => "Выберите из списка", :class => "form-control", required: "" %>
+		<% else %>
+		<%= select_tag "version_id", options_from_collection_for_select(@list_company, "id", "description"), :prompt => "Выберите из списка", :class => "form-control", required: "" %>
+		<% end %>	
 	</div>
 </div>

@@ -110,7 +110,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="row">
+<!-- 			<div class="row">
 				<div class="form-group">
 					<%= f.label :'Описание договора:', class: "col-md-3 control-label" %>
 					<div class="col-md-5">
@@ -120,7 +120,7 @@
 					<% end %>
 					</div>
  				</div>
-			</div>
+			</div> -->
 			<div class="row">
 				<div class="form-group">
 					<%= f.label :'Категория заявки:', class: "col-md-3 control-label" %>
@@ -167,12 +167,20 @@
 						  <%= select_tag :worker, options_from_collection_for_select(@list_worker, 'id', 'name' ), :prompt => "Выберите из списка", :class => "form-control", required: "" %>
 						</div>
 					</div>
+
 				</div>
-			<% end %>				
-					<button id="addbtn" type="button" class="btn btn-default btn-xs">
+			<% end %>	
+			<div class="row" id = "before_addbtn">
+				<div class="form-group">
+					<label class="col-md-8 control-label"></label>
+					<div class="col-md">
+					<button id="addbtn" type="button" allign="right" class="btn btn-default" >
 						<span class="glyphicon glyphicon-plus"></span>
-					</button>	
-				
+					</button>
+					</div>
+				</div>
+			</div>			
+					
 
 			
 <!-- 			<div class="row">

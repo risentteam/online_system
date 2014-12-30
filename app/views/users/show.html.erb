@@ -14,15 +14,15 @@
 				<br>
 				<%= @user.phone %>
 			</h4>
-			<br>
-			<%= link_to controller: "users", action: "contract", id: current_user do %>
+<!-- 			<br>
+			<%#= link_to controller: "users", action: "contract", id: current_user do %>
 				<div class="btn btn-default">
 					<span class="glyphicon glyphicon-briefcase"></span>&nbspКонтракты
 				</div>
-			<% end %>
+			<%# end %>
 			<br>
 			<br>
-			
+ -->			
 
 			<%= link_to "Изменить данные профиля", edit_user_path(current_user), class:"btn" %>
 			<button class="btn btn-danger mark" data-toggle="modal" data-target="#myModal" >Изменть пароль</button>

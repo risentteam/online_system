@@ -1,3 +1,4 @@
+<%= javascript_include_tag '//cdn.datatables.net/plug-ins/3cfcc339e89/sorting/datetime-moment.js' %>
 <% provide(:title, @name) %>
 <div class="container">
 <h1><%= @name %></h1>
@@ -42,6 +43,7 @@
 			<th>Категория</th>
 			<th>Время последнего изменения</th>
 			<th>Статус</th>
+			<th>
 			<th>Исполнители</th>
 			<th>Дата окончания</th>
 			<th>Рейтинг</th>
@@ -63,11 +65,12 @@
 			<td><%= transcript_of_the_messages(requistion.subtype_requistions)  %></td>			
 			<td><%= requistion.requistion_comment %></td>			
 			<td><%= transcript_of_the_messages_category(requistion.category) %></td>	
-			<td><%= requistion.updated_at.strftime("%e.%m.%Y %H:%M") %>  <button id = <%= requistion.id %> class="btn btn-danger change-time" data-toggle="modal" data-target="#status" onClick="reply_click(this.id)" >Изменения</button>
+			<td> <button id = <%= requistion.id %> class="btn btn-danger change-time" data-toggle="modal" data-target="#status" onClick="reply_click(this.id)" > <%= requistion.updated_at.strftime("%d.%m.%Y %H:%M")%> </button>
 </td>
  			<td><%= status_names[requistion.status.to_sym] %></td>
+ 			<td><%= link_to 'Принять', {controller: :requistions, action: :close, id: requistion.id }, class: "btn btn-inverse" if requistion.status=='done' %> </td>
  			<td><% requistion.users.where('status = 0').each do |user|%> <li><%= user.name%></li> <% end %></td>
-			<td><%= requistion.time_deadline.strftime("%d.%m.%Y") if not requistion.time_deadline.nil? %></td>
+			<td><%= requistion.time_deadline.strftime("%d.%m.%Y %H:%M") if not requistion.time_deadline.nil? %></td>
 			<td><%= requistion.raiting %></td>	
 	    	<td>  
 			</td>
@@ -92,6 +95,7 @@
 			<th>Категория</th>
 			<th>Время</th>
 			<th>Статус</th>
+			<th></th>
 			<th>Исполнители</th>
 			<th>Дата окончания</th>
 			<th>Рейтинг</th>
@@ -115,21 +119,21 @@
               <div class="form-group">
 			<div class="row">
 				<div class="form-group">
-				<label class=" col-xs-3">Новая</label>
-					<div class="col-xs-5">
+				<label class=" col-sm-4">Новая</label>
+					<div class="col-sm-4">
 						<input id='show_time_change_created' class="form-control" type="text" readonly></input>
 					</div>
-					<div class="col-xs-4">
+					<div class="col-sm-4">
 						<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
 					</div>
 				</div>
 
 				<div class="form-group">
-				<label class=" col-xs-3">Назначена</label>
-					<div class="col-xs-5">
+				<label class=" col-sm-4">Назначена</label>
+					<div class="col-sm-4">
 						<input id='show_time_change_assigned' class="form-control" type="text" readonly></input>
 					</div>
-					<div class="col-xs-4">
+					<div class="col-sm-4">
 						<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
 					</div>
 				</div>

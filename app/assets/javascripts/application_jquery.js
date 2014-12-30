@@ -99,6 +99,7 @@ var domValue =
 
 
 $(document).ready(function() {
+//    $.fn.dataTable.moment( 'DD.MM.YYYY HH:mm' );
 	var table = $('#requistions').dataTable({
 		
 		tableClass: "table-bordered",
@@ -150,6 +151,7 @@ $(document).ready(function() {
 			{ type: "select" },
 			{ type: "date-range" },
 			{ type: "select" },
+			{ type: "null" }, 
 			{ type: "text" },
 			{ type: "date-range" },
 			{ type: "number-range" },
@@ -186,10 +188,13 @@ $(document).ready(function(){
 $(document).ready(function(){
 	 var table = $('#requistion_for_workers').dataTable({
 			tableClass: "table-bordered",
-			"bLengthChange": false,
-			"bPaginate": false,
-			"bInfo": false,
+			// "bLengthChange": false,
+			// "bPaginate": false,
+			// "bInfo": false,
 			dom: domValue,
+			"colVis": {
+			  "buttonText": "Показать/скрыть столбцы"
+			},
 			"createdRow": function ( row, data, index ) {
 				if ( data[4]=="назначена" ) {
 					$('td', row).addClass('danger');
@@ -211,7 +216,8 @@ $(document).ready(function(){
 				
 				};
 			},
-			"language": languageRU
+			"language": languageRU,
+			"tableTools": exportTools,
 	 });
 	 table.columnFilter({
 		aoColumns: [    
@@ -231,12 +237,17 @@ $(document).ready(function(){
 //Таблица заявок у клиента
 //#########################################################################################
 $(document).ready(function(){
+
 	 var table = $('#requistion_for_clients').dataTable({
 			tableClass: "table-bordered",
 //			"bLengthChange": false,
 //			"bPaginate": false,
 			"bInfo": false,
 //			dom : domValue,
+//			Вот эта штука отвеает за нормалтную сортировку времени надо прикрутить			
+//			$.fn.dataTable.moment( 'DD.MM.YYYY HH:mm' );
+
+			"order": [[ 6, "desc" ]],
 			"createdRow": function ( row, data, index ) {
 				if ( data[5]=="новая" ) {
 					$('td', row).addClass('danger');
@@ -460,7 +471,7 @@ var count = 1;
 $(document).ready(function() {
 	$('#addbtn').click (function(){
 		var new_work = $("#worker_row").clone().attr('id', count);
-		new_work.wrap ("<div class='row'></div>").parent().insertBefore('#addbtn');
+		new_work.wrap ("<div class='row'></div>").parent().insertBefore('#before_addbtn');
 		new_work.find("select").attr('name', "worker" + count.toString()).blur(function() {
 				if($.trim($(this).val()) == '') {
 					$(this).parent().addClass('has-error')    

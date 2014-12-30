@@ -24,6 +24,8 @@
 // require dataTables/jquery.dataTables.editable
 //= require dataTables.columnFilter
 //= require dataTables.editable
+//= require datetime-moment
+//= require moment
 
 
 //= require dataTables/extras/dataTables.tableTools

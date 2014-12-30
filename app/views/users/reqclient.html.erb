@@ -21,7 +21,8 @@
 						</tr>
 						</thead>
 						<tbody>
-							<% for requistion in @user.requistions %>
+
+							<% for requistion in @requistions %>
 							<tr>
 								 <td><%= link_to requistion.id, {:controller => :requistions, :action => :show, :id => requistion.id}, {:method => :get} %></td>
                  <td><%= link_to requistion.object,  {:controller => :buildings, :action => :show, :id => requistion.building_id}, {:method => :get} %></td>
@@ -88,7 +89,7 @@ $('#mark').rating({'showCaption':true,
 });
 </script>
                  <% else %>
-                    <%= link_to canceldone_path(requistion), method: :post, data: { confirm: "Вы точно хотите отменить заявку на выезд иненера?" } do%>
+                    <%= link_to canceldone_path(requistion), method: :post, data: { confirm: "Вы точно хотите отменить заявку на выезд инженера?" } do%>
                       <span class="glyphicon glyphicon-trash" title="удалить"></span>
                     <%  end %>                  
 								 <% end %></td> 

@@ -99,6 +99,8 @@
   </div>
 <% end %>
 
+<%= link_to "Назад к заявкам", {controller: "users", action: "reqclient", id: current_user.id}, class: "btn" if current_user.client? %>
+<%= link_to "Назад к заявкам", {controller: "users", action: "req", id: current_user.id}, class: "btn" if current_user.worker? %>
 <% if current_user.client? and @requistion.status == 'comleted'%>
 <button class="btn btn-danger mark" data-toggle="modal" data-target="#myModal" >Оценить</button>
 
