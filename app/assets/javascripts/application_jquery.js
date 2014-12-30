@@ -551,22 +551,29 @@ $('.DTTT_button_xls').prepend ('<span class="glyphicon glyphicon-download-alt"><
 
 
 jQuery(function($){
-	$("#requistions_range_from_2").attr("placeholder", "C").each(function () {
+	$("#requistions_range_from_3").attr("placeholder", "C").each(function () {
 		this.previousSibling.parentNode.removeChild(this.previousSibling);
 	});
-	$("#requistions_range_from_9").attr("placeholder", "C").each(function () {
+	$("#requistions_range_from_10").attr("placeholder", "C").each(function () {
 		this.previousSibling.parentNode.removeChild(this.previousSibling);
 	});
-	$("#requistions_range_from_11").attr("placeholder", "C").each(function () {
+	$("#requistions_range_from_13").attr("placeholder", "C").each(function () {
 		this.previousSibling.parentNode.removeChild(this.previousSibling);
 	});
-	$("#requistions_range_to_2").attr("placeholder", "По").each(function () {
+	$("#requistions_range_from_14").attr("placeholder", "C").each(function () {
 		this.previousSibling.parentNode.removeChild(this.previousSibling);
 	});
-	$("#requistions_range_to_9").attr("placeholder", "По").each(function () {
+
+	$("#requistions_range_to_3").attr("placeholder", "По").each(function () {
 		this.previousSibling.parentNode.removeChild(this.previousSibling);
 	});
-	$("#requistions_range_to_11").attr("placeholder", "По").each(function () {
+	$("#requistions_range_to_10").attr("placeholder", "По").each(function () {
+		this.previousSibling.parentNode.removeChild(this.previousSibling);
+	});
+	$("#requistions_range_to_13").attr("placeholder", "По").each(function () {
+		this.previousSibling.parentNode.removeChild(this.previousSibling);
+	});
+	$("#requistions_range_to_14").attr("placeholder", "По").each(function () {
 		this.previousSibling.parentNode.removeChild(this.previousSibling);
 	});
 
