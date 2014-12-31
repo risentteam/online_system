@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
 	def req
 		@user = User.find(params[:id])
+		@all_pairs = @user.pairs
 	end
 
 	def reqclient

@@ -27,7 +27,7 @@ class RequistionsController < ApplicationController
 	def close
 		@requistion = Requistion.find(params[:id]) 
 		if @requistion.update_attributes(
-			status: "comleted", time_comleted: Time.zone.now.to_s)
+			status: "completed", time_completed: Time.zone.now.to_s)
 			flash[:success] = "Заявка завершена"
 			redirect_to @requistion
 		end
@@ -81,9 +81,9 @@ class RequistionsController < ApplicationController
 			when "done"
 				@requistion.update_attributes(
 					time_done: Time.zone.now.to_s)
-			when "comleted"
+			when "completed"
 				@requistion.update_attributes(
-					time_comleted: Time.zone.now.to_s)
+					time_completed: Time.zone.now.to_s)
 			end
 		flash[:success] = "Статус изменен"
 		redirect_to requistion_path(@requistion)		
@@ -96,7 +96,7 @@ class RequistionsController < ApplicationController
 						  :adopted => @requistion.time_adopted_in_work,
 						  :running => @requistion.time_running,
 						  :done => @requistion.time_done,
-						  :completed => @requistion.time_comleted,
+						  :completed => @requistion.time_completed,
 						  :deadline => @requistion.time_deadline}
 	end
 
@@ -141,7 +141,7 @@ class RequistionsController < ApplicationController
 
 	def edit
 		@requistion = Requistion.find(params[:id])
-#		if @requistion.status=="comleted"
+#		if @requistion.status=="completed"
 #			redirect_to @requistion
 #		end
 		@list_worker = User.worker

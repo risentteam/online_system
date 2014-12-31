@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141221181631) do
+ActiveRecord::Schema.define(version: 20141231102638) do
 
   create_table "arrivals", force: true do |t|
     t.integer  "user_id",      null: false
@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 20141221181631) do
     t.datetime "time_adopted_in_work"
     t.datetime "time_running"
     t.datetime "time_done"
-    t.datetime "time_comleted"
+    t.datetime "time_completed"
     t.datetime "time_deadline"
   end
 
