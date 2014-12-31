@@ -115,82 +115,52 @@
           <h4 class="modal-title" id="myModalLabel">Изменения</h4>
         </div>
         <div class="modal-body">
-            <%#= text_tag(show_changes_requistion_path(@requistion), :html => {:class => "form-vertical"}) do |f| %>
-              <div class="form-group">
-			<div class="row">
+            <div class="form-inline">
 				<div class="form-group">
-				<label class=" col-sm-4">Новая</label>
-					<div class="col-sm-4">
-						<input id='show_time_change_created' class="form-control" type="text" readonly></input>
-					</div>
-					<div class="col-sm-4">
-						<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
-					</div>
+					<label>Новая</label>
+					<input id='show_time_change_created' class="form-control" type="text" readonly></input>
+					<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
+		
 				</div>
 
 				<div class="form-group">
-				<label class=" col-sm-4">Назначена</label>
-					<div class="col-sm-4">
-						<input id='show_time_change_assigned' class="form-control" type="text" readonly></input>
-					</div>
-					<div class="col-sm-4">
-						<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
-					</div>
+					<label>Назначена</label>
+					<input id='show_time_change_assigned' class="form-control" type="text" readonly></input>
+					<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
 				</div>
 
 				<div class="form-group">
-				<label class=" col-xs-3">Принята</label>
-					<div class="col-xs-5">
-						<input id='show_time_change_adopted' class="form-control" type="text" readonly></input>
-					</div>
-					<div class="col-xs-4">
-						<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
-					</div>
+				<label>Принята</label>
+					<input id='show_time_change_adopted' class="form-control" type="text" readonly></input>
+					<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
 				</div>
 
 				<div class="form-group">
-				<label class=" col-xs-3">Выполняется</label>
-					<div class="col-xs-5">
-						<input id='show_time_change_running' class="form-control" type="text" readonly></input>
-					</div>
-					<div class="col-xs-4">
-						<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
-					</div>
+				<label>Выполняется</label>
+					<input id='show_time_change_running' class="form-control" type="text" readonly></input>
+					<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
 				</div>
 
 				<div class="form-group">
-				<label class=" col-xs-3">Исполнено</label>
-					<div class="col-xs-5">
-						<input id='show_time_change_done' class="form-control" type="text" readonly></input>
-					</div>
-					<div class="col-xs-4">
-						<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
-					</div>
+					<label>Исполнено</label>
+					<input id='show_time_change_done' class="form-control" type="text" readonly></input>
+					<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
 				</div>
 
 				<div class="form-group">
-				<label class=" col-xs-3">Выполнено</label>
-					<div class="col-xs-5">
-						<input id='show_time_change_completed' class="form-control" type="text" readonly></input>
-					</div>
-					<div class="col-xs-4">
-						<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
-					</div>
+				<label>Выполнено</label>
+					<input id='show_time_change_completed' class="form-control" type="text" readonly></input>
+					<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
 				</div>
 
 				<div class="form-group">
-				<label class=" col-xs-3">Дедлайн</label>
-					<div class="col-xs-5">
-						<input id='show_time_change_deadline' class="form-control" type="text" readonly></input>
-					</div>
-				<div class="col-xs-4">
-						<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
-					</div>
+				<label>Дедлайн</label>
+					<input id='show_time_change_deadline' class="form-control" type="text" readonly></input>
+					<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
 				</div>
 
 			</div>
 
-        <%# end %>
         </div>
         <div class="modal-footer">
         </div>
