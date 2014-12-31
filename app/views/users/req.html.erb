@@ -2,55 +2,108 @@
 
 <div class="container">
 <div class="row">
-<div class = "col-xs-2">
-				</div>
-				<div class = "col-xs-8">
-					<h3>Ваши заявки (<%= @user.pairs.count %>)</h3>
+	<div class = "col-xs-1">
+	</div>
+	<div class = "col-xs-10">
+		<h3>Вce ваши заявки (<%= @all_pairs.count %>)</h3>
+		<h4>Незавершенные заявки</h4>
+		<table id="requistion_for_workers" class="table">
+			<thead>
+			<tr>
+				<th><%= "Объект" %></th>
+				<th><%= "Адрес вызова" %></th>
+				<th><%= "Тип вызова" %></th>
+				<th><%= 'Контакты' %></th>						
+				<th><%= "Статус" %></th>
+				<th><%= "Время подачи заявки" %></th>
+				<th><%= "Планируемое время окончания" %></th>
+				<th><%= "Действия" %> </th>
+			</tr>
+			</thead>
+			<tbody>
+				<% for pair in @all_pairs %>
+				<% @requistion = pair.requistion %>
+				<% if @requistion.status != "completed"	%>
+				
+				<tr>
+					 <td><%= link_to @requistion.object,  {:controller => :requistions, :action => :show, :id => @requistion.id}, {:method => :get} %></td>
+					 <td><%= link_to Building.find(@requistion.building_id).arrival_address,  {:controller => :buildings, :action => :show, :id => @requistion.building_id}, {:method => :get} %></td>
+					 <td> <%= transcript_of_the_messages(@requistion.type_requistion)+' '+transcript_of_the_messages(@requistion.subtype_requistions) %> </td>
+					 <td><%= @requistion.contact_phone+' '+@requistion.contact_name %></td>
+					 <td> <%= status_names[@requistion.status.to_sym] %> </td>
+					 <td> <%= @requistion.created_at.strftime("%d.%m.%Y %H:%M") %> </td>
+					 <td> <%= @requistion.time_deadline.strftime("%d.%m.%Y") %> </td>
+					 <td> <%= link_to "Принять в работу",  {:controller => :requistions, :action => :to_take_in_work, :id => @requistion.id}, {:method => :get, :class=>"btn"} %>
+					 	<%= link_to "Завершить",  {:controller => :requistions, :action => :done, :id => @requistion.id}, {:method => :get, :class=>"btn", data: { confirm: "Завершить заявку?" }} %>
+					 	<%= link_to "Отменить",  {:controller => :requistions, :action => :cancel, :id => @requistion.id}, {:method => :get, :class=>"btn", data: { confirm: "Отменить заявку?" }} %>
 
-					<table id="requistion_for_workers" class="table">
-						<thead>
-						<tr>
-							<th><%= "Объект" %></th>
-							<th><%= "Адрес вызова" %></th>
-							<th><%= "Тип вызова" %></th>
-							<th><%= 'Контакты' %></th>						
-							<th><%= "Статус" %></th>
-							<th><%= "Время подачи заявки" %></th>
-							<th><%= "Планируемое время окончания" %></th>
-							<th><%= "Действия" %> </th>
-						</tr>
-						</thead>
-						<tbody>
-							<% for pair in @user.pairs %>
-							<% @requistion = pair.requistion %>
-							<tr>
-								 <td><%= link_to @requistion.object,  {:controller => :requistions, :action => :show, :id => @requistion.id}, {:method => :get} %></td>
-								 <td><%= link_to Building.find(@requistion.building_id).arrival_address,  {:controller => :buildings, :action => :show, :id => @requistion.building_id}, {:method => :get} %></td>
-								 <td> <%= transcript_of_the_messages(@requistion.type_requistion)+' '+transcript_of_the_messages(@requistion.subtype_requistions) %> </td>
-								 <td><%= @requistion.contact_phone+' '+@requistion.contact_name %></td>
-								 <td> <%= status_names[@requistion.status.to_sym] %> </td>
-								 <td> <%= @requistion.created_at.strftime("%d.%m.%Y %H:%M") %> </td>
-								 <td> <%= @requistion.time_deadline.strftime("%d.%m.%Y") %> </td>
-								 <td> <%= link_to "Принять в работу",  {:controller => :requistions, :action => :to_take_in_work, :id => @requistion.id}, {:method => :get, :class=>"btn"} %>
-								 	<%= link_to "Завершить",  {:controller => :requistions, :action => :done, :id => @requistion.id}, {:method => :get, :class=>"btn", data: { confirm: "Завершить заявку?" }} %>
-								 	<%= link_to "Отменить",  {:controller => :requistions, :action => :cancel, :id => @requistion.id}, {:method => :get, :class=>"btn", data: { confirm: "Отменить заявку?" }} %>
+					 </td>
+				</tr>
+			<% end %>
+			<% end %>
+			</tbody>
+			<tfoot>
+				<tr>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th>Статус</th>
+					<th></th>
+					<th></th>
+					<th></th>
+				</tr>
+			</tfoot>
+		</table>
+				<h4>Завершенные заявки</h4>
+		<table id="old_requistion_for_workers" class="table">
+			<thead>
+			<tr>
+				<th><%= "Объект" %></th>
+				<th><%= "Адрес вызова" %></th>
+				<th><%= "Тип вызова" %></th>
+				<th><%= 'Контакты' %></th>						
+				<th><%= "Статус" %></th>
+				<th><%= "Время подачи заявки" %></th>
+				<th><%= "Планируемое время окончания" %></th>
+				<th><%= "Действия" %> </th>
+			</tr>
+			</thead>
+			<tbody>
+				<% for pair in @all_pairs %>
+				<% @requistion = pair.requistion %>
+				<% if @requistion.status == "completed"	%>
+				<tr>
+					 <td><%= link_to @requistion.object,  {:controller => :requistions, :action => :show, :id => @requistion.id}, {:method => :get} %></td>
+					 <td><%= link_to Building.find(@requistion.building_id).arrival_address,  {:controller => :buildings, :action => :show, :id => @requistion.building_id}, {:method => :get} %></td>
+					 <td> <%= transcript_of_the_messages(@requistion.type_requistion)+' '+transcript_of_the_messages(@requistion.subtype_requistions) %> </td>
+					 <td><%= @requistion.contact_phone+' '+@requistion.contact_name %></td>
+					 <td> <%= status_names[@requistion.status.to_sym] %> </td>
+					 <td> <%= @requistion.created_at.strftime("%d.%m.%Y %H:%M") %> </td>
+					 <td> <%= @requistion.time_deadline.strftime("%d.%m.%Y") %> </td>
+					 <td> <%= link_to "Принять в работу",  {:controller => :requistions, :action => :to_take_in_work, :id => @requistion.id}, {:method => :get, :class=>"btn"} %>
+					 	<%= link_to "Завершить",  {:controller => :requistions, :action => :done, :id => @requistion.id}, {:method => :get, :class=>"btn", data: { confirm: "Завершить заявку?" }} %>
+					 	<%= link_to "Отменить",  {:controller => :requistions, :action => :cancel, :id => @requistion.id}, {:method => :get, :class=>"btn", data: { confirm: "Отменить заявку?" }} %>
 
-								 </td>
-							</tr>
-						<% end %>
-						</tbody>
-						<tfoot>
-							<tr>
-								<th></th>
-								<th></th>
-								<th></th>
-								<th>Статус</th>
-								<th></th>
-								<th></th>
-								<th></th>
-							</tr>
-						</tfoot>
-					</table>
-				</div>
-			</div>
-		</div>
+					 </td>
+				</tr>
+			<% end %>
+			<% end %>
+			</tbody>
+			<tfoot>
+				<tr>
+					<th></th>
+					<th></th>
+					<th></th>
+					<th>Статус</th>
+					<th></th>
+					<th></th>
+					<th></th>
+				</tr>
+			</tfoot>
+		</table>
+		
+	</div>
+	<div class = "col-xs-1">
+	</div>
+	</div>
+</div>

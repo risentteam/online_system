@@ -439,7 +439,7 @@ function reply_click(clicked_id)
 					$('#show_time_change_adopted').val(data.adopted);
 					$('#show_time_change_running').val(data.running);
 					$('#show_time_change_done').val(data.done);
-					$('#show_time_change_comleted').val(data.completed);
+					$('#show_time_change_completed').val(data.completed);
 					$('#show_time_change_deadline').val(data.deadline);
 				}
 			});

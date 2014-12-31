@@ -49,7 +49,7 @@
     <th>Статус</th>
     <td><%= status_names[@requistion.status.to_sym] %></td>
   </tr>
-  <% if @requistion.status == 'comleted' %>
+  <% if @requistion.status == 'completed' %>
   <tr>
     <th>Оценка</th>
     <td><%= @requistion.raiting %></td>
@@ -61,7 +61,7 @@
 
 
 <% if current_user.admin? %>
-  <%# if @requistion.status != "comleted" %>
+  <%# if @requistion.status != "completed" %>
   <div class="row">
 
 </div>
@@ -87,8 +87,8 @@
         <div class="modal-body">
             <%= form_tag(change_status_path(@requistion), :html => {:class => "form-vertical"}) do |f| %>
               <div class="form-group">
-            <!-- "[['Новая', 'fresh'], ['Назначена', 'assigned'], ['Принята в работу', 'adopted_in_work'], ['Выполняется', 'running'], ['Исполнено', 'done'], ['Завершено', 'comleted']] -->
-      <%= select_tag :status, "<option value = fresh>Новая</option><option value=assigned>Назначена</option><option value = adopted_in_work >Принята в работу</option><option value = running>Выполняется</option><option value=done>Исполнено</option><option value = comleted >Завершена</option><option value = canceled >Отменена</option>", :prompt => "Выберите из списка", :class =>  "form-control", required: "" %>          </div>
+            <!-- "[['Новая', 'fresh'], ['Назначена', 'assigned'], ['Принята в работу', 'adopted_in_work'], ['Выполняется', 'running'], ['Исполнено', 'done'], ['Завершено', 'completed']] -->
+      <%= select_tag :status, "<option value = fresh>Новая</option><option value=assigned>Назначена</option><option value = adopted_in_work >Принята в работу</option><option value = running>Выполняется</option><option value=done>Исполнено</option><option value = completed >Завершена</option><option value = canceled >Отменена</option>", :prompt => "Выберите из списка", :class =>  "form-control", required: "" %>          </div>
           <button type="submit" class="btn btn-success">Изменить</button>
         <% end %>
         </div>
@@ -101,7 +101,7 @@
 
 <%= link_to "Назад к заявкам", {controller: "users", action: "reqclient", id: current_user.id}, class: "btn" if current_user.client? %>
 <%= link_to "Назад к заявкам", {controller: "users", action: "req", id: current_user.id}, class: "btn" if current_user.worker? %>
-<% if current_user.client? and @requistion.status == 'comleted'%>
+<% if current_user.client? and @requistion.status == 'completed'%>
 <button class="btn btn-danger mark" data-toggle="modal" data-target="#myModal" >Оценить</button>
 
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
