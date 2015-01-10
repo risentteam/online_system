@@ -441,6 +441,10 @@ function reply_click(clicked_id)
 					$('#show_time_change_done').text(data.time.done);
 					$('#show_time_change_completed').text(data.time.completed);
 					$('#show_time_change_deadline').text(data.time.deadline);
+					$('#show_time_change_canceled').text(data.time.canceled);
+
+					$('#show_who_cancel').text("");
+					$('#show_who_cancel').append(data.user.canceled);
 				}
 			});
 }

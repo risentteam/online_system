@@ -49,9 +49,8 @@ class RequistionsController < ApplicationController
 	end
 
 	def canceldone
-		@requistion = Requistion.find(params[:id])
-		@requistion.requistion_comment = @requistion.requistion_comment + "\nПричина отмены: " + params[:subject] if (not params[:subject].nil?)
-		@requistion.update_attribute(:status, 'canceled')
+		r = Requistion.find(params[:id])
+		r.cancel(current_user.id, params[:subject])
 	end
 	
 
@@ -90,13 +89,17 @@ class RequistionsController < ApplicationController
 	end
 
 	def view_change_time
-		r = Requistion.find(params[:id])
+		
 		def tostr(time)
 			if time
 				Russian::strftime(time, " %e %B %Y %H:%M")
 			else
 				""
 			end
+		end
+		r = Requistion.find(params[:id])
+		if r.who_cancel
+			link = "<a href='#{user_path(r.who_cancel)}'>Кто отменил</a>"
 		end
 		render :json => {
 			time:{ 
@@ -106,10 +109,11 @@ class RequistionsController < ApplicationController
 				:running   => tostr(r.time_running),
 				:done      => tostr(r.time_done),
 				:completed => tostr(r.time_completed),
-				:deadline  => tostr(r.time_deadline)
+				:deadline  => tostr(r.time_deadline),
+				:canceled  => tostr(r.time_canceled)
 			},
 			user:{
-				
+				:canceled  => link
 			}
 		}
 	end
