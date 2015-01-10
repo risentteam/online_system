@@ -90,14 +90,23 @@ class RequistionsController < ApplicationController
 	end
 
 	def view_change_time
-		@requistion = Requistion.find(params[:id])
-		render :json => { :created => @requistion.created_at,
-						  :assigned => @requistion.time_assgned,
-						  :adopted => @requistion.time_adopted_in_work,
-						  :running => @requistion.time_running,
-						  :done => @requistion.time_done,
-						  :completed => @requistion.time_completed,
-						  :deadline => @requistion.time_deadline}
+		r = Requistion.find(params[:id])
+		def tostr(time)
+			if time
+				Russian::strftime(time, " %e %B %Y %H:%M")
+			else
+				""
+			end
+		end
+		render :json => { 
+			:created   => tostr(r.created_at),
+			:assigned  => tostr(r.time_assgned),
+			:adopted   => tostr(r.time_adopted_in_work),
+			:running   => tostr(r.time_running),
+			:done      => tostr(r.time_done),
+			:completed => tostr(r.time_completed),
+			:deadline  => tostr(r.time_deadline)
+		}
 	end
 
 	def create
