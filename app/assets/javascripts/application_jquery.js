@@ -434,13 +434,13 @@ function reply_click(clicked_id)
 				dataType: 'json',
 				data: "id=" + clicked_id,
 				success: function (data, status) {
-					$('#show_time_change_created').val(data.created);
-					$('#show_time_change_assigned').val(data.assigned);
-					$('#show_time_change_adopted').val(data.adopted);
-					$('#show_time_change_running').val(data.running);
-					$('#show_time_change_done').val(data.done);
-					$('#show_time_change_completed').val(data.completed);
-					$('#show_time_change_deadline').val(data.deadline);
+					$('#show_time_change_created').text(data.time.created);
+					$('#show_time_change_assigned').text(data.time.assigned);
+					$('#show_time_change_adopted').text(data.time.adopted);
+					$('#show_time_change_running').text(data.time.running);
+					$('#show_time_change_done').text(data.time.done);
+					$('#show_time_change_completed').text(data.time.completed);
+					$('#show_time_change_deadline').text(data.time.deadline);
 				}
 			});
 }

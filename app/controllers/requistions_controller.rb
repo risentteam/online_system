@@ -98,14 +98,19 @@ class RequistionsController < ApplicationController
 				""
 			end
 		end
-		render :json => { 
-			:created   => tostr(r.created_at),
-			:assigned  => tostr(r.time_assgned),
-			:adopted   => tostr(r.time_adopted_in_work),
-			:running   => tostr(r.time_running),
-			:done      => tostr(r.time_done),
-			:completed => tostr(r.time_completed),
-			:deadline  => tostr(r.time_deadline)
+		render :json => {
+			time:{ 
+				:created   => tostr(r.created_at),
+				:assigned  => tostr(r.time_assgned),
+				:adopted   => tostr(r.time_adopted_in_work),
+				:running   => tostr(r.time_running),
+				:done      => tostr(r.time_done),
+				:completed => tostr(r.time_completed),
+				:deadline  => tostr(r.time_deadline)
+			},
+			user:{
+				
+			}
 		}
 	end
 

@@ -114,51 +114,43 @@
           <h4 class="modal-title" id="myModalLabel">Изменения</h4>
         </div>
         <div class="modal-body">
-            <div class="form-inline">
-				<div class="form-group">
-					<label>Новая</label>
-					<input id='show_time_change_created' class="form-control" type="text" readonly></input>
-					<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
-		
-				</div>
-
-				<div class="form-group">
-					<label>Назначена</label>
-					<input id='show_time_change_assigned' class="form-control" type="text" readonly></input>
-					<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
-				</div>
-
-				<div class="form-group">
-				<label>Принята</label>
-					<input id='show_time_change_adopted' class="form-control" type="text" readonly></input>
-					<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
-				</div>
-
-				<div class="form-group">
-				<label>Выполняется</label>
-					<input id='show_time_change_running' class="form-control" type="text" readonly></input>
-					<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
-				</div>
-
-				<div class="form-group">
-					<label>Исполнено</label>
-					<input id='show_time_change_done' class="form-control" type="text" readonly></input>
-					<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
-				</div>
-
-				<div class="form-group">
-				<label>Выполнено</label>
-					<input id='show_time_change_completed' class="form-control" type="text" readonly></input>
-					<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
-				</div>
-
-				<div class="form-group">
-				<label>Дедлайн</label>
-					<input id='show_time_change_deadline' class="form-control" type="text" readonly></input>
-					<input id='show_time_change_who_created' class="form-control" placeholder = 'admin' type="text" readonly></input>
-				</div>
-
-			</div>
+        	<table class="table table-bordered">
+    			<tr>
+    				<th>Новая</th>
+    				<td id='show_time_change_created'></td>
+    				<td>Клиент</td>
+    			</tr>
+    			<tr>
+    				<th>Назначена</th>
+    				<td id='show_time_change_assigned'></td>
+    				<td>Администратор</td>
+    			</tr>
+    			<tr>
+    				<th>Принята</th>
+    				<td id='show_time_change_adopted'></td>
+    				<td>Рабочий</td>
+    			</tr>
+    			<tr>
+    				<th>Выполняется</th>
+    				<td id='show_time_change_running'></td>
+    				<td>Рабочий</td>
+    			</tr>
+    			<tr>
+    				<th>Исполнено</th>
+    				<td id='show_time_change_done'></td>
+    				<td>Рабочий</td>
+    			</tr>
+    			<tr>
+    				<th>Выполнено</th>
+    				<td id='show_time_change_completed'></td>
+    				<td>Рабочий</td>
+    			</tr>
+    			<tr>
+    				<th>Дедлайн</th>
+    				<td id='show_time_change_deadline'></td>
+    				<td>Администратор</td>
+    			</tr>
+        	</table>
 
         </div>
         <div class="modal-footer">
