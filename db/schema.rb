@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141231102638) do
+ActiveRecord::Schema.define(version: 20150110171015) do
 
   create_table "arrivals", force: true do |t|
     t.integer  "user_id",      null: false
@@ -95,6 +95,8 @@ ActiveRecord::Schema.define(version: 20141231102638) do
     t.datetime "time_done"
     t.datetime "time_completed"
     t.datetime "time_deadline"
+    t.datetime "time_canceled"
+    t.integer  "who_cancel"
   end
 
   create_table "users", force: true do |t|

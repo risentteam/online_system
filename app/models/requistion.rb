@@ -14,4 +14,15 @@ class Requistion < ActiveRecord::Base
   belongs_to :building
   belongs_to :contract
   accepts_nested_attributes_for :pairs
+
+  def cancel(user_id, comment = nil)
+    self.time_canceled = Time::now
+    self.who_cancel = user_id
+    self.status = :canceled
+    if comment
+      self.requistion_comment = self.requistion_comment + " Причина отмены: " + comment 
+    end
+    self.save
+  end
+
 end
