@@ -26,6 +26,7 @@
 //= require dataTables.editable
 //= require datetime-moment
 //= require moment
+//= require date-de
 
 
 //= require dataTables/extras/dataTables.tableTools

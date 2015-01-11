@@ -103,6 +103,10 @@ $(document).ready(function() {
 	var table = $('#requistions').dataTable({
 		
 		tableClass: "table-bordered",
+		columnDefs: [
+                { "type": "de_datetime", targets: 3 },
+                { "type": "de_datetime", targets: 10 }            	
+            ],
 //новая часть часть отвечяющая за сохранение настроек таблицы
 		stateSave: true,
 		//"dom": '<"container"lCfrtip> <"container"T>',
@@ -191,7 +195,11 @@ $(document).ready(function(){
 			// "bLengthChange": false,
 			// "bPaginate": false,
 			// "bInfo": false,
-			dom: domValue,
+			columnDefs: [
+                { "type": "de_datetime", targets: 5 },            	
+                { "type": "de_datetime", targets: 6 }             	
+            ], 
+//			dom: domValue,
 			"colVis": {
 			  "buttonText": "Показать/скрыть столбцы"
 			},
@@ -232,6 +240,59 @@ $(document).ready(function(){
 	});
 });
 
+//#########################################################################################
+//Таблица выполненных заявок у рабочего
+//#########################################################################################
+$(document).ready(function(){
+	 var table = $('#old_requistion_for_workers').dataTable({
+			tableClass: "table-bordered",
+			// "bLengthChange": false,
+			// "bPaginate": false,
+			// "bInfo": false,
+			columnDefs: [
+                { "type": "de_datetime", targets: 5 }          	
+            ], 
+//			dom: domValue,
+			"colVis": {
+			  "buttonText": "Показать/скрыть столбцы"
+			},
+			"createdRow": function ( row, data, index ) {
+				if ( data[4]=="назначена" ) {
+					$('td', row).addClass('danger');
+				};
+				if ( data[4]=="завершено" ) {
+					$('td', row).addClass('success');
+				};
+				if ( data[4]=="отменена" ) {
+					$('td', row).addClass('info');
+				};
+				if ( data[4]=="принята в работу" ) {
+					$('td', row).addClass('warning');
+				};
+				if ( data[4]=="выполняется" ) {
+					$('td', row).addClass('warning');
+				};
+				if ( data[4]=="исполнена" ) {
+					$('td', row).addClass('warning');
+				
+				};
+			},
+			"language": languageRU,
+			"tableTools": exportTools,
+	 });
+	 table.columnFilter({
+		aoColumns: [    
+			{ type: "null" },
+			{ type: "null" },
+			{ type: "null" },
+			{ type: "null" },			
+			{ type: "select"},
+			{ type: "null"},
+		]
+	});
+});
+
+
 
 //#########################################################################################
 //Таблица заявок у клиента
@@ -244,8 +305,9 @@ $(document).ready(function(){
 //			"bPaginate": false,
 			"bInfo": false,
 //			dom : domValue,
-//			Вот эта штука отвеает за нормалтную сортировку времени надо прикрутить			
-//			$.fn.dataTable.moment( 'DD.MM.YYYY HH:mm' );
+			columnDefs: [
+                { "type": "de_datetime", targets: 6 }            	
+            ], 
 
 			"order": [[ 6, "desc" ]],
 			"createdRow": function ( row, data, index ) {
@@ -285,13 +347,32 @@ $(document).ready(function(){
 	});
 });
 
+//#########################################################################################
+//Таблица контрактов
+//#########################################################################################
+$(document).ready(function(){
+	 $('#clients').dataTable({
+			tableClass: "table-bordered",
+			stateSave: true,
+			dom: domValue,
+			"colVis": {
+			  "buttonText": "Показать/скрыть столбцы"
+			}, 
+			"tableTools": exportTools, 		
+			"language": languageRU	
+	 });
+});
 
 //#########################################################################################
 //Таблица контрактов
 //#########################################################################################
 $(document).ready(function(){
 	 $('#contracts').dataTable({
-			tableClass: "table-bordered",  
+			tableClass: "table-bordered",
+			columnDefs: [
+                { "type": "de_date", targets: 5 },
+                { "type": "de_date", targets: 6 }            	
+            ],  
 			stateSave: true,
 			dom: domValue,
 			"colVis": {
@@ -307,7 +388,11 @@ $(document).ready(function(){
 //#########################################################################################
 $(document).ready(function(){
 	 $('#contracts_clinet').dataTable({
-			tableClass: "table-bordered",  
+			tableClass: "table-bordered", 
+			columnDefs: [
+                { "type": "de_date", targets: 4 },
+                { "type": "de_date", targets: 5 }            	
+            ],  
 			stateSave: true,
 			"language": languageRU	
 	 });
