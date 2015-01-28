@@ -9,13 +9,37 @@ def self.import(file)
 #  spreadsheet = Roo::Spreadsheet.open(file, extension: :xls)
   if not file.nil?
     spreadsheet = open_spreadsheet(file)
-    spreadsheet.default_sheet = spreadsheet.sheets[1]
+    spreadsheet.default_sheet = spreadsheet.sheets[0]
     header = spreadsheet.row(1)
-    (2..spreadsheet.last_row).each do |i|
+    (10..spreadsheet.last_row).each do |i|
       row = spreadsheet.row(i)
-      if not row[0].nil? and Contract.where("name_contract = ? ", row[0]).empty?
-      	contract = Contract.create(name_contract: row[0], company: row[2], date_of_signing: row[6], description: row[7], begin_time: row[8], end_time: row[9], comment: row[10])
-        adress = row[3].split(';')
+      if not row[1].nil? and row[1]!='ИТОГО' and Contract.where("name_contract = ? ", row[1]).empty?
+      	if not row[2].nil?
+          company = row[2]
+        else
+          company = row[3]
+        end
+        if row[7]=='с января'
+          btime='01.01.2015'
+        else
+          btime=row[7]
+        end
+        etime= case row[10]
+          when 12 then '31.12.2015'
+          when 11 then '30.11.2015'
+          when 10 then '31.10.2015'
+          when 9 then '30.9.2015'
+          when 8 then '31.8.2015'
+          when 7 then '31.7.2015'
+          when 6 then '30.6.2015'
+          when 5 then '31.5.2015'
+          when 4 then '30.4.2015'
+          when 3 then '31.3.2015'
+          when 2 then '28.2.2015'
+          when 1 then '31.1.2015'
+        end
+        contract = Contract.create(name_contract: row[1], company: company, date_of_signing: row[8], description: row[9], begin_time: btime, end_time: etime, comment: row[12])
+        adress = row[4].split(';')
       	adress.each do |address|
       		  address.gsub!(/ +/, ' ')
             if address[0]==' '
@@ -26,7 +50,7 @@ def self.import(file)
             end
           if Building.where("arrival_address = ? ", address).empty?
       			building = Building.create(arrival_address: address)
-      		else
+      		else  
       			building = Building.where("arrival_address = ? ", address).first
       		end
       		if Buildingscontract.where("building_id = ? and contract_id = ?", building.id, contract.id).empty?
@@ -34,7 +58,7 @@ def self.import(file)
           end
       	end
      end
-     if not Contract.where("name_contract = ?", row[0]).empty?
+    if not row[1].nil? and row[1]!='ИТОГО' and not Contract.where("name_contract = ?", row[0]).empty?
         contract = Contract.where("name_contract = ? ", row[0]).first
         contract.update_attributes(name_contract: row[0], company: row[2], date_of_signing: row[6], description: row[7], begin_time: row[8], end_time: row[9], comment: row[10])
         adress = row[3].split(';')
