@@ -23,6 +23,13 @@
     display: none;
 }
 
+.navbar a:hover{
+  color: red;
+  text-decoration: none;
+}
+a:hover > span:hover{
+  text-decoration: none;
+}
 
 .disabled {
     pointer-events: none; /* делаем ссылку некликабельной */
