@@ -23,8 +23,8 @@
 	    	<td id = "building"> <% contract.buildings.each do |building| %> <li><%= link_to building.arrival_address, {:controller => :buildings, :action => :show, :id => building.id}, {:method => :get}%> </li><% end %> </td>
 	    	<td id = "description"> <%= contract.description %></td>
 	    	<td id = "comment"> <%= contract.comment %></td>
-	    	<td id = "begin_time"> <%= contract.begin_time.strftime("%d.%m.%Y") %></td>
-	    	<td id = "end_time"> <%= contract.end_time.strftime("%d.%m.%Y") %></td>
+	    	<td id = "begin_time"> <%= contract.begin_time.strftime("%d.%m.%Y") if not contract.begin_time.nil? %></td>
+	    	<td id = "end_time"> <%= contract.end_time.strftime("%d.%m.%Y") if not contract.end_time.nil? %></td>
 			<td><%= link_to edit_contract_path(contract) do%>
 	    		<span class="glyphicon glyphicon-pencil " ></span>
 	    		<% end %>
