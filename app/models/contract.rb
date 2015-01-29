@@ -99,7 +99,7 @@ def self.import(file)
           else
             building = Building.where("arrival_address = ? ", address).first
           end
-          if Buildingscontract.where("building_  id = ? and contract_id = ?", building.id, contract.id).empty?
+          if Buildingscontract.where("building_id = ? and contract_id = ?", building.id, contract.id).empty?
             Buildingscontract.create(building_id: building.id, contract_id: contract.id)
           end
           end
