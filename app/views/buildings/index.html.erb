@@ -24,7 +24,7 @@
 						<td><%= link_to b.arrival_address,  {:action => :show, :id => b.id}, {:method => :get} %></td>
 						<td><%= b.contact_name %></td>
 						<td><%= b.contact_phone %></td>						
-						<td><% b.contracts.each do |contract| %> <%=contract.description + "\n"%> <% end %> </td>
+						<td><% b.contracts.each do |contract| %> <%=contract.description%> <% end %> </td>
 						<td><%= link_to 'Заявки', {:controller => :requistions, :action => :index, :position =>2, :value => b.id}, {:method => :get} %></td>
 					</tr>
 				<% end %>

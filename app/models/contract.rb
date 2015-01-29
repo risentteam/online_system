@@ -13,7 +13,7 @@ def self.import(file)
     header = spreadsheet.row(1)
     (10..spreadsheet.last_row).each do |i|
       row = spreadsheet.row(i)
-      if not row[1].nil? and row[1]!='ИТОГО' and Contract.where("name_contract = ? ", row[1]).empty?
+      if not row[1].nil? and row[1]!='ИТОГО' and Contract.where("name_contract = ? ", row[1].to_s).empty?
       	if not row[2].nil?
           company = row[2]
         else
@@ -58,7 +58,7 @@ def self.import(file)
           end
       	end
      end
-    if not row[1].nil? and row[1]!='ИТОГО' and not Contract.where("name_contract = ?", row[1]).empty?
+    if not row[1].nil? and row[1]!='ИТОГО' and not Contract.where("name_contract = ?", row[1].to_s).empty?
         contract = Contract.where("name_contract = ? ", row[1]).first
         if not row[2].nil?
           company = row[2]
