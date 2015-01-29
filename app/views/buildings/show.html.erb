@@ -16,11 +16,11 @@
     <% if current_user.admin? %>
     <tr>
       <td>Ссылка для входа</td>
-      <td><%= "/buildings/#{@building.id}/check_in" %></td>
+      <td><%= "onlinesys.herokuapp.com/buildings/#{@building.id}/check_in" %></td>
     </tr>
     <tr>
       <td>Ссылка для выхода</td>
-      <td><%= "/buildings/#{@building.id}/check_out" %></td>
+      <td><%= "onlinesys.herokuapp.com/buildings/#{@building.id}/check_out" %></td>
     </tr>
     <% end %>
   </table>
