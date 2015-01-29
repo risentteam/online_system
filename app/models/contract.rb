@@ -38,7 +38,7 @@ def self.import(file)
           when 2 then '28.2.2015'
           when 1 then '31.1.2015'
         end
-        contract = Contract.create(name_contract: row[1], company: company, date_of_signing: row[8], description: row[9], begin_time: btime, end_time: etime, comment: row[12])
+        contract = Contract.create(name_contract: row[1].to_s, company: company, date_of_signing: row[8], description: row[9], begin_time: btime, end_time: etime, comment: row[12])
         adress = row[4].split(';')
       	adress.each do |address|
       		  address.gsub!(/ +/, ' ')
@@ -59,7 +59,7 @@ def self.import(file)
       	end
      end
     if not row[1].nil? and row[1]!='ИТОГО' and not Contract.where("name_contract = ?", row[1].to_s).empty?
-        contract = Contract.where("name_contract = ? ", row[1]).first
+        contract = Contract.where("name_contract = ? ", row[1].to_s).first
         if not row[2].nil?
           company = row[2]
         else
@@ -84,7 +84,7 @@ def self.import(file)
           when 2 then '28.2.2015'
           when 1 then '31.1.2015'
         end
-        contract.update_attributes(name_contract: row[1], company: company, date_of_signing: row[8], description: row[9], begin_time: btime, end_time: etime, comment: row[12])
+        contract.update_attributes(name_contract: row[1].to_s, company: company, date_of_signing: row[8], description: row[9], begin_time: btime, end_time: etime, comment: row[12])
         adress = row[4].split(';')
         adress.each do |address|
           address.gsub!(/ +/, ' ')
