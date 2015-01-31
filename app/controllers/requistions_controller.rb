@@ -1,7 +1,7 @@
 class RequistionsController < ApplicationController
 	before_action :signed_in_user, except: [:count, :count_all]
 	before_action :admin_user, only: [:index, :edit, :update]
-	before_action :client_user, only: [:new, :create, :mark]
+	before_action :client_user, only: [ :mark]
 		
 	def count
 		render text: Requistion.fresh.count.to_s
