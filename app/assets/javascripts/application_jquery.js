@@ -170,8 +170,17 @@ $(document).ready(function(){
 	var value = $.getUrlVars()['value'];
 	if (pos == '11')
 	{
-		$("select[rel="+pos+"]").find("option:contains('завершено')").attr("selected", "selected");
-		$("select[rel="+pos+"]").trigger('change');
+
+		if (value=='%D0%97%D0%B0%D0%B2%D0%B5%D1%80%D1%88%D0%B5%D0%BD%D0%BE')
+		{
+			$("select[rel="+pos+"]").find("option:contains('завершено')").attr("selected", "selected");
+			$("select[rel="+pos+"]").trigger('change');
+		}
+		else
+		{
+			$("select[rel="+pos+"]").find("option:contains('Статус')").attr("selected", "selected");
+			$("select[rel="+pos+"]").trigger('change');	
+		}
 	}
 	else
 	{
