@@ -67,6 +67,9 @@ $(document).ready(function(){
 					<!-- </li> -->
 					<li class = "pull-right" role="presentation"><a href="<%= new_requistions_path %>">Новые заявки <span id="count" class="badge"></span></a></li>
 
+					<li class="pull-left"><a href="/new"><span class="glyphicon glyphicon-envelope">
+					</span>&nbsp Новая заявка</a></li>
+
 				</ul>
 			<% elsif current_user.client? %>
 				<!-- <ul class="nav navbar-nav"> -->

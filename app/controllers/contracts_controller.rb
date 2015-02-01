@@ -8,6 +8,14 @@ class ContractsController < ApplicationController
 		@contracts = Contract.all
 	end
 
+	def delete_building
+		b = Buildingscontract.find_by(building_id: params[:building_id], contract_id: params[:contract_id])
+		if b
+			b.destroy
+		end
+		redirect_to contract_path(params[:contract_id])
+	end
+
 	def show
 		@contract = Contract.find(params[:id])
 	end

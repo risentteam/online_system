@@ -12,6 +12,8 @@ App::Application.routes.draw do
 	match 'users/:id/contract', to: 'users#contract', via: 'get'
 	match 'users/:id/reqclient', to: 'users#reqclient', via: 'get'
  	match 'user/:id/change_password', to: 'users#change_password', via: 'post', as: "change_password"
+ 	match '/admin_new',  to: 'users#admin_new',       via: 'get'
+ 	match '/admin_create',  to: 'users#admin_create',       via: 'post'
 
 	resources :sessions, only: [:new, :create, :destroy]
 	resources :arrivals
@@ -41,9 +43,14 @@ App::Application.routes.draw do
   	match 'requistions/:id/canceldone', to: 'requistions#canceldone', via: 'post', as: "canceldone"
   	match '/view_change_time', to: 'requistions#view_change_time', via: 'get'
 
+	resources :requistions do
+  		get :autocomplete_building_arrival_address, :on => :collection
+	end
+
   	resources :contracts do
   		collection { post :import }
 	end
+	match "/delete_building/:contract_id/:building_id", to: 'contracts#delete_building', via: 'get' 
 	match "/contracts", to: 'contracts#index', via: 'get' 
 	match "/UpdateData", to: 'contracts#update', via: 'post'
 

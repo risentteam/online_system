@@ -1,0 +1,45 @@
+<% provide(:title, 'Добавление администратора') %>
+<div class="container">
+<div class="row">
+	<div class="col-xs-4">
+	</div>
+	<div class="col-xs-4">
+		<h1>Добавление администратора</h1>
+		
+		<%= render 'shared/error_messages' %>
+
+		<%= form_for(@user, :url => "admin_create", :html => {:class => "form-vertical center"}) do |f| %>
+
+		<div class="form-group">
+			<label>Имя</label>
+			<%= f.text_field :name ,  class: "form-control", required: "" %>
+		</div>
+
+		<div class="form-group">
+			<label>Почта</label>
+			<%= f.text_field :email , class: "form-control", required: "" %>
+		</div>
+
+		<div class="form-group">
+			<label>Сотовый телефон</label>
+			<%= f.text_field :phone, class: "form-control", required: "" %>
+		</div>
+
+		<div class="form-group">
+			<label>Пароль</label>
+			<%= f.password_field :password, class: "form-control", required: "", minlength:"6" %>
+		</div>
+
+		<div class="form-group">
+			<label>Подтверждение пароля</label>
+			<%= f.password_field :password_confirmation, class: "form-control", required: "", minlength:"6" %>
+		</div>
+
+		<br>
+			<%= f.submit "Создать нового администратора", class: "btn btn-large btn-primary " %>
+		<br>
+		<% end %>
+	</div>
+	<div class="col-md-4">
+	</div>
+</div>

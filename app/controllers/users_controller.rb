@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 	before_action :signed_in_user , except: [:new, :create, :reset_password]
 	#before_action :correct_user,   only: [:edit, :update]
-	before_action :admin_user,     only: [:index, :workers, :destroy ]
+	before_action :admin_user,     only: [:index, :workers, :destroy, :admin_create, :admin_new ]
 	before_action :worker_user,    only: [:req]
 
 	def index
@@ -87,6 +87,22 @@ class UsersController < ApplicationController
 			flash[:warning] = "Введеные пароли не совпадают"
 		end
 		redirect_to @user
+	end
+
+	def admin_new
+		@user = User.new
+	end
+
+	def admin_create
+		@user = User.new(user_new_params)
+		@user.status = "admin"
+		#not unique id
+		if @user.save
+			flash[:success] = "Вы успешно создали администратора!"
+			redirect_to current_user
+		else
+			render 'admin_new'
+		end
 	end
 
 	private
