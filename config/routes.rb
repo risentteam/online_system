@@ -43,6 +43,10 @@ App::Application.routes.draw do
   	match 'requistions/:id/canceldone', to: 'requistions#canceldone', via: 'post', as: "canceldone"
   	match '/view_change_time', to: 'requistions#view_change_time', via: 'get'
 
+	resources :requistions do
+  		get :autocomplete_building_arrival_address, :on => :collection
+	end
+
   	resources :contracts do
   		collection { post :import }
 	end
