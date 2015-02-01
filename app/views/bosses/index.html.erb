@@ -1,0 +1,25 @@
+<% provide(:title, "Начальники") %>
+
+<h1>Начальники</h1>
+<div class="row">
+	<div class="col-xs-3">
+	</div>
+		<div class="col-xs-6">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Имя</th>
+					<th>Телефон</th>
+				</tr>
+			</thead>    
+		    <tbody>	  	
+    			<% @bosses.each do |boss| %>
+					<%= render boss %>
+				<%end%>
+			</tbody>
+		</table>
+
+	</div>
+	<div class="col-xs-4">
+	</div>
+</div>

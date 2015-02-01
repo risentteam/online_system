@@ -26,10 +26,7 @@
 
 			<%= link_to "Изменить данные профиля", edit_user_path(current_user), class:"btn" %>
 			<button class="btn btn-danger mark" data-toggle="modal" data-target="#myModal" >Изменть пароль</button>
-			<% if current_user.admin? %>
-			<br>
-			<%= link_to "Создать нового администратора", '/admin_new', class:"btn" %>
-			<% end %>
+			
 		</div>
 </div>
 </div>

@@ -1,0 +1,61 @@
+<div class="container">
+<h3>Панель управления</h3>
+
+<div class="row">
+	<div class="col-md-4">	
+		<ul>
+			<li>
+				<%= link_to bosses_path do %>
+				<span class="glyphicon glyphicon-list"></span>&nbsp Начальники
+				<% end %>
+			</li>
+			<li>
+				<%= link_to requistions_path do %>
+				<span class="glyphicon glyphicon-list"></span>&nbsp Все заявки
+				<% end %>
+			</li>
+			<li>
+				<%= link_to users_path do %>
+				<span class="glyphicon glyphicon-list"></span>&nbsp Клиенты
+				<% end %>
+			</li>
+			<li>
+				<%= link_to workers_path do %>
+				<span class="glyphicon glyphicon-list"></span>&nbsp Рабочие
+				<% end %>
+			<li>
+				<%= link_to contracts_path do %>
+				<span class="glyphicon glyphicon-list"></span>&nbsp Контракты
+				<% end %>
+			</li>
+			<li>
+				<%= link_to buildings_path do %>
+				<span class="glyphicon glyphicon-list"></span>&nbsp Все объекты
+				<% end %>
+			</li>
+			<li>
+				<%= link_to bosses_path do %>
+				<span class="glyphicon glyphicon-list"></span>&nbsp Все начльник
+				<% end %>
+			</li>
+		</ul>
+	</div>
+	<div class="col-md-4">
+		<ul>
+			<li>
+			<%= link_to "Создать нового администратора", '/admin_new', class:"btn" %>
+			</li>
+			<li>
+			<%= link_to "Создать нового рабочего(неактивно)", '/admin_new', class:"btn" %>
+			</li>
+			<li>
+			<%= link_to "Создать нового клиента(неактивно)", '/admin_new', class:"btn" %>
+			</li>
+			<li>
+			<%= link_to "Создать нового начальника", '/bosses/new', class:"btn" %>
+			</li>
+		</ul>
+	</div>
+	<div class="col-md-4">
+	</div>
+</div>
