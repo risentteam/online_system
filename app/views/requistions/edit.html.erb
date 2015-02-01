@@ -73,7 +73,8 @@
 					<%= f.label :'Компания:', class: "col-md-3 control-label" %>
 					<div class="col-md-5">
 					<% if not @requistion.contract.nil?%>
-						<%= select_tag :company, options_from_collection_for_select(@list_contract, 'company', 'company', @requistion.contract.company), :prompt => "Выберите из списка", :class => "form-control", required: "" %>					<% else %>
+						<%= select_tag :company, options_from_collection_for_select(@list_contract, 'company', 'company', @requistion.contract.company), :prompt => "Выберите из списка", :class => "form-control", required: "" %>					
+					<% else %>
 						<%= select_tag :company, options_from_collection_for_select(@list_contract, 'company', 'company'), :prompt => "Выберите из списка", :class => "form-control", required: "" %>
 					<% end %>
 					</div>

@@ -2,6 +2,8 @@ class RequistionsController < ApplicationController
 	before_action :signed_in_user, except: [:count, :count_all]
 	before_action :admin_user, only: [:index, :edit, :update]
 	before_action :client_user, only: [ :mark]
+
+	autocomplete :building, :arrival_address, :full => true
 		
 	def count
 		render text: Requistion.fresh.count.to_s
@@ -162,7 +164,7 @@ class RequistionsController < ApplicationController
 #		if @requistion.status=="completed"
 #			redirect_to @requistion
 #		end
-		@list_worker = User.worker
+		@list_worker = User.worker.order(:name)
 		@list_contract = @requistion.building.contracts.select("company").distinct
 		@list_company = Contract.all
 		@list_boss = Boss.all
@@ -233,10 +235,15 @@ class RequistionsController < ApplicationController
 
 	def new
 		@requistion = Requistion.new
-		@list = Building.where(	
-			"id in (SELECT building_id FROM buildingscontracts 
-			WHERE contract_id in 
-			(SELECT id FROM contracts t WHERE user_id = ?))", current_user[:id])
+		if current_user.client?
+			@list = Building.where(	
+				"id in (SELECT building_id FROM buildingscontracts 
+				WHERE contract_id in 
+				(SELECT id FROM contracts t WHERE user_id = ?))", current_user[:id])
+		else
+			@list = Building.order("lower(arrival_address)").all
+
+		end
 	end
 
 
