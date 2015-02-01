@@ -46,6 +46,7 @@ App::Application.routes.draw do
   	resources :contracts do
   		collection { post :import }
 	end
+	match "/delete_building/:contract_id/:building_id", to: 'contracts#delete_building', via: 'get' 
 	match "/contracts", to: 'contracts#index', via: 'get' 
 	match "/UpdateData", to: 'contracts#update', via: 'post'
 
