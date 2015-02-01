@@ -12,6 +12,8 @@ App::Application.routes.draw do
 	match 'users/:id/contract', to: 'users#contract', via: 'get'
 	match 'users/:id/reqclient', to: 'users#reqclient', via: 'get'
  	match 'user/:id/change_password', to: 'users#change_password', via: 'post', as: "change_password"
+ 	match '/admin_new',  to: 'users#admin_new',       via: 'get'
+ 	match '/admin_create',  to: 'users#admin_create',       via: 'post'
 
 	resources :sessions, only: [:new, :create, :destroy]
 	resources :arrivals
