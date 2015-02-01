@@ -63,6 +63,16 @@
 					</div>
 				</div>
 				<% end %>
+				<% else %>
+				<div class="row">
+					<div class="form-group" id ="building_group">
+						<label class="col-md-3 control-label">Объект</label>
+						  <div class="col-md-5">
+						  <%= select_tag :building, options_from_collection_for_select(@list_buildings, 'id', 'arrival_address'), :prompt => "Выберите из списка", :class => "form-control", required: ""%>
+						</div>
+					</div>
+				</div>
+				<% end %>
 			<% end %>
 				<div class = "row" id = "rowaddbtn">
 				<div class = "col-xs-4">
