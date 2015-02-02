@@ -6,7 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>                        
         	</button> -->
-			<a class="navbar-brand" >
+			<a href="/" class="navbar-brand" >
 			<span><%=image_tag("LogoNew.png", size: "36x50", class: "logo", alt: "ЗВ")%></span>
 			&nbspЗаявки онлайн</a>
 
@@ -38,31 +38,13 @@ $(document).ready(function(){
 							<span class="glyphicon glyphicon-user"></span>&nbspМой профиль
 							<% end %>
 						</li>
+						
 						<li class = "pull-right">
-							<%= link_to requistions_path do %>
-							<span class="glyphicon glyphicon-list"></span>&nbspВсе заявки
+							<%= link_to panel_path do %>
+							<span class="glyphicon glyphicon-wrench"></span>&nbspПанель управления
 							<% end %>
 						</li>
-						<li class = "pull-right">
-							<%= link_to users_path do %>
-							<span class="glyphicon glyphicon-list"></span>&nbsp Клиенты
-							<% end %>
-						</li>
-						<li class = "pull-right">
-							<%= link_to workers_path do %>
-							<span class="glyphicon glyphicon-list"></span>&nbsp Рабочие
-							<% end %>
-						<li class = "pull-right">
-							<%= link_to contracts_path do %>
-							<span class="glyphicon glyphicon-list"></span>&nbsp Контракты
-							<% end %>
-						</li class = "pull-right">
-						</li>
-						<li class = "pull-right">
-							<%= link_to buildings_path do %>
-							<span class="glyphicon glyphicon-list"></span>&nbspВсе объекты
-							<% end %>
-						</li class = "pull-right">
+						
 						<!-- </ul> -->
 					<!-- </li> -->
 					<li class = "pull-right" role="presentation"><a href="<%= new_requistions_path %>">Новые заявки <span id="count" class="badge"></span></a></li>

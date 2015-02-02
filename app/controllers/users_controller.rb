@@ -10,9 +10,7 @@ class UsersController < ApplicationController
 	end
 
 	def workers
-		@name = "Рабочие"
 		@users = User.worker
-		render "index"
 	end
 
 	def req

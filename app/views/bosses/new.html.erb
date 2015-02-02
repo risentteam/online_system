@@ -1,0 +1,28 @@
+<% provide(:title, 'Добавление начальника') %>
+<div class="container">
+<div class="row">
+	<div class="col-xs-4">
+	</div>
+	<div class="col-xs-4">
+		<h1>Новый начальник</h1>
+
+		<%= form_for(@boss, :html => {:class => "form-vertical center"}) do |f| %>
+
+		<div class="form-group">
+			<label>Имя</label>
+			<%= f.text_field :name ,  class: "form-control", required: "" %>
+		</div>
+
+		<div class="form-group">
+			<label>Сотовый телефон</label>
+			<%= f.text_field :phone, class: "form-control", required: "" %>
+		</div>
+
+		<br>
+			<%= f.submit "Создать начальника", class: "btn btn-large btn-primary " %>
+		<br>
+		<% end %>
+	</div>
+	<div class="col-md-4">
+	</div>
+</div>
