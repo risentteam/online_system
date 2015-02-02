@@ -4,30 +4,22 @@
 	<div class ="col-xs-2">
 	</div>
 	<div class = "col-xs-4">
-		<section>
-			<h2>
-				<%= @user.name %>
-				<br>
-			</h2>
-			<h4>
-				<%= @user.email %>
-				<br>
-				<%= @user.phone %>
-			</h4>
-<!-- 			<br>
-			<%#= link_to controller: "users", action: "contract", id: current_user do %>
-				<div class="btn btn-default">
-					<span class="glyphicon glyphicon-briefcase"></span>&nbspКонтракты
-				</div>
-			<%# end %>
-			<br>
-			<br>
- -->			
-
-			<%= link_to "Изменить данные профиля", edit_user_path(current_user), class:"btn" %>
-			<button class="btn btn-danger mark" data-toggle="modal" data-target="#myModal" >Изменть пароль</button>
+		<h2><%= @user.name %></h2>
+		<h4><%= @user.email %></h4>
+		<h4><%= @user.phone %></h4>
 			
+	</div>
+	<div class = "col-xs-4">
+		<br>
+	
+		<div class="btn-group-vertical" role="group">
+			<%= link_to "Изменить данные профиля", edit_user_path(current_user), class:"btn" %>
+			<button class="btn" data-toggle="modal" data-target="#myModal" >Изменть пароль</button>
+			<% if current_user.admin? %>
+			<%= link_to "Назначить начальника", edit_user_path(current_user), class:"btn" %>
+			<% end %>
 		</div>
+	</div>
 </div>
 </div>
 
