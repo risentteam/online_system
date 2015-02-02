@@ -7,6 +7,19 @@ class BossesController < ApplicationController
 
 	end
 
+	def choose
+		@user = User.find(params[:id])
+		@list = Boss.all
+	end
+
+	def set
+		u = User.find(params[:id])
+		u.boss_id = params[:boss_id]
+		u.save
+		flash[:success] = "Начальник назначен"
+		redirect_to user_path(u)
+	end
+
 	def edit
 		
 	end

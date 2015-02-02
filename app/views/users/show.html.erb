@@ -13,17 +13,18 @@
 		<br>
 	
 		<div class="btn-group-vertical" role="group">
-			<%= link_to "Изменить данные профиля", edit_user_path(current_user), class:"btn" %>
+			<%= link_to "Изменить данные профиля", edit_user_path(@user), class:"btn" %>
 			<button class="btn" data-toggle="modal" data-target="#myModal" >Изменть пароль</button>
 			<% if current_user.admin? %>
-			<%= link_to "Назначить начальника", edit_user_path(current_user), class:"btn" %>
+			<%= link_to "Назначить начальника", "/users/#{@user.id}/choose_manager", class:"btn" %>
 			<% end %>
 		</div>
 	</div>
 </div>
 </div>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModal" tabindex="-1" 
+		role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 <div class="modal-dialog">
 	<div class="modal-content">
 	<div class="modal-header">
@@ -43,8 +44,8 @@
 			<button type="submit" class="btn btn-success">Изменить</button>
 		<% end %>
 		</div>
-	<div class="modal-footer">
-	</div>
+		<div class="modal-footer">
+		</div>
 	</div>
 </div>
 </div>

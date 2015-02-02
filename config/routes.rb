@@ -14,6 +14,8 @@ App::Application.routes.draw do
  	match 'user/:id/change_password', to: 'users#change_password', via: 'post', as: "change_password"
  	match '/admin_new',  to: 'users#admin_new',       via: 'get'
  	match '/admin_create',  to: 'users#admin_create',       via: 'post'
+ 	match "/users/:id/choose_manager", to: 'bosses#choose', via: 'get'
+ 	match "/users/:id/set_manager", to: 'bosses#set', via: 'patch'
 
 	resources :sessions, only: [:new, :create, :destroy]
 	resources :arrivals
