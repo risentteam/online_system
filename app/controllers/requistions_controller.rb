@@ -123,6 +123,21 @@ class RequistionsController < ApplicationController
 	def create
 		@requistion = Requistion.new(requistions_params)
 		if @requistion.save
+
+			if current_user.admin?
+				all_workers = [params[:worker]]
+	#			send_to_boss params[:worker]
+				count = 1
+				@pair = @requistion.pairs.find_or_create_by(user_id: params[:worker])
+				until (params[("worker" + count.to_s).to_sym].nil?) do
+					str = ("worker" + count.to_s).to_sym
+					all_workers << params[str]
+	#				send_to_boss params[str]
+					@requistion.pairs.find_or_create_by(user_id: params[str])
+					count += 1
+				end
+			end
+
 			flash[:success] = "Заявка отправлена"
 			current_user.pairs.create!(requistion_id: @requistion.id)
 			if (current_user.phone != "")
@@ -234,6 +249,7 @@ class RequistionsController < ApplicationController
 	end
 
 	def new
+		@list_worker = User.worker.order(:name)
 		@requistion = Requistion.new
 		if current_user.client?
 			@list = Building.where(	
