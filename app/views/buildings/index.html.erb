@@ -3,7 +3,7 @@
 	<div class="row">
 		<div class="col-xs-12">
 			<h1 style="text-align:center">Все объекты</h1>
-
+			<%= link_to "Новый объект", {controller: "buildings", action: "new"}, class: "btn"%> 
 			<table id="buildings" class="table table-bordered table-striped">
 				<thead>
 				<tr>
@@ -32,5 +32,5 @@
 			</table>
 		</div>
 	</div>
-	  <%= link_to "Новый объект", {controller: "buildings", action: "new"}, class: "btn"%> 
+	  
 </div>
