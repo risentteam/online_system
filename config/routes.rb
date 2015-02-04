@@ -19,6 +19,7 @@ App::Application.routes.draw do
 
 	resources :sessions, only: [:new, :create, :destroy]
 	resources :arrivals
+ 	match 'arrivals1', to: 'arrivals1#change_password', as: "arrivalfromto"	
 
 	resources :bosses
 

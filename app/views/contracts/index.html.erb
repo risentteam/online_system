@@ -16,7 +16,7 @@
 		</tr>
 	</thead>    
     <tbody>
-		<% for contract in @contracts %>
+		<% Contracts.find_each do |contract| %>
 		<tr>
 			<td > <%= link_to contract.name_contract, {:controller => :contracts, :action => :show, :id => contract.id}, {:method => :get} %></td>
 	    	<td id = "company"> <%= contract.company %></td>
