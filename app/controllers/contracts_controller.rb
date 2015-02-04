@@ -5,7 +5,7 @@ class ContractsController < ApplicationController
 	end
 	
 	def index
-		@contracts = Contract.all
+		@contracts = Contract.includes(:buildings)
 	end
 
 	def delete_building
