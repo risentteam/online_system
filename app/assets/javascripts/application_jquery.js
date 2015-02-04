@@ -85,16 +85,11 @@ var exportTools = {
 
 
 
-// var domValue = 		"<'row'<'col-xs-6'lC><'col-xs-6'f>r>" +
-// 		"<'row'<'col-xs-12't>>" +
-// 		"<'row'<'col-xs-4'i><'col-xs-3'T><'col-xs-5'p>>";
-
-//новый ДОМ: бетта версия
 
 var domValue =
 		"<'row'<'col-xs-8'><'col-xs-4'r>><'row'<'col-xs-4 archiver'TC><'col-xs-1 '><'col-xs-5'><'col-xs-1'>><'row'<'col-xs-1'f><'col-xs-10'><'col-xs-1'l>>" +
-		//"<'row'<'col-xs-1'lfT><'col-xs-3'><'col-xs-5'>prC>" +
-		"<'row'<'col-xs-1'><'col-xs-10't<br>p><'col-xs-1'>>" +
+		"<'row'<'col-xs-1'><'col-xs-10 table-wrapper't><'col-xs-1'>>" +
+		"<'row'<'col-xs-1'><'col-xs-10'p><'col-xs-1'>>"
 		"<'row'<'col-xs-4'i><'col-xs-6'><'col-xs-1'><'col-xs-1'>>";
 
 
