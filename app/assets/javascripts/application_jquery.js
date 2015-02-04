@@ -15,6 +15,8 @@ $.extend({
   },
 });
 
+
+
 $.datepicker.regional[""] = {
 	closeText: 'Закрыть',
 	prevText: 'Предыдущий',
@@ -693,6 +695,17 @@ jQuery(function($){
 	});
 
 });
+
+$(document).ready(function() {
+ 
+$('select.selectize').selectize({
+		sortField: 'text',
+		
+	});
+});
+
+
+
 
 
 
