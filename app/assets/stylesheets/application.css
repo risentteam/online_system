@@ -23,6 +23,10 @@
     display: none;
 }
 
+.table-wrapper {
+  overflow: auto;
+}
+
 .navbar a:hover{
   color: red;
   text-decoration: none;
