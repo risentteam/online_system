@@ -16,6 +16,7 @@
  *= require dataTables/extras/dataTables.tableTools
  *= require dataTables/extras/dataTables.colVis
  *= require star-rating.min
+ *= require selectize.bootstrap3
  */
 
 

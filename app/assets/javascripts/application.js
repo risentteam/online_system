@@ -40,3 +40,6 @@
 //= require jquery.watermarkinput
 //= require star-rating.min
 
+//= require selectize
+
+
