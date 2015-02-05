@@ -29,7 +29,7 @@
 //= require moment
 //= require date-de
 //= require best_in_place
-
+//= require best_in_place.jquery-ui
 
 //= require dataTables/extras/dataTables.tableTools
 //= require dataTables/extras/dataTables.colVis

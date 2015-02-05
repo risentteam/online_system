@@ -65,6 +65,8 @@ App::Application.routes.draw do
   	match 'buildings/:id/check_in', to: 'buildings#check_in', via: 'get'
   	match 'buildings/:id/check_out', to: 'buildings#check_out', via: 'get'
   	match 'no_build', to: 'buildings#no_build', via: 'get'
+  	match 'buildings/:id', to: 'buildings#update', via: 'put'
+
 
   	#match 'tests/:id', to: 'users#test', via: 'get', constraints: {id: /\d+/}
 

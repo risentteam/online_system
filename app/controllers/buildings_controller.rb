@@ -4,6 +4,8 @@ class BuildingsController < ApplicationController
 	before_action :client_admin_user, only: [:create, :new,]
 	before_action :worker_user, only: [:check_in, :check_out]
 
+  	respond_to :html, :json
+
 	def create 
 		@building = Building.new (building_params)
 		if @building.save 
@@ -57,17 +59,15 @@ class BuildingsController < ApplicationController
 	end
 
 	def update
-	  @building = Building.find params[:id]
-
-	  respond_to do |format|
-	    if @building.update_attributes(params[:building])
-	      format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
-	      format.json { respond_with_bip(@user) }
-	    else
-	      format.html { render :action => "edit" }
-	      format.json { respond_with_bip(@user) }
-	    end
+	  @building = Building.find(params[:id])
+	  @a = params[:building][:arrival_address]
+		if @building.update_attributes(arrival_address: @a)
+			respond_with @building
+	  else
+			flash[:success] = "Что-то пошло не так"
+			redirect_to current_user
 	  end
+	  # @test = '1'
 	end
 
 	private
