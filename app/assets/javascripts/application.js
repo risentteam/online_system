@@ -41,5 +41,6 @@
 //= require star-rating.min
 
 //= require selectize
+//= require index
 
 

@@ -123,29 +123,25 @@ class RequistionsController < ApplicationController
 	def create
 		@requistion = Requistion.new(requistions_params)
 		if @requistion.save
-
 			if current_user.admin?
-				all_workers = [params[:worker]]
-	#			send_to_boss params[:worker]
-				count = 1
-				@pair = @requistion.pairs.find_or_create_by(user_id: params[:worker])
-				until (params[("worker" + count.to_s).to_sym].nil?) do
-					str = ("worker" + count.to_s).to_sym
-					all_workers << params[str]
-	#				send_to_boss params[str]
-					@requistion.pairs.find_or_create_by(user_id: params[str])
-					count += 1
+				all_workers_id = Array(params[:workers])
+				pairs = @requistion.pairs
+				creators = @requistion.users.where({ status: ["client", "admin"]}).collect{|p| [ p.id ] }
+				pairs.where.not(user_id: creators).destroy_all
+				
+				all_workers_id.each do |worker|
+					pairs.find_or_create_by(user_id: worker)
 				end
 			end
 
-			flash[:success] = "Заявка отправлена"
+			flash[:success] = "#{params[:worker]}"
 			current_user.pairs.create!(requistion_id: @requistion.id)
-			if (current_user.phone != "")
-				message = MainsmsApi::Message.new(sender: '3B-online',
-					message: 'Ваша заявка №'+@requistion.id.to_s+' принята',
-					recipients: [current_user.phone])
-				response = message.deliver
-			end
+			#if (current_user.phone != "")
+				# message = MainsmsApi::Message.new(sender: '3B-online',
+				# 	message: 'Ваша заявка №'+@requistion.id.to_s+' принята',
+				# 	recipients: [current_user.phone])
+				# response = message.deliver
+			#end
 			#UserMailer.new_reqistion(current_user).deliver
 			#UserMailer.welcome_email(@requistion).deliver
 			redirect_to @requistion
@@ -213,17 +209,14 @@ class RequistionsController < ApplicationController
 			)
 		
 			client = @requistion.users.client.first
-			@pair = @requistion.pairs.find_or_create_by(user_id: params[:worker])
-			all_workers = [params[:worker]]
-#			send_to_boss params[:worker]
-			count = 1
+
+			all_workers_id = Array(params[:workers])
+			pairs = @requistion.pairs
+			creators = @requistion.users.where({ status: ["client", "admin"]}).collect{|p| [ p.id ] }
+			pairs.where.not(user_id: creators).destroy_all
 			
-			until (params[("worker" + count.to_s).to_sym].nil?) do
-				str = ("worker" + count.to_s).to_sym
-				all_workers << params[str]
-#				send_to_boss params[str]
-				@requistion.pairs.find_or_create_by(user_id: params[str])
-				count += 1
+			all_workers_id.each do |worker|
+				pairs.find_or_create_by(user_id: worker)
 			end
 
 			# flash[:success] = "Заявка успешно изменена"
@@ -238,9 +231,6 @@ class RequistionsController < ApplicationController
 					recipients: [client.phone])
 				response = message.deliver
 			end
-
-
-
 			
 			redirect_to @requistion
 		else 
