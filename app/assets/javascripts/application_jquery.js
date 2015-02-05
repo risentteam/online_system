@@ -589,38 +589,44 @@ $(document).ready(function(){
 //#########################################################################################
 //Добавление рабочих на заявку
 //#########################################################################################
-var count = 1;
+var worker_count = 1;
+
 $(document).ready(function() {
-	$('#addbtn').click (function(){
-		var new_work = $("#worker_row").clone().attr('id', count);
-		new_work.wrap ("<div class='row'></div>").parent().insertBefore('#before_addbtn');
-		new_work.find("select").attr('name', "worker" + count.toString()).blur(function() {
+	worker_count = parseInt($('#workerfield0').attr('count'));//с какого номера нужно добавлять поля
+
+	$('#add_worker').click (function(){
+		var new_work = $("#worker_row").clone().attr('id', "worker_row"+worker_count);
+		//new_work.insertBefore('#worker_row'+(worker_count-1));
+		new_work.wrap ("<div class='row'></div>").parent().insertBefore('#rowaddbtn');
+		new_work.find("select").attr('name', "worker" + worker_count).
+		attr('required', "").attr('class', "selectize").blur(function() {
 				if($.trim($(this).val()) == '') {
 					$(this).parent().addClass('has-error')    
 					$(this).after('<span class="error">Поле не должно быть пустым!</span>');
 				}else{
 					$(this).parent().removeClass('has-error') 
 				}
-				});
+				}).selectize({sortField: 'text'});
+
 				$('.form-control').focus(function() {
 					$(this)
 						.removeClass('error')
 						.next('span')
 						.remove();
 				});
-		count++;
+		worker_count++;
 	})
 });
 
 //#########################################################################################
 //Добавление зданий к контракту
 //#########################################################################################
-var count = 1;
+var building_count = 1;
 $(document).ready(function() {
-	$('#addbtn').click (function(){
-		var new_work = $("#building_group").clone().attr('id', count);
+	$('#add_building').click (function(){
+		var new_work = $("#building_row").clone().attr('id', "building_row" + building_count);
 		new_work.wrap ("<div class='row'></div>").parent().insertBefore('#rowaddbtn');
-		new_work.find("select").attr('name', "building" + count.toString()).blur(function() {
+		new_work.find("select").attr('name', "building" + building_count).blur(function() {
 				if($.trim($(this).val()) == '') {
 					$(this).parent().addClass('has-error')    
 					$(this).after('<span class="error">Поле не должно быть пустым!</span>');
@@ -634,7 +640,7 @@ $(document).ready(function() {
 						.next('span')
 						.remove();
 				});
-		count++;
+		building_count++;
 	})
 });
 
@@ -682,13 +688,6 @@ jQuery(function($){
 
 });
 
-$(document).ready(function() {
- 
-$('select.selectize').selectize({
-		sortField: 'text',
-		
-	});
-});
 
 //#########################################################################################
 //Редактирование на лету

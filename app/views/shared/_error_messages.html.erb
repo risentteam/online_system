@@ -1,13 +1,15 @@
 <%#= pluralize(@user.errors.count, "Ошибка") %>
-<% if @user.errors.any? %>
+<% if @contract.errors.any? %>
   <div id="error_explanation">
     <div class="alert alert-error">
-      The form contains <%= pluralize(@user.errors.count, "Ошибка") %>.
+      The form contains <%= pluralize(@contract.errors.count, "Ошибка") %>.
     </div>
     <ul>
-    <% @user.errors.full_messages.each do |msg| %>
+    <% @contract.errors.full_messages.each do |msg| %>
       <li>* <%= msg %></li>
     <% end %>
+
     </ul>
   </div>
+  <%= @contract.inspect %>
 <% end %>

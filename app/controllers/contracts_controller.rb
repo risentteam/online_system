@@ -8,14 +8,6 @@ class ContractsController < ApplicationController
 		@contracts = Contract.includes(:buildings)
 	end
 
-	def delete_building
-		b = Buildingscontract.find_by(building_id: params[:building_id], contract_id: params[:contract_id])
-		if b
-			b.destroy
-		end
-		redirect_to contract_path(params[:contract_id])
-	end
-
 	def show
 		@contract = Contract.find(params[:id])
 	end
@@ -44,58 +36,24 @@ class ContractsController < ApplicationController
 		#Необходимо добавить проверку корректности данных
 		@contract = Contract.find(params[:id])
 		@buildings=@contract.buildings
-		allBuild = [params[:building]]
-		@contract.buildingscontracts.find_or_create_by(building_id: params[:building])
-		count=2
-		until (params[("building" + count.to_s).to_sym].nil?) do
-				str = ("building" + count.to_s).to_sym
-				allBuild << params[str]
-				@contract.buildingscontracts.find_or_create_by(building_id: params[str])
-				count += 1
+
+		all_buildings_id = Array(params[:buildings])
+		buildingscontracts = @contract.buildingscontracts
+		buildingscontracts.where(contract_id: @contract.id).destroy_all
+		
+		all_buildings_id.each do |building_id|
+			buildingscontracts.find_or_create_by(building_id: building_id)
 		end
+
+
 		if @contract.update_attributes(contracts_params)
-			flash[:success] = "Контракт изменен"
+			flash[:success] = "Контракт успешно изменен"
 			redirect_to @contract
 		else
 			render 'edit'
 		end
 	end
 
-	# def update
-	#     contract = Contract.limit(1).offset(params["rowId"]).first
-	#     case params["id"]
-	#     when "company"
-	# 		contract.update_attribute(:company, params["value"])
-	# 	when "description"
-	# 		contract.update_attribute(:description, params['value'])
-	# 	when "comment"
-	# 		contract.update_attribute(:comment, params['value'])
-	# 	when "begin_time"
-	# 		contract.update_attribute(:begin_time, params['value'])			
-	# 	when "end_time"
-	# 		contract.update_attribute(:end_time, params['value'])			
-	# 	# when "building"
-	#  #        adreses = params['value'].split(';')
- #  #   	  	adreses.each do |i|
- #  #           i.gsub!(/ +/, ' ')
- #  #          	if i[0]==' '
- #  #          		i=i[1..-1]
- #  #          	end
- #  #          	if i[-1]==' '
- #  #          		i=i[0..-2]
- #  #          	end
-	#  #      		if Building.where("arrival_address = ?", i).empty?
-	#  #      			building = Building.create(arrival_address: i)
-	#  #      		else
-	#  #      			building = Building.where("arrival_address = ?", i).first
-	#  #      		end
-	#  #      		if not Buildingscontract.where("building_id =  ? and contract_id = ?", building.id, contract.id).empty?
-	#  #      			Buildingscontract.create(building_id: building.id, contract_id: contract.id)
-	#  #      		end
- #  #     		end
-	# 	end			
- #      render :text => params['value']
-	# end
 	private
 		def contracts_params
 			params.require(:contract).permit(:company, :comment, :description, :name_contract, :end_time, :begin_time)

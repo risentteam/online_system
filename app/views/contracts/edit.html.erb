@@ -1,6 +1,7 @@
 <% provide(:title, 'Редактирование контракта') %>
 <div class="container">
 		<h1>Редактирование контракта</h1>
+		
 		<%= form_for @contract, :html => {:class => "form-vertical"} do |f| %>
 			<div class="row">
 				<div class="form-group">
@@ -52,43 +53,27 @@
 					</div>
 				</div>
 			</div>
-			<% if @contract.buildings.count>0 %>
-				<% for building in @contract.buildings %>
-	 			<div class="row">
-					<div class="form-group" id ="building_group">
-						<label class="col-md-3 control-label">Объект
-							<%= link_to "/delete_building/#{@contract.id}/#{building.id}" do %>
-							<span class="glyphicon glyphicon-trash"></span>
-							<% end %>
-						</label>
-						 <div class="col-md-5">
 
-						  <%= select_tag :building, options_from_collection_for_select(@list_buildings, 'id', 'arrival_address', building.id), :prompt => "Выберите из списка", :class => "form-control", required: ""%>
+			<div class="row">
+			<div class="form-group">
+  				<label class=" col-xs-3">Объекты</label>
+				<div  class="col-xs-5">
+				<select id="buildings-select" name="buildings[]" multiple  placeholder="Выберите объкты">
+				<%= options_for_select(Building.all.collect {|p| [ p.arrival_address, p.id ] },
+				@contract.buildings.collect{|p|  p.id } ) %>
+				
+				</select>
+				
+				</div>
+			</div>
+			<script>
+				$('#buildings-select').selectize({
+					maxItems: 100,
+					plugins: ['remove_button']
+				});
+			</script>
+		</div>
 
-							
-						</div>
-					</div>
-				</div>
-				<% end %>
-				<% else %>
-				<div class="row">
-					<div class="form-group" id ="building_group">
-						<label class="col-md-3 control-label">Объект</label>
-						  <div class="col-md-5">
-						  <%= select_tag :building, options_from_collection_for_select(@list_buildings, 'id', 'arrival_address'), :prompt => "Выберите из списка", :class => "form-control", required: ""%>
-						</div>
-					</div>
-				</div>
-			<% end %>
-				<div class = "row" id = "rowaddbtn">
-				<div class = "col-xs-4">
-				</div>
-				<div class = "col-xs 8">
-			<button id="addbtn" type="button" class="btn btn-default btn-xs">
-						<span class="glyphicon glyphicon-plus"></span>
-			</button>
-				</div>
-				</div>
 			<br>	
 		<%= f.submit "Принять", class: "btn btn-large btn-primary", id: "submut" %>
 		<%= link_to "Назад к контрактам", {controller: "contracts", action: "index"}, class: "btn"%>		
