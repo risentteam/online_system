@@ -210,7 +210,7 @@ class RequistionsController < ApplicationController
 			all_workers_id = Array(params[:workers])
 			pairs = @requistion.pairs
 			old_workers_id = @requistion.users.where({ status: "worker"}).collect{|p| p.id  }
-			pairs.destroy_all(user_id: old_workers_id)
+			pairs.where(user_id: old_workers_id).destroy_all
 			
 			all_workers_id.each do |worker|
 				pairs.find_or_create_by(user_id: worker)
