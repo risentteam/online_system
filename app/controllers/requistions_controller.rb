@@ -224,7 +224,7 @@ class RequistionsController < ApplicationController
 			# all_workers.each { |id| text += ' ' + User.find(id).name}
 			# text += "."
 			# flash[:info] = text
-			if (not client.phone.nil?)
+			if (not client.nil? && not client.phone.nil?)
 				message = MainsmsApi::Message.new(
 					sender: '3B-online',
 					message: text,
