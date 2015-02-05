@@ -1,0 +1,43 @@
+<% provide(:title, @boss.name) %>
+<div class="container">
+<h2>Информация о начальнике</h2>
+<div class="row">
+  <div class="col-md-7">
+    <table class="table table-bordered table-striped">
+      <tr>
+        <td>Фамилия Имя</td>
+
+        <th><%= @boss.name %></th>
+      </tr>
+      <tr>
+        <td>Телефон</td>
+        <td><%= @boss.phone %></td>
+      </tr>
+      <% if current_user.admin? %>
+      <tr>
+        <td>Специализация</td>
+        <td><%= @boss.specialization %></td>
+      </tr>
+      <tr>
+        <td>Район</td>
+        <td><%= @boss.region %></td>
+      </tr>
+      <tr>
+        <td>Начало отпуска</td>
+        <td><%= @boss.begin_of_rest.to_date if @boss.begin_of_rest %></td>
+      </tr>
+      <tr>
+        <td>Конец отпуска</td>
+        <td><%= @boss.end_of_rest.to_date if @boss.end_of_rest %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+<div class="row">
+    <div class="col-md-7">
+      <%= link_to "Назад к начальникам", bosses_path, class: "btn"%>
+      <%= link_to "Редактировать", edit_boss_path(@boss), class: "btn"%>
+    </div>
+</div>
+</div>

@@ -1,10 +1,10 @@
-<% provide(:title, 'Добавление начальника') %>
+<% provide(:title, 'Редактирование начальника') %>
 <div class="container">
 <div class="row">
 	<div class="col-xs-4">
 	</div>
 	<div class="col-xs-4">
-		<h1>Новый начальник</h1>
+		<h1>Редактирование</h1>
 
 		<%= form_for(@boss, :html => {:class => "form-vertical center"}) do |f| %>
 
@@ -22,23 +22,28 @@
 			<%= f.text_field :region, class: "form-control" %>
 		</div>
 		<div class="form-group">
-			<label>Сотовый телефон</label>
+			<label>Специализация</label>
 			<%= f.text_field :specialization, class: "form-control" %>
 		</div>
 
 		<div class="form-group">
 			<label>Начало отпуска</label>
-			<%= date_field_tag "boss[begin_of_rest]", nil, class: "form-control" %>	
+			<%
+			b_rest = @boss.begin_of_rest.to_date.to_formatted_s(:day_month_year) if @boss.begin_of_rest %>
+			<%= date_field_tag "boss[begin_of_rest]", b_rest, class: "form-control" %>	
 		</div>
 		<div class="form-group">
 			<label>Конец отпуска</label>
-			<%= date_field_tag "boss[end_of_rest]", nil, class: "form-control" %>	
+			<%
+			e_rest = @boss.end_of_rest.to_date.to_formatted_s(:day_month_year) if @boss.end_of_rest %>
+			<%= date_field_tag "boss[end_of_rest]", e_rest, class: "form-control" %>	
 		</div>
 
 		<br>
-			<%= f.submit "Создать начальника", class: "btn btn-large btn-primary " %>
+			<%= f.submit "Сохранить", class: "btn btn-large btn-primary " %>
 		<br>
 		<% end %>
+
 	</div>
 	<div class="col-md-4">
 	</div>
