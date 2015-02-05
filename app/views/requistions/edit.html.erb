@@ -67,6 +67,11 @@
 					<% else %>
 						<%= select_tag :company, options_from_collection_for_select(@list_contract, 'company', 'company'), :prompt => "Выберите из списка", :class => "selectize", required: "" %>
 					<% end %>
+					<script>
+					$('#company').selectize({
+						
+					});
+					</script>
 					</div>
 				</div>
 			</div>	
