@@ -20,16 +20,12 @@
 		<header>
 			<%= render 'layouts/header' %>
 		</header>
-		<!-- <div class="container">	 -->
-		<!-- main page is becoming crazy because of that^ -->
 
 			<% flash.each do |key, value| %>
 				<div class="alert alert-<%= key %>" style="margin:5px"><%= value %></div>
 			<% end %>
 			<%= yield %>
 			<br>
-		</div>
-		
 
 	</body>
 </html>
