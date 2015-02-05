@@ -124,10 +124,7 @@ class RequistionsController < ApplicationController
 		@requistion = Requistion.new(requistions_params)
 		if @requistion.save
 			if current_user.admin?
-				all_workers_id = Array(params[:workers])
-				pairs = @requistion.pairs
-				creators = @requistion.users.where({ status: ["client", "admin"]}).collect{|p| [ p.id ] }
-				pairs.where.not(user_id: creators).destroy_all
+				all_workers_id = Array(params[:workers])	
 				
 				all_workers_id.each do |worker|
 					pairs.find_or_create_by(user_id: worker)
@@ -212,8 +209,8 @@ class RequistionsController < ApplicationController
 
 			all_workers_id = Array(params[:workers])
 			pairs = @requistion.pairs
-			creators = @requistion.users.where({ status: ["client", "admin"]}).collect{|p| [ p.id ] }
-			pairs.where.not(user_id: creators).destroy_all
+			old_workers_id = @requistion.users.where({ status: "worker"}).collect{|p| p.id  }
+			pairs.destroy_all(user_id: old_workers_id)
 			
 			all_workers_id.each do |worker|
 				pairs.find_or_create_by(user_id: worker)
