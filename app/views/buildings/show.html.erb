@@ -7,11 +7,12 @@
   <table class="table table-bordered table-striped">
     <tr>
       <th>Объект</th>
-      <th><%= @building.name %></th>
+
+      <th><%= @building.contracts.first.company if not @building.contracts.nil? %></th>
     </tr>
     <tr>
       <td>Адрес</td>
-      <td><%= @building.arrival_address %></td>
+      <td><%= best_in_place @building, :arrival_address, :as => :input %></td>
     </tr>
     <% if current_user.admin? %>
     <tr>
@@ -27,7 +28,21 @@
 </div>
 </div>
 
-
+  <h2>Контракты</h2>
+<table class="table table-striped">
+  <tr>
+    <th>Контракт</th>
+    <th>Компания</th>
+    <th>Описание</th>
+  </tr>
+  <% for contract in @building.contracts %>
+    <tr>
+      <td> <%=link_to contract.name_contract,  {:controller => :contracts, :action => :show, :id => contract.id}, {:method => :get} %> </td>
+      <td> <%= contract.company %> </td>
+      <td> <%= contract.description %> </td>
+    </tr>
+  <% end %>
+</table>
 
 <script type="text/javascript">
 ymaps.ready(init);
@@ -63,21 +78,23 @@ function init() {
 <h3 class="leftH">На объекте (<%= @list_requistion.count %>) заявки:</h3>
 <table class="table table-striped">
   <tr>
-    <th><%= "Время подачи заявки" %></th>
-    <th><%= "Контактный телефон" %></th>
-    <th><%= "Контактное лицо" %></th>
-    <th><%= "Тип неисправности" %></th>
-    <th><%= "Категория" %></th>
-    <th><%= "Дополнительная информация" %></th>
+    <th>Время подачи заявки</th>
+    <th>Контактный телефон</th>
+    <th>Контактное лицо</th>
+    <th>Тип неисправности</th>
+    <th>Категория</th>
+    <th>Дополнительная информация</th>
+    <th>Коммент</th>
   </tr>
   <% for requistion in @list_requistion %>
     <tr>
-      <td> <%= Russian::strftime(requistion.created_at, "%e %B %Y %H:%M") %> </td>
+      <td> <%= link_to Russian::strftime(requistion.created_at, '%e %B %Y %H:%M'), {:controller => :requistions, :action => :show, :id => requistion.id}, {:method => :get} %>
       <td> <%= requistion.contact_phone %> </td>
       <td> <%= requistion.contact_name %> </td>
-      <td> <%= requistion.type_requistion %> </td>
-      <td> <%= requistion.category %> </td>
+      <td> <%= transcript_of_the_messages(requistion.type_requistion)+' '+transcript_of_the_messages(requistion.subtype_requistions) %> </td>
+      <td> <%= transcript_of_the_messages_category(requistion.category) %> </td>
       <td> <%= requistion.info %> </td>
+      <td> <%= requistion.requistion_comment %> </td>
     </tr>
   <% end %>
 </table>
@@ -85,6 +102,7 @@ function init() {
 <h4>Для вас на объект заявок нет</h4>
 <% end %> 
 
+<%= link_to 'Назад', :back, class: "btn btn-large btn-primary" %>
 <!-- <div class="row">
 <div class="form-group">
       <label class="col-md-4 control-label">Объект</label>

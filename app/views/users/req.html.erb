@@ -31,8 +31,8 @@
 					 <td> <%= transcript_of_the_messages(@requistion.type_requistion)+' '+transcript_of_the_messages(@requistion.subtype_requistions) %> </td>
 					 <td><%= @requistion.contact_phone+' '+@requistion.contact_name %></td>
 					 <td> <%= status_names[@requistion.status.to_sym] %> </td>
-					 <td> <%= @requistion.created_at.strftime("%d.%m.%Y %H:%M") if !@requistion.created_at? %> </td>
-					 <td> <%= @requistion.time_deadline.strftime("%d.%m.%Y") if !@requistion.time_deadline? %> </td>
+					 <td> <%= @requistion.created_at.strftime("%d.%m.%Y %H:%M") if not @requistion.created_at.nil? %> </td>
+					 <td> <%= @requistion.time_deadline.strftime("%d.%m.%Y") if not @requistion.time_deadline.nil? %> </td>
 					 <td> <%= link_to "Принять в работу",  {:controller => :requistions, :action => :to_take_in_work, :id => @requistion.id}, {:method => :get, :class=>"btn"} %>
 					 	<%= link_to "Завершить",  {:controller => :requistions, :action => :done, :id => @requistion.id}, {:method => :get, :class=>"btn", data: { confirm: "Завершить заявку?" }} %>
 					 	<%= link_to "Отменить",  {:controller => :requistions, :action => :cancel, :id => @requistion.id}, {:method => :get, :class=>"btn", data: { confirm: "Отменить заявку?" }} %>

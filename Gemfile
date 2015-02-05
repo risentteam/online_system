@@ -43,6 +43,8 @@ gem 'jquery-datatables-tabletools-rails', github: 'mcallaway/jquery-datatables-t
 gem 'jquery-datatables-editable-rails', github: 'mcallaway/jquery-datatables-editable-rails'
 gem 'chartkick'
 
+gem 'best_in_place', '~> 3.0.1'
+
 gem 'russian', '~> 0.6.0'
 gem 'mainsms_api'
 gem "simple_calendar", "~> 1.1.0"

@@ -56,6 +56,20 @@ class BuildingsController < ApplicationController
 		redirect_to current_user
 	end
 
+	def update
+	  @building = Building.find params[:id]
+
+	  respond_to do |format|
+	    if @building.update_attributes(params[:building])
+	      format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
+	      format.json { respond_with_bip(@user) }
+	    else
+	      format.html { render :action => "edit" }
+	      format.json { respond_with_bip(@user) }
+	    end
+	  end
+	end
+
 	private
 		def building_params
 			params.require(:building).permit(:arrival_address, :contact_phone, :contact_name)
