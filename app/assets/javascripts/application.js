@@ -28,6 +28,7 @@
 //= require datetime-moment
 //= require moment
 //= require date-de
+//= require best_in_place
 
 
 //= require dataTables/extras/dataTables.tableTools
@@ -41,6 +42,6 @@
 //= require star-rating.min
 
 //= require selectize
-//= require index
+
 
 

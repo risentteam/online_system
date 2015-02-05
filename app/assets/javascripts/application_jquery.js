@@ -439,6 +439,47 @@ $(document).ready(function(){
 	 });
 });
 
+//#########################################################################################
+//Таблица всех посещений рабочих
+//#########################################################################################
+$(document).ready(function(){
+	var table = $('#arrivals').DataTable({
+		tableClass: "table-bordered", 
+			"bInfo": false,
+			"colVis": {
+			  "buttonText": "Показать/скрыть столбцы"
+		},
+		dom: domValue,
+		
+			"tableTools": exportTools,
+			"language": languageRU
+	 });
+    // Apply the search
+    // table.columns().eq( 0 ).each( function ( colIdx ) {
+    //     $( 'input', table.column( colIdx ).footer() ).on( 'keyup change', function () {
+    //         table
+    //             .column( colIdx )
+    //             .search( this.value )
+    //             .draw();
+    //     } );
+    // } );
+	$('#time_from').change(function () {
+		console.log($('#time_from').val())
+		console.log(		table
+                .column( 3 ).data()
+)
+		table
+                .column( 3 )
+                .data()
+                .each( function ( d ) {
+            		if (d == '20:11')
+            			console.log(d)
+            		//select.append( $('<option value="'+d+'">'+d+'</option>') );
+        		} );
+	});
+
+    
+});
 
 
 
@@ -662,8 +703,13 @@ jQuery(function($){
 });
 
 
-
-
+//#########################################################################################
+//Редактирование на лету
+//#########################################################################################
+$(document).ready(function() {
+  /* Activating Best In Place */
+  jQuery(".best_in_place").best_in_place();
+});
 
 
 

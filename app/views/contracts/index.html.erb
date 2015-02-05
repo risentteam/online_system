@@ -1,6 +1,5 @@
 <% provide(:title, 'Все контракты') %>
 <h1>Все контракты</h1>
-
 <div class="container">
 <table id="contracts" class="table table-striped table-wrapper">
 	<thead>
@@ -16,7 +15,7 @@
 		</tr>
 	</thead>    
     <tbody>
-		<% for contract in @contracts %>
+		<% Contract.find_each do |contract| %>
 		<tr>
 			<td > <%= link_to contract.name_contract, {:controller => :contracts, :action => :show, :id => contract.id}, {:method => :get} %></td>
 	    	<td id = "company"> <%= contract.company %></td>

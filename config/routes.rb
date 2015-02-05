@@ -19,6 +19,8 @@ App::Application.routes.draw do
 
 	resources :sessions, only: [:new, :create, :destroy]
 	resources :arrivals
+	match '/arrivals', to: 'arrivals#index', via: 'get', as: 'index'
+ #	match '/arrivalfromto', to: 'arrivals#arrivalfromto', via: 'post', as: "arrivalfromto"	
 
 	resources :bosses
 
