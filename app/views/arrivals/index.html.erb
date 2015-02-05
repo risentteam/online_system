@@ -1,0 +1,37 @@
+<% provide(:title, 'Все прибытия') %>
+<h1>Все прибытия</h1>
+<h3><%='с '+@from if not @from.nil? %> <%='по '+@to if not @to.nil? %> </h3>
+
+<div class="container">
+<table id="arrivals" class="table table-striped">
+	<thead>
+		<tr>
+			<th>Рабочий</th>
+			<th>Объект</th>
+			<th>Время</th>
+		</tr>
+	</thead>    
+    <tbody>
+		<% @result.find_each do |arrival| %>
+		<tr>
+	    	<td> <%= arrival.user.name %> </td>
+	    	<td> <%= arrival.building.arrival_address %> </td>
+	    	<td> <%= arrival.date.strftime("%d.%m.%Y %H:%M") if  not arrival.date.nil? %></td>
+		</tr>
+		<% end %>
+	</tbody>
+	<tfoot>
+		<tr>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>
+	</tfoot>
+</table>
+
+
+<%= form_tag('/arrivals', :method=>'get') do %>
+	С<%= time_field :time, :from, class: "btn btn-large btn-primary" %>
+	По<%= time_field :time, :to, class: "btn btn-large btn-primary" %>
+	<%= submit_tag "Показать", class: "btn btn-large btn-primary" %>
+<% end %>
