@@ -22,7 +22,9 @@ class BuildingsController < ApplicationController
 
 	def show 
 		@building = Building.find(params[:id])
-		@list_requistion = Requistion.where("id in (SELECT requistion_id FROM pairs WHERE user_id = ?) and building_id = ?", current_user[:id], params[:id])
+		@list_requistion = Requistion.where(
+			"id in (SELECT requistion_id FROM pairs WHERE user_id = ?) and building_id = ?",
+			current_user[:id], params[:id])
 	end
 
 	def index
@@ -30,11 +32,17 @@ class BuildingsController < ApplicationController
 	end
 	
 	def check_in
-		pairs = Pair.where("user_id = ? and requistion_id in (SELECT id FROM requistions WHERE building_id = ?)", current_user[:id], params[:id])
+		pairs = Pair.where(
+			"user_id = ? and requistion_id in (SELECT id FROM requistions WHERE building_id = ?)",
+			 current_user[:id], params[:id])
 		last = current_user.arrivals.where(check_type: 0).order(:date).last(); 
 		date = Time.zone.now.strftime("%Y-%m-%d")
-		arrival = Arrival.create(user_id: current_user[:id], check_type: "check_in", building_id: params[:id], date: Time.now.to_s)
-    	#Time.zone.now.strftime("%H").to_i<=10 and Time.zone.now.strftime("%H").to_i>=8 and
+		arrival = Arrival.create(
+			user_id: current_user[:id],
+			check_type: "check_in",
+			building_id: params[:id],
+			date: Time.now.to_s)
+
     	if current_user.arrivals.where("date between date('now') AND date('now')").count==0
 			arrival.update_attributes(begin_or_end: 0)
 		end
@@ -46,8 +54,14 @@ class BuildingsController < ApplicationController
 	end
 
 	def check_out
-		pairs = Pair.where("user_id = ? and requistion_id in (SELECT id FROM requistions WHERE building_id = ?)", current_user[:id], params[:id])
-		arrival = Arrival.create(user_id: current_user[:id], check_type: "check_out", building_id: params[:id], date: Time.now.to_s)
+		pairs = Pair.where(
+			"user_id = ? and requistion_id in (SELECT id FROM requistions WHERE building_id = ?)",
+			current_user[:id], params[:id])
+		arrival = Arrival.create(
+			user_id: current_user[:id],
+			check_type: "check_out",
+			building_id: params[:id],
+			date: Time.now.to_s)
     	if Time.zone.now.strftime("%H").to_i<=7 and Time.zone.now.strftime("%H").to_i>=5	
 			arrival.update_attributes(begin_or_end: 1)
 		end
@@ -67,7 +81,6 @@ class BuildingsController < ApplicationController
 			flash[:success] = "Что-то пошло не так"
 			redirect_to current_user
 	  end
-	  # @test = '1'
 	end
 
 	private

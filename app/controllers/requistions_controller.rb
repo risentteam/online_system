@@ -185,7 +185,6 @@ class RequistionsController < ApplicationController
 
 	def update_date
  		@contract = Contract.find(params[:contract])
-#		render json: @contract, methods: [:contract_id, :description, :name_contract, :end_time, :begin_time]
 		render :json => { :contract_id => @contract.contract_id, 
 						  :description => @contract.description, 
 						  :name_contract => @contract.name_contract, 

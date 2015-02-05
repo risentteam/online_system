@@ -8,7 +8,7 @@
     <tr>
       <th>Объект</th>
 
-      <th><%= @building.contracts.first.company if not @building.contracts.nil? %></th>
+      <th><%= @building.contracts.first.company if @building.contracts.first %></th>
     </tr>
     <tr>
       <td>Адрес</td>

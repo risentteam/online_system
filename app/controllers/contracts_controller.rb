@@ -56,6 +56,7 @@ class ContractsController < ApplicationController
 
 	private
 		def contracts_params
-			params.require(:contract).permit(:company, :comment, :description, :name_contract, :end_time, :begin_time)
+			params.require(:contract).permit(:company, :comment,
+				:description, :name_contract, :end_time, :begin_time)
 		end
 end
