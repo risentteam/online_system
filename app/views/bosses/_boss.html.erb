@@ -1,4 +1,6 @@
 <tr>
-  <td><%= boss.name %></td>
+  <td><%= link_to boss.name, boss_path(boss)%></td>
   <td><%= boss.phone %></td>
+  <td><%= boss.specialization %></td>
+  <td><%= boss.region %></td>
 </tr>

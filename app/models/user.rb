@@ -6,13 +6,9 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence:   true,
                     format:     { with: VALID_EMAIL_REGEX },
-                    uniqueness: { case_sensitive: false }
-  VALID_PHONE_REGEX = /\A[\d]{11}\z/i
-  validates :phone, presence: false,
-                    format: { with: VALID_PHONE_REGEX }                  
+                    uniqueness: { case_sensitive: false }                 
 
   has_secure_password
-  #validates :password, length: { minimum: 6 }
   
   def User.encrypt(token)
     Digest::SHA1.hexdigest(token.to_s)

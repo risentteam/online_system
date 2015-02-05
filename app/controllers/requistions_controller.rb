@@ -252,7 +252,9 @@ class RequistionsController < ApplicationController
 
 	private
 		def requistions_params
-			params.require(:requistion).permit(:object, :contact_name, :contact_phone, :type_requistion, :subtype_requistion, :building_id, :requistion_comment)
+			params.require(:requistion).permit(:object, :contact_name, :contact_phone, 
+				:type_requistion, :subtype_requistion, :building_id, :requistion_comment,
+				:time_deadline)
 		end
 
 		def send_to_boss(worker_id)

@@ -121,7 +121,9 @@
 				<div class="form-group">
 					<%= f.label :'Дата окончания заявки:', class: "col-md-3 control-label" %>
 					<div class="col-md-5">
-  						<%= date_field_tag :deadline, nil, :min=> Time.zone.now.strftime("%Y-%m-%d"), :placeholder => "Введите время окончания заявки", class: "form-control", required: "", value: @requistion.time_deadline %>		
+					<%
+						deadline = @requistion.time_deadline.to_date.to_formatted_s(:day_month_year) if @requistion.time_deadline %>
+  						<%= date_field_tag "requistion[time_deadline]", deadline, :min=> Time.zone.now.strftime("%Y-%m-%d"), class: "form-control", required: "" %>		
 					</div>
 				</div>
 			</div>

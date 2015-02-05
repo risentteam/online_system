@@ -42,6 +42,7 @@
 //= require star-rating.min
 
 //= require selectize
+//= require jquery.maskedinput.min
 
 
 
