@@ -61,7 +61,6 @@
 
 
 <% if current_user.admin? %>
-  <%# if @requistion.status != "completed" %>
   <div class="row">
 
 </div>
@@ -87,7 +86,6 @@
         <div class="modal-body">
             <%= form_tag(change_status_path(@requistion), :html => {:class => "form-vertical"}) do |f| %>
               <div class="form-group">
-            <!-- "[['Новая', 'fresh'], ['Назначена', 'assigned'], ['Принята в работу', 'adopted_in_work'], ['Выполняется', 'running'], ['Исполнено', 'done'], ['Завершено', 'completed']] -->
       <%= select_tag :status, "<option value = fresh>Новая</option><option value=assigned>Назначена</option><option value = adopted_in_work >Принята в работу</option><option value = running>Выполняется</option><option value=done>Исполнено</option><option value = completed >Завершена</option><option value = canceled >Отменена</option>", :prompt => "Выберите из списка", :class =>  "form-control", required: "" %>          </div>
           <button type="submit" class="btn btn-success">Изменить</button>
         <% end %>

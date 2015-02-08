@@ -13,11 +13,10 @@ class SessionsController < ApplicationController
 			if not_remeber
 				flash[:info] = "Не запоминать"
 			else
-				# flash[:info] = "Запомнить"
+				#flash[:info] = "Запомнить"
 			end
 			redirect_back_or user
 		else
-		# Create an error message and re-render the signin form.
 		flash.now[:danger] = 'Неправильная комбинация пароля и почты'
 		render 'new'
 		end

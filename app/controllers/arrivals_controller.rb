@@ -26,7 +26,4 @@ class ArrivalsController < ApplicationController
 #		@result = Arrival.
 
 	end
-	def arrivalfromto
-		
-	end
 end
