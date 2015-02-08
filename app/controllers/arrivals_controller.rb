@@ -22,7 +22,7 @@ class ArrivalsController < ApplicationController
 				@time_to = params[:time][:to]
 			end
 			@result = Arrival.includes(:building, :user).where('date between ? and ?', @date_from, @date_to).\
-				where("strftime('%H', date) between ? and ? or strftime('%H', date)= ? and strftime('%M', date) >= ? or strftime('%H', date)= ? and strftime('%M', date) <= ?", 
+				where("to_char(date, 'HH24') between ? and ? or to_char(date, 'HH24')= ? and to_char(date, 'MI') >= ? or strftime(date, 'HH24')= ? and strftime(date, 'MI') <= ?", 
 				(@time_from[0,2].to_i+1).to_s, (@time_to[0,2].to_i-1).to_s, @time_from[0,2], @time_from[3, 2], @time_to[0, 2], @time_to[3, 2])
 #		@result = Arrival.
 
