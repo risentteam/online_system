@@ -517,13 +517,6 @@ $(document).ready(function() {
 //                alert("Data: " + data + "\nStatus: " + status);
 				console.log(data[0].description);
 				$("#versionsDiv").html(data);
-			}
-		});
-	});
-});
-
-$(document).ready(function() {
-	$("#company").blur(function(){
 		$("#version_id").change(function () {
 //            alert($("#version_id :selected").val());
 			$.ajax({url: "/update_date",
@@ -538,9 +531,14 @@ $(document).ready(function() {
 				}
 			});
 		});
+
+			}
+		});
+	});
 	});
 
-});
+
+
 //#########################################################################################
 //Всплывающее окно изменений во времени
 //#########################################################################################

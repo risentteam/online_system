@@ -1,4 +1,4 @@
- <th><%= link_to requistion.object,  {:controller => :requistions, :action => :show, :id => requistion.id}, {:method => :get} %></th>
+ <th> <%= link_to requistion.object,  {:controller => :requistions, :action => :show, :id => requistion.id}, {:method => :get} %></th>
  <td> <%= Building.find(requistion.building_id).arrival_address %></td>
  <td> <%= transcript_of_the_messages(requistion.type_requistion) %> </td>
  <td> <%= status_names[requistion.status.to_sym] %> </td>
