@@ -1,7 +1,8 @@
 class ArrivalsController < ApplicationController
 	def index
 			if (params[:date].nil? or params[:date][:from].empty?)
-				@date_from = Arrival.first.date().strftime("%Y-%m-%d")
+#				@date_from = Arrival.first.date().strftime("%Y-%m-%d")
+				@date_from = '2015-01-01'
 			else
 				@date_from = params[:date][:from]
 			end
