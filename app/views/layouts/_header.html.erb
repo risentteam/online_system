@@ -33,13 +33,76 @@ $(document).ready(function(){
 				<span class="glyphicon glyphicon-wrench"></span>&nbspПанель управления
 				<% end %>
 			</li>
+
 						
 					<li class = "pull-right" role="presentation"><a href="<%= new_requistions_path %>">Новые заявки <span id="count" class="badge"></span></a></li>
+
+
+					<li class = "pull-right">
+						<div class="dropdown manpanel">
+						 	<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+						    	Панель управления
+						    	<span class="caret"></span>
+						  	</button>
+						  	<ul class="dropdown-menu ddmenu" role="menu" aria-labelledby="dropdownMenu1">
+						    	<li role="presentation">
+						    		<%= link_to bosses_path, class:"" do %>
+										<span class="glyphicon glyphicon-list"></span>&nbsp Начальники
+									<% end %>
+						    	</li>
+						    	<li role="presentation">
+						    		<%= link_to requistions_path, class:"" do %>
+										<span  class="glyphicon glyphicon-list"></span>&nbsp Все заявки
+									<% end %>
+						    	</li>
+						    	<li role="presentation">
+						    		<%= link_to users_path, class:"" do %>
+										<span class="glyphicon glyphicon-list"></span>&nbsp Клиенты
+									<% end %>
+						    	</li>
+						    	<li role="presentation">
+						    		<%= link_to workers_path, class:"" do %>
+										<span class="glyphicon glyphicon-list"></span>&nbsp Рабочие
+									<% end %>
+						    	</li>
+						    	<li role="presentation">
+
+							    	<%= link_to contracts_path, class:"" do %>
+										<span class="glyphicon glyphicon-list"></span>&nbsp Контракты
+									<% end %>
+								</li>
+								<li role="presentation">
+									<%= link_to buildings_path, class:"" do %>
+										<span class="glyphicon glyphicon-list"></span>&nbsp Все объекты
+									<% end %>
+								</li>
+
+
+
+								<li role="presentation">
+						    		<a href="/admin_new"><span class="glyphicon glyphicon-pencil"></span>&nbsp Создать нового администратора</a>
+						    	</li>
+						    	<li role="presentation">
+						    		<a href="/admin_new"><span class="glyphicon glyphicon-pencil"></span>&nbsp Создать нового рабочего(неактивно)</a>
+						    	</li>
+						    	<li role="presentation">
+						    		<a href="/admin_new"><span class="glyphicon glyphicon-pencil"></span>&nbsp Создать нового клиента(неактивно)</a>
+						    	</li>
+						    	<li role="presentation">
+						    		<a href="/bosses/new"><span class="glyphicon glyphicon-pencil"></span>&nbsp Создать нового начальника</a>
+						    	</li>
+						    	<li role="presentation">
+						    		<a href="/buildings/new"><span class="glyphicon glyphicon-pencil"></span>&nbsp Новый объект</a>
+						    	</li>
+
+						  	</ul>
+						</div>
+					</li>
+
 
 					<li class="pull-left"><a href="/new"><span class="glyphicon glyphicon-envelope">
 					</span>&nbsp Новая заявка</a></li>
 
-				</ul>
 			<% elsif current_user.client? %>
 			
 					<li class="pull-left"><a href="/new"><span class="glyphicon glyphicon-envelope">
