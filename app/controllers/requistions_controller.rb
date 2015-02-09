@@ -20,7 +20,7 @@ class RequistionsController < ApplicationController
 	def to_take_in_work
 		@requistion = Requistion.find(params[:id]) 
 		if @requistion.update_attributes(
-			status: "adopted_in_work", time_adopted_in_work: Time.zone.now.to_s)
+			status: "adopted_in_work", time_adopted_in_work: Time.zone.now.to_s, who_adopted: current_user.id)
 			flash[:success] = "Заявка принята в разработку"
 			redirect_to @requistion
 		end
@@ -29,7 +29,7 @@ class RequistionsController < ApplicationController
 	def close
 		@requistion = Requistion.find(params[:id]) 
 		if @requistion.update_attributes(
-			status: "completed", time_completed: Time.zone.now.to_s)
+			status: "completed", time_completed: Time.zone.now.to_s, who_comleted: current_user.id)
 			flash[:success] = "Заявка завершена"
 			redirect_to @requistion
 		end
@@ -38,7 +38,7 @@ class RequistionsController < ApplicationController
 	def done
 		@requistion = Requistion.find(params[:id]) 
 		if @requistion.update_attributes(
-			status: "done", time_done: Time.zone.now.to_s)
+			status: "done", time_done: Time.zone.now.to_s, who_done: current_user.id)
 			flash[:success] = "Заявка закончена"
 			redirect_to @requistion
 		end		
@@ -69,22 +69,22 @@ class RequistionsController < ApplicationController
 		case params[:status]
 			when "fresh"
 				@requistion.update_attributes(
-					created_at: Time.zone.now.to_s)
+					created_at: Time.zone.now.to_s, who_created: current_user.id)
 			when "assigned"
 				@requistion.update_attributes(
-					time_assgned: Time.zone.now.to_s)
+					time_assgned: Time.zone.now.to_s, who_assigned: current_user.id)
 			when "adopted_in_work"
 				@requistion.update_attributes(
-					time_adopted_in_work: Time.zone.now.to_s)
+					time_adopted_in_work: Time.zone.now.to_s, who_adopted: current_user.id)
 			when "running"
 				@requistion.update_attributes(
-					time_running: Time.zone.now.to_s)
+					time_running: Time.zone.now.to_s, who_running: current_user.id)
 			when "done"
 				@requistion.update_attributes(
-					time_done: Time.zone.now.to_s)
+					time_done: Time.zone.now.to_s, who_done: current_user.id )
 			when "completed"
 				@requistion.update_attributes(
-					time_completed: Time.zone.now.to_s)
+					time_completed: Time.zone.now.to_s, who_comleted: current_user.id)
 			end
 		flash[:success] = "Статус изменен"
 		redirect_to requistion_path(@requistion)		
@@ -101,8 +101,24 @@ class RequistionsController < ApplicationController
 		end
 		r = Requistion.find(params[:id])
 		if r.who_cancel
-			link = "<a href='#{user_path(r.who_cancel)}'>Кто отменил</a>"
+			link_cancel = "<a href='#{user_path(r.who_cancel)}'>"+User.find(r.who_cancel).name+"</a>"
 		end
+		if r.who_running
+			link_running = "<a href='#{user_path(r.who_running)}'>"+User.find(r.who_running).name+"</a>"
+		end
+		if r.who_created
+			link_created = "<a href='#{user_path(r.who_created)}'>"+User.find(r.who_created).name+"</a>"
+		end
+		if r.who_assigned
+			link_assigned = "<a href='#{user_path(r.who_assigned)}'>"+User.find(r.who_assigned).name+"</a>"
+		end
+		if r.who_done
+			link_done = "<a href='#{user_path(r.who_done)}'>"+User.find(r.who_done).name+"</a>"
+		end
+		if r.who_comleted
+			link_comleted = "<a href='#{user_path(r.who_comleted)}'>"+User.find(r.who_comleted).name+"</a>"
+		end
+
 		render :json => {
 			time:{ 
 				:created   => tostr(r.created_at),
@@ -115,7 +131,12 @@ class RequistionsController < ApplicationController
 				:canceled  => tostr(r.time_canceled)
 			},
 			user:{
-				:canceled  => link
+				:canceled  => link_cancel,
+				:running => link_running,
+				:created  => link_created,
+				:assigned => link_assigned,
+				:done  => link_done,
+				:comleted => link_comleted
 			}
 		}
 	end

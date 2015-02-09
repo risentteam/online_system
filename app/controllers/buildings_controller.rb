@@ -32,22 +32,23 @@ class BuildingsController < ApplicationController
 	end
 	
 	def check_in
-		pairs = Pair.where(
-			"user_id = ? and requistion_id in (SELECT id FROM requistions WHERE building_id = ?)",
-			 current_user[:id], params[:id])
-		last = current_user.arrivals.where(check_type: 0).order(:date).last(); 
-		date = Time.zone.now.strftime("%Y-%m-%d")
+		requistion_for_buidings = current_user.requistions.where('status = 2')
+		# pairs = Pair.where(
+		# 	"user_id = ? and requistion_id in (SELECT id FROM requistions WHERE building_id = ?)",
+		# 	 current_user[:id], params[:id])
+		# last = current_user.arrivals.where(check_type: 0).order(:date).last(); 
+		# date = Time.zone.now.strftime("%Y-%m-%d")
 		arrival = Arrival.create(
 			user_id: current_user[:id],
 			check_type: "check_in",
 			building_id: params[:id],
 			date: Time.now.to_s)
 
-    	if current_user.arrivals.where("date between date('now') AND date('now')").count==0
-			arrival.update_attributes(begin_or_end: 0)
-		end
-		pairs.each do |pair|
-			pair.requistion.update_attributes(status: "running", time_running: Time.now.to_s)
+  #   	if current_user.arrivals.where("date between date('now') AND date('now')").count==0
+		# 	arrival.update_attributes(begin_or_end: 0)
+		# end
+		requistion_for_buidings.each do |f|
+			f.update_attributes(status: "running", time_running: Time.now.to_s, who_running: current_user.id)
 		end
 		flash[:success] = "Ваше прибытие отмечено!"
 		redirect_to current_user

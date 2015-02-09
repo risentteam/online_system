@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150202014439) do
+ActiveRecord::Schema.define(version: 20150209000635) do
 
   create_table "arrivals", force: true do |t|
     t.integer  "user_id",      null: false
@@ -102,6 +102,12 @@ ActiveRecord::Schema.define(version: 20150202014439) do
     t.datetime "time_deadline"
     t.datetime "time_canceled"
     t.integer  "who_cancel"
+    t.integer  "who_running"
+    t.integer  "who_created"
+    t.integer  "who_assigned"
+    t.integer  "who_adopted"
+    t.integer  "who_done"
+    t.integer  "who_comleted"
   end
 
   create_table "users", force: true do |t|
