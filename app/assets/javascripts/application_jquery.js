@@ -517,13 +517,6 @@ $(document).ready(function() {
 //                alert("Data: " + data + "\nStatus: " + status);
 				console.log(data[0].description);
 				$("#versionsDiv").html(data);
-			}
-		});
-	});
-});
-
-$(document).ready(function() {
-	$("#company").blur(function(){
 		$("#version_id").change(function () {
 //            alert($("#version_id :selected").val());
 			$.ajax({url: "/update_date",
@@ -538,9 +531,14 @@ $(document).ready(function() {
 				}
 			});
 		});
+
+			}
+		});
+	});
 	});
 
-});
+
+
 //#########################################################################################
 //Всплывающее окно изменений во времени
 //#########################################################################################
@@ -554,7 +552,7 @@ function reply_click(clicked_id)
 				success: function (data, status) {
 					$('#show_time_change_created').text(data.time.created);
 					$('#show_time_change_assigned').text(data.time.assigned);
-					$('#show_time_change_adopted').text(data.time.adopted);
+					$('#show_time_change_adopted').text(data.time.adopted);					
 					$('#show_time_change_running').text(data.time.running);
 					$('#show_time_change_done').text(data.time.done);
 					$('#show_time_change_completed').text(data.time.completed);
@@ -563,6 +561,18 @@ function reply_click(clicked_id)
 
 					$('#show_who_cancel').text("");
 					$('#show_who_cancel').append(data.user.canceled);
+					$('#show_who_running').text("");
+					$('#show_who_running').append(data.user.running);
+					$('#show_who_created').text("");
+					$('#show_who_created').append(data.user.created);
+					$('#show_who_assigned').text("");
+					$('#show_who_assigned').append(data.user.assigned);
+					$('#show_who_adopted').text("");
+					$('#show_who_adopted').append(data.user.adopted);
+					$('#show_who_done').text("");
+					$('#show_who_done').append(data.user.done);
+					$('#show_who_comleted').text("");
+					$('#show_who_comleted').append(data.user.comleted);
 				}
 			});
 }

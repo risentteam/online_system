@@ -1,7 +1,14 @@
 <% provide(:title, 'Все прибытия') %>
+<%= form_tag('/arrivals', :method=>'get') do %>
+	С<%= time_field :time, :from, class: "btn btn-large btn-primary" %>
+	По<%= time_field :time, :to, class: "btn btn-large btn-primary" %>
+	<br>
+	С<%= date_field :date, :from, class: "btn btn-large btn-primary" %>
+	По<%= date_field :date, :to, class: "btn btn-large btn-primary" %>
+	<%= submit_tag "Показать", class: "btn btn-large btn-primary" %>
+<% end %>
 <h1>Все прибытия</h1>
-<h3><%='с '+@from if not @from.nil? %> <%='по '+@to if not @to.nil? %> </h3>
-
+<h3><%='с '+@time_from if not @time_from.nil? %> <%='по '+@time_to if not @time_to.nil? %> </h3>
 <div class="container">
 <table id="arrivals" class="table table-striped">
 	<thead>
@@ -12,11 +19,11 @@
 		</tr>
 	</thead>    
     <tbody>
-		<% @result.find_each do |arrival| %>
+		<% @result.find_each do |f| %>
 		<tr>
-	    	<td> <%= arrival.user.name %> </td>
-	    	<td> <%= arrival.building.arrival_address %> </td>
-	    	<td> <%= arrival.date.strftime("%d.%m.%Y %H:%M") if  not arrival.date.nil? %></td>
+	    	<td> <%= f.user.name %> </td>
+	    	<td> <%= f.building.arrival_address %> </td>
+	    	<td> <%= f.date.strftime("%d.%m.%Y %H:%M") if  not f.date.nil? %></td>
 		</tr>
 		<% end %>
 	</tbody>
@@ -30,8 +37,34 @@
 </table>
 
 
-<%= form_tag('/arrivals', :method=>'get') do %>
-	С<%= time_field :time, :from, class: "btn btn-large btn-primary" %>
-	По<%= time_field :time, :to, class: "btn btn-large btn-primary" %>
-	<%= submit_tag "Показать", class: "btn btn-large btn-primary" %>
-<% end %>
+<br>
+<h1>Не появлявшиеся за период <%='с '+@time_from if not @time_from.nil? %> <%='по '+@time_to if not @time_to.nil? %> </h3> </h1>
+<h3><%='с '+@date_from if not @date_from.nil? %> <%='по '+@date_to if not @date_to.nil? %> </h3>
+<% i = DateTime.parse(@date_from) %>
+<div class="container">
+<table id="arrivals" class="table table-striped">
+	<thead>
+		<tr>
+			<th>Дата</th>
+			<th>Рабочие</th>
+		</tr>
+	</thead>    
+    <tbody>
+    	<%if @date_from<=@date_to %>
+			<% while i<@date_to do %>
+				<tr>
+				<td><%= i.strftime("%d.%m.%Y")%></td>
+				<% @Arrivals_at_day = @result.select(:user_id).distinct.where("to_char(date, 'YYYY-MM-DD') = ?", i.strftime("%Y-%m-%d")) %>	
+				<% @latecomers = User.where('status = 0 and id not in (?)	', @Arrivals_at_day) %>
+				<td>
+				<% @latecomers.each do |f|%>
+					<li><%= f.name %></li>
+				<% end %>
+				</td>
+				<% i = i.tomorrow %>
+				</tr>
+			<%end%>
+		<%end%>
+	</tbody>
+</table>
+
