@@ -42,6 +42,7 @@ App::Application.routes.draw do
 	match '/new_requistions',  to: 'requistions#all_new',            via: 'get'
 	match "/update_contracts", to: "requistions#update_contracts", via: 'get'	
 	match "/update_date", to: "requistions#update_date", via: 'get'	
+  	match '/update_objects_name', to: 'requistions#update_objects_name', via: 'get'
   	match 'requistions/:id/close', to: 'requistions#close', via: 'get'
   	match 'requistions/:id/raiting', to: 'requistions#raiting', via: 'get'
   	match 'requistions/:id/to_take_in_work', to: 'requistions#to_take_in_work', via: 'get'
@@ -49,6 +50,7 @@ App::Application.routes.draw do
   	match 'requistions/:id/cancel', to: 'requistions#cancel', via: 'get'
   	match 'requistions/:id/canceldone', to: 'requistions#canceldone', via: 'post', as: "canceldone"
   	match '/view_change_time', to: 'requistions#view_change_time', via: 'get'
+
 
 	resources :requistions do
   		get :autocomplete_building_arrival_address, :on => :collection

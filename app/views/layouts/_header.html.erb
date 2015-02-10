@@ -28,11 +28,11 @@ $(document).ready(function(){
 				<% end %>
 			</li>
 			
-			<li class = "pull-right">
-				<%= link_to panel_path do %>
+<!-- 			<li class = "pull-right">
+				<%#= link_to panel_path do %>
 				<span class="glyphicon glyphicon-wrench"></span>&nbspПанель управления
-				<% end %>
-			</li>
+				<%# end %>
+			</li> -->
 
 						
 					<li class = "pull-right" role="presentation"><a href="<%= new_requistions_path %>">Новые заявки <span id="count" class="badge"></span></a></li>
@@ -53,6 +53,11 @@ $(document).ready(function(){
 						    	<li role="presentation">
 						    		<%= link_to requistions_path, class:"" do %>
 										<span  class="glyphicon glyphicon-list"></span>&nbsp Все заявки
+									<% end %>
+						    	</li>
+						    	<li role="presentation">
+						    		<%= link_to arrivals_path, class:"" do %>
+										<span  class="glyphicon glyphicon-list"></span>&nbsp Все посещения
 									<% end %>
 						    	</li>
 						    	<li role="presentation">

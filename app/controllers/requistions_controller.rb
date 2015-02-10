@@ -212,6 +212,10 @@ class RequistionsController < ApplicationController
 						  :time =>  "С "+Russian::strftime(@contract.begin_time, "%e %B %Y")+" до "+Russian::strftime(@contract.end_time, "%e %B %Y")}
 	end
 
+	def update_objects_name
+		@building = Building.find_by arrival_address: params[:address]
+		render :json => @building.contracts[0].company
+	end
 
 	def update
 		#Необходимо добавить проверку корректности данных

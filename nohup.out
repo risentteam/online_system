@@ -6,3 +6,5 @@ called Tcl_FindHashEntry on deleted table
 XIO:  fatal IO error 11 (Resource temporarily unavailable) on X server ":0"
       after 734400 requests (734400 known processed) with 0 events remaining.
 called Tcl_FindHashEntry on deleted table
+XIO:  fatal IO error 11 (Resource temporarily unavailable) on X server ":0"
+      after 222716 requests (222716 known processed) with 0 events remaining.
