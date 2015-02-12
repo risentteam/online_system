@@ -87,7 +87,7 @@
 			<div class="form-group">
   				<label class=" col-xs-3">Исполнители</label>
 				<div  class="col-xs-5">
-				<select id="workers-select" name="workers[]" multiple  placeholder="Выберите рабочих">
+				<select id="workers-select" name="workers[]" multiple  placeholder="Выберите исполнителей">
 				<%= options_for_select(User.worker.collect {|p| [ p.name, p.id ] })	%>
 				
 				</select>
