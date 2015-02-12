@@ -141,7 +141,7 @@
 				<div class="form-group" id="worker_row">
 					<%= f.label :'Исполнители:', class: "col-md-3 control-label" %>
 					<div id="workerfield" class="col-md-5">
-					<select id="workers-select" name="workers[]" multiple  placeholder="Выберите рабочих">
+					<select id="workers-select" name="workers[]" multiple  placeholder="Выберите исполнителей">
 						<%= options_for_select(User.worker.collect {|p| [ p.name, p.id ] },
 						@requistion.users.worker.collect {|p|  p.id } )	%>
 						 
