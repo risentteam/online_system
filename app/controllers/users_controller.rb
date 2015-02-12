@@ -92,12 +92,12 @@ class UsersController < ApplicationController
 	end
 
 	def admin_create
-		@user = User.new(user_new_params)
+		@user = User.new(user_new_params_admin)
 		@user.status = "admin"
 		#not unique id
 		if @user.save
-			flash[:success] = "Вы успешно создали администратора!"
-			redirect_to current_user
+			flash[:success] = "Вы успешно создали пользователя!"
+			redirect_to user_path(@user)
 		else
 			render 'admin_new'
 		end
@@ -115,6 +115,11 @@ class UsersController < ApplicationController
 		def user_new_params
 			params.require(:user).permit(:name, :email, :phone,
 				:password, :password_confirmation)
+		end
+
+		def user_new_params_admin
+			params.require(:user).permit(:name, :email, :phone,
+				:password, :password_confirmation, :status)
 		end
 
 	include TableHelper
