@@ -118,6 +118,9 @@ class RequistionsController < ApplicationController
 		if r.who_comleted
 			link_comleted = "<a href='#{user_path(r.who_comleted)}'>"+User.find(r.who_comleted).name+"</a>"
 		end
+		if r.who_adopted
+			link_adopted = "<a href='#{user_path(r.who_adopted)}'>"+User.find(r.who_adopted).name+"</a>"
+		end
 
 		render :json => {
 			time:{ 
@@ -137,6 +140,7 @@ class RequistionsController < ApplicationController
 				:assigned => link_assigned,
 				:done  => link_done,
 				:comleted => link_comleted
+				:adopted => link_adopted
 			}
 		}
 	end
