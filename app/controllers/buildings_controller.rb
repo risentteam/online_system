@@ -28,7 +28,7 @@ class BuildingsController < ApplicationController
 	end
 
 	def index
-		@buildings = Building.all;
+		@buildings = Building.includes(:contracts);
 	end
 	
 	def check_in
