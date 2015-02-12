@@ -139,7 +139,7 @@ class RequistionsController < ApplicationController
 				:created  => link_created,
 				:assigned => link_assigned,
 				:done  => link_done,
-				:comleted => link_comleted
+				:comleted => link_comleted,
 				:adopted => link_adopted
 			}
 		}
