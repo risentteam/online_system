@@ -48,7 +48,7 @@ jQuery(document).ready(function() {
 		tableClass: "table-bordered",
 		columnDefs: [
                 { "type": "de_datetime", targets: 3 },
-                { "type": "de_datetime", targets: 10 }            	
+                { "type": "de_datetime", targets: 9 }            	
             ],
 //новая часть часть отвечяющая за сохранение настроек таблицы
 		stateSave: true,
@@ -58,22 +58,22 @@ jQuery(document).ready(function() {
 			  "buttonText": "Показать/скрыть столбцы"
 		},
 		"createdRow": function ( row, data, index ) {
-			if ( data[11]=="новая" ) {
+			if ( data[10]=="новая" ) {
 				$('td', row).addClass('danger');
 			};
-			if ( data[11]=="завершено" ) {
+			if ( data[10]=="завершено" ) {
 				$('td', row).addClass('success');
 			};
-			if ( data[11]=="отменена" ) {
+			if ( data[10]=="отменена" ) {
 				$('td', row).addClass('info');
 			};
-			if ( data[11]=="принята в работу" ) {
+			if ( data[10]=="принята в работу" ) {
 				$('td', row).addClass('warning');
 			};
-			if ( data[11]=="выполняется" ) {
+			if ( data[10]=="выполняется" ) {
 				$('td', row).addClass('warning');
 			};
-			if ( data[11]=="исполнена" ) {
+			if ( data[10]=="исполнена" ) {
 				$('td', row).addClass('warning');
 			};
 
@@ -93,7 +93,7 @@ jQuery(document).ready(function() {
 			{ type: "text"},
 			{ type: "text"},
 			{ type: "select" },
-			{ type: "select" },
+			// { type: "select" },
 			{ type: "text"},
 			{ type: "select" },
 			{ type: "date-range" },
@@ -119,8 +119,10 @@ jQuery(document).ready(function() {
 			<th>Имя</th>
 			<th>Телефон</th>
 			<th>Тип</th>
-			<th>Поддтип</th>
-			<th>Комментарий</th>
+<!--
+ 			<th>Поддтип</th>
+ -->
+ 			<th>Комментарий</th>
 			<th>Категория</th>
 			<th>Время последнего изменения</th>
 			<th>Статус</th>
@@ -143,7 +145,10 @@ jQuery(document).ready(function() {
 			<td><%= requistion.contact_name %></td>			
 			<td><%= requistion.contact_phone %></td>	
 			<td><%= transcript_of_the_messages(requistion.type_requistion) %></td>			
-			<td><%= transcript_of_the_messages(requistion.subtype_requistions)  %></td>			
+
+<!--
+ 			<td><%#= transcript_of_the_messages(requistion.subtype_requistions)  %></td>			
+ -->
 			<td><%= requistion.requistion_comment %></td>			
 			<td><%= transcript_of_the_messages_category(requistion.category) %></td>	
 			<td> <button id = <%= requistion.id %> class="btn btn-danger change-time" data-toggle="modal" data-target="#status" onClick="reply_click(this.id)" > <%= requistion.updated_at.strftime("%d.%m.%Y %H:%M")%> </button>
@@ -171,7 +176,9 @@ jQuery(document).ready(function() {
 			<th>Имя</th>
 			<th>Телефон</th>
 			<th>Тип</th>
-			<th>Поддтип</th>
+
+<!-- 			<th>Поддтип</th>
+ -->
 			<th>Комментарий</th>
 			<th>Категория</th>
 			<th>Время</th>

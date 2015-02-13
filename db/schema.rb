@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150209000635) do
+ActiveRecord::Schema.define(version: 20150212212908) do
 
   create_table "arrivals", force: true do |t|
     t.integer  "user_id",      null: false
@@ -122,6 +122,8 @@ ActiveRecord::Schema.define(version: 20150209000635) do
     t.string   "phone"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
+    t.string   "region"
+    t.string   "specialization"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
