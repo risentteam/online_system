@@ -149,6 +149,7 @@ class RequistionsController < ApplicationController
 		@requistion = Requistion.new(requistions_params)
 		if @requistion.save
 			if current_user.admin?
+				pairs = @requistion.pairs
 				all_workers_id = Array(params[:workers])	
 				
 				all_workers_id.each do |worker|
