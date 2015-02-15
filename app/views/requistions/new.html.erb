@@ -11,7 +11,7 @@
 				</div>
 			</div>
 		</div>
-
+		<hr>
 		<div class="row">
 	 		<div class="form-group">
 				<label class=" col-xs-3">Адресс прибытия для специалистов</label>
@@ -27,7 +27,7 @@
 
 			</div>
 		</div>
-		 	
+		<hr>
 	 	<div class="row">
 			<div class="form-group">
 				<label class=" col-xs-3">ФИО контактного лица заказчика</label>
@@ -36,7 +36,7 @@
 				</div>
 			</div>
 		</div>
-
+		<hr>
 		<div class="row">
 			<div class="form-group">
 				<label class=" col-xs-3">Телефон контактного лица заказчика</label>
@@ -45,7 +45,7 @@
 				</div>
 			</div>
 		</div>
-
+		<hr>
 		<div class="row">
 			<div class="form-group">
 			<label class=" col-xs-3">Тип работ</label>
@@ -54,25 +54,26 @@
 			</div>
 			</div>
 		</div>
-
-		<div class="row">
-			<div class="form-group" id="subtype" style="display:none">
+		<hr>
+		<div class="row" id="subtype" style="display:none">
+			<div class="form-group" >
 			<label class=" col-xs-3">Тип аварийных работ</label>
 			<div class="col-xs-5">
 				<%= f.select :subtype_requistions, [['Электрика', 'Э'], ['Сантехника ГВС', 'Г'], ['Сантехника ХВС', 'X'], ['Канализация', 'К'], ['Отопление', 'О'], ['АПС', 'П'], ['АУУ', 'У'], ['Видеокамера', 'В'], ['Системы дымоудаления', 'C'], ['Видеодомофон', 'Д'], ['Другое', 'Д']], { :prompt => "Выберите из списка" }, { :class => "form-control" }  %>
 			</div>
 			</div>
+			<hr style = "margin-left: -625px;">
 		</div>
 
-		<div class="row">
-			<div class="form-group" id="info" style="display:none">
+		<div class="row" id="info" style="display:none">
+			<div class="form-group" >
 			  <label class=" col-xs-3">Дополнительная информация</label>
 			  <div class="col-xs-5">
 			  <%= f.text_field :info, :placeholder =>"Опишите проблему", class: "form-control"%>
 			</div>
+			<hr style = "margin-left: -625px;">
 			</div>
 		</div>
-
 		<div class="row">
 			<div class="form-group">
 			  <label class=" col-xs-3">Комментарий</label>
@@ -83,6 +84,7 @@
 		</div>
 
 		<% if current_user.admin? %>
+		<hr>
 		<div class="row">
 			<div class="form-group">
   				<label class=" col-xs-3">Исполнители</label>
