@@ -28,8 +28,11 @@
   </tr>
   <tr>    
     <th>Объекты</th>
-    <td><% @contract.buildings.each do |building| %> <li><%= link_to building.arrival_address, {:controller => :buildings, :action => :show, :id => building.id}, {:method => :get}%> </li><% end %></td>
+    <td>
+    <% @contract.buildings.each do |building| %> 
+      <li><%= link_to building.arrival_address, building_path(building) %> </li>
+    <% end %>
+    </td>
   </tr>
-
 </table>
 

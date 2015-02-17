@@ -6,22 +6,16 @@
 		</div>
 		<div class="col-md-4">
 			<h1>Отмена зявки</h1>
-
-
-
-				<%= form_tag('canceldone', :method=>'post' , :multipart => true) do %>
-						<p>
-						   Комментарий:<br />
-						   <%= text_field_tag "subject", nil, class: "form-control", required: ""%>
-						</p>
-					<%= submit_tag "Отменить заявку", class: "btn btn-large btn-primary" %>
-				<% end %>
+			<%= form_tag('canceldone', :method=>'post' , :multipart => true) do %>
+					<p>
+					   Комментарий:<br />
+					   <%= text_field_tag "subject", nil, class: "form-control", required: ""%>
+					</p>
+				<%= submit_tag "Отменить заявку", class: "btn" %>
+			<% end %>
 				<br>
 			<%= link_to "Не отменять заявку", {controller: "users", action: "req", id: current_user}, class: "btn"%>
-
-
 		</div>
-
 	</div>
 </div>
 

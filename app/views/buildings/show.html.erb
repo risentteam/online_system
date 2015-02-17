@@ -1,48 +1,48 @@
 <script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 <% provide(:title, 'Объект') %>
 <div class="container">
-<h2>Информация об объкте</h2>
-<div class="row">
-<div class="col-md-7">
-  <table class="table table-bordered table-striped">
-    <tr>
-      <th>Объект</th>
+  <h2>Информация об объкте</h2>
+  <div class="row">
+  <div class="col-md-7">
+    <table class="table table-bordered table-striped">
+      <tr>
+        <th>Объект</th>
 
-      <th><%= @building.name %></th>
-    </tr>
-    <tr>
-      <td>Адрес</td>
-      <td><%= best_in_place @building, :arrival_address, :as => :input %></td>
-    </tr>
-    <% if current_user.admin? %>
-    <tr>
-      <td>Ссылка для входа</td>
-      <td><%= "onlinesys.herokuapp.com/buildings/#{@building.id}/check_in" %></td>
-    </tr>
-    <tr>
-      <td>Ссылка для выхода</td>
-      <td><%= "onlinesys.herokuapp.com/buildings/#{@building.id}/check_out" %></td>
-    </tr>
-    <% end %>
-  </table>
-</div>
-</div>
+        <th><%= @building.name %></th>
+      </tr>
+      <tr>
+        <td>Адрес</td>
+        <td><%= best_in_place @building, :arrival_address, :as => :input %></td>
+      </tr>
+      <% if current_user.admin? %>
+      <tr>
+        <td>Ссылка для входа</td>
+        <td><%= "onlinesys.herokuapp.com/buildings/#{@building.id}/check_in" %></td>
+      </tr>
+      <tr>
+        <td>Ссылка для выхода</td>
+        <td><%= "onlinesys.herokuapp.com/buildings/#{@building.id}/check_out" %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+  </div>
 
   <h2>Контракты</h2>
-<table class="table table-striped">
-  <tr>
-    <th>Контракт</th>
-    <th>Компания</th>
-    <th>Описание</th>
-  </tr>
-  <% for contract in @building.contracts %>
+  <table class="table table-striped">
     <tr>
-      <td> <%=link_to contract.name_contract,  {:controller => :contracts, :action => :show, :id => contract.id}, {:method => :get} %> </td>
-      <td> <%= contract.company %> </td>
-      <td> <%= contract.description %> </td>
+      <th>Контракт</th>
+      <th>Компания</th>
+      <th>Описание</th>
     </tr>
-  <% end %>
-</table>
+    <% for contract in @building.contracts %>
+      <tr>
+        <td> <%=link_to contract.name_contract, contract_path(contract) %> </td>
+        <td> <%= contract.company %> </td>
+        <td> <%= contract.description %> </td>
+      </tr>
+    <% end %>
+  </table>
 
 <script type="text/javascript">
 ymaps.ready(init);
@@ -103,3 +103,4 @@ function init() {
 <% end %> 
 
 <%= link_to 'Назад', :back, class: "btn btn-large btn-primary" %>
+</div>

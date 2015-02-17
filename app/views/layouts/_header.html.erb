@@ -41,44 +41,44 @@ $(document).ready(function(){
 						  	</button>
 						  	<ul class="dropdown-menu ddmenu" role="menu" aria-labelledby="dropdownMenu1">
 						  		<li role="presentation">
-						    		<%= link_to "/staff", class:"" do %>
+						    		<%= link_to "/staff" do %>
 										<span class="glyphicon glyphicon-list"></span>&nbsp Все сотрудники
 									<% end %>
 						    	</li>
 						    	<li role="presentation">
-						    		<%= link_to bosses_path, class:"" do %>
+						    		<%= link_to bosses_path do %>
 										<span class="glyphicon glyphicon-list"></span>&nbsp Начальники
 									<% end %>
 						    	</li>
 
 						    	<li role="presentation">
-						    		<%= link_to requistions_path, class:"" do %>
+						    		<%= link_to requistions_path do %>
 										<span  class="glyphicon glyphicon-list"></span>&nbsp Все заявки
 									<% end %>
 						    	</li>
 						    	<li role="presentation">
-						    		<%= link_to arrivals_path, class:"" do %>
+						    		<%= link_to arrivals_path do %>
 										<span  class="glyphicon glyphicon-list"></span>&nbsp Все посещения
 									<% end %>
 						    	</li>
 						    	<li role="presentation">
-						    		<%= link_to users_path, class:"" do %>
+						    		<%= link_to users_path do %>
 										<span class="glyphicon glyphicon-list"></span>&nbsp Клиенты
 									<% end %>
 						    	</li>
 						    	<li role="presentation">
-						    		<%= link_to workers_path, class:"" do %>
+						    		<%= link_to workers_path do %>
 										<span class="glyphicon glyphicon-list"></span>&nbsp Рабочие
 									<% end %>
 						    	</li>
 						    	<li role="presentation">
 
-							    	<%= link_to contracts_path, class:"" do %>
+							    	<%= link_to contracts_path do %>
 										<span class="glyphicon glyphicon-list"></span>&nbsp Контракты
 									<% end %>
 								</li>
 								<li role="presentation">
-									<%= link_to buildings_path, class:"" do %>
+									<%= link_to buildings_path do %>
 										<span class="glyphicon glyphicon-list"></span>&nbsp Все объекты
 									<% end %>
 								</li>
@@ -105,15 +105,16 @@ $(document).ready(function(){
 
 			<% elsif current_user.client? %>
 			
-					<li class="pull-left"><a href="/new"><span class="glyphicon glyphicon-envelope">
-					</span>&nbsp Подать заявку</a></li>
+					<li class="pull-left">
+						<a href="/new"><span class="glyphicon glyphicon-envelope">
+						</span>&nbsp Подать заявку</a>
+					</li>
 
 					<li class = "pull-right">
 						<%= link_to signout_path, method: "delete" do %>
 						<span class="glyphicon glyphicon-log-out"></span>&nbspВыйти
 						<% end %>
 					</li>
-
 
 					<li class = "pull-right">
 						<%= link_to user_path(current_user) do %>

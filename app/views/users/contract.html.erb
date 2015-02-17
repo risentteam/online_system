@@ -22,7 +22,11 @@
 							<tr>
 								<td> <%= contract.name_contract %> </td>
 								<td> <%= contract.company %> </td>
-								<td> <% contract.buildings.each do |p| %> <%= p.arrival_address %> <br>  <% end %> </td>
+								<td> 
+									<% contract.buildings.each do |p| %>
+									<%= p.arrival_address %> <br>  
+									<% end %>
+								</td>
 								<td> <%= contract.description %> </td>
 								<td> <%= contract.begin_time.strftime("%d.%m.%Y") %> </td>
 								<td> <%= contract.end_time.strftime("%d.%m.%Y") %> </td>
