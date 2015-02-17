@@ -11,6 +11,8 @@ $gray1 : rgb (131, 148, 184);
 $purple1 : rgb (104, 71, 141);
 $lightblue1 : rgb(95, 141, 218);
 $darkblue1 : rgb (68, 73, 156);
+
+
 .navbar-default {
 	min-width: 1200px;
 	font-family: "Din Round Pro";
@@ -171,8 +173,21 @@ h1, .btn, p, label {
 	margin-top: 6px;
 }
 
-.form-vertical .row {
-	margin-top: 6px;
+.form-vertical {
+	font-size: 24px;
+
+	.row {
+		margin-top: 6px;
+	}
+	.error {
+		font-size: 18px;
+	}
+	.selectize-input {
+		margin-bottom: 7px;
+	}
+	.form-control {
+		margin-bottom: 7px;
+	}
 }
 
 @media all and (max-width: 768px) {
@@ -288,6 +303,7 @@ h1, h3 {
 
 .form-control {
 	padding: 0px 0px;
+	margin-top: 6px;
 	height: 100%;
 }
 
@@ -357,4 +373,22 @@ button.ColVis_Button, .form-control {
 	}
 }
 
+hr {
+	margin-top: 2px;
+margin-bottom: 2px;
 
+border: 0;
+height: 1px;
+border-top: 1px solid #000000;
+width:1677px;
+margin-left: 0;
+}
+
+.selectize-dropdown-content {
+	font-size: 18px;
+	.selected{
+	}
+	.active {
+		font-size: 24px;
+	}
+}
