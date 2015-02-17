@@ -95,72 +95,6 @@ var domValue =
 		"<'row'<'col-xs-4'i><'col-xs-6'><'col-xs-1'><'col-xs-1'>>";
 
 
-// $(document).ready(function() {
-// //    $.fn.dataTable.moment( 'DD.MM.YYYY HH:mm' );
-// 	var table = $('#requistions').dataTable({
-		
-// 		tableClass: "table-bordered",
-// 		columnDefs: [
-//                 { "type": "de_datetime", targets: 3 },
-//                 { "type": "de_datetime", targets: 10 }            	
-//             ],
-// //новая часть часть отвечяющая за сохранение настроек таблицы
-// 		stateSave: true,
-// 		//"dom": '<"container"lCfrtip> <"container"T>',
-// 		dom: domValue,
-// 		"colVis": {
-// 			  "buttonText": "Показать/скрыть столбцы"
-// 		},
-// 		"createdRow": function ( row, data, index ) {
-// 			if ( data[11]=="новая" ) {
-// 				$('td', row).addClass('danger');
-// 			};
-// 			if ( data[11]=="завершено" ) {
-// 				$('td', row).addClass('success');
-// 			};
-// 			if ( data[11]=="отменена" ) {
-// 				$('td', row).addClass('info');
-// 			};
-// 			if ( data[11]=="принята в работу" ) {
-// 				$('td', row).addClass('warning');
-// 			};
-// 			if ( data[11]=="выполняется" ) {
-// 				$('td', row).addClass('warning');
-// 			};
-// 			if ( data[11]=="исполнена" ) {
-// 				$('td', row).addClass('warning');
-// 			};
-
-// 		},
-// //***********************
-// 		"tableTools": exportTools,
-// //***********************
-// 		"language": languageRU
-// //***********************       
-// 	});
-// 	table.columnFilter({
-// 		aoColumns: [    
-// 			{ type: "text"},
-// 			{ type: "text" },
-// 			{ type: "text" },
-// 			{ type: "date-range" },
-// 			{ type: "text"},
-// 			{ type: "text"},
-// 			{ type: "select" },
-// 			{ type: "select" },
-// 			{ type: "text"},
-// 			{ type: "select" },
-// 			{ type: "date-range" },
-// 			{ type: "select" },
-// 			{ type: "null" }, 
-// 			{ type: "text" },
-// 			{ type: "date-range" },
-// 			{ type: "number-range" },
-// 			{ type: "null" }                                   
-// 		]
-// 	});    
-// 	var archiver = $("#archive").appendTo('.archiver');
-// });
 
 $(document).ready(function(){
 	var pos = $.getUrlVars()['position'];
@@ -369,25 +303,6 @@ $(document).ready(function(){
 	 });
 });
 
-//#########################################################################################
-//Таблица контрактов
-//#########################################################################################
-$(document).ready(function(){
-	 $('#contracts').dataTable({
-			tableClass: "table-bordered",
-			columnDefs: [
-                { "type": "de_date", targets: 5 },
-                { "type": "de_date", targets: 6 }            	
-            ],  
-			stateSave: true,
-			dom: domValue,
-			"colVis": {
-			  "buttonText": "Показать/скрыть столбцы"
-			}, 
-			"tableTools": exportTools, 		
-			"language": languageRU	
-	 });
-});
 
 //#########################################################################################
 //Таблица контрактов у клиента

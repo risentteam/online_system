@@ -1,5 +1,28 @@
 <% provide(:title, 'Все контракты') %>
 <h1>Все контракты</h1>
+
+<script type="text/javascript">
+jQuery(document).ready(function() {
+	 $('#contracts').dataTable({
+			tableClass: "table-bordered",
+			columnDefs: [
+                { "type": "de_date", targets: 5 },
+                { "type": "de_date", targets: 6 }            	
+            ],  
+			stateSave: true,
+        	processing: true,
+        	serverSide: true,
+        	ajax: "contracts/ajax_index",
+			dom: domValue,
+			"colVis": {
+			  "buttonText": "Показать	/скрыть столбцы"
+			}, 
+			"tableTools": exportTools, 		
+			"language": languageRU	
+	 });
+});
+</script>	
+
 <div class="container">
 <table id="contracts" class="table table-striped table-wrapper">
 	<thead>

@@ -54,6 +54,10 @@ class ContractsController < ApplicationController
 		end
 	end
 
+	def ajax_index
+		
+	end
+
 	private
 		def contracts_params
 			params.require(:contract).permit(:company, :comment,
