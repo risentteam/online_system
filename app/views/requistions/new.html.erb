@@ -4,17 +4,8 @@
 
 	<%= form_for @requistion, :html => {:class => "form-vertical"} do |f| %>
 		<div class="row">
-			<div class="form-group">
-				<label class=" col-xs-3">Объект</label>
-				<div class="col-xs-5">
-				<%= f.text_field :object,  :placeholder => "Введите № объекта", class: "form-control", required: "" %>
-				</div>
-			</div>
-		</div>
-		<hr>
-		<div class="row">
 	 		<div class="form-group">
-				<label class=" col-xs-3">Адресс прибытия для специалистов</label>
+				<label class=" col-xs-3">Объект - Адрес</label>
 				<div class="col-xs-5">
 				<%= f.select :building_id, 
 				options_for_select(@list.collect {|p| [ (p.name.to_s + " - " + p.arrival_address.to_s), p.id ] }), 
@@ -38,7 +29,6 @@
 				</div>
 			</div>
 		</div>
-		<hr>
 		<div class="row">
 			<div class="form-group">
 				<label class=" col-xs-3">Телефон контактного лица заказчика</label>
@@ -48,7 +38,6 @@
 			</div>
 		</div>
 
-		<hr>
 
 		<div class="row">
 			<div class="form-group">
@@ -72,8 +61,6 @@
 			</div>
 		</div>
 
-		<hr>
-
 
 		<div class="row" id="info" style="display:none">
 			<div class="form-group" >
@@ -84,7 +71,7 @@
 			
 			</div>
 		</div>
-		<hr>
+
 		<div class="row">
 			<div class="form-group">
 			  <label class=" col-xs-3">Комментарий</label>
@@ -95,7 +82,7 @@
 		</div>
 
 		<% if current_user.admin? %>
-		<hr>
+
 		<div class="row">
 			<div class="form-group">
   				<label class=" col-xs-3">Исполнители</label>
