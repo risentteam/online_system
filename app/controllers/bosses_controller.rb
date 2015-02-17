@@ -8,7 +8,13 @@ class BossesController < ApplicationController
 	end
 
 	def create
-
+		@boss = Boss.new(boss_params)
+		if @boss.save
+			flash[:success] = "Начальник успешно создан"
+			redirect_to @boss
+		else
+			render 'new'
+		end
 	end
 
 	def choose
