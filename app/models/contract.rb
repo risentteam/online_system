@@ -38,7 +38,7 @@ def self.import(file)
           when 2 then '28.2.2015'
           when 1 then '31.1.2015'
         end
-        contract = Contract.create(name_contract: row[1].to_s, company: company, date_of_signing: row[8], description: row[9], begin_time: btime, end_time: etime, comment: row[12])
+        contract = Contract.create(name_contract: row[1].to_s, date_of_signing: row[8], description: row[9], begin_time: btime, end_time: etime, comment: row[12])
         adress = row[4].split(';')
       	adress.each do |address|
       		  address.gsub!(/ +/, ' ')
@@ -49,7 +49,7 @@ def self.import(file)
               address=address[0..-2]
             end
           if Building.where("arrival_address = ? ", address).empty?
-      			building = Building.create(arrival_address: address)
+      			building = Building.create(arrival_address: address, name: company)
       		else  
       			building = Building.where("arrival_address = ? ", address).first
       		end
@@ -84,7 +84,7 @@ def self.import(file)
           when 2 then '28.2.2015'
           when 1 then '31.1.2015'
         end
-        contract.update_attributes(name_contract: row[1].to_s, company: company, date_of_signing: row[8], description: row[9], begin_time: btime, end_time: etime, comment: row[12])
+        contract.update_attributes(name_contract: row[1].to_s, date_of_signing: row[8], description: row[9], begin_time: btime, end_time: etime, comment: row[12])
         adress = row[4].split(';')
         adress.each do |address|
           address.gsub!(/ +/, ' ')
@@ -95,7 +95,7 @@ def self.import(file)
               address=address[0..-2]
             end
           if Building.where("arrival_address = ? ", address).empty?
-            building = Building.create(arrival_address: address)
+            building = Building.create(arrival_address: address, name: company)
           else
             building = Building.where("arrival_address = ? ", address).first
           end
