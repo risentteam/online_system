@@ -16,7 +16,9 @@
 	 		<div class="form-group">
 				<label class=" col-xs-3">Адресс прибытия для специалистов</label>
 				<div class="col-xs-5">
-				<%= f.select :building_id, options_from_collection_for_select(@list, 'id', 'arrival_address'), {:prompt => "Выберите из списка адрес прибытия специалистов"}, {:class => "selectize", required: ""  }%>
+				<%= f.select :building_id, 
+				options_for_select(@list.collect {|p| [ (p.name.to_s + " || " + p.arrival_address.to_s), p.id ] }), 
+				{:prompt => "Выберите из списка адрес прибытия специалистов"}, {:class => "selectize", required: ""  }%>
 
 				</div>
 				<script>
