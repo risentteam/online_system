@@ -93,7 +93,6 @@ jQuery(document).ready(function() {
 			{ type: "text"},
 			{ type: "text"},
 			{ type: "select" },
-			// { type: "select" },
 			{ type: "text"},
 			{ type: "select" },
 			{ type: "date-range" },
@@ -119,9 +118,6 @@ jQuery(document).ready(function() {
 			<th>Имя</th>
 			<th>Телефон</th>
 			<th>Тип</th>
-<!--
- 			<th>Поддтип</th>
- -->
  			<th>Комментарий</th>
 			<th>Категория</th>
 			<th>Время последнего изменения</th>
@@ -138,17 +134,13 @@ jQuery(document).ready(function() {
     <tbody>
 		<% for requistion in @requistions %>
 		<tr>
-	    	<td><%= link_to requistion.id,  {:action => :show, :id => requistion.id}, {:method => :get} %></td>
-	    	<td><%= link_to requistion.object, {:controller => :buildings, :action => :show, :id => requistion.building_id}, {:method => :get}%></td>
-			<td><%= link_to requistion.building.arrival_address, {:controller => :buildings, :action => :show, :id => requistion.building_id}, {:method => :get} %></td>
+	    	<td><%= link_to requistion.id,  requistion_path(requistion) %></td>
+	    	<td><%= link_to requistion.building.name, building_path(requistion.building)%></td>
+			<td><%= requistion.building.arrival_address %></td>
 			<td><%= requistion.created_at.strftime("%d.%m.%Y %H:%M") %></td>
 			<td><%= requistion.contact_name %></td>			
 			<td><%= requistion.contact_phone %></td>	
 			<td><%= transcript_of_the_messages(requistion.type_requistion) %></td>			
-
-<!--
- 			<td><%#= transcript_of_the_messages(requistion.subtype_requistions)  %></td>			
- -->
 			<td><%= requistion.requistion_comment %></td>			
 			<td><%= transcript_of_the_messages_category(requistion.category) %></td>	
 			<td> <button id = <%= requistion.id %> class="btn btn-danger change-time" data-toggle="modal" data-target="#status" onClick="reply_click(this.id)" > <%= requistion.updated_at.strftime("%d.%m.%Y %H:%M")%> </button>
@@ -156,7 +148,7 @@ jQuery(document).ready(function() {
  			<td><%= status_names[requistion.status.to_sym] %></td>
  			<td><%= link_to 'Принять', {controller: :requistions, action: :close, id: requistion.id }, class: "btn btn-inverse" if requistion.status=='done' %> </td>
  			<td><% requistion.users.where('status = 0').each do |user|%> <li><%= user.name%></li> <% end %></td>
-			<td><%= requistion.time_deadline.strftime("%d.%m.%Y %H:%M") if not requistion.time_deadline.nil? %></td>
+			<td><%= requistion.time_deadline.strftime("%d.%m.%Y %H:%M") if requistion.time_deadline %></td>
 			<td><%= requistion.raiting %></td>	
 	    	<td>  
 			</td>
@@ -176,9 +168,6 @@ jQuery(document).ready(function() {
 			<th>Имя</th>
 			<th>Телефон</th>
 			<th>Тип</th>
-
-<!-- 			<th>Поддтип</th>
- -->
 			<th>Комментарий</th>
 			<th>Категория</th>
 			<th>Время</th>
