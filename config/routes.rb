@@ -24,6 +24,7 @@ App::Application.routes.draw do
 
 	resources :bosses
 
+	match '/staff',  to: 'static_pages#staff',    via: 'get'
 	match '/panel',  to: 'static_pages#panel',    via: 'get'
 	match '/signup',  to: 'users#new',            via: 'get'
 	match '/signin',  to: 'sessions#new',         via: 'get'

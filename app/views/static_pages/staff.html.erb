@@ -1,0 +1,90 @@
+<h1>Все Сотрудники</h1>
+<div class="row">
+	<div class = 'col-xs-1'>
+	</div>
+	<div class="col-xs-9">
+		<table class="table table-bordered table-striped table-condensed">
+			<thead>
+				<tr>
+					<th>Руководители</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Попова Инна Александровна</td>
+				</tr>
+				<tr>
+					<td>Гущин Дмитрий Вадимович</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<table class="table table-bordered table-striped table-condensed">
+			<thead>
+				<tr>
+					<th>Специалисты Договорного Отдела</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Груздева Надежда Анатольевна</td>
+				</tr>
+				<tr>
+					<td>Огняник Ирина Валерьевна</td>
+				</tr>
+				<tr>
+					<td>Павлова Надежда Сергеевна</td>
+				</tr>
+				<tr>
+					<td>Губанова Анастасия Васильевна</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<table class="table table-bordered table-striped table-condensed">
+			<thead>
+				<tr>
+					<th>Диспетчер</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Мозговой Вадим Анатольевич</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<table class="table table-bordered table-striped table-condensed">
+			<thead>
+				<tr>
+					<th>Начальники</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @bosses.each do |boss| %>
+				<tr>
+					<td><%= boss.name %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+
+		<table class="table table-bordered table-striped table-condensed">
+			<thead>
+				<tr>
+					<th>Рабочие</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @workers.each do |worker| %>
+				<tr>
+					<td><%= worker.name %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	<div class = 'col-xs-1'>
+	</div>
+</div>
+	

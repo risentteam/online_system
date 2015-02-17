@@ -40,11 +40,17 @@ $(document).ready(function(){
 						    	<span class="caret"></span>
 						  	</button>
 						  	<ul class="dropdown-menu ddmenu" role="menu" aria-labelledby="dropdownMenu1">
+						  		<li role="presentation">
+						    		<%= link_to "/staff", class:"" do %>
+										<span class="glyphicon glyphicon-list"></span>&nbsp Все сотрудники
+									<% end %>
+						    	</li>
 						    	<li role="presentation">
 						    		<%= link_to bosses_path, class:"" do %>
 										<span class="glyphicon glyphicon-list"></span>&nbsp Начальники
 									<% end %>
 						    	</li>
+
 						    	<li role="presentation">
 						    		<%= link_to requistions_path, class:"" do %>
 										<span  class="glyphicon glyphicon-list"></span>&nbsp Все заявки
