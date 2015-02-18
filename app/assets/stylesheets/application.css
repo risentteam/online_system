@@ -17,6 +17,7 @@
  *= require dataTables/extras/dataTables.colVis
  *= require star-rating.min
  *= require selectize.default
+ *= require select2.min
 
  */
 
