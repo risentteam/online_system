@@ -26,6 +26,7 @@
 				<div class="col-xs-5">
 				<%= f.select "building_id", 
 				options_for_select(@list.collect {|p| [ p.arrival_address, p.id ] }), 
+
 				{:prompt => "Выберите из списка адрес прибытия специалистов"}, { required: "", style: "width: 100%"}%>
 
 				</div>
@@ -52,6 +53,7 @@
 				<label class=" col-xs-3">Должность контактного лица</label>
 				<div class="col-xs-5">
 				<%= f.text_field :deputy, :placeholder =>"Введите должность", class: "form-control" %>
+
 				</div>
 			</div>
 		</div>
