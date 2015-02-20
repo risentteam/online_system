@@ -147,6 +147,7 @@ class RequistionsController < ApplicationController
 
 	def create
 		@requistion = Requistion.new(requistions_params)
+		@requistion.who_created = current_user.id
 		if @requistion.save
 			if current_user.admin?
 				pairs = @requistion.pairs
