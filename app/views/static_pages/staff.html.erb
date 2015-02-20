@@ -58,12 +58,16 @@
 			<thead>
 				<tr>
 					<th>Начальники</th>
+					<th>Округ</th>
+					<th>Специализация</th>
 				</tr>
 			</thead>
 			<tbody>
 				<% @bosses.each do |boss| %>
 				<tr>
 					<td><%= boss.name %></td>
+					<td><%= boss.region %></td>
+					<td><%= boss.specialization %></td>
 				</tr>
 				<% end %>
 			</tbody>
@@ -73,12 +77,16 @@
 			<thead>
 				<tr>
 					<th>Рабочие</th>
+					<th>Округ</th>
+					<th>Специализация</th>
 				</tr>
 			</thead>
 			<tbody>
 				<% @workers.each do |worker| %>
 				<tr>
 					<td><%= worker.name %></td>
+					<td><%= worker.region %></td>
+					<td><%= worker.specialization %></td>
 				</tr>
 				<% end %>
 			</tbody>
