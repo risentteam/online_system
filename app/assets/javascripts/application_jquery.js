@@ -622,7 +622,7 @@ $('.DTTT_button_xls').prepend ('<span class="glyphicon glyphicon-download-alt"><
 
 
 
-jQuery(function($){
+$(document).ready(function(){
 	$('input[class*="range"]:first-child').attr("placeholder", "C").each(function () {
 		this.previousSibling.parentNode.removeChild(this.previousSibling);
 	});
