@@ -25,7 +25,8 @@
 				<label class=" col-xs-3">Адрес</label>
 				<div class="col-xs-5">
 				<%= f.select "building_id", 
-				options_for_select(@list.collect {|p| [ (p.name.to_s + " - " + p.arrival_address.to_s), p.id ] }), 
+				options_for_select(@list.collect {|p| [ p.arrival_address, p.id ] }), 
+
 				{:prompt => "Выберите из списка адрес прибытия специалистов"}, { required: "", style: "width: 100%"}%>
 
 				</div>
@@ -44,6 +45,15 @@
 				<label class=" col-xs-3">ФИО контактного лица заказчика</label>
 				<div class="col-xs-5">
 				<%= f.text_field :contact_name, :placeholder =>"Введите контактное лицо", class: "form-control", required: "", multiple: "" %>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group">
+				<label class=" col-xs-3">Должность контактного лица</label>
+				<div class="col-xs-5">
+				<%= f.text_field :deputy, :placeholder =>"Введите должность", class: "form-control" %>
+
 				</div>
 			</div>
 		</div>
