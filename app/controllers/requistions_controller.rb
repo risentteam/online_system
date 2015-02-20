@@ -219,7 +219,7 @@ class RequistionsController < ApplicationController
 
 	def update_objects_name
 		@building = Building.find_by arrival_address: params[:address]
-		render :json => @building.contracts[0].company
+		render :json => @building.name
 	end
 
 	def update
