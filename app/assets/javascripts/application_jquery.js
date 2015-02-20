@@ -425,7 +425,7 @@ $(document).ready(function() {
 			dataType: 'html',
 			data: "address=" + $('#requistion_building_id :selected').text(),
 			success: function (data, status) {
-//                  alert("Data: " + data);
+                  alert("Data: " + data);
 					$('#requistion_object').val(data);
 			}
 		});
