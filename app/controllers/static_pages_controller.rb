@@ -1,4 +1,6 @@
 class StaticPagesController < ApplicationController
+	before_action :signed_in_user
+
 	def panel	
 	end
 
@@ -8,10 +10,13 @@ class StaticPagesController < ApplicationController
 	end
 
 	def home
-		if signed_in? && current_user.admin?
-			render "panel"
+		if current_user.admin?
+			@name = "Новые заявки"
+			@requistions = Requistion.fresh	
+			render "requistions/index"
 		else
-			render "sessions/new"
+			@user = current_user
+			render "users/show"
 		end
 	end
 end
