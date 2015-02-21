@@ -418,19 +418,24 @@ $(document).ready(function() {
 //#########################################################################################
 //Подцепление названия по адресу
 //#########################################################################################
-$(document).ready(function() {
-	$("#requistion_building_id").change(function () {
-		$.ajax({url: "/update_objects_name",
-			type: 'GET',
-			dataType: 'html',
-			data: "address=" + $('#requistion_building_id :selected').text(),
-			success: function (data, status) {
-//                  alert("Data: " + data);
-					$('#requistion_object').val(data);
-			}
-		});
-	});
-});
+
+// $(document).ready(function() {
+//     var data = [{ id: 0, text: 'enhancement1' }, { id: 1, text: 'bug1' }, { id: 2, text: 'duplicate1' }, { id: 3, text: 'invalid1' }, { id: 4, text: 'wontfix1' }];
+
+// 	$('#building_name').select2({data: data});
+  
+// // 	$("#requistion_building_id").change(function () {
+// // //		$('#building_name').select2({data: data});			
+// // 		$.ajax({url: "/update_objects_name",
+// // 			type: 'GET',
+// // 			dataType: 'html',
+// // 			data: "address=" + $('#requistion_building_id :selected').text(),
+// // 			success: function (f, status) {
+// // 					$('#building_name').select2({data: strd});
+// // 			}
+// // 		});
+//  	}).trigger('change');
+
 
 
 //#########################################################################################

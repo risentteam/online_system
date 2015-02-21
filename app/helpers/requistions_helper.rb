@@ -44,4 +44,13 @@ module RequistionsHelper
           'Срочно'
       end
     end
+
+  def return_str(x)
+    if x.nil?
+      return ''
+    else
+      return x
+    end 
+  end
+
 end
