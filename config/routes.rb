@@ -6,6 +6,7 @@ App::Application.routes.draw do
 	post "static_pages/ajaxPages"
 	match '/ajax', to: 'static_pages#ajaxPages', via: 'post'
 
+	match '/search', to: 'buildings#search', via: 'get'
 	resources :users
 	match '/workers',  to: 'users#workers',       via: 'get'
 	match 'users/:id/req', to: 'users#req', via: 'get'

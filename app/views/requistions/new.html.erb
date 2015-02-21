@@ -7,16 +7,53 @@
 	 		<div class="form-group">
 					<label class=" col-xs-3">Объект</label>
 					<div  class="col-xs-5">
-					<select id="building_name" name="name" style="width: 100%" placeholder="Выберите исполнителей"> 
-					<%=	options_for_select(@list.collect {|p| [ p.name ] }) %>
+					<select required id="building_name" name="name" style="width: 100%" placeholder="Выберите название"> 
+					<%#=	options_for_select(@list.collect {|p| [ p.name ] }) %>
 					</select>
 					</div>
-				<script>
-				$('#building_name').select2({
-				  placeholder: "Выберите объект",
-					allowClear: true
-				});
-				</script>
+<script>
+
+$(document).ready(function() {
+	function formatRepo (repo) {
+    return repo.arrival_address;
+  }
+
+  function formatRepoSelection (repo) {
+    return repo.arrival_address;
+  }
+
+ 
+
+  $('#building_name').select2({
+  	placeholder: "Выберите адресс",
+	allowClear: true,
+    ajax: {
+    url: "/search",
+    dataType: 'json',
+    delay: 1000,
+    data: function (params) {
+      return {
+        q: params.term, // search term
+        page: params.page
+      };
+    },
+    processResults: function (data, page) {
+      // parse the results into the format expected by Select2.
+      // since we are using custom formatting functions we do not need to
+      // alter the remote JSON data
+      console.log(data);
+      return {
+        results: data
+      };
+    },
+    cache: true
+  },
+  escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+  templateResult: formatRepo,
+  templateSelection: formatRepoSelection
+  });
+});
+</script>
 
 			</div>
 		</div>
