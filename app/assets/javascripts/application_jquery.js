@@ -436,20 +436,7 @@ $(document).ready(function() {
 // // 		});
 //  	}).trigger('change');
 
-$(document).ready(function() {
-	$("#building_id").change(function () {
-		alert(1);
-		$.ajax({url: "/get_contracts_by_address",
-			type: 'GET',
-			dataType: 'html',
-			data: "address=" + $('#building_id :selected').text(),
-			success: function (data, status) {
-//                  alert("Data: " + data);
-					$("#table_contracts_in_new").html(data);
-			}
-		});
-	});
-});
+
 
 
 //#########################################################################################
