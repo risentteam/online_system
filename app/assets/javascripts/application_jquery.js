@@ -438,6 +438,7 @@ $(document).ready(function() {
 
 $(document).ready(function() {
 	$("#building_id").change(function () {
+		alert(1);
 		$.ajax({url: "/get_contracts_by_address",
 			type: 'GET',
 			dataType: 'html',
