@@ -224,7 +224,7 @@ class RequistionsController < ApplicationController
 	end
 
 	def get_contracts_by_address
-		building = Building.find_by arrival_address: params[:address]
+		building = Building.find(params[:address])
 		@list_contract = building.contracts
 		render :partial => "table_contract", :object => @list_contract
 	end
