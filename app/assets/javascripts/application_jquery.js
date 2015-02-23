@@ -437,20 +437,11 @@ $(document).ready(function() {
 //  	}).trigger('change');
 
 $(document).ready(function() {
-	$("#requistion_building_id").change(function () {
-		$.ajax({url: "/update_objects_name",
-			type: 'GET',
-			dataType: 'html',
-			data: "address=" + $('#requistion_building_id :selected').text(),
-			success: function (data, status) {
-//                  alert("Data: " + data);
-					$('#requistion_object').val(data);
-			}
-		});
+	$("#building_id").change(function () {
 		$.ajax({url: "/get_contracts_by_address",
 			type: 'GET',
 			dataType: 'html',
-			data: "address=" + $('#requistion_building_id :selected').text(),
+			data: "address=" + $('#building_id :selected').text(),
 			success: function (data, status) {
 //                  alert("Data: " + data);
 					$("#table_contracts_in_new").html(data);
