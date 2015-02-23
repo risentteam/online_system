@@ -436,6 +436,28 @@ $(document).ready(function() {
 // // 		});
 //  	}).trigger('change');
 
+$(document).ready(function() {
+	$("#requistion_building_id").change(function () {
+		$.ajax({url: "/update_objects_name",
+			type: 'GET',
+			dataType: 'html',
+			data: "address=" + $('#requistion_building_id :selected').text(),
+			success: function (data, status) {
+//                  alert("Data: " + data);
+					$('#requistion_object').val(data);
+			}
+		});
+		$.ajax({url: "/get_contracts_by_address",
+			type: 'GET',
+			dataType: 'html',
+			data: "address=" + $('#requistion_building_id :selected').text(),
+			success: function (data, status) {
+//                  alert("Data: " + data);
+					$("#table_contracts_in_new").html(data);
+			}
+		});
+	});
+});
 
 
 //#########################################################################################
@@ -627,15 +649,7 @@ $('.DTTT_button_xls').prepend ('<span class="glyphicon glyphicon-download-alt"><
 
 
 
-jQuery(function($){
-	$('input[class*="range"]:first-child').attr("placeholder", "C").each(function () {
-		this.previousSibling.parentNode.removeChild(this.previousSibling);
-	});
-	$('input[class*="range"]:last-child').attr("placeholder", "По").each(function () {
-		this.previousSibling.parentNode.removeChild(this.previousSibling);
-	});
 
-});
 
 
 //#########################################################################################

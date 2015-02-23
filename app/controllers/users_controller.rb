@@ -28,10 +28,6 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		if !signed_in?
-			flash[:warning] = "Для просмотра своего профиля необходимо авторизироваться!"
-			redirect_to signin_path
-		end
 		@user = User.find(params[:id])
 	end
 	

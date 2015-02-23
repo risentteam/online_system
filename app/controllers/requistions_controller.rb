@@ -147,6 +147,7 @@ class RequistionsController < ApplicationController
 
 	def create
 		@requistion = Requistion.new(requistions_params)
+		@requistion.who_created = current_user.id
 		if @requistion.save
 			if current_user.admin?
 				pairs = @requistion.pairs
@@ -222,6 +223,12 @@ class RequistionsController < ApplicationController
 		render :json => @building.name
 	end
 
+	def get_contracts_by_address
+		building = Building.find_by arrival_address: params[:address]
+		@list_contract = building.contracts
+		render :partial => "table_contract", :object => @list_contract
+	end
+
 	def update
 		#Необходимо добавить проверку корректности данных
 		@requistion = Requistion.find(params[:id])					
@@ -267,6 +274,7 @@ class RequistionsController < ApplicationController
 	def new
 		@list_worker = User.worker.order(:name)
 		@requistion = Requistion.new
+		@list_contract = current_user.contracts
 		if current_user.client?
 			@list = Building.where(	
 				"id in (SELECT building_id FROM buildingscontracts 
@@ -281,7 +289,7 @@ class RequistionsController < ApplicationController
 
 	private
 		def requistions_params
-			params.require(:requistion).permit(:contact_name, :contact_phone, 
+			params.require(:requistion).permit(:contact_name, :contact_phone, :deputy, 
 				:type_requistion, :subtype_requistion, :building_id, :requistion_comment,
 				:time_deadline)
 		end

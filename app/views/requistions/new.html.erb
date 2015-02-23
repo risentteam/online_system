@@ -8,12 +8,21 @@
 					<label class=" col-xs-3">Объект</label>
 				
 					<div  class="col-xs-5">
+					<select id="building_name" name="name" style="width: 100%" placeholder="Выберите исполнителей"> 
+					<%=	options_for_select(@list.collect {|p| [ p.name ] }) %>
+					</select>
+<!-- <<<<<<< HEAD
 
 
 					<input id="building_name" name="name" style="width: 100%">
 					<%#=	options_for_select(@list.collect {|p| [ p.name, p.id ] }) %>
 					</input>
-					</div>
+=======
+					<select id="building_name" name="name" style="width: 100%" placeholder="Выберите исполнителей"> 
+					<%=	options_for_select(@list.collect {|p| [ p.name ] }) %>
+					</select>
+>>>>>>> 8081c9054169be4acf04da8aa624c77273e7ee24
+ -->				</div>
 				<script>
 
 				$('#building_name').select2({
@@ -28,7 +37,7 @@
 				<script>
 $(document).ready(function() {
  $("#requistion_building_id").change(function () {
-    alert(1);
+//    alert(1);
     var datastr =  [{ id: 0, text: 'enhancement' }, { id: 1, text: 'bug' }, { id: 2, text: 'duplicate' }, { id: 3, text: 'invalid' }, { id: 4, text: 'wontfix' }];
     $('#building_name').select2({data: datastr});
 });
@@ -53,7 +62,7 @@ $(document).ready(function() {
 				<label class=" col-xs-3">Адрес</label>
 				<div class="col-xs-5">
 				<%= f.select "building_id", 
-				options_for_select(@list.collect {|p| [ (p.arrival_address.to_s), p.id ] }), 
+				options_for_select(@list.collect {|p| [ p.arrival_address, p.id ] }), 
 				{:prompt => "Выберите из списка адрес прибытия специалистов"}, { required: "", style: "width: 100%"}%>
 
 				</div>
@@ -67,11 +76,25 @@ $(document).ready(function() {
 			</div>
 		</div>
 
+	 	<div class="row" id="table_contracts_in_new">
+  				<%= render :partial => 'table_contract', :object => @list_contract %>
+		</div>
+
+
 	 	<div class="row">
 			<div class="form-group">
 				<label class=" col-xs-3">ФИО контактного лица заказчика</label>
 				<div class="col-xs-5">
 				<%= f.text_field :contact_name, :placeholder =>"Введите контактное лицо", class: "form-control", required: "", multiple: "" %>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group">
+				<label class=" col-xs-3">Должность контактного лица</label>
+				<div class="col-xs-5">
+				<%= f.text_field :deputy, :placeholder =>"Введите должность", class: "form-control" %>
+
 				</div>
 			</div>
 		</div>

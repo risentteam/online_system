@@ -10,8 +10,8 @@
 		<thead>
 			<tr>
 				<th>Имя</th>
-				<th>Почта</th>
-				<th>Телефон</th>
+				<th>Специализация</th>
+				<th>Округ</th>
 				<th>Посещения за месяц</th>
 				<th>Начальник</th>
 				<th></th>
@@ -25,10 +25,10 @@
 					<% div_id = "calendarBut-#{user.id}" -%>
 				</td>
 				<td>
-					<%= user.email %>
+					<%= user.specialization %>
 				</td>
 				<td>
-					<%= user.phone %>
+					<%= user.region %>
 				</td>
 				<td>
 					<%= countOfEntries(user) %>

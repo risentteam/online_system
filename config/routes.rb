@@ -44,6 +44,7 @@ App::Application.routes.draw do
 	match "/update_contracts", to: "requistions#update_contracts", via: 'get'	
 	match "/update_date", to: "requistions#update_date", via: 'get'	
   	match '/update_objects_name', to: 'requistions#update_objects_name', via: 'get'
+  	match '/get_contracts_by_address', to: 'requistions#get_contracts_by_address', via: 'get'  	
   	match 'requistions/:id/close', to: 'requistions#close', via: 'get'
   	match 'requistions/:id/raiting', to: 'requistions#raiting', via: 'get'
   	match 'requistions/:id/to_take_in_work', to: 'requistions#to_take_in_work', via: 'get'
