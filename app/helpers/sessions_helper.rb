@@ -60,7 +60,7 @@ module SessionsHelper
 
 	def worker_user
 		unless current_user.worker?
-		flash[:warning] = "Доступ к этой странице имеет только рабочий."
+		flash[:warning] = "Доступ к этой странице имеет только исполнитель."
 		redirect_to root_url
 		end
 	end
@@ -74,14 +74,14 @@ module SessionsHelper
 
 	def client_worker_user
 		unless current_user.client? || current_user.worker?
-		flash[:warning] = "Доступ к этой странице имеет только клиент или рабочий."
+		flash[:warning] = "Доступ к этой странице имеет только клиент или исполнитель."
 		redirect_to root_url
 		end
 	end
 
 	def worker_admin_user
 		unless current_user.worker? || current_user.admin?
-		flash[:warning] = "Доступ к этой странице имеет только рабочий или администратор."
+		flash[:warning] = "Доступ к этой странице имеет только исполнитель или администратор."
 		redirect_to root_url
 		end
 	end

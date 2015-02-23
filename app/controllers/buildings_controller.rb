@@ -6,6 +6,20 @@ class BuildingsController < ApplicationController
 
   	respond_to :html, :json
 
+  	def search
+  		
+		name = "%#{params[:name]}%"
+		@buildings = Building.all.where("arrival_address ILIKE ? AND name LIKE ?", "%#{params[:q]}%", name)
+  
+  		@bjson = @buildings.to_json(:only => [ :id, :name, :arrival_address ])
+  		render json: @bjson 
+
+  	end
+
+  	def get_name
+		render text: Building.find(params[:id]).name.to_s 
+	end
+
 	def create 
 		@building = Building.new (building_params)
 		if @building.save 

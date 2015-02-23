@@ -1,0 +1,21 @@
+<div class="form-group">
+	<label class=" col-xs-3">Контракты</label>
+	<div class="col-xs-5">
+		<table id="requistions" class="table table-wrapper">
+			<thead>
+				<tr>
+					<th>Номер договора</th>
+					<th>Описание</th>
+				</tr>
+			</thead>    
+		    <tbody>
+				<% for contract in @list_contract %>
+				<tr>
+			    	<td><%= contract.name_contract %></td>
+			    	<td><%= contract.description %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>					
+	</div>
+</div>

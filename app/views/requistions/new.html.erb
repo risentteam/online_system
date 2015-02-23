@@ -4,74 +4,81 @@
 
 	<%= form_for @requistion, :html => {:class => "form-vertical"} do |f| %>
 		<div class="row">
-	 		<div class="form-group">
+			<div class="form-group">
 					<label class=" col-xs-3">Объект</label>
 				
 					<div  class="col-xs-5">
-					<select id="building_name" name="name" style="width: 100%" placeholder="Выберите исполнителей"> 
-					<%=	options_for_select(@list.collect {|p| [ p.name ] }) %>
+					<select required id="building_name" name="name" style="width: 100%"> 
+						<%=	options_for_select(@list.collect {|p| [ p.name ] }.uniq ) %>
 					</select>
-<!-- <<<<<<< HEAD
+<script>
 
-
-					<input id="building_name" name="name" style="width: 100%">
-					<%#=	options_for_select(@list.collect {|p| [ p.name, p.id ] }) %>
-					</input>
-=======
-					<select id="building_name" name="name" style="width: 100%" placeholder="Выберите исполнителей"> 
-					<%=	options_for_select(@list.collect {|p| [ p.name ] }) %>
-					</select>
->>>>>>> 8081c9054169be4acf04da8aa624c77273e7ee24
- -->				</div>
-				<script>
-
-				$('#building_name').select2({
-					// data: <% data = '' %>
-					// <% @list.each do |p| data = data + "{ id:" + p.id.to_s + ", text:" + return_str(p.name)+ "}," end %>
-					// <%= '['+data[0...-1]+']' %>	,
-    				data: [{ id: 0, text: 'enhancement' }, { id: 1, text: 'bug' }, { id: 2, text: 'duplicate' }, { id: 3, text: 'invalid' }, { id: 4, text: 'wontfix' }],
-				  	placeholder: "Выберите объект",
-					allowClear: true
-				});
-				</script>
-				<script>
 $(document).ready(function() {
- $("#requistion_building_id").change(function () {
-//    alert(1);
-    var datastr =  [{ id: 0, text: 'enhancement' }, { id: 1, text: 'bug' }, { id: 2, text: 'duplicate' }, { id: 3, text: 'invalid' }, { id: 4, text: 'wontfix' }];
-    $('#building_name').select2({data: datastr});
-});
-});
- // 	$("#requistion_building_id").change(function () {
- // //		$('#building_name').select2({data: data});			
- // 		$.ajax({url: "/update_objects_name",
- // 			type: 'GET',
- // 			dataType: 'html',
- // 			data: "address=" + $('#requistion_building_id :selected').text(),
- // 			success: function (f, status) {
- // 					$('#building_name').select2({data: strd});
- // 			}
- // 		});
+	$('#building_name').select2({
+		placeholder: "название",
+		allowClear: true
+	});
+	
+	function formatRepo (repo) {
+	return repo.arrival_address;
+  };
 
-				</script>
+  $('#building_name').select2('val', null);
 
+  function formatRepoSelection (repo) {
+	return repo.arrival_address;
+  };
+
+  $('#building_id').select2({
+	allowClear: true,
+	
+	ajax: {
+		url: "/search",
+		dataType: 'json',
+		delay: 1000,
+		data: function (params) {
+			name_in = $('#building_name').val();
+		  return {
+		  	name: name_in,
+				q: params.term, // search term
+				page: params.page
+		  };
+		},
+		processResults: function (data, page) {
+		  // parse the results into the format expected by Select2.
+		  // since we are using custom formatting functions we do not need to
+		  // alter the remote JSON data
+		  console.log(data);
+		  return {
+				results: data
+		  };
+		},
+		cache: true
+  },
+  
+  escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+  templateResult: formatRepo,
+  templateSelection: formatRepoSelection,
+  placeholder: "название"
+  }).change(function(){  		
+  		$.ajax({url: "/building_name/"+ $('#building_id').val(), success: function(result){
+        $('#building_name').select2('val', result);
+    	}})
+  });
+});
+</script>					
+				</div>
 			</div>
 		</div>
 		<div class="row">
-	 		<div class="form-group">
+			<div class="form-group">
 				<label class=" col-xs-3">Адрес</label>
 				<div class="col-xs-5">
-				<%= f.select "building_id", 
-				options_for_select(@list.collect {|p| [ p.arrival_address, p.id ] }), 
-				{:prompt => "Выберите из списка адрес прибытия специалистов"}, { required: "", style: "width: 100%"}%>
+					<select required id="building_id" name="requistion[building_id]" style="width: 100%"> 
+					</select>
 
 				</div>
-				<script>
-				$('#requistion_building_id').select2({
-				  placeholder: "Выберите адресс",
-					allowClear: true
-				});
-				</script>
+
 
 			</div>
 		</div>
@@ -85,7 +92,7 @@ $(document).ready(function() {
 			<div class="form-group">
 				<label class=" col-xs-3">ФИО контактного лица заказчика</label>
 				<div class="col-xs-5">
-				<%= f.text_field :contact_name, :placeholder =>"Введите контактное лицо", class: "form-control", required: "", multiple: "" %>
+				<%= f.text_field :contact_name, :placeholder =>"Введите контактное лицо", class: "form-control", required: "" %>
 				</div>
 			</div>
 		</div>
@@ -154,7 +161,7 @@ $(document).ready(function() {
 
 		<div class="row">
 			<div class="form-group">
-  			<label class=" col-xs-3">Исполнители</label>
+			<label class=" col-xs-3">Исполнители</label>
 				<div  class="col-xs-5">
 				<select id="workers-select" name="workers[]" multiple  placeholder="Выберите исполнителей">
 				<%= options_for_select(User.worker.collect {|p| [ p.name, p.id ] })	%>

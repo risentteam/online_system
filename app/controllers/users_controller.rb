@@ -99,7 +99,7 @@ class UsersController < ApplicationController
 
 	private
 		def user_params
-			params.require(:user).permit(:name, :email, :phone)
+			params.require(:user).permit(:name, :email, :phone, :region, :specialization)
 		end
 
 		def pass_params
@@ -108,12 +108,12 @@ class UsersController < ApplicationController
 
 		def user_new_params
 			params.require(:user).permit(:name, :email, :phone,
-				:password, :password_confirmation)
+				:password, :password_confirmation, :region, :specialization)
 		end
 
 		def user_new_params_admin
 			params.require(:user).permit(:name, :email, :phone,
-				:password, :password_confirmation, :status)
+				:password, :password_confirmation, :status, :region, :specialization)
 		end
 
 	include TableHelper
