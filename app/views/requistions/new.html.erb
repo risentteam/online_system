@@ -8,7 +8,7 @@
 					<label class=" col-xs-3">Объект</label>
 					<div  class="col-xs-5">
 					<select required id="building_name" name="name" style="width: 100%"> 
-						<%=	options_for_select(@list.collect {|p| [ p.name ] }) %>
+						<%=	options_for_select(@list.collect {|p| [ p.name ] }.uniq ) %>
 					</select>
 
 <script>
@@ -22,6 +22,8 @@ $(document).ready(function() {
 	function formatRepo (repo) {
 	return repo.arrival_address;
   };
+
+  $('#building_name').select2('val', null);
 
   function formatRepoSelection (repo) {
 	return repo.arrival_address;
@@ -72,7 +74,7 @@ $(document).ready(function() {
 			<div class="form-group">
 				<label class=" col-xs-3">Адрес</label>
 				<div class="col-xs-5">
-					<select required id="building_id" name="building_id" style="width: 100%"> 
+					<select required id="building_id" name="requistion[building_id]" style="width: 100%"> 
 					</select>
 
 				</div>
@@ -85,7 +87,7 @@ $(document).ready(function() {
 			<div class="form-group">
 				<label class=" col-xs-3">ФИО контактного лица заказчика</label>
 				<div class="col-xs-5">
-				<%= f.text_field :contact_name, :placeholder =>"Введите контактное лицо", class: "form-control", required: "", multiple: "" %>
+				<%= f.text_field :contact_name, :placeholder =>"Введите контактное лицо", class: "form-control", required: "" %>
 				</div>
 			</div>
 		</div>

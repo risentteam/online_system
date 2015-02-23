@@ -20,7 +20,7 @@
 					<% @buildings.each do |b| %>
 					<tr>
 						<td><%= b.id %></td>
-						<th><%= b.contracts.first.company if  b.contracts.first %> </th>
+						<th><%= b.name %> </th>
 						<td><%= link_to b.arrival_address,  building_path(b) %></td>
 						<td><%= b.contact_name %></td>
 						<td><%= b.contact_phone %></td>						

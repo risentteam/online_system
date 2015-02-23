@@ -147,8 +147,6 @@ class RequistionsController < ApplicationController
 
 	def create
 		@requistion = Requistion.new(requistions_params)
-		render text: Requistion.to_json
-		return
 		@requistion.who_created = current_user.id
 		if @requistion.save
 			if current_user.admin?
@@ -284,7 +282,7 @@ class RequistionsController < ApplicationController
 
 	private
 		def requistions_params
-			params.require(:requistion).permit(:name, :contact_name, :contact_phone, :deputy, 
+			params.require(:requistion).permit(:contact_name, :contact_phone, :deputy, 
 				:type_requistion, :subtype_requistion, :building_id, :requistion_comment,
 				:time_deadline)
 		end
