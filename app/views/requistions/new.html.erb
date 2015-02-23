@@ -30,13 +30,11 @@ $(document).ready(function() {
   };
 
 	$("#building_id").change(function () {
-		alert( $('#building_id').val() );
 		$.ajax({url: "/get_contracts_by_address",
 			type: 'GET',
 			dataType: 'html',
 			data: "address=" + $('#building_id').val(),
 			success: function (data, status) {
-                  alert("Data: " + data);
 					$("#table_contracts_in_new").html(data);
 			}
 		});
