@@ -2,7 +2,7 @@
 <div class="container">
 <h1><%= @name %></h1>
 
-<div id = "archive">
+
 
 <% if @pos=='11' and @value=='Завершено' %>
 	<%= link_to controller: "requistions", action: "index", position: '11', value: 'Статус' do %>
@@ -10,23 +10,20 @@
 						<span class="glyphicon glyphicon-briefcase"></span>Заявки
 					</div>
 				<% end %>
-</div>
 <% else %>
 	<%= link_to controller: "requistions", action: "index", position: '11', value: 'Завершено' do %>
 					<div class="btn btn-default btnarchive">
 						<span class="glyphicon glyphicon-briefcase"></span>&nbspАрхив
 					</div>
 				<% end %>
-
 <% end %>
 
-</div>
  <script type="text/javascript">
 	old_count = <%= @requistions.fresh.count %>;
 	set = false;
 	$(document).ready(function(){
 	setInterval(function(){
-    	$.ajax({url: "/count_all",
+		$.ajax({url: "/count_all",
 				type: 'GET',
 				dataType: 'json',
 				success: function (data, status) {
@@ -36,7 +33,7 @@
 					}
 				}
 			});
-    	}, 5000);
+		}, 5000);
 });
 </script>
 
@@ -47,9 +44,9 @@ jQuery(document).ready(function() {
 		
 		tableClass: "table-bordered",
 		columnDefs: [
-                { "type": "de_datetime", targets: 3 },
-                { "type": "de_datetime", targets: 9 }            	
-            ],
+				{ "type": "de_datetime", targets: 3 },
+				{ "type": "de_datetime", targets: 9 }            	
+			],
 //новая часть часть отвечяющая за сохранение настроек таблицы
 		stateSave: true,
 		//"dom": '<"container"lCfrtip> <"container"T>',
@@ -128,7 +125,7 @@ $(document).ready(function(){
 			<th>Имя</th>
 			<th>Телефон</th>
 			<th>Тип</th>
- 			<th>Комментарий</th>
+			<th>Комментарий</th>
 			<th>Категория</th>
 			<th>Время последнего изменения</th>
 			<th>Статус</th>
@@ -141,11 +138,11 @@ $(document).ready(function(){
 
 		</tr>
 	</thead>    
-    <tbody>
+	<tbody>
 		<% for requistion in @requistions %>
 		<tr>
-	    	<td><%= link_to requistion.id,  requistion_path(requistion) %></td>
-	    	<td><%= link_to requistion.building.name, building_path(requistion.building)%></td>
+			<td><%= link_to requistion.id,  requistion_path(requistion) %></td>
+			<td><%= link_to requistion.building.name, building_path(requistion.building)%></td>
 			<td><%= requistion.building.arrival_address %></td>
 			<td><%= requistion.created_at.strftime("%d.%m.%Y %H:%M") %></td>
 			<td><%= requistion.contact_name %></td>			
@@ -155,17 +152,17 @@ $(document).ready(function(){
 			<td><%= transcript_of_the_messages_category(requistion.category) %></td>	
 			<td> <button id = <%= requistion.id %> class="btn btn-danger change-time" data-toggle="modal" data-target="#status" onClick="reply_click(this.id)" > <%= requistion.updated_at.strftime("%d.%m.%Y %H:%M")%> </button>
 </td>
- 			<td><%= status_names[requistion.status.to_sym] %></td>
- 			<td><%= link_to 'Принять', {controller: :requistions, action: :close, id: requistion.id }, class: "btn btn-inverse" if requistion.status=='done' %> </td>
- 			<td><% requistion.users.where('status = 0').each do |user|%> <li><%= user.name%></li> <% end %></td>
+			<td><%= status_names[requistion.status.to_sym] %></td>
+			<td><%= link_to 'Принять', {controller: :requistions, action: :close, id: requistion.id }, class: "btn btn-inverse" if requistion.status=='done' %> </td>
+			<td><% requistion.users.where('status = 0').each do |user|%> <li><%= user.name%></li> <% end %></td>
 			<td><%= requistion.time_deadline.strftime("%d.%m.%Y %H:%M") if requistion.time_deadline %></td>
 			<td><%= requistion.raiting %></td>	
-	    	<td>  
+			<td>  
 			</td>
- 	    	<td><%= link_to edit_requistion_path(requistion) do%>
-	    		<span class="glyphicon glyphicon-pencil " ></span>
-	    		<% end %>
-	    	</td>
+			<td><%= link_to edit_requistion_path(requistion) do%>
+				<span class="glyphicon glyphicon-pencil " ></span>
+				<% end %>
+			</td>
 		</tr>
 		<% end %>
 	</tbody>
@@ -195,61 +192,61 @@ $(document).ready(function(){
 </div>
 
   <div class="modal fade" id="status" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="myModalLabel">Изменения</h4>
-        </div>
-        <div class="modal-body">
-        	<table class="table table-bordered">
-    			<tr>
-    				<th>Новая</th>
-    				<td id='show_time_change_created'></td>
-    				<td id='show_who_created'>кто создал</td>
-       			</tr>
-    			<tr>
-    				<th>Назначена</th>
-    				<td id='show_time_change_assigned'></td>
-    				<td id='show_who_assigned'></td>
-    			</tr>
-    			<tr>
-    				<th>Принята</th>
-    				<td id='show_time_change_adopted'></td>
-    				<td id='show_who_adopted'></td>
-    			</tr>
-    			<tr>
-    				<th>Выполняется</th>
-    				<td id='show_time_change_running'></td>
-    				<td id='show_who_running'></td>
-    			</tr>
-    			<tr>
-    				<th>Исполнено</th>
-    				<td id='show_time_change_done'></td>
-    				<td id='show_who_done'></td>
-    			</tr>
-    			<tr>
-    				<th>Отменена</th>
-    				<td id='show_time_change_canceled'></td>
-    				<td id='show_who_cancel'>кто отменил</td>
-    			</tr>
-    			<tr>
-    				<th>Выполнено</th>
-    				<td id='show_time_change_completed'></td>
-    				<td id='show_who_comleted'></td>
-       			</tr>
-    			<tr>
-    				<th>Дедлайн</th>
-    				<td id='show_time_change_deadline'></td>
-    				<td>Администратор</td>
-    			</tr>
-        	</table>
+	<div class="modal-dialog">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		  <h4 class="modal-title" id="myModalLabel">Изменения</h4>
+		</div>
+		<div class="modal-body">
+			<table class="table table-bordered">
+				<tr>
+					<th>Новая</th>
+					<td id='show_time_change_created'></td>
+					<td id='show_who_created'>кто создал</td>
+				</tr>
+				<tr>
+					<th>Назначена</th>
+					<td id='show_time_change_assigned'></td>
+					<td id='show_who_assigned'></td>
+				</tr>
+				<tr>
+					<th>Принята</th>
+					<td id='show_time_change_adopted'></td>
+					<td id='show_who_adopted'></td>
+				</tr>
+				<tr>
+					<th>Выполняется</th>
+					<td id='show_time_change_running'></td>
+					<td id='show_who_running'></td>
+				</tr>
+				<tr>
+					<th>Исполнено</th>
+					<td id='show_time_change_done'></td>
+					<td id='show_who_done'></td>
+				</tr>
+				<tr>
+					<th>Отменена</th>
+					<td id='show_time_change_canceled'></td>
+					<td id='show_who_cancel'>кто отменил</td>
+				</tr>
+				<tr>
+					<th>Выполнено</th>
+					<td id='show_time_change_completed'></td>
+					<td id='show_who_comleted'></td>
+				</tr>
+				<tr>
+					<th>Дедлайн</th>
+					<td id='show_time_change_deadline'></td>
+					<td>Администратор</td>
+				</tr>
+			</table>
 
-        </div>
-        <div class="modal-footer">
-        </div>
-      </div>
-    </div>
+		</div>
+		<div class="modal-footer">
+		</div>
+	  </div>
+	</div>
   </div>
 
 <%= hidden_field_tag 'for_filter', @object %>
