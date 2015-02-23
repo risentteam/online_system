@@ -41,7 +41,7 @@ jQuery(document).ready(function() {
 		<% @contracts.each do |contract| %>
 		<tr>
 			<td > <%= link_to contract.name_contract, {:controller => :contracts, :action => :show, :id => contract.id}, {:method => :get} %></td>
-	    	<td id = "company"> <%= contract.company %></td>
+	    	<td id = "company"> <%= contract.buildings.first.name %></td>
 	    	<td id = "building"> <% contract.buildings.each do |building| %> <li><%= link_to building.arrival_address, {:controller => :buildings, :action => :show, :id => building.id}, {:method => :get}%> </li><% end %> </td>
 	    	<td id = "description"> <%= contract.description %></td>
 	    	<td id = "comment"> <%= contract.comment %></td>
