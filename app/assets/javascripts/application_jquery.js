@@ -311,8 +311,8 @@ $(document).ready(function(){
 	 $('#contracts_clinet').dataTable({
 			tableClass: "table-bordered", 
 			columnDefs: [
-                { "type": "de_date", targets: 4 },
-                { "type": "de_date", targets: 5 }            	
+                { "type": "de_date", targets: 5 },
+                { "type": "de_date", targets: 6 }            	
             ],  
 			stateSave: true,
 			"language": languageRU	
