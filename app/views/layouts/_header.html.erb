@@ -11,8 +11,8 @@
 $(document).ready(function(){
 	$('#count').load("/count");
 	setInterval(function(){
-    $('#count').load("/count");
-      }, 5000);
+	$('#count').load("/count");
+	  }, 5000);
 });
 </script>
 	
@@ -35,67 +35,63 @@ $(document).ready(function(){
 
 					<li class = "pull-right">
 						<div class="dropdown manpanel">
-						 	<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-						    	Панель управления
-						    	<span class="caret"></span>
-						  	</button>
-						  	<ul class="dropdown-menu ddmenu" role="menu" aria-labelledby="dropdownMenu1">
-						  		<li role="presentation">
-						    		<%= link_to "/staff" do %>
-										<span class="glyphicon glyphicon-list"></span>&nbsp Все сотрудники
-									<% end %>
-						    	</li>
-						    	<li role="presentation">
-						    		<%= link_to bosses_path do %>
+							<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+								Панель управления
+								<span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu ddmenu" role="menu" aria-labelledby="dropdownMenu1">
+
+								<li role="presentation">
+									<%= link_to bosses_path do %>
 										<span class="glyphicon glyphicon-list"></span>&nbsp Начальники
 									<% end %>
-						    	</li>
+								</li>
 
-						    	<li role="presentation">
-						    		<%= link_to requistions_path do %>
-										<span  class="glyphicon glyphicon-list"></span>&nbsp Все заявки
+								<li role="presentation">
+									<%= link_to requistions_path do %>
+										<span  class="glyphicon glyphicon-list"></span>&nbsp Заявки
 									<% end %>
-						    	</li>
-						    	<li role="presentation">
-						    		<%= link_to arrivals_path do %>
-										<span  class="glyphicon glyphicon-list"></span>&nbsp Все посещения
+								</li>
+								<li role="presentation">
+									<%= link_to arrivals_path do %>
+										<span  class="glyphicon glyphicon-list"></span>&nbsp Посещения
 									<% end %>
-						    	</li>
-						    	<li role="presentation">
-						    		<%= link_to users_path do %>
+								</li>
+								<li role="presentation">
+									<%= link_to users_path do %>
 										<span class="glyphicon glyphicon-list"></span>&nbsp Клиенты
 									<% end %>
-						    	</li>
-						    	<li role="presentation">
-						    		<%= link_to workers_path do %>
-										<span class="glyphicon glyphicon-list"></span>&nbsp Рабочие
+								</li>
+								<li role="presentation">
+									<%= link_to workers_path do %>
+										<span class="glyphicon glyphicon-list"></span>&nbsp Исполнители
 									<% end %>
-						    	</li>
-						    	<li role="presentation">
+								</li>
+								<li role="presentation">
 
-							    	<%= link_to contracts_path do %>
+									<%= link_to contracts_path do %>
 										<span class="glyphicon glyphicon-list"></span>&nbsp Контракты
 									<% end %>
 								</li>
 								<li role="presentation">
 									<%= link_to buildings_path do %>
-										<span class="glyphicon glyphicon-list"></span>&nbsp Все объекты
+										<span class="glyphicon glyphicon-list"></span>&nbsp Объекты
 									<% end %>
 								</li>
 
 
 
 								<li role="presentation">
-						    		<a href="/admin_new"><span class="glyphicon glyphicon-pencil"></span>&nbsp Создать нового пользователя</a>
-						    	</li>
-						    	<li role="presentation">
-						    		<a href="/bosses/new"><span class="glyphicon glyphicon-pencil"></span>&nbsp Создать нового начальника</a>
-						    	</li>
-						    	<li role="presentation">
-						    		<a href="/buildings/new"><span class="glyphicon glyphicon-pencil"></span>&nbsp Новый объект</a>
-						    	</li>
+									<a href="/admin_new"><span class="glyphicon glyphicon-pencil"></span>&nbsp Создать нового пользователя</a>
+								</li>
+								<li role="presentation">
+									<a href="/bosses/new"><span class="glyphicon glyphicon-pencil"></span>&nbsp Создать нового начальника</a>
+								</li>
+								<li role="presentation">
+									<a href="/buildings/new"><span class="glyphicon glyphicon-pencil"></span>&nbsp Новый объект</a>
+								</li>
 
-						  	</ul>
+							</ul>
 						</div>
 					</li>
 
