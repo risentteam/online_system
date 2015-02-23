@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150218160930) do
+ActiveRecord::Schema.define(version: 20150223065346) do
 
   create_table "arrivals", force: true do |t|
     t.integer  "user_id",      null: false
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20150218160930) do
   end
 
   create_table "buildings", force: true do |t|
-    t.string   "name"
+    t.string   "name",            default: "Не указано"
     t.string   "arrival_address"
     t.string   "status"
     t.datetime "created_at"
