@@ -105,7 +105,7 @@ class BuildingsController < ApplicationController
 
 	private
 		def building_params
-			params.require(:building).permit(:arrival_address, :contact_phone, :contact_name)
+			params.require(:building).permit(:name ,:arrival_address, :contact_phone, :contact_name)
 		end
 
 end
