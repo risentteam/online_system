@@ -3,6 +3,18 @@
 <h2>Добавление объекта</h2>
 
 	<%= form_for @building, :html => {:class => "form-horizontal"} do |f| %>
+
+		<div class="form-group">
+
+			<label class=" col-md-3">Название объекта</label>
+			<div class="col-md-5">
+				<% @building.name = nil %>
+			<%= f.text_field :name, :placeholder => "Введите название объекта", class: "form-control"%>
+		</div>
+		</div>
+
+
+
 		<div class="form-group">
 
 			<label class=" col-md-3">Адрес</label>
