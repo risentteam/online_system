@@ -3,9 +3,11 @@
 	<div class="col-xs-5">
 		<table id="requistions" class="table table-wrapper">
 			<thead>
-				<tr>
+				<tr class = "contractSmall">
 					<th>Номер договора</th>
 					<th>Описание</th>
+					<th>С</th>
+					<th>По</th>
 				</tr>
 			</thead>    
 		    <tbody>
@@ -13,7 +15,10 @@
 				<tr>
 			    	<td><%= contract.name_contract %></td>
 			    	<td><%= contract.description %></td>
+			    	<td><%= contract.begin_time %></td>
+			    	<td><%= contract.end_time %></td>
 				</tr>
+				<hr>
 				<% end %>
 			</tbody>
 		</table>					
