@@ -10,8 +10,7 @@ def self.import(file)
   if not file.nil?
     spreadsheet = open_spreadsheet(file)
     spreadsheet.default_sheet = spreadsheet.sheets[0]
-    header = spreadsheet.row(1)
-    (10..spreadsheet.last_row).each do |i|
+    (1..spreadsheet.last_row).each do |i|
       row = spreadsheet.row(i)
       if not row[1].nil? and row[1]!='ИТОГО' and Contract.where("name_contract = ? ", row[1].to_s).empty?
       	if not row[2].nil?
@@ -19,12 +18,22 @@ def self.import(file)
         else
           company = row[3]
         end
-        if row[7]=='с января'
-          btime='01.01.2015'
-        else
-          btime=row[7]
+        btime= case row[5]
+          when 'с января' then '01.01.2015'
+          when 'c февраля' then '01.02.2015'
+          when 'с марта' then '01.03.2015'
+          when 'с апреля' then '01.03.2015'
+          when 'с мая' then '01.04.2015'
+          when 'c июня' then '01.05.2015'
+          when 'c июля' then '01.07.2015'
+          when 'с августа' then '01.08.2015'
+          when 'с сентября' then '01.09.2015'
+          when 'с октября' then '01.10.2015'
+          when 'с ноября' then '01.11.2015'
+          when 'c декабря' then '01.12.2015'
+          else row[5]
         end
-        etime= case row[10]
+        etime= case row[8]
           when 12 then '31.12.2015'
           when 11 then '30.11.2015'
           when 10 then '31.10.2015'
@@ -38,16 +47,11 @@ def self.import(file)
           when 2 then '28.2.2015'
           when 1 then '31.1.2015'
         end
-        contract = Contract.create(name_contract: row[1].to_s, date_of_signing: row[8], description: row[9], begin_time: btime, end_time: etime, comment: row[12])
+        contract = Contract.create(name_contract: row[1].to_s, date_of_signing: row[6], description: row[7], begin_time: btime, end_time: etime, comment: row[9])
         adress = row[4].split(';')
       	adress.each do |address|
-      		  address.gsub!(/ +/, ' ')
-            if address[0]==' '
-              address=address[1..-1]
-            end
-            if address[-1]==' '
-              address=address[0..-2]
-            end
+      		  address.squeeze!(' ')
+            address.strip! 
           if Building.where("arrival_address = ? ", address).empty?
       			building = Building.create(arrival_address: address, name: company)
       		else  
@@ -65,12 +69,22 @@ def self.import(file)
         else
           company = row[3]
         end
-        if row[7]=='с января'
-          btime='01.01.2015'
-        else
-          btime=row[7]
+        btime= case row[5]
+          when 'с января' then '01.01.2015'
+          when 'c февраля' then '01.02.2015'
+          when 'с марта' then '01.03.2015'
+          when 'с апреля' then '01.03.2015'
+          when 'с мая' then '01.04.2015'
+          when 'c июня' then '01.05.2015'
+          when 'c июля' then '01.07.2015'
+          when 'с августа' then '01.08.2015'
+          when 'с сентября' then '01.09.2015'
+          when 'с октября' then '01.10.2015'
+          when 'с ноября' then '01.11.2015'
+          when 'c декабря' then '01.12.2015'
+          else row[5]
         end
-        etime= case row[10]
+        etime= case row[8]
           when 12 then '31.12.2015'
           when 11 then '30.11.2015'
           when 10 then '31.10.2015'
@@ -84,16 +98,11 @@ def self.import(file)
           when 2 then '28.2.2015'
           when 1 then '31.1.2015'
         end
-        contract.update_attributes(name_contract: row[1].to_s, date_of_signing: row[8], description: row[9], begin_time: btime, end_time: etime, comment: row[12])
+        contract.update_attributes(name_contract: row[1].to_s, date_of_signing: row[6], description: row[7], begin_time: btime, end_time: etime, comment: row[9])
         adress = row[4].split(';')
         adress.each do |address|
-          address.gsub!(/ +/, ' ')
-            if address[0]==' '
-              address=address[1..-1]
-            end
-            if address[-1]==' '
-              address=address[0..-2]
-            end
+          address.squeeze!(' ')
+          address.strip! 
           if Building.where("arrival_address = ? ", address).empty?
             building = Building.create(arrival_address: address, name: company)
           else

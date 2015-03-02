@@ -177,7 +177,7 @@ class RequistionsController < ApplicationController
 
 	def index
 		@name = "Все заявки"
-		@requistions = Requistion.all
+		@requistions = Requistion.all.order(:created_at)
 		@pos = params[:position]
 		@value = params[:value]
 		case @pos
