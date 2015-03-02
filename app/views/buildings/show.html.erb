@@ -16,12 +16,8 @@
       </tr>
       <% if current_user.admin? %>
       <tr>
-        <td>Ссылка для входа</td>
-        <td><%= "onlinesys.herokuapp.com/buildings/#{@building.id}/check_in" %></td>
-      </tr>
-      <tr>
-        <td>Ссылка для выхода</td>
-        <td><%= "onlinesys.herokuapp.com/buildings/#{@building.id}/check_out" %></td>
+        <td>Ссылка для выхода/входа</td>
+        <td><%= "onlinesys.herokuapp.com" + check_building_path %></td>
       </tr>
       <% end %>
     </table>
@@ -100,7 +96,7 @@ function init() {
 </table>
 <% else %>
 <h4>Для вас на объект заявок нет</h4>
-<% end %> 
+<% end %>
 
 <%= link_to 'Назад', requistions_path, class: "btn" %>
 </div>

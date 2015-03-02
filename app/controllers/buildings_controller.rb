@@ -4,25 +4,23 @@ class BuildingsController < ApplicationController
 	before_action :client_admin_user, only: [:create, :new,]
 	before_action :worker_user, only: [:check_in, :check_out]
 
-  	respond_to :html, :json
+	respond_to :html, :json
 
-  	def search
-  		
+	def search
 		name = "%#{params[:name]}%"
 		@buildings = Building.all.where("arrival_address ILIKE ? AND name LIKE ?", "%#{params[:q]}%", name)
-  
-  		@bjson = @buildings.to_json(:only => [ :id, :name, :arrival_address ])
-  		render json: @bjson 
 
-  	end
-
-  	def get_name
-		render text: Building.find(params[:id]).name.to_s 
+		@bjson = @buildings.to_json(:only => [ :id, :name, :arrival_address ])
+		render json: @bjson
 	end
 
-	def create 
+	def get_name
+		render text: Building.find(params[:id]).name.to_s
+	end
+
+	def create
 		@building = Building.new (building_params)
-		if @building.save 
+		if @building.save
 			flash[:success] = "Здание создано"
 			redirect_to @building
 		else
@@ -34,7 +32,7 @@ class BuildingsController < ApplicationController
 		@building = Building.new
 	end
 
-	def show 
+	def show
 		@building = Building.find(params[:id])
 		if current_user.worker?
 			@list_requistion = Requistion.where(
@@ -43,19 +41,23 @@ class BuildingsController < ApplicationController
 		else
 			@list_requistion = @building.requistions
 		end
-		
+
 	end
 
 	def index
 		@buildings = Building.includes(:contracts);
 	end
-	
+
+	def check
+		@building = Building.find(params[:id])
+	end
+
 	def check_in
 		requistion_for_buidings = current_user.requistions.where('status = 2')
 		# pairs = Pair.where(
 		# 	"user_id = ? and requistion_id in (SELECT id FROM requistions WHERE building_id = ?)",
 		# 	 current_user[:id], params[:id])
-		# last = current_user.arrivals.where(check_type: 0).order(:date).last(); 
+		# last = current_user.arrivals.where(check_type: 0).order(:date).last();
 		# date = Time.zone.now.strftime("%Y-%m-%d")
 		arrival = Arrival.create(
 			user_id: current_user[:id],
@@ -82,7 +84,7 @@ class BuildingsController < ApplicationController
 			check_type: "check_out",
 			building_id: params[:id],
 			date: Time.now.to_s)
-    	if Time.zone.now.strftime("%H").to_i<=7 and Time.zone.now.strftime("%H").to_i>=5	
+    	if Time.zone.now.strftime("%H").to_i<=7 and Time.zone.now.strftime("%H").to_i>=5
 			arrival.update_attributes(begin_or_end: 1)
 		end
 #		pairs.each do |pair|
