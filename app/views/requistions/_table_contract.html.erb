@@ -1,9 +1,9 @@
 <div class="form-group">
 	<label class=" col-xs-3">Контракты</label>
 	<div class="col-xs-5">
-		<table id="requistions" class="table table-wrapper table-bordered">
+		<table id="requistions" class="table table-wrapper table-bordered contractSmall">
 			<thead>
-				<tr class = "contractSmall">
+				<tr class = "">
 					<th>Номер договора</th>
 					<th>Описание</th>
 					<th>С</th>
@@ -15,8 +15,8 @@
 				<tr>
 			    	<td><%= contract.name_contract %></td>
 			    	<td><%= contract.description %></td>
-			    	<td><%= contract.begin_time.to_formatted_s(:db)  %></td>
-			    	<td><%= contract.end_time.to_formatted_s(:db)  %></td>
+			    	<td><%= contract.begin_time.to_formatted_s('%d-%m-%Y')  %></td>
+			    	<td><%= contract.end_time.to_formatted_s('%d-%m-%Y')  %></td>
 				</tr>
 				<% end %>
 			</tbody>

@@ -16,7 +16,7 @@
 $(document).ready(function() {
 	$('#building_name').select2({
 		placeholder: "название",
-		allowClear: true
+		// allowClear: true
 	});
 	
 	function formatRepo (repo) {
@@ -41,7 +41,7 @@ $(document).ready(function() {
 	});
 
   $('#building_id').select2({
-	allowClear: true,
+	// allowClear: true,
 	
 	ajax: {
 		url: "/search",
