@@ -623,6 +623,17 @@ $(document).ready(function() {
 	$('.phonemask').mask("9 (999) 999-99-99");
 });
 
+//#########################################################################################
+//Очистка поля объект и адрес в "новая заявка"
+//#########################################################################################
 
-
+$(document).ready(function() {
+	// $('.select2-selection__clear').wrap("<div></div>");
+	$('button.clearbutton1').click (function() {
+		$('#building_name').select2('val', null);
+	})
+	$('button.clearbutton2').click (function() {
+		$('#building_id').select2('val', null);
+	})
+});
 
