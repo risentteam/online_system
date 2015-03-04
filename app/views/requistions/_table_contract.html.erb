@@ -15,8 +15,8 @@
 				<tr>
 			    	<td><%= contract.name_contract %></td>
 			    	<td><%= contract.description %></td>
-			    	<td><%= contract.begin_time.to_formatted_s('%d-%m-%Y')  %></td>
-			    	<td><%= contract.end_time.to_formatted_s('%d-%m-%Y')  %></td>
+			    	<td><%= contract.begin_time.strftime("%d.%m.%Y") %></td>
+			    	<td><%= contract.end_time.strftime("%d.%m.%Y")  %></td>
 				</tr>
 				<% end %>
 			</tbody>
