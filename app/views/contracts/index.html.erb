@@ -1,5 +1,5 @@
-<% provide(:title, 'Все контракты') %>
-<h1>Все контракты</h1>
+<% provide(:title, 'Контракты') %>
+<h1>Контракты</h1>
 
 <script type="text/javascript">
 jQuery(document).ready(function() {
@@ -7,18 +7,18 @@ jQuery(document).ready(function() {
 			tableClass: "table-bordered",
 			columnDefs: [
                 { "type": "de_date", targets: 5 },
-                { "type": "de_date", targets: 6 }            	
-            ],  
+                { "type": "de_date", targets: 6 }
+            ],
 			stateSave: true,
 			dom: domValue,
 			"colVis": {
 			  "buttonText": "Показать	/скрыть столбцы"
-			}, 
-			"tableTools": exportTools, 		
-			"language": languageRU	
+			},
+			"tableTools": exportTools,
+			"language": languageRU
 	 });
 });
-</script>	
+</script>
 
 <div class="container">
 <table id="contracts" class="table table-striped table-wrapper">
@@ -31,23 +31,33 @@ jQuery(document).ready(function() {
 			<th>Комментарий</th>
 			<th>Начало</th>
 			<th>Конец</th>
-			<th></th>			
+			<th></th>
 		</tr>
-	</thead>    
+	</thead>
     <tbody>
 		<% @contracts.each do |contract| %>
 		<tr>
-			<td > <%= link_to contract.name_contract, {:controller => :contracts, :action => :show, :id => contract.id}, {:method => :get} %></td>
-	    	<td id = "company"> <%= contract.buildings.first.name %></td>
-	    	<td id = "building"> <% contract.buildings.each do |building| %> <li><%= link_to building.arrival_address, {:controller => :buildings, :action => :show, :id => building.id}, {:method => :get}%> </li><% end %> </td>
-	    	<td id = "description"> <%= contract.description %></td>
-	    	<td id = "comment"> <%= contract.comment %></td>
-	    	<td id = "begin_time"> <%= contract.begin_time.strftime("%d.%m.%Y") if not contract.begin_time.nil? %></td>
-	    	<td id = "end_time"> <%= contract.end_time.strftime("%d.%m.%Y") if not contract.end_time.nil? %></td>
-			<td><%= link_to edit_contract_path(contract) do%>
+			<td > <%= link_to contract.name_contract, contract_path(contract) %></td>
+	    <td id = "company">
+	    	<%#= contract.buildings.first.name if  contract.buildings.first %>
+	    </td>
+	    <td id = "building">
+    		<% contract.buildings.each do |b| %>
+    		<li><%= link_to b.arrival_address, building_path(b) %> </li>
+    		<% end %>
+	    </td>
+    	<td id = "description"> <%= contract.description %></td>
+    	<td id = "comment"> <%= contract.comment %></td>
+    	<td id = "begin_time">
+    		<%= contract.begin_time.strftime("%d.%m.%Y") if contract.begin_time %>
+    	</td>
+	    <td id = "end_time">
+	    	<%= contract.end_time.strftime("%d.%m.%Y") if contract.end_time %></td>
+			<td>
+				<%= link_to edit_contract_path(contract) do %>
 	    		<span class="glyphicon glyphicon-pencil " ></span>
-	    		<% end %>
-	    	</td>
+	    	<% end %>
+	    </td>
 		</tr>
 		<% end %>
 	</tbody>
@@ -62,11 +72,11 @@ jQuery(document).ready(function() {
 	<div class = "row">
 		<h3 style="text-align:left;  margin-left:15px;">Добавить контракт</h3>
 		<div class ="col-md-2">
-			<%= link_to controller: "contracts", action: "new", class: "" do%> 
+			<%= link_to new_contract_path do%>
 				<div class="btn btn-default">
  		 		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
  		 	</div>
-			<%end%> 
+			<%end%>
 		</div>
 
 	</div>
@@ -90,10 +100,8 @@ jQuery(document).ready(function() {
 			<div class="col-md-3">
 			<%= submit_tag "Отправить" , class: "btn" %>
 			</div>
-			
+
 		<% end %>
 
 <br>
 <br>
-		
-
