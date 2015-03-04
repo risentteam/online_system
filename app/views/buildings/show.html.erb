@@ -28,13 +28,11 @@
   <table class="table table-striped">
     <tr>
       <th>Контракт</th>
-      <!-- <th>Компания</th> -->
       <th>Описание</th>
     </tr>
     <% for contract in @building.contracts %>
       <tr>
         <td> <%=link_to contract.name_contract, contract_path(contract) %> </td>
-        <!-- <td> <%= contract.company %> </td> -->
         <td> <%= contract.description %> </td>
       </tr>
     <% end %>
