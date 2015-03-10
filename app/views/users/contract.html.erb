@@ -9,7 +9,6 @@
 						<thead>
 						<tr>
 							<th><%= "Контракт" %></th>
-							<th><%= "Название"	 %></th>
 							<th><%= "Адреса" %></th>
 							<th><%= "Описание" %></th>
 							<th><%= "Дата начала" %></th>
@@ -21,7 +20,6 @@
 						<% for contract in @user.contracts %>
 							<tr>
 								<td> <%= contract.name_contract %> </td>
-								<td> <%= contract.company %> </td>
 								<td> 
 									<% contract.buildings.each do |p| %>
 									<%= p.arrival_address %> <br>  

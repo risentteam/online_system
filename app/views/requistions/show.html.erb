@@ -38,7 +38,7 @@
     <%if @requistion.contract.nil? %>
       <td><%= replacement_empty('') %></td>
     <% else %>
-      <td><%= replacement_empty(@requistion.contract.company+': '+@requistion.contract.description) %></td>
+      <td><%= replacement_empty(': '+@requistion.contract.description) %></td>
     <% end %>    
   </tr>
   <tr>
