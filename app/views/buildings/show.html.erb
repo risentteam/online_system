@@ -96,5 +96,6 @@ function init() {
 <h4>Для вас на объект заявок нет</h4>
 <% end %>
 
-<%= link_to 'Назад', requistions_path, class: "btn" %>
+<%= link_to 'Все заявки', requistions_path, class: "btn" %>
+<a href="javascript:history.back()" class="btn" onMouseOver="window.status='Назад';return true">Назад</a>
 </div>
