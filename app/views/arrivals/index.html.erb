@@ -36,6 +36,17 @@
 	</tfoot>
 </table>
 
+<script type="text/javascript">
+var show;
+function hidetxt(type){
+ param=document.getElementById(type);
+ if(param.style.display == "none") {
+ if(show) show.style.display = "none";
+ param.style.display = "block";
+ show = param;
+ }else param.style.display = "none"
+}
+</script>
 
 <br>
 <h1>Не появлявшиеся за период <%='с '+@time_from if not @time_from.nil? %> <%='по '+@time_to if not @time_to.nil? %> </h3> </h1>
