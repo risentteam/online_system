@@ -1,11 +1,13 @@
 <div class="form-group">
 	<label class=" col-xs-3">Контракты</label>
 	<div class="col-xs-5">
-		<table id="requistions" class="table table-wrapper">
+		<table id="requistions" class="table table-wrapper table-bordered contractSmall">
 			<thead>
-				<tr>
+				<tr class = "">
 					<th>Номер договора</th>
 					<th>Описание</th>
+					<th>С</th>
+					<th>По</th>
 				</tr>
 			</thead>    
 		    <tbody>
@@ -13,6 +15,8 @@
 				<tr>
 			    	<td><%= contract.name_contract %></td>
 			    	<td><%= contract.description %></td>
+			    	<td><%= contract.begin_time.strftime("%d.%m.%Y") %></td>
+			    	<td><%= contract.end_time.strftime("%d.%m.%Y")  %></td>
 				</tr>
 				<% end %>
 			</tbody>

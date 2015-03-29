@@ -1,6 +1,6 @@
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
-		
+
 			<a href="/" class="navbar-brand" >
 			<span><%=image_tag("LogoNew.png", size: "36x50", class: "logo", alt: "ЗВ")%></span>
 			&nbspЗаявки онлайн</a>
@@ -15,7 +15,7 @@ $(document).ready(function(){
 	  }, 5000);
 });
 </script>
-	
+
 
 			<li class = "pull-right">
 				<%= link_to signout_path, method: "delete" do %>
@@ -27,9 +27,9 @@ $(document).ready(function(){
 				<span class="glyphicon glyphicon-user"></span>&nbspМой профиль
 				<% end %>
 			</li>
-			
 
-						
+
+
 					<li class = "pull-right" role="presentation"><a href="<%= new_requistions_path %>">Новые заявки <span id="count" class="badge"></span></a></li>
 
 
@@ -88,7 +88,9 @@ $(document).ready(function(){
 									<a href="/bosses/new"><span class="glyphicon glyphicon-pencil"></span>&nbsp Создать нового начальника</a>
 								</li>
 								<li role="presentation">
-									<a href="/buildings/new"><span class="glyphicon glyphicon-pencil"></span>&nbsp Новый объект</a>
+									<%= link_to new_building_path do %>
+									<span class="glyphicon glyphicon-pencil"></span>&nbsp Новый объект
+									<% end %>
 								</li>
 
 							</ul>
@@ -100,7 +102,7 @@ $(document).ready(function(){
 					</span>&nbsp Новая заявка</a></li>
 
 			<% elsif current_user.client? %>
-			
+
 					<li class="pull-left">
 						<a href="/new"><span class="glyphicon glyphicon-envelope">
 						</span>&nbsp Подать заявку</a>
@@ -130,8 +132,8 @@ $(document).ready(function(){
 							<span class="glyphicon glyphicon-export"></span>&nbspЗаявки
 						<% end %>
 					</li>
-					
-				
+
+
 			<% else #worker%>
 						<li class = "pull-right">
 							<%= link_to signout_path, method: "delete" do %>
@@ -148,10 +150,10 @@ $(document).ready(function(){
 							<span class="glyphicon glyphicon-briefcase"></span>&nbspЗаявки
 							<% end %>
 						</li>
-			<% end %>	
+			<% end %>
 		<% else %>
 			<li class = "pull-right"><a href="/signup"><span class="glyphicon glyphicon-user"></span>&nbsp Зарегистрироваться</a></li>
 			<li class = "pull-right"><a href="/sessions/new"><span class="glyphicon glyphicon-log-in"></span>&nbsp Войти</a></li>
 		<% end %>
-	</div>	
+	</div>
 </nav>

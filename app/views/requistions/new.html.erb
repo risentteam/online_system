@@ -6,7 +6,7 @@
 		<div class="row">
 			<div class="form-group">
 					<label class=" col-xs-3">Объект</label>
-				
+					
 					<div  class="col-xs-5">
 					<select required id="building_name" name="name" style="width: 100%"> 
 						<%=	options_for_select(@list.collect {|p| [ p.name ] }.uniq ) %>
@@ -16,7 +16,7 @@
 $(document).ready(function() {
 	$('#building_name').select2({
 		placeholder: "название",
-		allowClear: true
+		// allowClear: true
 	});
 	
 	function formatRepo (repo) {
@@ -41,7 +41,7 @@ $(document).ready(function() {
 	});
 
   $('#building_id').select2({
-	allowClear: true,
+	// allowClear: true,
 	
 	ajax: {
 		url: "/search",
@@ -80,6 +80,11 @@ $(document).ready(function() {
 });
 </script>					
 				</div>
+				<div class = "col-xs-1">
+					<button type="button" class="btn btn-default btn-xs clearbutton1">
+					  	<span class="glyphicon glyphicon-remove"></span>
+					</button>
+				</div>
 			</div>
 		</div>
 		<div class="row">
@@ -91,6 +96,11 @@ $(document).ready(function() {
 
 				</div>
 
+				<div class = "col-xs-1">
+					<button type="button" class="btn btn-default btn-xs clearbutton2">
+					  	<span class="glyphicon glyphicon-remove"></span>
+					</button>
+				</div>
 
 			</div>
 		</div>

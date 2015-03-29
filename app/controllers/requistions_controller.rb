@@ -4,21 +4,21 @@ class RequistionsController < ApplicationController
 	before_action :client_user, only: [ :mark]
 
 	autocomplete :building, :arrival_address, :full => true
-		
+
 	def count
 		render text: Requistion.fresh.count.to_s
 	end
 
 	def count_all
-		render :json => { :count => Requistion.fresh.count.to_s} 
+		render :json => { :count => Requistion.fresh.count.to_s}
 	end
 
 	def show
-		@requistion = Requistion.find(params[:id]) 
+		@requistion = Requistion.find(params[:id])
 	end
 
 	def to_take_in_work
-		@requistion = Requistion.find(params[:id]) 
+		@requistion = Requistion.find(params[:id])
 		if @requistion.update_attributes(
 			status: "adopted_in_work", time_adopted_in_work: Time.zone.now.to_s, who_adopted: current_user.id)
 			flash[:success] = "Заявка принята в разработку"
@@ -27,7 +27,7 @@ class RequistionsController < ApplicationController
 	end
 
 	def close
-		@requistion = Requistion.find(params[:id]) 
+		@requistion = Requistion.find(params[:id])
 		if @requistion.update_attributes(
 			status: "completed", time_completed: Time.zone.now.to_s, who_comleted: current_user.id)
 			flash[:success] = "Заявка завершена"
@@ -36,12 +36,12 @@ class RequistionsController < ApplicationController
 	end
 
 	def done
-		@requistion = Requistion.find(params[:id]) 
+		@requistion = Requistion.find(params[:id])
 		if @requistion.update_attributes(
 			status: "done", time_done: Time.zone.now.to_s, who_done: current_user.id)
 			flash[:success] = "Заявка закончена"
 			redirect_to @requistion
-		end		
+		end
 	end
 
 	def cancel
@@ -54,17 +54,17 @@ class RequistionsController < ApplicationController
 		r = Requistion.find(params[:id])
 		r.cancel(current_user.id, params[:subject])
 	end
-	
+
 
 	def mark
-		@requistion = Requistion.find(params[:id]) 
+		@requistion = Requistion.find(params[:id])
 		@requistion.update_attribute( :raiting, params[:mark])
 		flash[:success] = "Оценка поставлена"
 		redirect_to requistion_path(@requistion)
 	end
 
 	def change_status
-		@requistion = Requistion.find(params[:id]) 
+		@requistion = Requistion.find(params[:id])
 		@requistion.update_attribute( :status, params[:status])
 		case params[:status]
 			when "fresh"
@@ -87,11 +87,11 @@ class RequistionsController < ApplicationController
 					time_completed: Time.zone.now.to_s, who_comleted: current_user.id)
 			end
 		flash[:success] = "Статус изменен"
-		redirect_to requistion_path(@requistion)		
+		redirect_to requistion_path(@requistion)
 	end
 
 	def view_change_time
-		
+
 		def tostr(time)
 			if time
 				Russian::strftime(time, " %e %B %Y %H:%M")
@@ -123,7 +123,7 @@ class RequistionsController < ApplicationController
 		end
 
 		render :json => {
-			time:{ 
+			time:{
 				:created   => tostr(r.created_at),
 				:assigned  => tostr(r.time_assgned),
 				:adopted   => tostr(r.time_adopted_in_work),
@@ -151,8 +151,8 @@ class RequistionsController < ApplicationController
 		if @requistion.save
 			if current_user.admin?
 				pairs = @requistion.pairs
-				all_workers_id = Array(params[:workers])	
-				
+				all_workers_id = Array(params[:workers])
+
 				all_workers_id.each do |worker|
 					pairs.find_or_create_by(user_id: worker)
 				end
@@ -190,7 +190,7 @@ class RequistionsController < ApplicationController
 
 	def all_new
 		@name = "Новые заявки"
-		@requistions = Requistion.fresh	
+		@requistions = Requistion.fresh
 		render "index"
 	end
 
@@ -212,9 +212,9 @@ class RequistionsController < ApplicationController
 
 	def update_date
  		@contract = Contract.find(params[:contract])
-		render :json => { :contract_id => @contract.contract_id, 
-						  :description => @contract.description, 
-						  :name_contract => @contract.name_contract, 
+		render :json => { :contract_id => @contract.contract_id,
+						  :description => @contract.description,
+						  :name_contract => @contract.name_contract,
 						  :time =>  "С "+Russian::strftime(@contract.begin_time, "%e %B %Y")+" до "+Russian::strftime(@contract.end_time, "%e %B %Y")}
 	end
 
@@ -232,25 +232,31 @@ class RequistionsController < ApplicationController
 
 	def update
 		#Необходимо добавить проверку корректности данных
-		@requistion = Requistion.find(params[:id])					
+		@requistion = Requistion.find(params[:id])
 		if @requistion.update_attributes(
 			contract_id: params[:version_id],
-			time_deadline: params[:deadline], 
+			time_deadline: params[:deadline],
 			category: params[:requistion][:category],
 			requistion_comment: params[:requistion][:requistion_comment],
 #			status: 'assigned',
 #			time_assgned: Time.zone.now.to_s
 			)
-		
+
 			client = @requistion.users.client.first
 
 			all_workers_id = Array(params[:workers])
 			pairs = @requistion.pairs
 			old_workers_id = @requistion.users.where({ status: "worker"}).collect{|p| p.id  }
 			pairs.where(user_id: old_workers_id).destroy_all
-			
+
 			all_workers_id.each do |worker|
 				pairs.find_or_create_by(user_id: worker)
+			end
+
+			if all_workers_id.empty?
+				@requistion.update_attribute :status, 'fresh'
+			else
+				@requistion.update_attribute :status, 'assigned'
 			end
 
 			# flash[:success] = "Заявка успешно изменена"
@@ -265,9 +271,9 @@ class RequistionsController < ApplicationController
 					recipients: [client.phone])
 				response = message.deliver
 			end
-			
+
 			redirect_to @requistion
-		else 
+		else
 			render 'edit'
 		end
 	end
@@ -277,9 +283,9 @@ class RequistionsController < ApplicationController
 		@requistion = Requistion.new
 		@list_contract = current_user.contracts
 		if current_user.client?
-			@list = Building.where(	
-				"id in (SELECT building_id FROM buildingscontracts 
-				WHERE contract_id in 
+			@list = Building.where(
+				"id in (SELECT building_id FROM buildingscontracts
+				WHERE contract_id in
 				(SELECT id FROM contracts t WHERE user_id = ?))", current_user[:id])
 		else
 			@list = Building.order("lower(name)").all
@@ -290,7 +296,7 @@ class RequistionsController < ApplicationController
 
 	private
 		def requistions_params
-			params.require(:requistion).permit(:contact_name, :contact_phone, :deputy, 
+			params.require(:requistion).permit(:contact_name, :contact_phone, :deputy,
 				:type_requistion, :subtype_requistion, :building_id, :requistion_comment,
 				:time_deadline)
 		end

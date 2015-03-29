@@ -16,12 +16,8 @@
       </tr>
       <% if current_user.admin? %>
       <tr>
-        <td>Ссылка для входа</td>
-        <td><%= "onlinesys.herokuapp.com/buildings/#{@building.id}/check_in" %></td>
-      </tr>
-      <tr>
-        <td>Ссылка для выхода</td>
-        <td><%= "onlinesys.herokuapp.com/buildings/#{@building.id}/check_out" %></td>
+        <td>Ссылка для выхода/входа</td>
+        <td><%= "onlinesys.herokuapp.com" + check_building_path %></td>
       </tr>
       <% end %>
     </table>
@@ -32,13 +28,11 @@
   <table class="table table-striped">
     <tr>
       <th>Контракт</th>
-      <th>Компания</th>
       <th>Описание</th>
     </tr>
     <% for contract in @building.contracts %>
       <tr>
         <td> <%=link_to contract.name_contract, contract_path(contract) %> </td>
-        <td> <%= contract.company %> </td>
         <td> <%= contract.description %> </td>
       </tr>
     <% end %>
@@ -100,7 +94,8 @@ function init() {
 </table>
 <% else %>
 <h4>Для вас на объект заявок нет</h4>
-<% end %> 
+<% end %>
 
-<%= link_to 'Назад', requistions_path, class: "btn" %>
+<%= link_to 'Все заявки', requistions_path, class: "btn" %>
+<a href="javascript:history.back()" class="btn" onMouseOver="window.status='Назад';return true">Назад</a>
 </div>

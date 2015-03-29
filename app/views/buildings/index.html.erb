@@ -24,7 +24,7 @@
 						<td><%= link_to b.arrival_address,  building_path(b) %></td>
 						<td><%= b.contact_name %></td>
 						<td><%= b.contact_phone %></td>						
-						<td><% b.contracts.each do |contract| %> <%=contract.description%> <% end %> </td>
+						<td><% b.contracts.each do |contract| %><%=link_to contract.name_contract, contract_path(contract) %> <%=contract.description%><br><% end %></td>
 						<td><%= link_to 'Заявки', {:controller => :requistions, :action => :index, :position =>2, :value => b.id}, {:method => :get} %></td>
 					</tr>
 					<% end %>
