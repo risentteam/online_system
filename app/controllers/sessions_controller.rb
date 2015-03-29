@@ -16,6 +16,7 @@ class SessionsController < ApplicationController
 				redirect_back_or req
 			else
 				redirect_back_or user
+			end
 		else
 		flash.now[:danger] = 'Неправильная комбинация пароля и почты'
 		render 'new'
