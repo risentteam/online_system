@@ -57,9 +57,14 @@
 				<% @Arrivals_at_day = @result.select(:user_id).distinct.where("to_char(date, 'YYYY-MM-DD') = ?", i.strftime("%Y-%m-%d")) %>	
 				<% @latecomers = User.where('status = 0 and id not in (?)	', @Arrivals_at_day) %>
 				<td>
+<div>
+<a onclick="hidetxt('div1'); return false;" href="#" rel="nofollow">Показать</a>
+<div style="display:none;" id="div1">
 				<% @latecomers.each do |f|%>
 					<li><%= f.name %></li>
 				<% end %>
+</div>
+</div>
 				</td>
 				<% i = i.tomorrow %>
 				</tr>
