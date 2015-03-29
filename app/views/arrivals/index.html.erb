@@ -62,7 +62,7 @@ function hidetxt(type){
 	</thead>    
     <tbody>
     	<%if @date_from<=@date_to %>
-			<% while i<@date_to do %>
+			<% while i<=@date_to do %>
 				<tr>
 				<td><%= i.strftime("%d.%m.%Y")%></td>
 				<% @Arrivals_at_day = @result.select(:user_id).distinct.where("to_char(date, 'YYYY-MM-DD') = ?", i.strftime("%Y-%m-%d")) %>	
