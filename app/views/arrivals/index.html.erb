@@ -69,7 +69,7 @@ function hidetxt(type){
 				<% @latecomers = User.where('status = 0 and id not in (?)	', @Arrivals_at_day) %>
 				<td>
 					<div>
-					<a onclick="hidetxt(<%= i -%>); return false;" href="#" rel="nofollow">Показать/Скрыть</a>
+					<a onclick="hidetxt('<%= i -%>'); return false;" href="#" rel="nofollow">Показать/Скрыть</a>
 					<div style="display:none;" id="<%= i -%>" > 
 									<% @latecomers.each do |f|%>
 										<li><%= f.name %></li>
