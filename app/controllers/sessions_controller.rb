@@ -12,7 +12,10 @@ class SessionsController < ApplicationController
 			if not_remeber
 				flash[:info] = "Не запоминать"
 			end
-			redirect_back_or user
+			if user.worker?
+				redirect_back_or req
+			else
+				redirect_back_or user
 		else
 		flash.now[:danger] = 'Неправильная комбинация пароля и почты'
 		render 'new'

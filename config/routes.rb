@@ -11,7 +11,7 @@ App::Application.routes.draw do
 
   resources :users
   match '/workers',  to: 'users#workers',       via: 'get'
-  match 'users/:id/req', to: 'users#req', via: 'get'
+  match 'users/:id/req', to: 'users#req', via: 'get', as: 'req'
   match 'users/:id/contract', to: 'users#contract', via: 'get'
   match 'users/:id/reqclient', to: 'users#reqclient', via: 'get'
   match 'user/:id/change_password', to: 'users#change_password', via: 'post', as: "change_password"
