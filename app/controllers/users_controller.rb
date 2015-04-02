@@ -13,6 +13,10 @@ class UsersController < ApplicationController
 		@users = User.worker
 	end
 
+	def admins
+		@users = User.admin
+	end
+
 	def req
 		@user = User.find(params[:id])
 		@all_pairs = @user.pairs
