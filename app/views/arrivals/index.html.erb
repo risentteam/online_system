@@ -25,7 +25,7 @@
 	    	<td> <%= f.user.name %> </td>
 	    	<td> <%= f.building.arrival_address %> </td>
 	    	<td> <%= f.date.strftime("%d.%m.%Y %H:%M") if  not f.date.nil? %></td>
-			<td> <%= f.check_type==0 ? "Пришел" : "Ушел" %></td>
+			<td> <%= f.check_type ? "Пришел" : "Ушел" %></td>
 		</tr>
 		<% end %>
 	</tbody>
