@@ -19,7 +19,7 @@ class Requistion < ActiveRecord::Base
     self.who_cancel = user_id
     self.status = :canceled
     if comment
-      self.requistion_comment = self.requistion_comment + " Причина отмены: " + comment 
+      self.requistion_comment = self.requistion_comment.to_s + " Причина отмены: " + comment 
     end
     self.save
   end

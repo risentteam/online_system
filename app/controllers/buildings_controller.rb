@@ -63,16 +63,23 @@ class BuildingsController < ApplicationController
 			user_id: current_user[:id],
 			check_type: "check_in",
 			building_id: params[:id],
-			date: Time.now.to_s)
+			date: Time.now.to_s)	
 
   #   	if current_user.arrivals.where("date between date('now') AND date('now')").count==0
 		# 	arrival.update_attributes(begin_or_end: 0)
 		# end
-		requistion_for_buidings.each do |f|
-			f.update_attributes(status: "running", time_running: Time.now.to_s, who_running: current_user.id)
+		if requistion_for_buidings.size != 0
+			requistion_for_buidings.each do |f|
+				f.update_attributes(status: "running", time_running: Time.now.to_s, who_running: current_user.id)
+			end
+			flash[:success] = "Ваше прибытие отмечено!"
+			redirect_to requistion_for_buidings.first
+		else
+			flash[:warning] = "По данному адресу есть заявки доступные только исполнителю"
+			building = Building.find(params[:id])
+			redirect_to :action => "requistions", :id => params[:id]
 		end
-		flash[:success] = "Ваше прибытие отмечено!"
-		redirect_to current_user
+			
 	end
 
 	def check_out
@@ -92,6 +99,11 @@ class BuildingsController < ApplicationController
 #		end
 		flash[:success] = "Ваше отбытие отмечено!"
 		redirect_to current_user
+	end
+
+	def requistions
+		building = Building.find(params[:id])
+		@list_requistions = building.requistions
 	end
 
 	def update

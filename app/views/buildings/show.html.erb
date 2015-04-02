@@ -32,7 +32,7 @@
     </tr>
     <% for contract in @building.contracts %>
       <tr>
-        <td> <%=link_to contract.name_contract, contract_path(contract) %> </td>
+        <td> <%= link_to contract.name_contract, contract_path(contract) %> </td>
         <td> <%= contract.description %> </td>
       </tr>
     <% end %>

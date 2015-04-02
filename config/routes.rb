@@ -76,8 +76,11 @@ App::Application.routes.draw do
       get 'check'
     end
   end
+
+
   match 'no_build', to: 'buildings#no_build', via: 'get'
   match 'buildings/:id', to: 'buildings#update', via: 'put'
+  match 'buildings/:id/requistions', to: 'buildings#requistions', via: 'get'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
