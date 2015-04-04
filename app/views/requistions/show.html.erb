@@ -59,6 +59,39 @@
 </div>
 </div>
 
+<% if current_user.worker? %>
+<%= link_to "Принять в работу",  {:controller => :requistions, :action => :to_take_in_work, :id => @requistion.id}, {:method => :get, :class=>"btn"} %>
+            <%= link_to "Завершить",  {:controller => :requistions, :action => :done, :id => @requistion.id}, {:method => :get, :class=>"btn", data: { confirm: "Завершить заявку?" }} %>
+            <%= link_to "Отменить",  {:controller => :requistions, :action => :cancel, :id => @requistion.id}, {:method => :get, :class=>"btn", data: { confirm: "Отменить заявку?" }} %>
+<% end %>
+
+
+<% if current_user.admin? %>
+    <a class="btn" data-toggle="modal" data-target="#status" >Изменить статус</a>
+    <%= link_to "Редактировать заявку", edit_requistion_path, class: "btn" %>
+    <%= link_to "Назад к заявкам", requistions_path, class: "btn"%> 
+
+  </div>
+  <div class="modal fade" id="status" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Изменение статуса</h4>
+        </div>
+        <div class="modal-body">
+            <%= form_tag(change_status_path(@requistion), :html => {:class => "form-vertical"}) do |f| %>
+              <div class="form-group">
+      <%= select_tag :status, "<option value = fresh>Новая</option><option value=assigned>Назначена</option><option value = adopted_in_work >Принята в работу</option><option value = running>Выполняется</option><option value=done>Исполнено</option><option value = completed >Завершена</option><option value = canceled >Отменена</option>", :prompt => "Выберите из списка", :class =>  "form-control", required: "" %>          </div>
+          <button type="submit" class="btn btn-success">Изменить</button>
+        <% end %>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
 
 <% if current_user.admin? %>
     <a class="btn" data-toggle="modal" data-target="#status" >Изменить статус</a>

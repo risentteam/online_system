@@ -1,0 +1,46 @@
+<% provide(:title, "Администраторы") %>
+<div class="container"> 
+  <h1>Администраторы</h1>
+  <div class="row">
+    <div class = 'col-xs-1'>
+    </div>
+  <div class="col-xs-9">
+
+  <table id ="tablework" class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Имя</th>
+        <th>Телефон</th>
+        <th>Заявки</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each_with_index do |user, index| %>
+      <tr>
+        <td>
+          <%= link_to user.name, user_path(user) %>
+        </td>
+        <td>
+          <%= user.phone %>
+        </td>
+        <td>
+          <div class = "pull-right">
+          <%= link_to 'Заявки сотрудника', controller: :requistions, action: :index, position: 12, value: user.id%>
+
+            <%= link_to user_path(user) do%>
+              <span class="glyphicon glyphicon-pencil" title="редактировать"></span>
+            <% end %>
+            <%= link_to user, method: :delete, data: { confirm: "Вы уверены, что хотите удалить?" } do%>
+              <span class="glyphicon glyphicon-trash" title="удалить"></span>
+            <% end %>
+          &nbsp
+          </div>
+        </td>
+      </tr>
+      <% end %>  
+
+
+    </tbody>
+</table>
+</div>
+</div>

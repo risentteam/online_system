@@ -16,6 +16,7 @@
 			<th>Иполнитель</th>
 			<th>Объект</th>
 			<th>Время</th>
+			<th>Тип</th>
 		</tr>
 	</thead>    
     <tbody>
@@ -24,6 +25,7 @@
 	    	<td> <%= f.user.name %> </td>
 	    	<td> <%= f.building.arrival_address %> </td>
 	    	<td> <%= f.date.strftime("%d.%m.%Y %H:%M") if  not f.date.nil? %></td>
+			<td> <%= f.check_type=='check_in' ? "Пришел" : "Ушел" %></td>
 		</tr>
 		<% end %>
 	</tbody>
@@ -36,6 +38,17 @@
 	</tfoot>
 </table>
 
+<script type="text/javascript">
+var show;
+function hidetxt(type){
+ param=document.getElementById(type);
+ if(param.style.display == "none") {
+ if(show) show.style.display = "none";
+ param.style.display = "block";
+ show = param;
+ }else param.style.display = "none"
+}
+</script>
 
 <br>
 <h1>Не появлявшиеся за период <%='с '+@time_from if not @time_from.nil? %> <%='по '+@time_to if not @time_to.nil? %> </h3> </h1>
@@ -51,15 +64,20 @@
 	</thead>    
     <tbody>
     	<%if @date_from<=@date_to %>
-			<% while i<@date_to do %>
+			<% while i<=@date_to do %>
 				<tr>
 				<td><%= i.strftime("%d.%m.%Y")%></td>
 				<% @Arrivals_at_day = @result.select(:user_id).distinct.where("to_char(date, 'YYYY-MM-DD') = ?", i.strftime("%Y-%m-%d")) %>	
 				<% @latecomers = User.where('status = 0 and id not in (?)	', @Arrivals_at_day) %>
 				<td>
-				<% @latecomers.each do |f|%>
-					<li><%= f.name %></li>
-				<% end %>
+					<div>
+					<a onclick="hidetxt('<%= i -%>'); return false;" href="#" rel="nofollow">Показать/Скрыть</a>
+					<div style="display:none;" id="<%= i -%>" > 
+									<% @latecomers.each do |f|%>
+										<li><%= f.name %></li>
+									<% end %>
+					</div>
+					</div>
 				</td>
 				<% i = i.tomorrow %>
 				</tr>

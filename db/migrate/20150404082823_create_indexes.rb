@@ -6,7 +6,6 @@ class CreateIndexes < ActiveRecord::Migration
     add_index :buildingscontracts, :building_id
     add_index :buildingscontracts, :contract_id
 
-    remove_column :contracts, :contract_id
     add_index :contracts, :user_id
 
     add_index :pairs, :user_id

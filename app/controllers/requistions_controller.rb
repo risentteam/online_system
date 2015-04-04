@@ -85,6 +85,9 @@ class RequistionsController < ApplicationController
 			when "completed"
 				@requistion.update_attributes(
 					time_completed: Time.zone.now.to_s, who_comleted: current_user.id)
+			when "canceled"	
+				@requistion.update_attributes(
+					time_canceled: Time.zone.now.to_s, who_cancel: current_user.id)
 			end
 		flash[:success] = "Статус изменен"
 		redirect_to requistion_path(@requistion)

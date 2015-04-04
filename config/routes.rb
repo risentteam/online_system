@@ -11,7 +11,7 @@ App::Application.routes.draw do
 
   resources :users
   match '/workers',  to: 'users#workers',       via: 'get'
-  match 'users/:id/req', to: 'users#req', via: 'get'
+  match 'users/:id/req', to: 'users#req', via: 'get', as: 'req'
   match 'users/:id/contract', to: 'users#contract', via: 'get'
   match 'users/:id/reqclient', to: 'users#reqclient', via: 'get'
   match 'user/:id/change_password', to: 'users#change_password', via: 'post', as: "change_password"
@@ -19,6 +19,7 @@ App::Application.routes.draw do
   match '/admin_create',  to: 'users#admin_create',       via: 'post'
   match "/users/:id/choose_manager", to: 'bosses#choose', via: 'get'
   match "/users/:id/set_manager", to: 'bosses#set', via: 'patch'
+  match "/admins", to: 'users#admins', via: 'get'
 
   resources :sessions, only: [:new, :create, :destroy]
   resources :arrivals
@@ -75,8 +76,11 @@ App::Application.routes.draw do
       get 'check'
     end
   end
+
+
   match 'no_build', to: 'buildings#no_build', via: 'get'
   match 'buildings/:id', to: 'buildings#update', via: 'put'
+  match 'buildings/:id/requistions', to: 'buildings#requistions', via: 'get'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

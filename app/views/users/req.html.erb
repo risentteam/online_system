@@ -23,10 +23,10 @@
 			<tbody>
 				<% for pair in @all_pairs %>
 				<% @requistion = pair.requistion %>
-				<% if !@requistion.completed? and !@requistion.done? and !@requistion.canceled? %>
+				<% if !@requistion.nil? and !@requistion.completed? and !@requistion.done? and !@requistion.canceled? %>
 				
 				<tr>
-					 <td><%= link_to @requistion.object,  {:controller => :requistions, :action => :show, :id => @requistion.id}, {:method => :get} %></td>
+					 <td><%= link_to Building.find(@requistion.building_id).name,  {:controller => :requistions, :action => :show, :id => @requistion.id}, {:method => :get} %></td>
 					 <td><%= link_to Building.find(@requistion.building_id).arrival_address,  {:controller => :buildings, :action => :show, :id => @requistion.building_id}, {:method => :get} %></td>
 					 <td> <%= transcript_of_the_messages(@requistion.type_requistion)+' '+transcript_of_the_messages(@requistion.subtype_requistions) %> </td>
 					 <td><%= @requistion.contact_phone+' '+@requistion.contact_name %></td>
@@ -69,9 +69,9 @@
 			<tbody>
 				<% for pair in @all_pairs %>
 				<% @requistion = pair.requistion %>
-				<% if @requistion.completed? or @requistion.done? or @requistion.canceled? %>
+				<% if !@requistion.nil? and (@requistion.completed? or @requistion.done? or @requistion.canceled?) %>
 				<tr>
-					 <td><%= link_to @requistion.object,  {:controller => :requistions, :action => :show, :id => @requistion.id}, {:method => :get} %></td>
+					 <td><%= link_to Building.find(@requistion.building_id).name,  {:controller => :requistions, :action => :show, :id => @requistion.id}, {:method => :get} %></td>
 					 <td><%= link_to Building.find(@requistion.building_id).arrival_address,  {:controller => :buildings, :action => :show, :id => @requistion.building_id}, {:method => :get} %></td>
 					 <td> <%= transcript_of_the_messages(@requistion.type_requistion)+' '+transcript_of_the_messages(@requistion.subtype_requistions) %> </td>
 					 <td><%= @requistion.contact_phone+' '+@requistion.contact_name %></td>
