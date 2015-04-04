@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	<meta charset="utf-8"> 
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title><%= yield(:title) %></title>
-		
+
 	<%= stylesheet_link_tag "application", {media: "all", type: "text/css", "data-turbolinks-track" => true} %>
 
 
 	<%= javascript_include_tag "application", {media: "all", "data-turbolinks-track" => true} %>
 
 	<%= csrf_meta_tags %>
-	
+
 	<!--[if lt IE 9]>
 	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
@@ -24,7 +24,9 @@
 			<% flash.each do |key, value| %>
 				<div class="alert alert-<%= key %>" style="margin:5px"><%= value %></div>
 			<% end %>
+			<div class="container">
 			<%= yield %>
+			</div>
 			<br>
 
 	</body>
