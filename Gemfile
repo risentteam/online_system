@@ -32,11 +32,11 @@ group :test do
 end
 
 
-gem 'uglifier', '2.1.1'
+gem 'uglifier'
 gem 'coffee-rails', '4.0.1'
 gem 'jquery-rails', '3.0.4'
 gem 'jquery-ui-rails'
-gem 'turbolinks', '1.1.1'
+gem 'turbolinks'
 gem 'jbuilder', '1.0.2'
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
 gem 'jquery-datatables-tabletools-rails', github: 'mcallaway/jquery-datatables-tabletools-rails'

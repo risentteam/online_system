@@ -10,12 +10,12 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require turbolinks
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
 //= require autocomplete-rails
 //= require bootstrap
-//= require turbolinks
 //= require jquery_nested_form
 
 
