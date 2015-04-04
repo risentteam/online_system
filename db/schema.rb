@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150223065346) do
+ActiveRecord::Schema.define(version: 20150404082823) do
 
   create_table "arrivals", force: true do |t|
     t.integer  "user_id",      null: false
@@ -22,6 +22,9 @@ ActiveRecord::Schema.define(version: 20150223065346) do
     t.datetime "updated_at"
     t.integer  "begin_or_end"
   end
+
+  add_index "arrivals", ["building_id"], name: "index_arrivals_on_building_id"
+  add_index "arrivals", ["user_id"], name: "index_arrivals_on_user_id"
 
   create_table "bosses", force: true do |t|
     t.string   "name"
@@ -48,8 +51,10 @@ ActiveRecord::Schema.define(version: 20150223065346) do
     t.integer "contract_id", null: false
   end
 
+  add_index "buildingscontracts", ["building_id"], name: "index_buildingscontracts_on_building_id"
+  add_index "buildingscontracts", ["contract_id"], name: "index_buildingscontracts_on_contract_id"
+
   create_table "contracts", force: true do |t|
-    t.integer  "contract_id"
     t.string   "company"
     t.datetime "date_of_signing"
     t.integer  "user_id"
@@ -60,6 +65,8 @@ ActiveRecord::Schema.define(version: 20150223065346) do
     t.datetime "end_time"
     t.datetime "begin_time"
   end
+
+  add_index "contracts", ["user_id"], name: "index_contracts_on_user_id"
 
   create_table "main_address", force: true do |t|
     t.string "name"
@@ -73,6 +80,9 @@ ActiveRecord::Schema.define(version: 20150223065346) do
     t.datetime "check_in"
     t.datetime "check_out"
   end
+
+  add_index "pairs", ["requistion_id"], name: "index_pairs_on_requistion_id"
+  add_index "pairs", ["user_id"], name: "index_pairs_on_user_id"
 
   create_table "requistions", force: true do |t|
     t.integer  "status",               limit: 255, default: 0
@@ -104,6 +114,9 @@ ActiveRecord::Schema.define(version: 20150223065346) do
     t.integer  "who_comleted"
     t.string   "deputy"
   end
+
+  add_index "requistions", ["building_id"], name: "index_requistions_on_building_id"
+  add_index "requistions", ["contract_id"], name: "index_requistions_on_contract_id"
 
   create_table "users", force: true do |t|
     t.string   "name"
