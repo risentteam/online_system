@@ -48,6 +48,4 @@
 //= require jquery.maskedinput.min
 
 
-Turbolinks.ProgressBar.enable();
-
 
