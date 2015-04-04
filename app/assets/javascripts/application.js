@@ -14,6 +14,8 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require nprogress
+//= require nprogress-turbolinks
 //= require autocomplete-rails
 //= require bootstrap
 //= require jquery_nested_form
@@ -45,5 +47,7 @@
 //= require select2.min
 //= require jquery.maskedinput.min
 
+
+Turbolinks.ProgressBar.enable();
 
 

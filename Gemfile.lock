@@ -159,6 +159,7 @@ GEM
     notiffany (0.0.6)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    nprogress-rails (0.1.6.6)
     pg (0.15.1)
     pry (0.10.1)
       coderay (~> 1.1.0)
@@ -303,6 +304,7 @@ DEPENDENCIES
   jquery-ui-rails
   mainsms_api
   nested_form
+  nprogress-rails
   pg (= 0.15.1)
   rails (= 4.1.6)
   rails4-autocomplete (~> 1.1.1)

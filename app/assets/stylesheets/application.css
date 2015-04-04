@@ -19,6 +19,9 @@
  *= require selectize.default
  *= require select2.min
 
+ *= require nprogress
+ *= require nprogress-bootstrap
+
  */
 
 
