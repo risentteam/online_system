@@ -19,9 +19,10 @@
 				<% end %>
 			</li>
 
-
-
-					<li class = "pull-right" role="presentation"><a href="<%= new_requistions_path %>">Новые заявки <span id="count" class="badge"></span></a></li>
+					<li class = "pull-right" role="presentation"><a href="<%= new_requistions_path %>">Новые заявки
+					<span id="count" class="badge">
+						<%= Requistion.fresh.count %>
+					</span></a></li>
 
 
 					<li class = "pull-right">

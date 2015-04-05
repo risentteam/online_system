@@ -133,7 +133,6 @@ addToMain(function(){
 })
 
 $(document).ready(function(){
-	$('#count').load("/count");
 	setInterval(function(){
 	$('#count').load("/count");
 	  }, 5000);
@@ -717,7 +716,6 @@ addToMain(function() {
 //#########################################################################################
 
 addToMain(function() {
-	// $('.select2-selection__clear').wrap("<div></div>");
 	$('button.clearbutton1').click (function() {
 		$('#building_name').select2('val', null);
 	})
