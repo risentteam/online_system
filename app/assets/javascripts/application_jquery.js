@@ -1,3 +1,9 @@
+function addToMain(main)
+{
+	$(document).ready(main)
+	$(document).on("page:load", main)
+};
+
 $.extend({
   getUrlVars: function(){
     var vars = [], hash;
@@ -67,17 +73,17 @@ var exportTools = {
 				// {
 				// 	"sExtends": "copy",
 				// 	"sButtonText": "Скопировать",
-				// 	"bFooter": false,                   
+				// 	"bFooter": false,
 				// },
 				{
 					"sExtends": "xls",
 					"sButtonText": "Экспорт",
-					"bFooter": false,                     
+					"bFooter": false,
 					"sCharSet" : "utf16le",
-					"bSelectedOnly" : true, 
+					"bSelectedOnly" : true,
 					"mColumns": "visible",
 					"sFileName" : "Заявки.xls",
-					"sFieldSeperator" : ';',  
+					"sFieldSeperator" : ';',
 					"oSelectorOpts": {
 						page: 'current'
 					}
@@ -96,7 +102,7 @@ var domValue =
 
 
 
-$(document).ready(function(){
+addToMain(function(){
 	var pos = $.getUrlVars()['position'];
 	var value = $.getUrlVars()['value'];
 	if (pos == '11')
@@ -110,7 +116,7 @@ $(document).ready(function(){
 		else
 		{
 			$("select[rel="+pos+"]").find("option:contains('Статус')").attr("selected", "selected");
-			$("select[rel="+pos+"]").trigger('change');	
+			$("select[rel="+pos+"]").trigger('change');
 		}
 	}
 	else
@@ -123,22 +129,105 @@ $(document).ready(function(){
 		    e.which = value.charCodeAt(j);
 		    $("input[rel="+pos+"]").trigger(e);
 		}
-	}	
+	}
 })
+
+$(document).ready(function(){
+	$('#count').load("/count");
+	setInterval(function(){
+	$('#count').load("/count");
+	  }, 5000);
+});
+
+addToMain(function() {
+//    $.fn.dataTable.moment( 'DD.MM.YYYY HH:mm' );
+	var table = $('#requistions').dataTable({
+
+		tableClass: "table-bordered",
+		columnDefs: [
+				{ "type": "de_datetime", targets: 3 },
+				{ "type": "de_datetime", targets: 9 }
+			],
+//новая часть часть отвечяющая за сохранение настроек таблицы
+		stateSave: true,
+		//"dom": '<"container"lCfrtip> <"container"T>',
+		dom: domValue,
+		"colVis": {
+			  "buttonText": "Показать/скрыть столбцы"
+		},
+		"createdRow": function ( row, data, index ) {
+			if ( data[10]=="новая" ) {
+				$('td', row).addClass('danger');
+			};
+			if ( data[10]=="завершено" ) {
+				$('td', row).addClass('success');
+			};
+			if ( data[10]=="отменена" ) {
+				$('td', row).addClass('info');
+			};
+			if ( data[10]=="принята в работу" ) {
+				$('td', row).addClass('warning');
+			};
+			if ( data[10]=="выполняется" ) {
+				$('td', row).addClass('warning');
+			};
+			if ( data[10]=="исполнена" ) {
+				$('td', row).addClass('warning');
+			};
+
+		},
+//***********************
+		"tableTools": exportTools,
+//***********************
+		"language": languageRU
+//***********************
+	});
+	table.columnFilter({
+		aoColumns: [
+			{ type: "text"},
+			{ type: "text" },
+			{ type: "text" },
+			{ type: "date-range" },
+			{ type: "text"},
+			{ type: "text"},
+			{ type: "select" },
+			{ type: "text"},
+			{ type: "select" },
+			{ type: "date-range" },
+			{ type: "select" },
+			{ type: "null" },
+			{ type: "text" },
+			{ type: "date-range" },
+			{ type: "number-range" },
+			{ type: "null" }
+		]
+	});
+	var archiver = $("#archive").appendTo('.archiver');
+});
+//Внесение с и по
+addToMain(function(){
+	$('input[class*="range"]:first-child').attr("placeholder", "C").each(function () {
+		this.previousSibling.parentNode.removeChild(this.previousSibling);
+	});
+	$('input[class*="range"]:last-child').attr("placeholder", "По").each(function () {
+		this.previousSibling.parentNode.removeChild(this.previousSibling);
+	});
+
+});
 
 //#########################################################################################
 //Таблица заявок у рабочего
 //#########################################################################################
-$(document).ready(function(){
+addToMain(function(){
 	 var table = $('#requistion_for_workers').dataTable({
 			tableClass: "table-bordered",
 			// "bLengthChange": false,
 			// "bPaginate": false,
 			// "bInfo": false,
 			columnDefs: [
-                { "type": "de_datetime", targets: 5 },            	
-                { "type": "de_datetime", targets: 6 }             	
-            ], 
+                { "type": "de_datetime", targets: 5 },
+                { "type": "de_datetime", targets: 6 }
+            ],
 //			dom: domValue,
 			"colVis": {
 			  "buttonText": "Показать/скрыть столбцы"
@@ -161,18 +250,18 @@ $(document).ready(function(){
 				};
 				if ( data[4]=="исполнена" ) {
 					$('td', row).addClass('warning');
-				
+
 				};
 			},
 			"language": languageRU,
 			"tableTools": exportTools,
 	 });
 	 table.columnFilter({
-		aoColumns: [    
+		aoColumns: [
 			{ type: "null" },
 			{ type: "null" },
 			{ type: "null" },
-			{ type: "null" },			
+			{ type: "null" },
 			{ type: "select"},
 			{ type: "null"},
 			{ type: "null" }
@@ -183,15 +272,15 @@ $(document).ready(function(){
 //#########################################################################################
 //Таблица выполненных заявок у рабочего
 //#########################################################################################
-$(document).ready(function(){
+addToMain(function(){
 	 var table = $('#old_requistion_for_workers').dataTable({
 			tableClass: "table-bordered",
 			// "bLengthChange": false,
 			// "bPaginate": false,
 			// "bInfo": false,
 			columnDefs: [
-                { "type": "de_datetime", targets: 5 }          	
-            ], 
+                { "type": "de_datetime", targets: 5 }
+            ],
 //			dom: domValue,
 			"colVis": {
 			  "buttonText": "Показать/скрыть столбцы"
@@ -214,18 +303,18 @@ $(document).ready(function(){
 				};
 				if ( data[4]=="исполнена" ) {
 					$('td', row).addClass('warning');
-				
+
 				};
 			},
 			"language": languageRU,
 			"tableTools": exportTools,
 	 });
 	 table.columnFilter({
-		aoColumns: [    
+		aoColumns: [
 			{ type: "null" },
 			{ type: "null" },
 			{ type: "null" },
-			{ type: "null" },			
+			{ type: "null" },
 			{ type: "select"},
 			{ type: "null"},
 		]
@@ -237,7 +326,7 @@ $(document).ready(function(){
 //#########################################################################################
 //Таблица заявок у клиента
 //#########################################################################################
-$(document).ready(function(){
+addToMain(function(){
 
 	 var table = $('#requistion_for_clients').dataTable({
 			tableClass: "table-bordered",
@@ -246,8 +335,8 @@ $(document).ready(function(){
 			"bInfo": false,
 //			dom : domValue,
 			columnDefs: [
-                { "type": "de_datetime", targets: 6 }            	
-            ], 
+                { "type": "de_datetime", targets: 6 }
+            ],
 
 			"order": [[ 6, "desc" ]],
 			"createdRow": function ( row, data, index ) {
@@ -275,14 +364,14 @@ $(document).ready(function(){
 			"language": languageRU
 	 });
 	 table.columnFilter({
-		aoColumns: [    
+		aoColumns: [
 			{ type: "null" },
 			{ type: "null" },
 			{ type: "null" },
-					
+
 			{ type: "null"},
 			{ type: "null" },
-			{ type: "select"}	
+			{ type: "select"}
 		]
 	});
 });
@@ -290,16 +379,16 @@ $(document).ready(function(){
 //#########################################################################################
 //Таблица контрактов
 //#########################################################################################
-$(document).ready(function(){
+addToMain(function(){
 	 $('#clients').dataTable({
 			tableClass: "table-bordered",
 			stateSave: true,
 			dom: domValue,
 			"colVis": {
 			  "buttonText": "Показать/скрыть столбцы"
-			}, 
-			"tableTools": exportTools, 		
-			"language": languageRU	
+			},
+			"tableTools": exportTools,
+			"language": languageRU
 	 });
 });
 
@@ -307,15 +396,15 @@ $(document).ready(function(){
 //#########################################################################################
 //Таблица контрактов у клиента
 //#########################################################################################
-$(document).ready(function(){
+addToMain(function(){
 	 $('#contracts_clinet').dataTable({
-			tableClass: "table-bordered", 
+			tableClass: "table-bordered",
 			columnDefs: [
                 { "type": "de_date", targets: 5 },
-                { "type": "de_date", targets: 6 }            	
-            ],  
+                { "type": "de_date", targets: 6 }
+            ],
 			stateSave: true,
-			"language": languageRU	
+			"language": languageRU
 	 });
 });
 
@@ -323,14 +412,14 @@ $(document).ready(function(){
 //#########################################################################################
 //Таблица объектов
 //#########################################################################################
-$(document).ready(function(){
+addToMain(function(){
 	var table = $('#buildings').DataTable({
-		tableClass: "table-bordered", 
+		tableClass: "table-bordered",
 		dom: domValue,
 		"colVis": {
 			  "buttonText": "Показать/скрыть столбцы"
 		},
-			stateSave: true,   		
+			stateSave: true,
 			"tableTools": exportTools,
 			"language": languageRU
 	 });
@@ -340,15 +429,15 @@ $(document).ready(function(){
 //#########################################################################################
 //Таблица рабочих
 //#########################################################################################
-$(document).ready(function(){
+addToMain(function(){
 	var table = $('#tablework').DataTable({
-		tableClass: "table-bordered", 
+		tableClass: "table-bordered",
 			"bInfo": false,
 			"colVis": {
 			  "buttonText": "Показать/скрыть столбцы"
 		},
 		dom: domValue,
-		
+
 			"tableTools": exportTools,
 			"language": languageRU
 	 });
@@ -357,29 +446,29 @@ $(document).ready(function(){
 //#########################################################################################
 //Таблица всех посещений рабочих
 //#########################################################################################
-$(document).ready(function(){
+addToMain(function(){
 	var table = $('#arrivals').dataTable({
 		tableClass: "table-bordered",
 		columnDefs: [
-                { "type": "de_datetime", targets: 2 }            	
-            ],  
+                { "type": "de_datetime", targets: 2 }
+            ],
 			"bInfo": false,
 			"colVis": {
 			  "buttonText": "Показать/скрыть столбцы"
 		},
 		dom: domValue,
-		
+
 			"tableTools": exportTools,
 			"language": languageRU
 	 });
 	 table.columnFilter({
-		aoColumns: [    
-			{ type: "text" },			
+		aoColumns: [
+			{ type: "text" },
 			{ type: "text"},
 			{ type: "date-range" },
 		]
 	});
-    
+
 });
 
 
@@ -387,7 +476,7 @@ $(document).ready(function(){
 //#########################################################################################
 //Добавление поля описания, для "другого"
 //#########################################################################################
-$(document).ready(function() {
+addToMain(function() {
 	if ($('#requistion_type_requistion :selected').text()!='Другое')
 		$('#info').hide()
 	else
@@ -401,7 +490,7 @@ $(document).ready(function() {
 })
 
 
-$(document).ready(function() {
+addToMain(function() {
 	if ($('#requistion_type_requistion :selected').text()!='Аварийное обслуживание')
 		$('#subtype').hide()
 	else
@@ -420,7 +509,7 @@ $(document).ready(function() {
 //Подцепление договоров из базы данных
 //#########################################################################################
 
-$(document).ready(function() {
+addToMain(function() {
 	$("#company").change(function () {
 //        alert($("#company :selected").text());
 		$.ajax({url: "/update_contracts",
@@ -469,7 +558,7 @@ function reply_click(clicked_id)
 				success: function (data, status) {
 					$('#show_time_change_created').text(data.time.created);
 					$('#show_time_change_assigned').text(data.time.assigned);
-					$('#show_time_change_adopted').text(data.time.adopted);					
+					$('#show_time_change_adopted').text(data.time.adopted);
 					$('#show_time_change_running').text(data.time.running);
 					$('#show_time_change_done').text(data.time.done);
 					$('#show_time_change_completed').text(data.time.completed);
@@ -497,13 +586,13 @@ function reply_click(clicked_id)
 //#########################################################################################
 //Выделение пустых полей
 //#########################################################################################
-$(document).ready(function(){
+addToMain(function(){
 	$('.form-control[required]').blur(function() {
 		if($.trim($(this).val()) == '') {
-			$(this).parent().addClass('has-error')    
+			$(this).parent().addClass('has-error')
 			$(this).after('<span class="error">Поле не должно быть пустым!</span>');
 		}else{
-			$(this).parent().removeClass('has-error') 
+			$(this).parent().removeClass('has-error')
 		}
 	});
 	$('.form-control').focus(function() {
@@ -518,7 +607,7 @@ $(document).ready(function(){
 //#########################################################################################
 var worker_count = 1;
 
-$(document).ready(function() {
+addToMain(function() {
 	worker_count = parseInt($('#workerfield0').attr('count'));//с какого номера нужно добавлять поля
 
 	$('#add_worker').click (function(){
@@ -528,10 +617,10 @@ $(document).ready(function() {
 		new_work.find("select").attr('name', "worker" + worker_count).
 		attr('required', "").attr('class', "selectize").blur(function() {
 				if($.trim($(this).val()) == '') {
-					$(this).parent().addClass('has-error')    
+					$(this).parent().addClass('has-error')
 					$(this).after('<span class="error">Поле не должно быть пустым!</span>');
 				}else{
-					$(this).parent().removeClass('has-error') 
+					$(this).parent().removeClass('has-error')
 				}
 				}).selectize({sortField: 'text'});
 
@@ -549,16 +638,16 @@ $(document).ready(function() {
 //Добавление зданий к контракту
 //#########################################################################################
 var building_count = 1;
-$(document).ready(function() {
+addToMain(function() {
 	$('#add_building').click (function(){
 		var new_work = $("#building_row").clone().attr('id', "building_row" + building_count);
 		new_work.wrap ("<div class='row'></div>").parent().insertBefore('#rowaddbtn');
 		new_work.find("select").attr('name', "building" + building_count).blur(function() {
 				if($.trim($(this).val()) == '') {
-					$(this).parent().addClass('has-error')    
+					$(this).parent().addClass('has-error')
 					$(this).after('<span class="error">Поле не должно быть пустым!</span>');
 				}else{
-					$(this).parent().removeClass('has-error') 
+					$(this).parent().removeClass('has-error')
 				}
 				});
 				$('.form-control').focus(function() {
@@ -575,7 +664,7 @@ $(document).ready(function() {
 //Отображение календаря
 //#########################################################################################
 
-$(document).ready(function() {
+addToMain(function() {
 	$('button.calendarButton').click (function() {
 		var id_of_btn = $(this).attr('id');
 		id_of_btn = id_of_btn.split('-')[1];
@@ -585,7 +674,7 @@ $(document).ready(function() {
 	})
 });
 
-$(document).ready(function(){
+addToMain(function(){
 	$('button.mark').click(function() {
 		$("#mark_id").val($(this).attr("name"));
 	});
@@ -596,7 +685,7 @@ $(document).ready(function(){
 //Иконки в кнопках таблицы
 //#########################################################################################
 
-$(document).ready(function() {
+addToMain(function() {
 
 $('.DTTT_button_xls').prepend ('<span class="glyphicon glyphicon-download-alt"></span>');
 	$('.ColVis_MasterButton').prepend ('<span class="glyphicon glyphicon-eye-open"></span>');
@@ -611,7 +700,7 @@ $('.DTTT_button_xls').prepend ('<span class="glyphicon glyphicon-download-alt"><
 //#########################################################################################
 //Редактирование на лету
 //#########################################################################################
-$(document).ready(function() {
+addToMain(function() {
   /* Activating Best In Place */
   jQuery(".best_in_place").best_in_place();
 });
@@ -619,7 +708,7 @@ $(document).ready(function() {
 //#########################################################################################
 //Редактирование на лету
 //#########################################################################################
-$(document).ready(function() {
+addToMain(function() {
 	$('.phonemask').mask("9 (999) 999-99-99");
 });
 
@@ -627,7 +716,7 @@ $(document).ready(function() {
 //Очистка поля объект и адрес в "новая заявка"
 //#########################################################################################
 
-$(document).ready(function() {
+addToMain(function() {
 	// $('.select2-selection__clear').wrap("<div></div>");
 	$('button.clearbutton1').click (function() {
 		$('#building_name').select2('val', null);

@@ -7,15 +7,6 @@
 
 		<% if signed_in? %>
 			<% if current_user.admin? %>
-<script>
-$(document).ready(function(){
-	$('#count').load("/count");
-	setInterval(function(){
-	$('#count').load("/count");
-	  }, 5000);
-});
-</script>
-
 
 			<li class = "pull-right">
 				<%= link_to signout_path, method: "delete" do %>
