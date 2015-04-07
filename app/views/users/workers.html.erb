@@ -13,6 +13,7 @@
 				<th>Специализация</th>
 				<th>Округ</th>
 				<th>Посещения за месяц</th>
+				<th></th>
 				<th>Начальник</th>
 				<th></th>
 			</tr>
@@ -32,6 +33,9 @@
 				</td>
 				<td>
 					<%= countOfEntries(user) %>
+				</td>
+				<td>
+					_
 					<button id="<%= div_id -%>" type="button" class="btn btn-default btn-xs calendarButton pull-right">
 						<span class="glyphicon glyphicon-calendar"></span>
 					</button>
@@ -48,6 +52,7 @@
 								<% end %>
 						<% end %>
 					</div>
+
 				</td>
 				<td>
 					<% if user.boss %>

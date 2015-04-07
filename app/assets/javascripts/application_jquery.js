@@ -70,27 +70,33 @@ var exportTools = {
 			"sSwfPath": "http://cdn.datatables.net/tabletools/2.2.2/swf/copy_csv_xls_pdf.swf",
 			"sRowSelect": "os",
 			"aButtons": [
-				// {
-				// 	"sExtends": "copy",
-				// 	"sButtonText": "Скопировать",
-				// 	"bFooter": false,
-				// },
 				{
 					"sExtends": "xls",
 					"sButtonText": "Экспорт",
 					"bFooter": false,
 					"sCharSet" : "utf16le",
 					"bSelectedOnly" : true,
-					"mColumns": "visible",
-					"sFileName" : "Заявки.xls",
-					"sFieldSeperator" : ';',
-					"oSelectorOpts": {
-						page: 'current'
-					}
+					"oSelectorOpts": {        filter: "applied"    }
 				}
 			]
 		};
 
+var exportToolsforWoker = {
+			"sSwfPath": "http://cdn.datatables.net/tabletools/2.2.2/swf/copy_csv_xls_pdf.swf",
+			"sRowSelect": "os",
+			"aButtons": [
+				{
+					"sExtends": "xls",
+					"sButtonText": "Экспорт",
+					"bFooter": false,
+					"sCharSet" : "utf16le",
+					"bSelectedOnly" : true,
+					"sFieldBoundary": ',',
+					"mColumns": [0,1,2,3,5],
+					"oSelectorOpts": {        filter: "applied"    }
+				}
+			]
+		};
 
 
 
@@ -435,9 +441,8 @@ addToMain(function(){
 			"colVis": {
 			  "buttonText": "Показать/скрыть столбцы"
 		},
-		dom: domValue,
-
-			"tableTools": exportTools,
+		dom: domValue,	
+			"tableTools": exportToolsforWoker,
 			"language": languageRU
 	 });
 });
