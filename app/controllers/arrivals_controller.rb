@@ -1,7 +1,7 @@
 class ArrivalsController < ApplicationController
 	def index
 		if (params[:date].nil? or params[:date][:from].empty?)
-			@date_from = Time.now.beginning_of_month
+			@date_from = Time.now.beginning_of_month.strftime("%Y-%m-%d")
 		else
 			@date_from = params[:date][:from]
 		end
