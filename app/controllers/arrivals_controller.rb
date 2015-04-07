@@ -6,7 +6,7 @@ class ArrivalsController < ApplicationController
 			@date_from = params[:date][:from]
 		end
 		if (params[:date].nil? or params[:date][:to].empty?)
-			@date_to = Time.now.strftime("%Y-%m-%d")
+			@date_to = (Time.now+1.day).strftime("%Y-%m-%d")
 		else
 			@date_to = params[:date][:to]
 		end
