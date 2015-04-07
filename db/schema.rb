@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20150404082823) do
   add_index "buildingscontracts", ["contract_id"], name: "index_buildingscontracts_on_contract_id"
 
   create_table "contracts", force: true do |t|
+    t.integer  "contract_id"
     t.string   "company"
     t.datetime "date_of_signing"
     t.integer  "user_id"
