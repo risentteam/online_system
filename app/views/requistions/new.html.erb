@@ -12,59 +12,55 @@
 						<%=	options_for_select(@list.collect {|p| [ p.name ] }.uniq ) %>
 					</select>
 <script>
+  $('#building_name').select2({
+    placeholder: "название",
+  });
 
-addToMain(function() {
-	$('#building_name').select2({
-		placeholder: "название",
-		// allowClear: true
-	});
-
-	function formatRepo (repo) {
-	return repo.arrival_address;
+  function formatRepo (building) {
+    return building.arrival_address;
   };
 
   $('#building_name').select2('val', null);
 
   function formatRepoSelection (repo) {
-	return repo.arrival_address;
+  return repo.arrival_address;
   };
 
-	$("#building_id").change(function () {
-		$.ajax({url: "/get_contracts_by_address",
-			type: 'GET',
-			dataType: 'html',
-			data: "address=" + $('#building_id').val(),
-			success: function (data, status) {
-					$("#table_contracts_in_new").html(data);
-			}
-		});
-	});
+  $("#building_id").change(function () {
+    $.ajax({url: "/get_contracts_by_address",
+      type: 'GET',
+      dataType: 'html',
+      data: "address=" + $('#building_id').val(),
+      success: function (data, status) {
+          $("#table_contracts_in_new").html(data);
+      }
+    });
+  });
 
   $('#building_id').select2({
-	// allowClear: true,
 
-	ajax: {
-		url: "/search",
-		dataType: 'json',
-		delay: 1000,
-		data: function (params) {
-			name_in = $('#building_name').val();
-		  return {
-		  	name: name_in,
-				q: params.term, // search term
-				page: params.page
-		  };
-		},
-		processResults: function (data, page) {
-		  // parse the results into the format expected by Select2.
-		  // since we are using custom formatting functions we do not need to
-		  // alter the remote JSON data
-		  console.log(data);
-		  return {
-				results: data
-		  };
-		},
-		cache: true
+  ajax: {
+    url: "/search",
+    dataType: 'json',
+    delay: 1000,
+    data: function (params) {
+      name_in = $('#building_name').val();
+      return {
+        name: name_in,
+        q: params.term, // search term
+        page: params.page
+      };
+    },
+    processResults: function (data, page) {
+      // parse the results into the format expected by Select2.
+      // since we are using custom formatting functions we do not need to
+      // alter the remote JSON data
+      console.log(data);
+      return {
+        results: data
+      };
+    },
+    cache: true
   },
 
 
@@ -73,11 +69,11 @@ addToMain(function() {
   templateSelection: formatRepoSelection,
   placeholder: "название"
   }).change(function(){
-  		$.ajax({url: "/building_name/"+ $('#building_id').val(), success: function(result){
+      $.ajax({url: "/building_name/"+ $('#building_id').val(), success: function(result){
         $('#building_name').select2('val', result);
-    	}})
+      }})
   });
-});
+
 </script>
 				</div>
 				<div class = "col-xs-1">

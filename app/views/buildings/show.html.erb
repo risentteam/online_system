@@ -39,32 +39,32 @@
   </table>
 
 <script type="text/javascript">
-ymaps.ready(init);
-function init() {
-    var myMap = new ymaps.Map('map', {
-        center: [55.753994, 37.622093],
-        zoom: 9
-    });
+  ymaps.ready(init);
+  function init() {
+      var myMap = new ymaps.Map('map', {
+          center: [55.753994, 37.622093],
+          zoom: 9
+      });
 
-    // Поиск координат.
-    ymaps.geocode('Москва <%= @building.arrival_address %>', {
-      results: 1 // Если нужен только один результат, экономим трафик пользователей
-    }).then(function (res) {
-            // Выбираем первый результат геокодирования.
-            var firstGeoObject = res.geoObjects.get(0),
-                // Координаты геообъекта.
-                coords = firstGeoObject.geometry.getCoordinates(),
-                // Область видимости геообъекта.
-                bounds = firstGeoObject.properties.get('boundedBy');
+      // Поиск координат.
+      ymaps.geocode('Москва <%= @building.arrival_address %>', {
+        results: 1 // Если нужен только один результат, экономим трафик пользователей
+      }).then(function (res) {
+              // Выбираем первый результат геокодирования.
+              var firstGeoObject = res.geoObjects.get(0),
+                  // Координаты геообъекта.
+                  coords = firstGeoObject.geometry.getCoordinates(),
+                  // Область видимости геообъекта.
+                  bounds = firstGeoObject.properties.get('boundedBy');
 
-            // Добавляем первый найденный геообъект на карту.
-            myMap.geoObjects.add(firstGeoObject);
-            // Масштабируем карту на область видимости геообъекта.
-            myMap.setBounds(bounds, {
-                checkZoomRange: true // проверяем наличие тайлов на данном масштабе.
-            });
-        });
-}
+              // Добавляем первый найденный геообъект на карту.
+              myMap.geoObjects.add(firstGeoObject);
+              // Масштабируем карту на область видимости геообъекта.
+              myMap.setBounds(bounds, {
+                  checkZoomRange: true // проверяем наличие тайлов на данном масштабе.
+              });
+          });
+  }
 </script>
 <div id="map" style="width: 600px; height: 400px"></div>
 
