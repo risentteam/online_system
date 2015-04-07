@@ -230,30 +230,29 @@ addToMain(function(){
 			// "bPaginate": false,
 			// "bInfo": false,
 			columnDefs: [
-                { "type": "de_datetime", targets: 5 },
-                { "type": "de_datetime", targets: 6 }
+                { "type": "de_datetime", targets: 4 }
             ],
 //			dom: domValue,
 			"colVis": {
 			  "buttonText": "Показать/скрыть столбцы"
 			},
 			"createdRow": function ( row, data, index ) {
-				if ( data[4]=="назначена" ) {
+				if ( data[3]=="назначена" ) {
 					$('td', row).addClass('danger');
 				};
-				if ( data[4]=="завершено" ) {
+				if ( data[3]=="завершено" ) {
 					$('td', row).addClass('success');
 				};
-				if ( data[4]=="отменена" ) {
+				if ( data[3]=="отменена" ) {
 					$('td', row).addClass('info');
 				};
-				if ( data[4]=="принята в работу" ) {
+				if ( data[3]=="принята в работу" ) {
 					$('td', row).addClass('warning');
 				};
-				if ( data[4]=="выполняется" ) {
+				if ( data[3]=="выполняется" ) {
 					$('td', row).addClass('warning');
 				};
-				if ( data[4]=="исполнена" ) {
+				if ( data[3]=="исполнена" ) {
 					$('td', row).addClass('warning');
 
 				};
@@ -266,10 +265,8 @@ addToMain(function(){
 			{ type: "null" },
 			{ type: "null" },
 			{ type: "null" },
-			{ type: "null" },
 			{ type: "select"},
-			{ type: "null"},
-			{ type: "null" }
+			{ type: "null"}
 		]
 	});
 });

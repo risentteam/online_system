@@ -1,16 +1,14 @@
 <% provide(:title, 'Check') %>
-<div class="container">
 <div class="row">
-  <div class="col-xs-4">
+  <div class="col-xs-0 col-md-4">
   </div>
-  <div class="col-xs-4">
+  <div class="col-xs-12 col-md-4">
     <h3><%= @building.name %></h3>
     <h4><%= @building.arrival_address %></h4>
     <br>
     <%= link_to "Войти", check_in_building_path, class: "btn btn-default" %>
     <%= link_to "Выйти", check_out_building_path, class: "btn btn-default" %>
   </div>
-  <div class="col-xs-4">
+  <div class="col-xs-0 col-md-4">
   </div>
-</div>
 </div>

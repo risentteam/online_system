@@ -75,7 +75,7 @@ class BuildingsController < ApplicationController
 			flash[:success] = "Ваше прибытие отмечено!"
 			redirect_to requistion_for_buidings.first
 		else
-			flash[:warning] = "По данному адресу есть заявки доступные только исполнителю"
+			flash[:warning] = "По данному адресу есть заявки доступные только исполнителю или не в статусе 'принята в работу'"
 			building = Building.find(params[:id])
 			redirect_to :action => "requistions", :id => params[:id]
 		end
@@ -98,7 +98,7 @@ class BuildingsController < ApplicationController
 #			pair.requistion.update_attributes(status: "worker_gone")
 #		end
 		flash[:success] = "Ваше отбытие отмечено!"
-		redirect_to current_user
+		redirect_to req_path(current_user)
 	end
 
 	def requistions

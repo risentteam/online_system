@@ -13,10 +13,10 @@
 				<th><%= "Объект" %></th>
 				<th><%= "Адрес вызова" %></th>
 				<th><%= "Тип вызова" %></th>
-				<th><%= 'Контакты' %></th>						
+<!-- 				<th><%#= 'Контакты' %></th>	 -->					
 				<th><%= "Статус" %></th>
 				<th><%= "Время подачи заявки" %></th>
-				<th><%= "Планируемое время окончания" %></th>
+<!-- 				<th><%#= "Планируемое время окончания" %></th> -->
 				<th><%= "Действия" %> </th>
 			</tr>
 			</thead>
@@ -29,10 +29,10 @@
 					 <td><%= link_to Building.find(@requistion.building_id).name,  {:controller => :requistions, :action => :show, :id => @requistion.id}, {:method => :get} %></td>
 					 <td><%= link_to Building.find(@requistion.building_id).arrival_address,  {:controller => :buildings, :action => :show, :id => @requistion.building_id}, {:method => :get} %></td>
 					 <td> <%= transcript_of_the_messages(@requistion.type_requistion)+' '+transcript_of_the_messages(@requistion.subtype_requistions) %> </td>
-					 <td><%= @requistion.contact_phone+' '+@requistion.contact_name %></td>
+<!-- 					 <td><%#= @requistion.contact_phone+' '+@requistion.contact_name %></td> -->
 					 <td> <%= status_names[@requistion.status.to_sym] %> </td>
 					 <td> <%= @requistion.created_at.strftime("%d.%m.%Y %H:%M") if not @requistion.created_at.nil? %> </td>
-					 <td> <%= @requistion.time_deadline.strftime("%d.%m.%Y") if not @requistion.time_deadline.nil? %> </td>
+<!-- 					 <td> <%#= @requistion.time_deadline.strftime("%d.%m.%Y") if not @requistion.time_deadline.nil? %> </td> -->
 					 <td> <%= link_to "Принять в работу",  {:controller => :requistions, :action => :to_take_in_work, :id => @requistion.id}, {:method => :get, :class=>"btn"} %>
 					 	<%= link_to "Завершить",  {:controller => :requistions, :action => :done, :id => @requistion.id}, {:method => :get, :class=>"btn", data: { confirm: "Завершить заявку?" }} %>
 					 	<%= link_to "Отменить",  {:controller => :requistions, :action => :cancel, :id => @requistion.id}, {:method => :get, :class=>"btn", data: { confirm: "Отменить заявку?" }} %>
