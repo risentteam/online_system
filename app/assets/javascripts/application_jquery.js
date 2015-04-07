@@ -1,7 +1,7 @@
 function addToMain(main)
 {
 	$(document).ready(main)
-	$(document).on("page:load", main)
+	//$(document).on("page:load", main)
 };
 
 $.extend({
@@ -725,4 +725,3 @@ addToMain(function() {
 		$('#building_id').select2('val', null);
 	})
 });
-
