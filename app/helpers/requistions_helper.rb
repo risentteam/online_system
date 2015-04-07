@@ -37,11 +37,13 @@ module RequistionsHelper
     def transcript_of_the_messages_category(message)
       case message
         when 1
-          'Немедленно'
+          'Авария'
         when 2
-          'Очень срочно'
+          'Неисправность'
         when 3
-          'Срочно'
+          'Коррекция режима работы'
+        when 4
+          'Иные работы'
       end
     end
 

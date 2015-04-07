@@ -299,7 +299,7 @@ class RequistionsController < ApplicationController
 
 	private
 		def requistions_params
-			params.require(:requistion).permit(:contact_name, :contact_phone, :deputy,
+			params.require(:requistion).permit(:contact_name, :category, :contact_phone, :deputy,
 				:type_requistion, :subtype_requistion, :building_id, :requistion_comment,
 				:time_deadline)
 		end
