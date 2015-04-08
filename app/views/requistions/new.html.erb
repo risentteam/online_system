@@ -143,6 +143,14 @@
 	<% end %>
   </div>
 <script>
+  $('button.clearbutton1').click (function() {
+    $('#building_name').select2('val', null);
+  });
+
+  $('button.clearbutton2').click (function() {
+    $('#building_id').select2('val', null);
+  });
+
   $('#building_name').select2({
     placeholder: "название",
   });
