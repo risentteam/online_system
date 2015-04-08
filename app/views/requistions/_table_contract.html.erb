@@ -1,7 +1,7 @@
 <div class="form-group">
 	<label class=" col-xs-3">Контракты</label>
 	<div class="col-xs-5">
-		<table id="requistions" class="table table-wrapper table-bordered contractSmall">
+		<table id="contracts_for_new" class="table table-wrapper table-bordered contractSmall">
 			<thead>
 				<tr class = "">
 					<th>Номер договора</th>
@@ -9,7 +9,7 @@
 					<th>С</th>
 					<th>По</th>
 				</tr>
-			</thead>    
+			</thead>
 		    <tbody>
 				<% for contract in @list_contract %>
 				<tr>
@@ -20,6 +20,6 @@
 				</tr>
 				<% end %>
 			</tbody>
-		</table>					
+		</table>
 	</div>
 </div>

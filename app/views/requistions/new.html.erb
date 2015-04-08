@@ -91,7 +91,15 @@
 			</div>
 			</div>
 		</div>
+    <div class="row">
+        <div class="form-group">
+          <%= f.label :'Категория заявки:', class: "col-md-3 control-label" %>
+          <div class="col-md-5">
+            <%= f.select :category, [['Немедленно', 1], ['Очень срочно', 2], ['Срочно', 3]], {:prompt => "Выберите из списка"}, {:class =>  "form-control", required: ""} %>
 
+          </div>
+        </div>
+    </div>
 
 		<div class="row" id="info" style="display:none">
 			<div class="form-group" >
@@ -143,6 +151,14 @@
 	<% end %>
   </div>
 <script>
+  $('button.clearbutton1').click (function() {
+    $('#building_name').select2('val', null);
+  });
+
+  $('button.clearbutton2').click (function() {
+    $('#building_id').select2('val', null);
+  });
+
   $('#building_name').select2({
     placeholder: "название",
   });

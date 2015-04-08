@@ -1,6 +1,6 @@
 function addToMain(main)
 {
-	$(document).ready(main)
+	$(document).ready(main);
 	//$(document).on("page:load", main)
 };
 
@@ -441,7 +441,7 @@ addToMain(function(){
 			"colVis": {
 			  "buttonText": "Показать/скрыть столбцы"
 		},
-		dom: domValue,	
+		dom: domValue,
 			"tableTools": exportToolsforWoker,
 			"language": languageRU
 	 });
