@@ -69,7 +69,7 @@
 					<% if not @requistion.contract.nil?%>
 						<%= text_field_tag :contract, nil, :placeholder => "Введите № договора", class: "form-control", required: "", value: @requistion.contract.name_contract %>
 					<% else %>
-						<%= text_field_tag :contract, nil, :placeholder => "Введите № договора", class: "form-control", required: ""%>						
+						<%= text_field_tag :contract, nil, :placeholder => "Введите № договора", class: "form-control", required: ""%>
 					<% end %>
 					</div>
 				</div>
@@ -88,16 +88,7 @@
 					</div>
 				</div>
 			</div>
-			<hr>
-			<div class="row">
-				<div class="form-group">
-					<%= f.label :'Категория заявки:', class: "col-md-3 control-label" %>
-					<div class="col-md-5">
-						<%= f.select :category, [['Немедленно', 1], ['Очень срочно', 2], ['Срочно', 3]], {:prompt => "Выберите из списка"}, {:class =>  "form-control", required: ""} %>
 
-					</div>
-				</div>
-			</div>
 			<hr>
 			<div class="row">
 				<div class="form-group">
@@ -105,7 +96,7 @@
 					<div class="col-md-5">
 					<%
 						deadline = @requistion.time_deadline.to_date.to_formatted_s(:day_month_year) if @requistion.time_deadline %>
-  						<%= date_field_tag "requistion[time_deadline]", deadline, :min=> Time.zone.now.strftime("%Y-%m-%d"), class: "form-control", required: "" %>		
+  						<%= date_field_tag "requistion[time_deadline]", deadline, :min=> Time.zone.now.strftime("%Y-%m-%d"), class: "form-control", required: "" %>
 					</div>
 				</div>
 			</div>
@@ -114,7 +105,7 @@
 				<div class="form-group">
 					<%= f.label :'Комментарий', class: "col-md-3 control-label" %>
 					<div class="col-md-5">
-  						<%= f.text_field :requistion_comment, :placeholder => "Введите комментарий", class: "form-control" %>		
+  						<%= f.text_field :requistion_comment, :placeholder => "Введите комментарий", class: "form-control" %>
 					</div>
 				</div>
 			</div>
@@ -126,7 +117,7 @@
 					<select id="workers-select" name="workers[]" multiple  placeholder="Выберите исполнителей">
 						<%= options_for_select(User.worker.collect {|p| [ p.name, p.id ] },
 						@requistion.users.worker.collect {|p|  p.id } )	%>
-						 
+
 					</select>
 					<script>
 						$('#workers-select').selectize({
@@ -138,13 +129,13 @@
 				</div>
 
 			</div>
-			
+
 <div class="row">
 	<div class=" col-xs-3"></div>
 	<div class="col-xs-5">
-		<%= f.submit "Принять", class: "btn", id: "submut" %>	
+		<%= f.submit "Принять", class: "btn", id: "submut" %>
 		<%= link_to "Назад к заявкам", requistions_path, class: "btn"%>
 	</div>
-</div>				
+</div>
 
 <% end %>
