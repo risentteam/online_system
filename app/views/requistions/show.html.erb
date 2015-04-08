@@ -39,7 +39,7 @@
       <td><%= replacement_empty('') %></td>
     <% else %>
       <td><%= replacement_empty(': '+@requistion.contract.description) %></td>
-    <% end %>    
+    <% end %>
   </tr>
   <tr>
     <th>Время поступления заявки</th>
@@ -69,34 +69,7 @@
 <% if current_user.admin? %>
     <a class="btn" data-toggle="modal" data-target="#status" >Изменить статус</a>
     <%= link_to "Редактировать заявку", edit_requistion_path, class: "btn" %>
-    <%= link_to "Назад к заявкам", requistions_path, class: "btn"%> 
-
-  </div>
-  <div class="modal fade" id="status" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="myModalLabel">Изменение статуса</h4>
-        </div>
-        <div class="modal-body">
-            <%= form_tag(change_status_path(@requistion), :html => {:class => "form-vertical"}) do |f| %>
-              <div class="form-group">
-      <%= select_tag :status, "<option value = fresh>Новая</option><option value=assigned>Назначена</option><option value = adopted_in_work >Принята в работу</option><option value = running>Выполняется</option><option value=done>Исполнено</option><option value = completed >Завершена</option><option value = canceled >Отменена</option>", :prompt => "Выберите из списка", :class =>  "form-control", required: "" %>          </div>
-          <button type="submit" class="btn btn-success">Изменить</button>
-        <% end %>
-        </div>
-        <div class="modal-footer">
-        </div>
-      </div>
-    </div>
-  </div>
-<% end %>
-
-<% if current_user.admin? %>
-    <a class="btn" data-toggle="modal" data-target="#status" >Изменить статус</a>
-    <%= link_to "Редактировать заявку", edit_requistion_path, class: "btn" %>
-    <%= link_to "Назад к заявкам", requistions_path, class: "btn"%> 
+    <%= link_to "Назад к заявкам", requistions_path, class: "btn"%>
 
   </div>
   <div class="modal fade" id="status" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -133,7 +106,7 @@
           <h4 class="modal-title" id="myModalLabel">Ваша Оценка</h4>
         </div>
         <div class="modal-body">
-            <%= form_tag(mark_path(@requistion), :html => {:class => "form-vertical"}) do |f| %>
+        <%= form_tag(mark_path(@requistion), :html => {:class => "form-vertical"}) do |f| %>
               <div class="form-group">
             <label   >Пожалуйста оцените по десятибальной шкале.</label>
             <input id="mark" name="mark" required >
@@ -150,10 +123,10 @@
 <script type="text/javascript">
 jQuery(document).ready(function () {
 
-$('#mark').rating({'showCaption':true, 
+$('#mark').rating({'showCaption':true,
   "starCaptions": {
-    1: "1 балл", 
-    2: "2 балла", 
+    1: "1 балл",
+    2: "2 балла",
     3: "3 балла",
     4: "4 балла",
     5: "5 баллов",
@@ -175,7 +148,7 @@ $('#mark').rating({'showCaption':true,
     10: "text-success"},
   "clearCaption" : "Нет оценки",
   "clearButtonTitle":"Очистить",
-  'stars':'10', 'min':'0', 'max':'10', 'step':'1', 'size':'xs', 
+  'stars':'10', 'min':'0', 'max':'10', 'step':'1', 'size':'xs',
   });
 });
 </script>

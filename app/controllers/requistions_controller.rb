@@ -85,7 +85,7 @@ class RequistionsController < ApplicationController
 			when "completed"
 				@requistion.update_attributes(
 					time_completed: Time.zone.now.to_s, who_comleted: current_user.id)
-			when "canceled"	
+			when "canceled"
 				@requistion.update_attributes(
 					time_canceled: Time.zone.now.to_s, who_cancel: current_user.id)
 			end
@@ -153,9 +153,12 @@ class RequistionsController < ApplicationController
 		@requistion.who_created = current_user.id
 		if @requistion.save
 			if current_user.admin?
+
 				pairs = @requistion.pairs
 				all_workers_id = Array(params[:workers])
-
+				unless all_workers_id.empty?
+					@requistion.update_attribute :status, 'assigned'
+				end
 				all_workers_id.each do |worker|
 					pairs.find_or_create_by(user_id: worker)
 				end
