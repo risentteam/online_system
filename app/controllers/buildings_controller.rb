@@ -53,7 +53,7 @@ class BuildingsController < ApplicationController
 	end
 
 	def check_in
-		requistion_for_buidings = current_user.requistions.where('status = 2')
+		requistion_for_buidings = current_user.requistions.where('status < 3')
 		# pairs = Pair.where(
 		# 	"user_id = ? and requistion_id in (SELECT id FROM requistions WHERE building_id = ?)",
 		# 	 current_user[:id], params[:id])
@@ -75,7 +75,7 @@ class BuildingsController < ApplicationController
 			flash[:success] = "Ваше прибытие отмечено!"
 			redirect_to requistion_for_buidings.first
 		else
-			flash[:warning] = "По данному адресу есть заявки доступные только исполнителю или не в статусе 'принята в работу'"
+			flash[:warning] = "По данному адресу есть заявки доступные только исполнителю"
 			building = Building.find(params[:id])
 			redirect_to :action => "requistions", :id => params[:id]
 		end
