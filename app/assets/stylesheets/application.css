@@ -193,3 +193,8 @@ a:hover > span:hover{
   0%   { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.center-content
+{
+  text-align: center;
+}
