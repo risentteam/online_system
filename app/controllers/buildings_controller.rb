@@ -75,8 +75,12 @@ class BuildingsController < ApplicationController
 			flash[:success] = "Ваше прибытие отмечено!"
 			redirect_to requistion_for_buidings.first
 		else
-			flash[:warning] = "По данному адресу есть заявки доступные только исполнителю"
 			building = Building.find(params[:id])
+			if building.requistions.size != 0
+				flash[:warning] = 'По данному адресу нет заявок'
+			else
+				flash[:warning] = "По данному адресу есть заявки доступные только исполнителю"
+			end
 			redirect_to :action => "requistions", :id => params[:id]
 		end
 			
