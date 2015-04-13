@@ -88,7 +88,7 @@
         <div class="form-group">
           <%= f.label :'Категория заявки:', class: "col-md-3 control-label" %>
           <div class="col-md-5">
-            <%= f.select :category, [['Немедленно', 1], ['Очень срочно', 2], ['Срочно', 3]], {:prompt => "Выберите из списка"}, {:class =>  "form-control", required: ""} %>
+            <%= f.select :category, [['Авария', 1], ['Неисправность', 2], ['Коррекция режима работы', 3], ['Иные работы', 4]], {:prompt => "Выберите из списка"}, {:class =>  "form-control", required: ""} %>
           </div>
         </div>
     </div>
