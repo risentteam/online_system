@@ -16,11 +16,11 @@
   </tr>
   <tr>    
     <th>Дата начала</th>
-    <td><%= @contract.begin_time.strftime("%d.%m.%Y") %></td>
+    <td><%= @contract.begin_time.strftime("%d.%m.%Y") if not begin_time.nil? %></td>
   </tr>
   <tr>    
     <th>Дата конца</th>
-    <td><%= @contract.end_time.strftime("%d.%m.%Y") %></td>
+    <td><%= @contract.end_time.strftime("%d.%m.%Y") not end_time.nil? %></td>
   </tr>
   <tr>    
     <th>Объекты</th>
