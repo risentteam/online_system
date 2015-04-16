@@ -53,7 +53,7 @@ class BuildingsController < ApplicationController
 	end
 
 	def check_in
-		requistion_for_buidings = current_user.requistions.where('status <= 3')
+		requistion_for_buidings = current_user.requistions.where('status <= 3 and building_id=?', params[:id])
 		# pairs = Pair.where(
 		# 	"user_id = ? and requistion_id in (SELECT id FROM requistions WHERE building_id = ?)",
 		# 	 current_user[:id], params[:id])
