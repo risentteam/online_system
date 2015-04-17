@@ -1,6 +1,6 @@
 class ContractsController < ApplicationController
 	def import
-	  Contract.import(params[:file])
+	  Contract.delay.test
 	  redirect_to "/contracts"
 	end
 	

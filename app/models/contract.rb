@@ -4,11 +4,15 @@ class Contract < ActiveRecord::Base
   has_many :buildingscontracts
   has_many :buildings, through: :buildingscontracts
 
+def self.test()
+  ontract = Contract.create(name_contract: "test1", description: "test1",  comment: "test1")
+end
 
-def self.import(file)
+def self.import(file_path)
 #  spreadsheet = Roo::Spreadsheet.open(file, extension: :xls)
   if not file.nil?
-    spreadsheet = open_spreadsheet(file)
+    flash[:info] = "Начал обработку файла"
+    spreadsheet = open_spreadsheet(file_path)
     spreadsheet.default_sheet = spreadsheet.sheets[0]
     (1..spreadsheet.last_row).each do |i|
       row = spreadsheet.row(i)
@@ -53,7 +57,7 @@ def self.import(file)
       		  address.squeeze!(' ')
             address.strip! 
           if Building.where("arrival_address = ? ", address).empty?
-      			building = Building.create(arrival_address: address, name: company)
+#      			building = Building.create(arrival_address: address, name: company)
       		else  
       			building = Building.where("arrival_address = ? ", address).first
       		end
@@ -104,7 +108,7 @@ def self.import(file)
           address.squeeze!(' ')
           address.strip! 
           if Building.where("arrival_address = ? ", address).empty?
-            building = Building.create(arrival_address: address, name: company)
+#            building = Building.create(arrival_address: address, name: company)
           else
             building = Building.where("arrival_address = ? ", address).first
           end
@@ -121,13 +125,14 @@ def self.import(file)
   end
 end
 
-def self.open_spreadsheet(file)
-  case File.extname(file.original_filename)
-  when ".csv" then Roo::Csv.new(file.path, nil, :ignore)
-  when ".xls" then Roo::Excel.new(file.path, nil, :ignore)
-  when ".xlsx" then Roo::Excelx.new(file.path, nil, :ignore)
-  else raise "Unknown file type: #{file.original_filename}"
-  end
+def self.open_spreadsheet(file_path)
+#  case File.extname(file.original_filename)
+#  when ".csv" then Roo::Csv.new(file.path, nil, :ignore)
+#  when ".xls" then Roo::Excel.new(file.path, nil, :ignore)
+  Roo::Excel.new(file_path, nil, :ignore)
+#  when ".xlsx" then Roo::Excelx.new(file.path, nil, :ignore)
+#  else raise "Unknown file type: #{file.original_filename}"
+#  end
 end
 
 end
