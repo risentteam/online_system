@@ -25,6 +25,8 @@
   </div>
 
   <h2>Контракты</h2>
+  <div class="row">
+  <div class="col-md-7">
   <table class="table table-striped">
     <tr>
       <th>Контракт</th>
@@ -37,6 +39,8 @@
       </tr>
     <% end %>
   </table>
+  </div>
+  </div>
 
 <script type="text/javascript">
   ymaps.ready(init);
@@ -66,16 +70,17 @@
           });
   }
 </script>
-<div id="map" style="width: 600px; height: 400px"></div>
+<div id="map" style="height: 400px"></div>
 
 <% if @list_requistion.any? %>
 <h3 class="leftH">На объекте (<%= @list_requistion.count %>) заявки:</h3>
 <table class="table table-striped">
   <tr>
     <th>Время подачи заявки</th>
-    <th>Контактный телефон</th>
+<!--     <th>Контактный телефон</th>
     <th>Контактное лицо</th>
-    <th>Тип неисправности</th>
+ -->
+     <th>Тип неисправности</th>
     <th>Категория</th>
     <th>Дополнительная информация</th>
     <th>Коммент</th>
@@ -83,8 +88,9 @@
   <% for requistion in @list_requistion %>
     <tr>
       <td> <%= link_to Russian::strftime(requistion.created_at, '%e %B %Y %H:%M'), {:controller => :requistions, :action => :show, :id => requistion.id}, {:method => :get} %>
-      <td> <%= requistion.contact_phone %> </td>
-      <td> <%= requistion.contact_name %> </td>
+<!--       <td> <%#= requistion.contact_phone %> </td>
+      <td> <%#= requistion.contact_name %> </td>
+ -->
       <td> <%= transcript_of_the_messages(requistion.type_requistion)+' '+transcript_of_the_messages(requistion.subtype_requistions) %> </td>
       <td> <%= transcript_of_the_messages_category(requistion.category) %> </td>
       <td> <%= requistion.info %> </td>

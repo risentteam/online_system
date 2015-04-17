@@ -54,7 +54,6 @@ function hidetxt(type){
 <h1>Не появлявшиеся за период <%='с '+@time_from if not @time_from.nil? %> <%='по '+@time_to if not @time_to.nil? %> </h3> </h1>
 <h3><%='с '+@date_from if not @date_from.nil? %> <%='по '+@date_to if not @date_to.nil? %> </h3>
 <% i = DateTime.parse(@date_from) %>
-<div class="container">
 <table id="arrivals" class="table table-striped">
 	<thead>
 		<tr>
@@ -68,7 +67,7 @@ function hidetxt(type){
 				<tr>
 				<td><%= i.strftime("%d.%m.%Y")%></td>
 				<% @Arrivals_at_day = @result.select(:user_id).distinct.where("to_char(date, 'YYYY-MM-DD') = ?", i.strftime("%Y-%m-%d")) %>	
-				<% @latecomers = User.where('status = 0 and id not in (?)	', @Arrivals_at_day) %>
+				<% @latecomers = User.where('status = 0 and id not in (?)	', @Arrivals_at_day) %>%>
 				<td>
 					<div>
 					<a onclick="hidetxt('<%= i -%>'); return false;" href="#" rel="nofollow">Показать/Скрыть</a>
@@ -85,4 +84,5 @@ function hidetxt(type){
 		<%end%>
 	</tbody>
 </table>
+
 

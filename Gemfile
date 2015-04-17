@@ -55,6 +55,8 @@ gem 'whenever', :require => false
 gem 'jquery-star-rating-rails'
 gem 'rails4-autocomplete', '~> 1.1.1'
 
+gem 'delayed_job_active_record'
+
 group :doc do
 	gem 'sdoc', '0.3.20', require: false
 end

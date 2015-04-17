@@ -2,9 +2,7 @@
 
 <div class="container">
 <div class="row">
-	<div class = "col-xs-1">
-	</div>
-	<div class = "col-xs-10">
+	<div class = "col-xs-12">
 		<h3>Вce ваши заявки (<%= @all_pairs.count %>)</h3>
 		<h4>Незавершенные заявки</h4>
 		<table id="requistion_for_workers" class="table">
@@ -33,7 +31,7 @@
 					 <td> <%= status_names[@requistion.status.to_sym] %> </td>
 					 <td> <%= @requistion.created_at.strftime("%d.%m.%Y %H:%M") if not @requistion.created_at.nil? %> </td>
 <!-- 					 <td> <%#= @requistion.time_deadline.strftime("%d.%m.%Y") if not @requistion.time_deadline.nil? %> </td> -->
-					 <td> <%= link_to "Принять в работу",  {:controller => :requistions, :action => :to_take_in_work, :id => @requistion.id}, {:method => :get, :class=>"btn"} %>
+					 <td> <%= link_to "Принять",  {:controller => :requistions, :action => :to_take_in_work, :id => @requistion.id}, {:method => :get, :class=>"btn"} %>
 					 	<%= link_to "Завершить",  {:controller => :requistions, :action => :done, :id => @requistion.id}, {:method => :get, :class=>"btn", data: { confirm: "Завершить заявку?" }} %>
 					 	<%= link_to "Отменить",  {:controller => :requistions, :action => :cancel, :id => @requistion.id}, {:method => :get, :class=>"btn", data: { confirm: "Отменить заявку?" }} %>
 
@@ -50,7 +48,6 @@
 					<th>Статус</th>
 					<th></th>
 					<th></th>
-					<th></th>
 				</tr>
 			</tfoot>
 		</table>
@@ -60,8 +57,7 @@
 			<tr>
 				<th><%= "Объект" %></th>
 				<th><%= "Адрес вызова" %></th>
-				<th><%= "Тип вызова" %></th>
-				<th><%= 'Контакты' %></th>						
+				<th><%= "Тип вызова" %></th>					
 				<th><%= "Статус" %></th>
 				<th><%= "Время подачи заявки" %></th>
 			</tr>
@@ -74,7 +70,6 @@
 					 <td><%= link_to Building.find(@requistion.building_id).name,  {:controller => :requistions, :action => :show, :id => @requistion.id}, {:method => :get} %></td>
 					 <td><%= link_to Building.find(@requistion.building_id).arrival_address,  {:controller => :buildings, :action => :show, :id => @requistion.building_id}, {:method => :get} %></td>
 					 <td> <%= transcript_of_the_messages(@requistion.type_requistion)+' '+transcript_of_the_messages(@requistion.subtype_requistions) %> </td>
-					 <td><%= @requistion.contact_phone+' '+@requistion.contact_name %></td>
 					 <td> <%= status_names[@requistion.status.to_sym] %> </td>
 					 <td> <%= @requistion.created_at.strftime("%d.%m.%Y %H:%M") %> </td>
 				</tr>
@@ -88,13 +83,10 @@
 					<th></th>
 					<th>Статус</th>
 					<th></th>
-					<th></th>
 				</tr>
 			</tfoot>
 		</table>
 		
-	</div>
-	<div class = "col-xs-1">
 	</div>
 	</div>
 </div>

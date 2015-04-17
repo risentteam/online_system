@@ -88,6 +88,11 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1)
+    delayed_job (4.0.6)
+      activesupport (>= 3.0, < 5.0)
+    delayed_job_active_record (4.0.3)
+      activerecord (>= 3.0, < 5.0)
+      delayed_job (>= 3.0, < 4.1)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.5.0)
@@ -288,6 +293,7 @@ DEPENDENCIES
   chartkick
   childprocess (= 0.3.6)
   coffee-rails (= 4.0.1)
+  delayed_job_active_record
   factory_girl_rails (= 4.2.1)
   faker (= 1.1.2)
   guard-rspec (= 2.5.0)
