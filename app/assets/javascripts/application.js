@@ -14,8 +14,7 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
-// require nprogress
-// require nprogress-turbolinks
+//= require jquery.datetimepicker
 //= require autocomplete-rails
 //= require bootstrap
 //= require jquery_nested_form

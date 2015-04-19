@@ -1,10 +1,16 @@
 <% provide(:title, 'Все прибытия') %>
-<%= form_tag('/arrivals', :method=>'get') do %>
-	С<%= time_field :time, :from, class: "btn btn-large btn-primary" %>
-	По<%= time_field :time, :to, class: "btn btn-large btn-primary" %>
+<%= form_tag('/arrivals', :method=>'get', class: 'center') do %>
+	<input id="datetimepicker" type="text" name="date" val='2015-05-05'>
+	<script type="text/javascript">
+		jQuery('#datetimepicker').datetimepicker({
+			inline:true,
+			timepicker:false,
+			format:'Y-m-d',
+			value:'<%= @date_to %>',
+			lang: 'ru'
+		});
+	</script>
 	<br>
-	С<%= date_field :date, :from, class: "btn btn-large btn-primary" %>
-	По<%= date_field :date, :to, class: "btn btn-large btn-primary" %>
 	<%= submit_tag "Показать", class: "btn btn-large btn-primary" %>
 <% end %>
 <h1>Все прибытия</h1>
@@ -18,7 +24,7 @@
 			<th>Время</th>
 			<th>Тип</th>
 		</tr>
-	</thead>    
+	</thead>
     <tbody>
 		<% @result.find_each do |f| %>
 		<tr>
@@ -60,18 +66,18 @@ function hidetxt(type){
 			<th>Дата</th>
 			<th>Сотрудники</th>
 		</tr>
-	</thead>    
+	</thead>
     <tbody>
     	<%if @date_from<=@date_to %>
 			<% while i<=@date_to do %>
 				<tr>
 				<td><%= i.strftime("%d.%m.%Y")%></td>
-				<% @Arrivals_at_day = @result.select(:user_id).distinct.where("to_char(date, 'YYYY-MM-DD') = ?", i.strftime("%Y-%m-%d")) %>	
-				<% @latecomers = User.where('status = 0 and id not in (?)	', @Arrivals_at_day) %>%>
+				<% @Arrivals_at_day = @result.select(:user_id).distinct.where("to_char(date, 'YYYY-MM-DD') = ?", i.strftime("%Y-%m-%d")) %>
+				<% @latecomers = User.where('status = 0 and id not in (?)	', @Arrivals_at_day) %>
 				<td>
 					<div>
 					<a onclick="hidetxt('<%= i -%>'); return false;" href="#" rel="nofollow">Показать/Скрыть</a>
-					<div style="display:none;" id="<%= i -%>" > 
+					<div style="display:none;" id="<%= i -%>" >
 									<% @latecomers.each do |f|%>
 										<li><%= f.name %></li>
 									<% end %>
