@@ -4,6 +4,16 @@ class Contract < ActiveRecord::Base
   has_many :buildingscontracts
   has_many :buildings, through: :buildingscontracts
 
+  def begin_time_safe
+    time = read_attribute(:begin_time)
+    time = time ? time.strftime("%d.%m.%Y") : "Нет данных"
+  end
+
+  def end_time_safe
+    time = read_attribute(:end_time)
+    time = time ? time.strftime("%d.%m.%Y") : "Нет данных"
+  end
+
 def self.test()
   ontract = Contract.create(name_contract: "test1", description: "test1",  comment: "test1")
 end
@@ -55,10 +65,10 @@ def self.import(file_path)
         adress = row[4].split(';')
       	adress.each do |address|
       		  address.squeeze!(' ')
-            address.strip! 
+            address.strip!
           if Building.where("arrival_address = ? ", address).empty?
 #      			building = Building.create(arrival_address: address, name: company)
-      		else  
+      		else
       			building = Building.where("arrival_address = ? ", address).first
       		end
       		if Buildingscontract.where("building_id = ? and contract_id = ?", building.id, contract.id).empty?
@@ -106,7 +116,7 @@ def self.import(file_path)
         adress = row[4].split(';')
         adress.each do |address|
           address.squeeze!(' ')
-          address.strip! 
+          address.strip!
           if Building.where("arrival_address = ? ", address).empty?
 #            building = Building.create(arrival_address: address, name: company)
           else
