@@ -11,12 +11,12 @@
 				</tr>
 			</thead>
 		    <tbody>
-				<% for contract in @list_contract %>
+				<% for c in @list_contract %>
 				<tr>
-			    	<td><%= contract.name_contract %></td>
-			    	<td><%= contract.description %></td>
-			    	<td><%= contract.begin_time.strftime("%d.%m.%Y") %></td>
-			    	<td><%= contract.end_time.strftime("%d.%m.%Y")  %></td>
+			    	<td><%= c.name_contract %></td>
+			    	<td><%= c.description %></td>
+			    	<td><%= c.begin_time_safe %></td>
+			    	<td><%= c.end_time_safe %></td>
 				</tr>
 				<% end %>
 			</tbody>

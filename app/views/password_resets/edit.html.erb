@@ -1,8 +1,6 @@
 <div class="container">
 <div class="row">
-	<div class="col-md-4">
-	</div>
-	<div class="col-md-4">
+	<div class="col-md-4 col-md-offset-4">
 		<h1>Сброс пароля</h1>
 
 		<%= form_for( @user, url: password_reset_path(params[:id]), html: {:class => "form-vertical center"}) do |f| %>
@@ -27,7 +25,5 @@
 
 			<%= f.submit "Обновить пароль", class: "btn" %>
 		<% end %>
-		</div>
-	<div class="col-md-4">
 	</div>
 </div>

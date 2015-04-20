@@ -63,7 +63,7 @@ class BuildingsController < ApplicationController
 			user_id: current_user[:id],
 			check_type: "check_in",
 			building_id: params[:id],
-			date: Time.now.to_s)	
+			date: Time.now.to_s)
 
   #   	if current_user.arrivals.where("date between date('now') AND date('now')").count==0
 		# 	arrival.update_attributes(begin_or_end: 0)
@@ -83,7 +83,7 @@ class BuildingsController < ApplicationController
 			end
 			redirect_to :action => "requistions", :id => params[:id]
 		end
-			
+
 	end
 
 	def check_out
