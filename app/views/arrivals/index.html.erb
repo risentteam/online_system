@@ -1,49 +1,54 @@
 <% provide(:title, 'Все прибытия') %>
-<%= form_tag('/arrivals', :method=>'get', class: 'center') do %>
-	<input id="datetimepicker" type="text" name="date" val='2015-05-05'>
-	<script type="text/javascript">
-		jQuery('#datetimepicker').datetimepicker({
-			inline:true,
-			timepicker:false,
-			format:'Y-m-d',
-			value:'<%= @date_to %>',
-			lang: 'ru'
-		});
-	</script>
-	<br>
-	<%= submit_tag "Показать", class: "btn btn-large btn-primary" %>
-<% end %>
-<h1>Все прибытия</h1>
-<h3><%='с '+@time_from if not @time_from.nil? %> <%='по '+@time_to if not @time_to.nil? %> </h3>
-<div class="container">
-<table id="arrivals" class="table table-striped">
-	<thead>
-		<tr>
-			<th>Иполнитель</th>
-			<th>Объект</th>
-			<th>Время</th>
-			<th>Тип</th>
-		</tr>
-	</thead>
-    <tbody>
-		<% @result.find_each do |f| %>
-		<tr>
-	    	<td> <%= f.user.name %> </td>
-	    	<td> <%= f.building.arrival_address %> </td>
-	    	<td> <%= f.date.strftime("%d.%m.%Y %H:%M") if  not f.date.nil? %></td>
-			<td> <%= f.check_type=='check_in' ? "Пришел" : "Ушел" %></td>
-		</tr>
-		<% end %>
-	</tbody>
-	<tfoot>
-		<tr>
-			<th></th>
-			<th></th>
-			<th></th>
-		</tr>
-	</tfoot>
-</table>
-
+<div class="row">
+	<div class="col-md-3">
+	<%= form_tag('/arrivals', :method=>'get', class: 'center') do %>
+		<input id="datetimepicker" type="text" name="date" val='2015-05-05'>
+		<script type="text/javascript">
+			jQuery('#datetimepicker').datetimepicker({
+				inline:true,
+				timepicker:false,
+				format:'Y-m-d',
+				value:'<%= @date_to %>',
+				lang: 'ru'
+			});
+		</script>
+		<br>
+		<%= submit_tag "Показать", class: "btn btn-large btn-primary" %>
+	<% end %>
+	</div>
+<div class="col-md-9">
+	<h1>Все прибытия</h1>
+	<div class="container">
+		<table id="arrivals" class="table table-striped">
+			<thead>
+				<tr>
+					<th>Иполнитель</th>
+					<th>Объект</th>
+					<th>Время</th>
+					<th>Тип</th>
+				</tr>
+			</thead>
+		    <tbody>
+				<% @result.find_each do |f| %>
+				<tr>
+			    	<td> <%= f.user.name %> </td>
+			    	<td> <%= f.building.arrival_address %> </td>
+			    	<td> <%= f.date_safe %></td>
+					<td> <%= f.check_type=='check_in' ? "Пришел" : "Ушел" %></td>
+				</tr>
+				<% end %>
+			</tbody>
+			<tfoot>
+				<tr>
+					<th></th>
+					<th></th>
+					<th></th>
+				</tr>
+			</tfoot>
+		</table>
+</div>
+</div>
+</div>
 <script type="text/javascript">
 var show;
 function hidetxt(type){
@@ -90,5 +95,3 @@ function hidetxt(type){
 		<%end%>
 	</tbody>
 </table>
-
-

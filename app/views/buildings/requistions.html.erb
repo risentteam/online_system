@@ -1,0 +1,28 @@
+<% provide(:title, 'Все заявки') %>
+<% if @list_requistions.any? %>
+<h3 class="leftH">На объекте (<%= @list_requistions.count %>) заявки:</h3>
+<table class="table table-striped">
+  <tr>
+    <th>Время подачи заявки</th>
+    <th>Контактный телефон</th>
+    <th>Контактное лицо</th>
+    <th>Тип неисправности</th>
+    <th>Категория</th>
+    <th>Дополнительная информация</th>
+    <th>Коммент</th>
+  </tr>
+  <% for requistion in @list_requistions %>
+    <tr>
+      <td> <%= link_to Russian::strftime(requistion.created_at, '%e %B %Y %H:%M'), {:controller => :requistions, :action => :show, :id => requistion.id}, {:method => :get} %>
+      <td> <%= requistion.contact_phone %> </td>
+      <td> <%= requistion.contact_name %> </td>
+      <td> <%= transcript_of_the_messages(requistion.type_requistion)+' '+transcript_of_the_messages(requistion.subtype_requistions) %> </td>
+      <td> <%= transcript_of_the_messages_category(requistion.category) %> </td>
+      <td> <%= requistion.info %> </td>
+      <td> <%= requistion.requistion_comment %> </td>
+    </tr>
+  <% end %>
+</table>
+<% else %>
+<h4>На объекте для Вас заявок нет</h4>
+<% end %>

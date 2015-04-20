@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
-	
-	
+
+
 	def new
 	end
 
@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
 				flash[:info] = "Не запоминать"
 			end
 			if user.worker?
-				redirect_back_or req_path(user)
+				redirect_to req_path(user)
 			else
 				redirect_back_or user
 			end

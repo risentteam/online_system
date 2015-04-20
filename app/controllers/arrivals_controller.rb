@@ -25,7 +25,7 @@ class ArrivalsController < ApplicationController
 @time_from = '00:00'
 @time_to = '23:59'
 if (params[:date].nil? or params[:date].empty?)
-	@date_from = Time.now.beginning_of_month.strftime("%Y-%m-%d")
+	@date_from = Time.now.strftime("%Y-%m-%d")
 	@date_to = Time.now.strftime("%Y-%m-%d")
 else
 	@date_from = @date_to = params[:date]
