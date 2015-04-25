@@ -1,141 +1,120 @@
 <% provide(:title, 'Редактирование заявки') %>
 <div class="container">
-		<h1>Редактирование заявки</h1>
-		<%= form_for @requistion, :html => {:class => "form-vertical"} do |f| %>
-			<div class="row">
-				<div class="form-group">
-					<label class="col-md-3 control-label">Объект</label>
-					<div class="col-md-5">
-					<input class="form-control" type="text" placeholder="<%= @requistion.building.name %>" readonly></input>
-					</div>
-				</div>
-			</div>
-			<hr>
-			<div class="row">
-				<div class="form-group">
-					<label class="col-md-3 control-label">Адрес вызова</label>
-					<div class="col-md-5">
-						<input class="form-control" type="text" placeholder="<%= @requistion.building.arrival_address %>" readonly></input>
-					</div>
-				</div>
-			</div>
-			<hr>
+    <h1>Редактирование заявки</h1>
+    <%= form_for @requistion, :html => {:class => "form-vertical"} do |f| %>
+      <div class="row">
+        <div class="form-group">
+          <label class="col-md-3 control-label">Объект</label>
+          <div class="col-md-5">
+          <input class="form-control" type="text" placeholder="<%= @requistion.building.name %>" readonly></input>
+          </div>
+        </div>
+      </div>
 
-			<div class="row">
-				<div class="form-group">
-					<label class="col-md-3 control-label">Контактное лицо</label>
-					<div class="col-md-5">
-					<input class="form-control" type="text" placeholder="<%= @requistion.contact_name %>" readonly></input>
-				</div>
-				</div>
-			</div>
-			<hr>
-			<div class="row">
-				<div class="form-group">
-					<label class="col-md-3 control-label">Тип заявки</label>
-					<div class="col-md-5">
-						<input class="form-control" type="text" placeholder="<%= transcript_of_the_messages(@requistion.type_requistion) %>" readonly></input>
-					</div>
-				</div>
-			</div>
-			<hr>
+      <div class="row">
+        <div class="form-group">
+          <label class="col-md-3 control-label">Адрес вызова</label>
+          <div class="col-md-5">
+            <input class="form-control" type="text" placeholder="<%= @requistion.building.arrival_address %>" readonly></input>
+          </div>
+        </div>
+      </div>
 
-			<div class="row">
-				<div class="form-group">
-					<label class="col-md-3 control-label">Время заявки</label>
-					<div class="col-md-5">
-						<input class="form-control" type="text" placeholder="<%= Russian::strftime(@requistion.created_at, "%e %B %Y %H:%M") %>" readonly></input>
-					</div>
-				</div>
-			</div>
-			<hr>
-			<div class="row">
-				<div class="form-group">
-					<label class="col-md-3 control-label">Контактный телефон</label>
-					<div class="col-md-5">
-						<input class="form-control" type="text" placeholder="<%= @requistion.contact_phone %>" readonly></input>
-					</div>
-				</div>
-			</div>
-			<hr>
-			<div class="row" id="versionsDiv">
-  				<%= render :partial => 'versions', :object => @list_contract %>
-			</div>
-			<hr>
-			<div class="row">
-				<div class="form-group">
-					<%= f.label :'№ договора:', class: "col-md-3 control-label" %>
-					<div class="col-md-5">
-					<% if not @requistion.contract.nil?%>
-						<%= text_field_tag :contract, nil, :placeholder => "Введите № договора", class: "form-control", required: "", value: @requistion.contract.name_contract %>
-					<% else %>
-						<%= text_field_tag :contract, nil, :placeholder => "Введите № договора", class: "form-control", required: ""%>
-					<% end %>
-					</div>
-				</div>
-			</div>
-			<hr>
-			<div class="row">
-				<div class="form-group">
-					<%= f.label :'Период договора:', class: "col-md-3 control-label" %>
-					<div class="col-md-5">
-					<% if not @requistion.contract.nil?%>
-						<%= text_field_tag :period_contract, nil, :placeholder => "Введите время окончания договора", class: "form-control", required: "", value: "C "+Russian::strftime(@requistion.contract.begin_time, "%d %B %Y")+' до '+Russian::strftime(@requistion.contract.end_time, "%d %B %Y") %>
-					<% else %>
-						<%= text_field_tag :period_contract, nil, :placeholder => "Введите время окончания договора", class: "form-control", required: "" %>
-					<% end %>
+      <div class="row" id="table_contracts_in_new">
+        <%= render :partial => 'table_contract', :object => @list_contract %>
+      </div>
 
-					</div>
-				</div>
-			</div>
+      <div class="row">
+        <div class ="form-group">
+          <label class=" col-md-3">Номер контракта</label>
+          <div class="col-md-5">
+          <%= f.select :contract_id, @list_contract.collect { |p| [ p.name_contract, p.id ] },{},
+            placeholder: "Выберите из списка", class: "form-control", required: "" %>
+          </div>
+        </div>
+      </div>
 
-			<hr>
-			<div class="row">
-				<div class="form-group">
-					<%= f.label :'Дата окончания заявки:', class: "col-md-3 control-label" %>
-					<div class="col-md-5">
-					<%
-						deadline = @requistion.time_deadline.to_date.to_formatted_s(:day_month_year) if @requistion.time_deadline %>
-  						<%= date_field_tag "requistion[time_deadline]", deadline, :min=> Time.zone.now.strftime("%Y-%m-%d"), class: "form-control", required: "" %>
-					</div>
-				</div>
-			</div>
-			<hr>
-			<div class="row">
-				<div class="form-group">
-					<%= f.label :'Комментарий', class: "col-md-3 control-label" %>
-					<div class="col-md-5">
-  						<%= f.text_field :requistion_comment, :placeholder => "Введите комментарий", class: "form-control" %>
-					</div>
-				</div>
-			</div>
-			<hr>
-			<div class="row">
-				<div class="form-group" id="worker_row">
-					<%= f.label :'Исполнители:', class: "col-md-3 control-label" %>
-					<div id="workerfield" class="col-md-5">
-					<select id="workers-select" name="workers[]" multiple  placeholder="Выберите исполнителей">
-						<%= options_for_select(User.worker.collect {|p| [ p.name, p.id ] },
-						@requistion.users.worker.collect {|p|  p.id } )	%>
+      <div class="row">
+        <div class="form-group">
+          <label class="col-md-3 control-label">Контактное лицо</label>
+          <div class="col-md-5">
+          <input class="form-control" type="text" placeholder="<%= @requistion.contact_name %>" readonly></input>
+        </div>
+        </div>
+      </div>
 
-					</select>
-					<script>
-						$('#workers-select').selectize({
-							maxItems: 100,
-							plugins: ['remove_button']
-						});
-					</script>
-					</div>
-				</div>
+      <div class="row">
+        <div class="form-group">
+          <label class="col-md-3 control-label">Тип заявки</label>
+          <div class="col-md-5">
+            <input class="form-control" type="text" placeholder="<%= transcript_of_the_messages(@requistion.type_requistion) %>" readonly></input>
+          </div>
+        </div>
+      </div>
 
-			</div>
+
+      <div class="row">
+        <div class="form-group">
+          <label class="col-md-3 control-label">Время заявки</label>
+          <div class="col-md-5">
+            <input class="form-control" type="text" placeholder="<%= Russian::strftime(@requistion.created_at, "%e %B %Y %H:%M") %>" readonly></input>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group">
+          <label class="col-md-3 control-label">Контактный телефон</label>
+          <div class="col-md-5">
+            <input class="form-control" type="text" placeholder="<%= @requistion.contact_phone %>" readonly></input>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group">
+          <%= f.label :'Дата окончания заявки:', class: "col-md-3 control-label" %>
+          <div class="col-md-5">
+          <%= f.date_field :time_deadline, class: 'form-control'%>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group">
+          <%= f.label :'Комментарий', class: "col-md-3 control-label" %>
+          <div class="col-md-5">
+              <%= f.text_field :requistion_comment, :placeholder => "Введите комментарий", class: "form-control" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group" id="worker_row">
+          <%= f.label :'Исполнители:', class: "col-md-3 control-label" %>
+          <div id="workerfield" class="col-md-5">
+          <select id="workers-select" name="workers[]" multiple  placeholder="Выберите исполнителей">
+            <%= options_for_select(User.worker.collect {|p| [ p.name, p.id ] },
+            @requistion.users.worker.collect {|p|  p.id } ) %>
+
+          </select>
+          <script>
+            $('#workers-select').selectize({
+              maxItems: 100,
+              plugins: ['remove_button']
+            });
+          </script>
+          </div>
+        </div>
+
+      </div>
 
 <div class="row">
-	<div class=" col-xs-3"></div>
-	<div class="col-xs-5">
-		<%= f.submit "Принять", class: "btn", id: "submut" %>
-		<%= link_to "Назад к заявкам", requistions_path, class: "btn"%>
-	</div>
+  <div class=" col-xs-3"></div>
+  <div class="col-xs-5">
+    <%= f.submit "Принять", class: "btn", id: "submut" %>
+    <%= link_to "Назад к заявкам", requistions_path, class: "btn"%>
+  </div>
 </div>
 
 <% end %>
