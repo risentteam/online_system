@@ -16,7 +16,6 @@ class Contract < ActiveRecord::Base
   
 def self.import(file_path)
 #  spreadsheet = Roo::Spreadsheet.open(file, extension: :xls)
-    contract = Contract.create(name_contract: 'test')
     flash[:info] = "Начал обработку файла"
     spreadsheet = open_spreadsheet(file_path)
     spreadsheet.default_sheet = spreadsheet.sheets[0]
