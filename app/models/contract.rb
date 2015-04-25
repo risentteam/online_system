@@ -13,7 +13,10 @@ class Contract < ActiveRecord::Base
     time = read_attribute(:end_time)
     time = time ? time.strftime("%d.%m.%Y") : "Нет данных"
   end
- 
+def self.test(file)
+    spreadsheet = open_spreadsheet(file_path)
+end 
+
 def self.import(file_path)
 #  spreadsheet = Roo::Spreadsheet.open(file, extension: :xls)
   if not file.nil?
