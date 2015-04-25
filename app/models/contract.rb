@@ -15,8 +15,6 @@ class Contract < ActiveRecord::Base
   end
   
 def self.import(file_path)
-#  spreadsheet = Roo::Spreadsheet.open(file, extension: :xls)
-
     spreadsheet = open_spreadsheet(file_path)
     spreadsheet.default_sheet = spreadsheet.sheets[0]
     (1..spreadsheet.last_row).each do |i|
