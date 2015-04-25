@@ -13,13 +13,9 @@ class Contract < ActiveRecord::Base
     time = read_attribute(:end_time)
     time = time ? time.strftime("%d.%m.%Y") : "Нет данных"
   end
-def self.test(file)
-    spreadsheet = open_spreadsheet(file_path)
-end 
-
+  
 def self.import(file_path)
 #  spreadsheet = Roo::Spreadsheet.open(file, extension: :xls)
-  if not file.nil?
     flash[:info] = "Начал обработку файла"
     spreadsheet = open_spreadsheet(file_path)
     spreadsheet.default_sheet = spreadsheet.sheets[0]
@@ -66,7 +62,7 @@ def self.import(file_path)
       		  address.squeeze!(' ')
             address.strip!
           if Building.where("arrival_address = ? ", address).empty?
-#      			building = Building.create(arrival_address: address, name: company)
+      			building = Building.create(arrival_address: address, name: company)
       		else  
       			building = Building.where("arrival_address = ? ", address).first
       		end
@@ -117,7 +113,7 @@ def self.import(file_path)
           address.squeeze!(' ')
           address.strip!
           if Building.where("arrival_address = ? ", address).empty?
-#            building = Building.create(arrival_address: address, name: company)
+            building = Building.create(arrival_address: address, name: company)
           else
             building = Building.where("arrival_address = ? ", address).first
           end
@@ -130,7 +126,6 @@ def self.import(file_path)
 #    product = find_by_id(row["id"]) || new
 #    product.attributes = row.to_hash.slice(*accessible_attributes)
 #    product.save!
-     end
   end
 end
 
