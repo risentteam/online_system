@@ -13,7 +13,7 @@ class Contract < ActiveRecord::Base
     time = read_attribute(:end_time)
     time = time ? time.strftime("%d.%m.%Y") : "Нет данных"
   end
-
+ 
 def self.import(file_path)
 #  spreadsheet = Roo::Spreadsheet.open(file, extension: :xls)
   if not file.nil?
@@ -63,7 +63,7 @@ def self.import(file_path)
       		  address.squeeze!(' ')
             address.strip!
           if Building.where("arrival_address = ? ", address).empty?
-      			building = Building.create(arrival_address: address, name: company)
+#      			building = Building.create(arrival_address: address, name: company)
       		else  
       			building = Building.where("arrival_address = ? ", address).first
       		end
