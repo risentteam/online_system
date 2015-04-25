@@ -1,7 +1,7 @@
 class ContractsController < ApplicationController
 	def import
       flash[:info] = "Начал обработку файла"
-	  Contract.delay.import(params[:file].path)
+	  Contract.import(params[:file].path)
 	  redirect_to "/contracts"
 	end
 	
