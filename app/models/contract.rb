@@ -4,9 +4,6 @@ class Contract < ActiveRecord::Base
   has_many :buildingscontracts
   has_many :buildings, through: :buildingscontracts
 
-def self.test()
-  ontract = Contract.create(name_contract: "test1", description: "test1",  comment: "test1")
-end
 
 def self.import(file_path)
 #  spreadsheet = Roo::Spreadsheet.open(file, extension: :xls)
@@ -57,7 +54,7 @@ def self.import(file_path)
       		  address.squeeze!(' ')
             address.strip! 
           if Building.where("arrival_address = ? ", address).empty?
-#      			building = Building.create(arrival_address: address, name: company)
+      			building = Building.create(arrival_address: address, name: company)
       		else  
       			building = Building.where("arrival_address = ? ", address).first
       		end
@@ -108,7 +105,7 @@ def self.import(file_path)
           address.squeeze!(' ')
           address.strip! 
           if Building.where("arrival_address = ? ", address).empty?
-#            building = Building.create(arrival_address: address, name: company)
+            building = Building.create(arrival_address: address, name: company)
           else
             building = Building.where("arrival_address = ? ", address).first
           end
