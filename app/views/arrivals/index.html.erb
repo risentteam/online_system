@@ -1,43 +1,69 @@
 <% provide(:title, 'Все прибытия') %>
-<%= form_tag('/arrivals', :method=>'get') do %>
-	С<%= time_field :time, :from, class: "btn btn-large btn-primary" %>
-	По<%= time_field :time, :to, class: "btn btn-large btn-primary" %>
-	<br>
-	С<%= date_field :date, :from, class: "btn btn-large btn-primary" %>
-	По<%= date_field :date, :to, class: "btn btn-large btn-primary" %>
-	<%= submit_tag "Показать", class: "btn btn-large btn-primary" %>
-<% end %>
-<h1>Все прибытия</h1>
-<h3><%='с '+@time_from if not @time_from.nil? %> <%='по '+@time_to if not @time_to.nil? %> </h3>
-<div class="container">
-<table id="arrivals" class="table table-striped">
-	<thead>
-		<tr>
-			<th>Иполнитель</th>
-			<th>Объект</th>
-			<th>Время</th>
-			<th>Тип</th>
-		</tr>
-	</thead>    
-    <tbody>
-		<% @result.find_each do |f| %>
-		<tr>
-	    	<td> <%= f.user.name %> </td>
-	    	<td> <%= f.building.arrival_address %> </td>
-	    	<td> <%= f.date.strftime("%d.%m.%Y %H:%M") if  not f.date.nil? %></td>
-			<td> <%= f.check_type=='check_in' ? "Пришел" : "Ушел" %></td>
-		</tr>
-		<% end %>
-	</tbody>
-	<tfoot>
-		<tr>
-			<th></th>
-			<th></th>
-			<th></th>
-		</tr>
-	</tfoot>
-</table>
-
+<div class="row">
+	<div class="col-md-3">
+	<%= form_tag('/arrivals', :method=>'get', class: 'center arrivals-calendar') do %>
+		<label>C</label><br>
+		<input id="date_from" type="text" name="date_from">
+		<br><label>По</label><br>
+		<input id="date_to" type="text" name="date_to">
+		<script type="text/javascript">
+			jQuery('#date_from').datetimepicker({
+				inline:true,
+				timepicker:false,
+				format:'Y-m-d',
+				onSelectDate: function(){
+					jQuery('#date_to').datetimepicker({
+						value: jQuery('#date_from').val()
+					})
+				},
+				value:'<%= @date_from %>',
+				lang: 'ru'
+			});
+			jQuery('#date_to').datetimepicker({
+				inline:true,
+				timepicker:false,
+				value:'<%= @date_to %>',
+				format:'Y-m-d',
+				lang: 'ru'
+			});
+		</script>
+		<br>
+		<%= submit_tag "Показать", class: "btn btn-large btn-primary" %>
+	<% end %>
+	</div>
+<div class="col-md-9">
+	<h1>Все прибытия</h1>
+	<div class="container">
+		<table id="arrivals" class="table table-striped">
+			<thead>
+				<tr>
+					<th>Иполнитель</th>
+					<th>Объект</th>
+					<th>Время</th>
+					<th>Тип</th>
+				</tr>
+			</thead>
+		    <tbody>
+				<% @result.find_each do |f| %>
+				<tr>
+			    	<td> <%= f.user.name %> </td>
+			    	<td> <%= f.building.arrival_address %> </td>
+			    	<td> <%= f.date_safe %></td>
+					<td> <%= f.check_type=='check_in' ? "Пришел" : "Ушел" %></td>
+				</tr>
+				<% end %>
+			</tbody>
+			<tfoot>
+				<tr>
+					<th></th>
+					<th></th>
+					<th></th>
+				</tr>
+			</tfoot>
+		</table>
+</div>
+</div>
+</div>
 <script type="text/javascript">
 var show;
 function hidetxt(type){
@@ -60,18 +86,18 @@ function hidetxt(type){
 			<th>Дата</th>
 			<th>Сотрудники</th>
 		</tr>
-	</thead>    
+	</thead>
     <tbody>
     	<%if @date_from<=@date_to %>
 			<% while i<=@date_to do %>
 				<tr>
 				<td><%= i.strftime("%d.%m.%Y")%></td>
-				<% @Arrivals_at_day = @result.select(:user_id).distinct.where("to_char(date, 'YYYY-MM-DD') = ?", i.strftime("%Y-%m-%d")) %>	
-				<% @latecomers = User.where('status = 0 and id not in (?)	', @Arrivals_at_day) %>%>
+				<% @Arrivals_at_day = @result.select(:user_id).distinct.where("to_char(date, 'YYYY-MM-DD') = ?", i.strftime("%Y-%m-%d")) %>
+				<% @latecomers = User.where('status = 0 and id not in (?)	', @Arrivals_at_day) %>
 				<td>
 					<div>
 					<a onclick="hidetxt('<%= i -%>'); return false;" href="#" rel="nofollow">Показать/Скрыть</a>
-					<div style="display:none;" id="<%= i -%>" > 
+					<div style="display:none;" id="<%= i -%>" >
 									<% @latecomers.each do |f|%>
 										<li><%= f.name %></li>
 									<% end %>
@@ -84,5 +110,3 @@ function hidetxt(type){
 		<%end%>
 	</tbody>
 </table>
-
-

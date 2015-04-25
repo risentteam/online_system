@@ -4,6 +4,15 @@ class Contract < ActiveRecord::Base
   has_many :buildingscontracts
   has_many :buildings, through: :buildingscontracts
 
+  def begin_time_safe
+    time = read_attribute(:begin_time)
+    time = time ? time.strftime("%d.%m.%Y") : "Нет данных"
+  end
+
+  def end_time_safe
+    time = read_attribute(:end_time)
+    time = time ? time.strftime("%d.%m.%Y") : "Нет данных"
+  end
 
 def self.import(file_path)
 #  spreadsheet = Roo::Spreadsheet.open(file, extension: :xls)
@@ -52,7 +61,7 @@ def self.import(file_path)
         adress = row[4].split(';')
       	adress.each do |address|
       		  address.squeeze!(' ')
-            address.strip! 
+            address.strip!
           if Building.where("arrival_address = ? ", address).empty?
       			building = Building.create(arrival_address: address, name: company)
       		else  
@@ -103,7 +112,7 @@ def self.import(file_path)
         adress = row[4].split(';')
         adress.each do |address|
           address.squeeze!(' ')
-          address.strip! 
+          address.strip!
           if Building.where("arrival_address = ? ", address).empty?
             building = Building.create(arrival_address: address, name: company)
           else

@@ -24,23 +24,27 @@
   </div>
   </div>
 
-  <h2>Контракты</h2>
-  <div class="row">
-  <div class="col-md-7">
-  <table class="table table-striped">
-    <tr>
-      <th>Контракт</th>
-      <th>Описание</th>
-    </tr>
-    <% for contract in @building.contracts %>
-      <tr>
-        <td> <%= link_to contract.name_contract, contract_path(contract) %> </td>
-        <td> <%= contract.description %> </td>
-      </tr>
-    <% end %>
-  </table>
-  </div>
-  </div>
+  <% if @building.contracts.presence %>
+    <h2>Контракты</h2>
+    <div class="row">
+      <div class="col-md-7">
+      <table class="table table-striped">
+        <tr>
+          <th>Контракт</th>
+          <th>Описание</th>
+        </tr>
+        <% for c in @building.contracts %>
+          <tr>
+            <td> <%= link_to c.name_contract, contract_path(c) %> </td>
+            <td> <%= c.description %> </td>
+          </tr>
+        <% end %>
+      </table>
+      </div>
+    </div>
+  <% else %>
+    <h2>Контрактов нет</h2>
+  <% end %>
 
 <script type="text/javascript">
   ymaps.ready(init);
@@ -77,29 +81,23 @@
 <table class="table table-striped">
   <tr>
     <th>Время подачи заявки</th>
-<!--     <th>Контактный телефон</th>
-    <th>Контактное лицо</th>
- -->
-     <th>Тип неисправности</th>
+    <th>Тип неисправности</th>
     <th>Категория</th>
     <th>Дополнительная информация</th>
     <th>Коммент</th>
   </tr>
-  <% for requistion in @list_requistion %>
+  <% @list_requistion.each do |r| %>
     <tr>
-      <td> <%= link_to Russian::strftime(requistion.created_at, '%e %B %Y %H:%M'), {:controller => :requistions, :action => :show, :id => requistion.id}, {:method => :get} %>
-<!--       <td> <%#= requistion.contact_phone %> </td>
-      <td> <%#= requistion.contact_name %> </td>
- -->
-      <td> <%= transcript_of_the_messages(requistion.type_requistion)+' '+transcript_of_the_messages(requistion.subtype_requistions) %> </td>
-      <td> <%= transcript_of_the_messages_category(requistion.category) %> </td>
-      <td> <%= requistion.info %> </td>
-      <td> <%= requistion.requistion_comment %> </td>
+      <td> <%= link_to r.created_at_time_ru, requistion_path(r) %>
+      <td> <%= transcript_of_the_messages(r.type_requistion)+' '+transcript_of_the_messages(r.subtype_requistions) %> </td>
+      <td> <%= transcript_of_the_messages_category(r.category) %> </td>
+      <td> <%= r.info %> </td>
+      <td> <%= r.requistion_comment %> </td>
     </tr>
   <% end %>
 </table>
 <% else %>
-<h4>Для вас на объект заявок нет</h4>
+  <h4>Для вас на объект заявок нет</h4>
 <% end %>
 
 <%= link_to 'Все заявки', requistions_path, class: "btn" %>

@@ -6,27 +6,27 @@
     <th>Номер</th>
     <td><%= @contract.name_contract %></td>
   </tr>
-  <tr>    
+  <tr>
     <th>Комментарий</th>
     <td><%= @contract.comment %></td>
   </tr>
-  <tr>    
+  <tr>
     <th>Описание</th>
     <td><%= @contract.description %></td>
   </tr>
-  <tr>    
+  <tr>
     <th>Дата начала</th>
-    <td><%= @contract.begin_time.strftime("%d.%m.%Y") if not begin_time.nil? %></td>
+    <td><%= @contract.begin_time_safe %></td>
   </tr>
-  <tr>    
+  <tr>
     <th>Дата конца</th>
-    <td><%= @contract.end_time.strftime("%d.%m.%Y") not end_time.nil? %></td>
+    <td><%= @contract.end_time_safe %></td>
   </tr>
-  <tr>    
+  <tr>
     <th>Объекты</th>
     <td>
-    <% @contract.buildings.each do |building| %> 
-      <li><%= link_to building.arrival_address, building_path(building) %> </li>
+    <% @contract.buildings.each do |b| %>
+      <li><%= link_to b.arrival_address, building_path(b) %> </li>
     <% end %>
     </td>
   </tr>

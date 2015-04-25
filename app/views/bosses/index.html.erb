@@ -2,9 +2,7 @@
 
 <h1>Начальники</h1>
 <div class="row">
-	<div class="col-xs-3">
-	</div>
-		<div class="col-xs-6">
+	<div class="col-xs-6 col-xs-offset-3">
 		<table class="table table-striped table-wrapper">
 			<thead>
 				<tr>
@@ -13,15 +11,12 @@
 					<th>Район</th>
 					<th>Специализация</th>
 				</tr>
-			</thead>    
-		    <tbody>	  	
-    			<% @bosses.each do |boss| %>
+			</thead>
+		    <tbody>
+    		<% @bosses.each do |boss| %>
 					<%= render boss %>
 				<%end%>
 			</tbody>
 		</table>
-
-	</div>
-	<div class="col-xs-4">
 	</div>
 </div>

@@ -206,7 +206,7 @@ class RequistionsController < ApplicationController
 #			redirect_to @requistion
 #		end
 		@list_worker = User.worker.order(:name)
-		@list_contract = @requistion.building.contracts.select("company").distinct
+		@list_contract = @requistion.building.contracts
 		@list_company = Contract.all
 		@list_boss = Boss.all
 	end
@@ -240,12 +240,7 @@ class RequistionsController < ApplicationController
 		#Необходимо добавить проверку корректности данных
 		@requistion = Requistion.find(params[:id])
 		if @requistion.update_attributes(
-			contract_id: params[:version_id],
-			time_deadline: params[:deadline],
-			category: params[:requistion][:category],
-			requistion_comment: params[:requistion][:requistion_comment],
-#			status: 'assigned',
-#			time_assgned: Time.zone.now.to_s
+			requistion_update_attributes
 			)
 
 			client = @requistion.users.client.first
@@ -305,6 +300,10 @@ class RequistionsController < ApplicationController
 			params.require(:requistion).permit(:contact_name, :category, :contact_phone, :deputy,
 				:type_requistion, :subtype_requistion, :building_id, :requistion_comment,
 				:time_deadline)
+		end
+
+		def requistion_update_attributes
+			params.require(:requistion).permit(:contract_id, :time_deadline, :requistion_comment)
 		end
 
 		def send_to_boss(worker_id)

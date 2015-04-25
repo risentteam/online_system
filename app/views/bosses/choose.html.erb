@@ -1,23 +1,21 @@
 <% provide(:title, 'Назначение начальника') %>
 <div class="container">
 <div class="row">
-	<div class="col-xs-4">
-	</div>
-	<div class="col-xs-4">
+	<div class="col-xs-4 col-xs-offset-4">
 		<h1>Назначение начальника</h1>
 		<h3><%= @user.name %></h3>
 
-		<%= form_for(@user, url: "/users/#{@user.id}/set_manager", :html => {:class => "form-vertical center"}) do |f| %>
+		<%= form_for(@user, url: "/users/#{@user.id}/set_manager",
+				:html => {:class => "form-vertical center"}) do |f| %>
 
 		<div class="form-group">
-			<%= f.select :boss_id, options_from_collection_for_select(@list, 'id', 'name'), {:prompt => "Выберите из списка адрес прибытия специалистов"}, {:class => "form-control", required: ""  }%>
+			<%= f.select :boss_id, options_from_collection_for_select(@list, 'id', 'name'),
+					{:prompt => "Выберите из списка адрес прибытия специалистов"},
+					{:class => "form-control", required: ""  }%>
 		</div>
 
 		<br>
 			<%= f.submit "Назначить", class: "btn" %>
-		<br>
 		<% end %>
-	</div>
-	<div class="col-xs-4">
 	</div>
 </div>

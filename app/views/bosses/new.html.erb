@@ -1,9 +1,7 @@
 <% provide(:title, 'Добавление начальника') %>
 <div class="container">
 <div class="row">
-	<div class="col-xs-4">
-	</div>
-	<div class="col-xs-4">
+	<div class="col-xs-4 col-xs-offset-4">
 		<h1>Новый начальник</h1>
 
 		<%= form_for(@boss, :html => {:class => "form-vertical center"}) do |f| %>
@@ -28,18 +26,15 @@
 
 		<div class="form-group">
 			<label>Начало отпуска</label>
-			<%= date_field_tag "boss[begin_of_rest]", nil, class: "form-control" %>	
+			<%= date_field_tag "boss[begin_of_rest]", nil, class: "form-control" %>
 		</div>
 		<div class="form-group">
 			<label>Конец отпуска</label>
-			<%= date_field_tag "boss[end_of_rest]", nil, class: "form-control" %>	
+			<%= date_field_tag "boss[end_of_rest]", nil, class: "form-control" %>
 		</div>
 
 		<br>
 			<%= f.submit "Создать начальника", class: "btn" %>
-		<br>
 		<% end %>
-	</div>
-	<div class="col-md-4">
 	</div>
 </div>

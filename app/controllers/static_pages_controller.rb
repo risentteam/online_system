@@ -1,7 +1,7 @@
 class StaticPagesController < ApplicationController
 	before_action :signed_in_user
 
-	def panel	
+	def panel
 	end
 
 	def staff
@@ -12,11 +12,15 @@ class StaticPagesController < ApplicationController
 	def home
 		if current_user.admin?
 			@name = "Новые заявки"
-			@requistions = Requistion.fresh	
+			@requistions = Requistion.fresh
 			render "requistions/index"
-		else
+		elsif current_user.client?
 			@user = current_user
 			render "users/show"
+		else
+			@user = current_user
+			@all_pairs = @user.pairs
+			render "users/req"
 		end
 	end
 end
