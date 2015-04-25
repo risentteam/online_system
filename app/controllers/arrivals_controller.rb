@@ -24,11 +24,12 @@ class ArrivalsController < ApplicationController
 =end
 @time_from = '00:00'
 @time_to = '23:59'
-if (params[:date].nil? or params[:date].empty?)
+if (params[:date_from].nil? or params[:date_from].empty?)
 	@date_from = Time.now.strftime("%Y-%m-%d")
 	@date_to = Time.now.strftime("%Y-%m-%d")
 else
-	@date_from = @date_to = params[:date]
+	@date_from  = params[:date_from]
+	@date_to  = params[:date_to]
 end
 
 		@result = Arrival.includes(:building, :user).where('date between ? and ?', @date_from, (DateTime.parse(@date_to)+1.day).strftime("%Y-%m-%d") ).\

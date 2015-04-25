@@ -1,14 +1,29 @@
 <% provide(:title, 'Все прибытия') %>
 <div class="row">
 	<div class="col-md-3">
-	<%= form_tag('/arrivals', :method=>'get', class: 'center') do %>
-		<input id="datetimepicker" type="text" name="date" val='2015-05-05'>
+	<%= form_tag('/arrivals', :method=>'get', class: 'center arrivals-calendar') do %>
+		<label>C</label><br>
+		<input id="date_from" type="text" name="date_from">
+		<br><label>По</label><br>
+		<input id="date_to" type="text" name="date_to">
 		<script type="text/javascript">
-			jQuery('#datetimepicker').datetimepicker({
+			jQuery('#date_from').datetimepicker({
 				inline:true,
 				timepicker:false,
 				format:'Y-m-d',
+				onSelectDate: function(){
+					jQuery('#date_to').datetimepicker({
+						value: jQuery('#date_from').val()
+					})
+				},
+				value:'<%= @date_from %>',
+				lang: 'ru'
+			});
+			jQuery('#date_to').datetimepicker({
+				inline:true,
+				timepicker:false,
 				value:'<%= @date_to %>',
+				format:'Y-m-d',
 				lang: 'ru'
 			});
 		</script>
