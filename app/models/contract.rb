@@ -114,7 +114,7 @@ def self.import(file_path)
           address.squeeze!(' ')
           address.strip!
           if Building.where("arrival_address = ? ", address).empty?
-            building = Building.create(arrival_address: address, name: company)
+#            building = Building.create(arrival_address: address, name: company)
           else
             building = Building.where("arrival_address = ? ", address).first
           end
