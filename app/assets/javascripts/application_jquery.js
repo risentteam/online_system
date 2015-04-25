@@ -209,16 +209,6 @@ addToMain(function() {
 	});
 	var archiver = $("#archive").appendTo('.archiver');
 });
-//Внесение с и по
-addToMain(function(){
-	$('input[class*="range"]:first-child').attr("placeholder", "C").each(function () {
-		this.previousSibling.parentNode.removeChild(this.previousSibling);
-	});
-	$('input[class*="range"]:last-child').attr("placeholder", "По").each(function () {
-		this.previousSibling.parentNode.removeChild(this.previousSibling);
-	});
-
-});
 
 //#########################################################################################
 //Таблица заявок у рабочего
@@ -717,3 +707,13 @@ $(document).ready(function() {
 //Очистка поля объект и адрес в "новая заявка"
 //#########################################################################################
 
+//Внесение с и по
+addToMain(function(){
+	$('input[class*="range"]:first-child').attr("placeholder", "C").each(function () {
+		this.previousSibling.parentNode.removeChild(this.previousSibling);
+	});
+	$('input[class*="range"]:last-child').attr("placeholder", "По").each(function () {
+		this.previousSibling.parentNode.removeChild(this.previousSibling);
+	});
+
+});
