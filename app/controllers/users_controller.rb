@@ -92,7 +92,6 @@ class UsersController < ApplicationController
 
 	def admin_create
 		@user = User.new(user_new_params_admin)
-		@user.status = "admin"
 		if @user.save
 			flash[:success] = "Вы успешно создали пользователя!"
 			redirect_to user_path(@user)
