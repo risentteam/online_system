@@ -13,7 +13,7 @@ class ContractsController < ApplicationController
 		@contract = Contract.find(params[:id])
 	end
 
-	def  edit
+	def edit
 		@contract = Contract.find(params[:id])
 		@list_buildings = Building.all
 	end
@@ -32,11 +32,10 @@ class ContractsController < ApplicationController
 		end
 	end
 
-
 	def update
 		#Необходимо добавить проверку корректности данных
 		@contract = Contract.find(params[:id])
-		@buildings=@contract.buildings
+		@buildings = @contract.buildings
 
 		all_buildings_id = Array(params[:buildings])
 		buildingscontracts = @contract.buildingscontracts
@@ -46,17 +45,12 @@ class ContractsController < ApplicationController
 			buildingscontracts.find_or_create_by(building_id: building_id)
 		end
 
-
 		if @contract.update_attributes(contracts_params)
 			flash[:success] = "Контракт успешно изменен"
 			redirect_to @contract
 		else
 			render 'edit'
 		end
-	end
-
-	def ajax_index
-		
 	end
 
 	private

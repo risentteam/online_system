@@ -111,14 +111,31 @@ class BuildingsController < ApplicationController
 	end
 
 	def update
-	  @building = Building.find(params[:id])
-	  @a = params[:building][:arrival_address]
-		if @building.update_attributes(arrival_address: @a)
-			respond_with @building
-	  else
-			flash[:success] = "Что-то пошло не так"
-			redirect_to current_user
-	  end
+		@building = Building.find(params[:id])
+		@a = params[:building][:arrival_address]
+		if Building.where("arrival_address = ? ", @a).empty?
+	  		if @building.update_attributes(arrival_address: @a)
+				respond_with @building
+	 		else
+				flash[:success] = "Что-то пошло не так"
+				redirect_to current_user
+	  		end
+	  	else
+	  		building_new = Building.where("arrival_address = ? ", @a).first
+	  		for requistion in @building.requistions
+	  			requistion.update_attributes(building_id: building_new.id)
+	  		end
+	  		for arrival in @building.arrivals
+	  			arrival.update_attributes(building_id: building_new.id)
+	  		end
+	  		for contract in @building.contracts
+	  			if Buildingscontract.where("building_id = ? and contract_id = ?", building_new.id, contract.id).empty?
+            		Buildingscontract.create(building_id: building_new.id, contract_id: contract.id)
+            	end
+            end
+            @building.contracts.destroy_all
+            @building.destroy
+	  	end
 	end
 
 	private
