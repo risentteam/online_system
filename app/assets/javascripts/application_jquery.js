@@ -74,7 +74,7 @@ var exportTools = {
 					"sExtends": "xls",
 					"sButtonText": "Экспорт",
 					"bFooter": false,
-					"sCharSet" : "utf16le",
+					"sCharSet" : "cp1251",
 					"sFieldSeperator": ";",
 					"bSelectedOnly" : true,
 					"oSelectorOpts": {        filter: "applied"    }
@@ -90,7 +90,7 @@ var exportToolsforWoker = {
 					"sExtends": "xls",
 					"sButtonText": "Экспорт",
 					"bFooter": false,
-					"sCharSet" : "utf16le",
+					"sCharSet" : "cp1251",
 					"bSelectedOnly" : true,
 					"sFieldBoundary": '',
 					"mColumns": [0,1,2,3,5],
