@@ -25,16 +25,6 @@
       </div>
 
       <div class="row">
-        <div class ="form-group">
-          <label class=" col-md-3">Номер контракта</label>
-          <div class="col-md-5">
-          <%= f.select :contract_id, @list_contract.collect { |p| [ p.name_contract, p.id ] },{},
-            placeholder: "Выберите из списка", class: "form-control", required: "" %>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
         <div class="form-group">
           <label class="col-md-3 control-label">Контактное лицо</label>
           <div class="col-md-5">
