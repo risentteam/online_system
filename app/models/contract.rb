@@ -13,15 +13,8 @@ class Contract < ActiveRecord::Base
     time = read_attribute(:end_time)
     time = time ? time.strftime("%d.%m.%Y") : "Нет данных"
   end
-
-def self.test()
-  ontract = Contract.create(name_contract: "test1", description: "test1",  comment: "test1")
-end
-
+  
 def self.import(file_path)
-#  spreadsheet = Roo::Spreadsheet.open(file, extension: :xls)
-  if not file.nil?
-    flash[:info] = "Начал обработку файла"
     spreadsheet = open_spreadsheet(file_path)
     spreadsheet.default_sheet = spreadsheet.sheets[0]
     (1..spreadsheet.last_row).each do |i|
@@ -55,7 +48,7 @@ def self.import(file_path)
           when 8 then '31.8.2015'
           when 7 then '31.7.2015'
           when 6 then '30.6.2015'
-          when 5 then '31.5.2015'
+          when 5 then '3  1.5.2015'
           when 4 then '30.4.2015'
           when 3 then '31.3.2015'
           when 2 then '28.2.2015'
@@ -67,8 +60,8 @@ def self.import(file_path)
       		  address.squeeze!(' ')
             address.strip!
           if Building.where("arrival_address = ? ", address).empty?
-#      			building = Building.create(arrival_address: address, name: company)
-      		else
+      			building = Building.create(arrival_address: address, name: company)
+      		else  
       			building = Building.where("arrival_address = ? ", address).first
       		end
       		if Buildingscontract.where("building_id = ? and contract_id = ?", building.id, contract.id).empty?
@@ -118,7 +111,7 @@ def self.import(file_path)
           address.squeeze!(' ')
           address.strip!
           if Building.where("arrival_address = ? ", address).empty?
-#            building = Building.create(arrival_address: address, name: company)
+            building = Building.create(arrival_address: address, name: company)
           else
             building = Building.where("arrival_address = ? ", address).first
           end
@@ -131,7 +124,6 @@ def self.import(file_path)
 #    product = find_by_id(row["id"]) || new
 #    product.attributes = row.to_hash.slice(*accessible_attributes)
 #    product.save!
-     end
   end
 end
 
