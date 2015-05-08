@@ -75,6 +75,7 @@ var exportTools = {
 					"sButtonText": "Экспорт",
 					"bFooter": false,
 					"sCharSet" : "utf16le",
+					"sFieldSeperator": ";",
 					"bSelectedOnly" : true,
 					"oSelectorOpts": {        filter: "applied"    }
 				}

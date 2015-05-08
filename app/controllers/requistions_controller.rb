@@ -303,7 +303,7 @@ class RequistionsController < ApplicationController
 		end
 
 		def requistion_update_attributes
-			params.require(:requistion).permit(:contract_id, :time_deadline, :requistion_comment)
+			params.require(:requistion).permit(:time_deadline, :requistion_comment)
 		end
 
 		def send_to_boss(worker_id)
