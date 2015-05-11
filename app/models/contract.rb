@@ -14,7 +14,7 @@ class Contract < ActiveRecord::Base
     time = time ? time.strftime("%d.%m.%Y") : "Нет данных"
   end
   
-  def parse_begin_time(begin_time_in_russian)
+  def self.parse_begin_time(begin_time_in_russian)
     case begin_time_in_russian
           when 'с января'
             '01.01.2015'
@@ -44,8 +44,8 @@ class Contract < ActiveRecord::Base
     end
   end
 
-  def parse_end_time(end_month)
-    case begin_time_in_russian
+  def self.parse_end_time(end_month)
+    case end_month
           when 12
             '31.12.2015'
           when 11
