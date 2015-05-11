@@ -32,6 +32,11 @@ class BuildingsController < ApplicationController
 		@building = Building.new
 	end
 
+	def edit
+		@building = Building.find(params[:id])
+		render 'new'
+	end
+
 	def show
 		@building = Building.find(params[:id])
 		if current_user.worker?
@@ -65,7 +70,7 @@ class BuildingsController < ApplicationController
 			building_id: params[:id],
 			date: Time.now.to_s)
 
-  #   	if current_user.arrivals.where("date between date('now') AND date('now')").count==0
+	#   	if current_user.arrivals.where("date between date('now') AND date('now')").count==0
 		# 	arrival.update_attributes(begin_or_end: 0)
 		# end
 		if requistion_for_buidings.size != 0
@@ -95,7 +100,7 @@ class BuildingsController < ApplicationController
 			check_type: "check_out",
 			building_id: params[:id],
 			date: Time.now.to_s)
-    	if Time.zone.now.strftime("%H").to_i<=7 and Time.zone.now.strftime("%H").to_i>=5
+			if Time.zone.now.strftime("%H").to_i<=7 and Time.zone.now.strftime("%H").to_i>=5
 			arrival.update_attributes(begin_or_end: 1)
 		end
 #		pairs.each do |pair|
@@ -114,28 +119,30 @@ class BuildingsController < ApplicationController
 		@building = Building.find(params[:id])
 		@a = params[:building][:arrival_address]
 		if Building.where("arrival_address = ? ", @a).empty?
-	  		if @building.update_attributes(arrival_address: @a)
+			if @building.update_attributes(arrival_address: @a)
 				respond_with @building
-	 		else
+			else
 				flash[:success] = "Что-то пошло не так"
 				redirect_to current_user
-	  		end
-	  	else
-	  		building_new = Building.where("arrival_address = ? ", @a).first
-	  		for requistion in @building.requistions
-	  			requistion.update_attributes(building_id: building_new.id)
-	  		end
-	  		for arrival in @building.arrivals
-	  			arrival.update_attributes(building_id: building_new.id)
-	  		end
-	  		for contract in @building.contracts
-	  			if Buildingscontract.where("building_id = ? and contract_id = ?", building_new.id, contract.id).empty?
-            		Buildingscontract.create(building_id: building_new.id, contract_id: contract.id)
-            	end
-            end
-            @building.contracts.destroy_all
-            @building.destroy
-	  	end
+			end
+		else
+			building_new = Building.where("arrival_address = ? ", @a).first
+			for requistion in @building.requistions
+				requistion.update_attributes(building_id: building_new.id)
+			end
+			for arrival in @building.arrivals
+				arrival.update_attributes(building_id: building_new.id)
+			end
+			for contract in @building.contracts
+				if Buildingscontract.where("building_id = ? and contract_id = ?", building_new.id, contract.id).empty?
+							Buildingscontract.create(building_id: building_new.id, contract_id: contract.id)
+						end
+					end
+					@building.contracts.destroy_all
+					@building.destroy
+				respond_with @building
+		end
+
 	end
 
 	private
