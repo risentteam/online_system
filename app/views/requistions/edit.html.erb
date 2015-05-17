@@ -6,7 +6,7 @@
         <div class="form-group">
           <label class="col-md-3 control-label">Объект</label>
           <div class="col-md-5">
-          <input class="form-control" type="text" placeholder="<%= @requistion.building.name %>" readonly></input>
+          <input class="form-control" type="text" placeholder="<%= @requistion.building.name %>"></input>
           </div>
         </div>
       </div>
@@ -15,7 +15,7 @@
         <div class="form-group">
           <label class="col-md-3 control-label">Адрес вызова</label>
           <div class="col-md-5">
-            <input class="form-control" type="text" placeholder="<%= @requistion.building.arrival_address %>" readonly></input>
+            <input class="form-control" type="text" placeholder="<%= @requistion.building.arrival_address %>"></input>
           </div>
         </div>
       </div>
@@ -28,7 +28,7 @@
         <div class="form-group">
           <label class="col-md-3 control-label">Контактное лицо</label>
           <div class="col-md-5">
-          <input class="form-control" type="text" placeholder="<%= @requistion.contact_name %>" readonly></input>
+          <input class="form-control" type="text" placeholder="<%= @requistion.contact_name %>"></input>
         </div>
         </div>
       </div>
@@ -37,7 +37,7 @@
         <div class="form-group">
           <label class="col-md-3 control-label">Тип заявки</label>
           <div class="col-md-5">
-            <input class="form-control" type="text" placeholder="<%= transcript_of_the_messages(@requistion.type_requistion) %>" readonly></input>
+            <input class="form-control" type="text" placeholder="<%= transcript_of_the_messages(@requistion.type_requistion) %>"></input>
           </div>
         </div>
       </div>
@@ -47,7 +47,7 @@
         <div class="form-group">
           <label class="col-md-3 control-label">Время заявки</label>
           <div class="col-md-5">
-            <input class="form-control" type="text" placeholder="<%= Russian::strftime(@requistion.created_at, "%e %B %Y %H:%M") %>" readonly></input>
+            <input class="form-control" type="text" placeholder="<%= Russian::strftime(@requistion.created_at, "%e %B %Y %H:%M") %>"></input>
           </div>
         </div>
       </div>
@@ -56,7 +56,7 @@
         <div class="form-group">
           <label class="col-md-3 control-label">Контактный телефон</label>
           <div class="col-md-5">
-            <input class="form-control" type="text" placeholder="<%= @requistion.contact_phone %>" readonly></input>
+            <input class="form-control" type="text" placeholder="<%= @requistion.contact_phone %>"></input>
           </div>
         </div>
       </div>
