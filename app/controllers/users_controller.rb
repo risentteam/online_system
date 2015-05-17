@@ -44,9 +44,9 @@ class UsersController < ApplicationController
 		type = user.status
 		user.destroy
 		flash[:success] = "User deleted."
-		if type == 2
+		if type == '2'
 			redirect_to '/users'
-		elsif type == 1
+		elsif type == '1'
 			redirect_to '/admins'
 		else
 			redirect_to '/workers'
