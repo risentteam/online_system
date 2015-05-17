@@ -85,6 +85,8 @@ class Contract < ActiveRecord::Base
         else
           company = row[3]
         end
+        company.squeeze!(' ,.')
+        company.strip!
         btime = parse_begin_time(row[5])
         etime = parse_end_time(row[8])
         if Contract.where("name_contract = ? ", row[1].to_s).empty?
@@ -97,12 +99,11 @@ class Contract < ActiveRecord::Base
         adress.each do |address|
       		address.squeeze!(' ,.')
           address.strip!
-          company.squeeze!(' ,.')
-          company.strip!
-          if Building.where("arrival_address = ? ", address).empty?
-            building = Building.create(arrival_address: address, name: company)
+          address_without_special_symbol = a.gsub(/([\-\/,.;: ])/, '')
+          if Building.where("address_without_special_symbol = ? ", address_without_special_symbol).empty?
+            building = Building.create(arrival_address: address, name: company, address_without_special_symbol: address_without_special_symbol)
       		else  
-      			building = Building.where("arrival_address = ? ", address).first
+      			building = Building.where("address_without_special_symbol = ? ", address_without_special_symbol).first
       		end
       		if Buildingscontract.where("building_id = ? and contract_id = ?", building.id, contract.id).empty?
             Buildingscontract.create(building_id: building.id, contract_id: contract.id)

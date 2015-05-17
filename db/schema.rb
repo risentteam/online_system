@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150417185652) do
+ActiveRecord::Schema.define(version: 20150517161529) do
 
   create_table "arrivals", force: true do |t|
     t.integer  "user_id",      null: false
@@ -37,13 +37,14 @@ ActiveRecord::Schema.define(version: 20150417185652) do
   end
 
   create_table "buildings", force: true do |t|
-    t.string   "name",            default: "Не указано"
+    t.string   "name",                           default: "Не указано"
     t.string   "arrival_address"
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "contact_phone"
     t.string   "contact_name"
+    t.string   "address_without_special_symbol"
   end
 
   create_table "buildingscontracts", force: true do |t|
@@ -55,6 +56,7 @@ ActiveRecord::Schema.define(version: 20150417185652) do
   add_index "buildingscontracts", ["contract_id"], name: "index_buildingscontracts_on_contract_id"
 
   create_table "contracts", force: true do |t|
+    t.integer  "contract_id"
     t.string   "company"
     t.datetime "date_of_signing"
     t.integer  "user_id"
