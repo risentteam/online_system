@@ -99,7 +99,7 @@ class Contract < ActiveRecord::Base
         adress.each do |address|
       		address.squeeze!(' ,.')
           address.strip!
-          address_without_special_symbol = a.gsub(/([\-\/,.;: ])/, '')
+          address_without_special_symbol = address.gsub(/([\-\/,.;: ])/, '')
           if Building.where("address_without_special_symbol = ? ", address_without_special_symbol).empty?
             building = Building.create(arrival_address: address, name: company, address_without_special_symbol: address_without_special_symbol)
       		else  
