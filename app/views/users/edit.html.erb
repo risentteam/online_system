@@ -27,7 +27,7 @@
 
 			<div class="form-group">
 				<label>Начальник участка</label>
-				<%= f.collection_select(:boss_id, Boss.all, :id, :name), {:class => 'prevent_collapse'} %>
+				<%= f.collection_select :boss_id, Boss.all, :id, :name, {:class => 'prevent_collapse'} %>
 			</div>
 
 		<% end %>
