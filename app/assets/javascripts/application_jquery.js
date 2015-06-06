@@ -103,7 +103,7 @@ var exportToolsforWoker = {
 
 var domValue =
 		"<'row'<'col-xs-8'><'col-xs-4'r>><'row'<'col-xs-4 archiver'TC><'col-xs-1 '><'col-xs-5'><'col-xs-1'>><'row'<'col-xs-1'f><'col-xs-10'><'col-xs-1'l>>" +
-		"<'row'<'col-xs-1'><'col-xs-10 table-wrapper't><'col-xs-1'>>" +
+		"<'row'<'col-xs-12 table-wrapper't>>" +
 		"<'row'<'col-xs-1'><'col-xs-10'p><'col-xs-1'>>"
 		"<'row'<'col-xs-4'i><'col-xs-6'><'col-xs-1'><'col-xs-1'>>";
 
