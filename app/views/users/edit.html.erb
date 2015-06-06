@@ -27,7 +27,7 @@
 
 			<div class="form-group">
 				<label>Начальник участка</label>
-				<%= options_from_collection_for_select(Bosses.all, :id, :name) %>
+				<%= options_from_collection_for_select(Boss.all, :id, :name) %>
 			</div>
 
 		<% end %>
