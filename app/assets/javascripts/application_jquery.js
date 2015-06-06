@@ -112,7 +112,7 @@ var domValue =
 addToMain(function(){
 	var pos = $.getUrlVars()['position'];
 	var value = $.getUrlVars()['value'];
-	if (pos == '11')
+	if (pos == '10')
 	{
 
 		if (value=='%D0%97%D0%B0%D0%B2%D0%B5%D1%80%D1%88%D0%B5%D0%BD%D0%BE')
