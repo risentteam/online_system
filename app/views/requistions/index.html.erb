@@ -58,7 +58,7 @@
 </td>
 			<td><%= status_names[requistion.status.to_sym] %></td>
 			<td><%= link_to 'Принять', {controller: :requistions, action: :close, id: requistion.id }, class: "btn btn-inverse" if requistion.status=='done' %> </td>
-			<td><% requistion.users.where('status = 0').each do |user|%> <li><%= user.name%></li> <% end %></td>
+			<td><% requistion.users.where('status = 0').each do |user|%> <li><%=link_to user.name, user_path(user)%></li> <% end %></td>
 			<td><%= requistion.time_deadline.strftime("%d.%m.%Y %H:%M") if requistion.time_deadline %></td>
 			<td><%= requistion.raiting %></td>
 			<td>
