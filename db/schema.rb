@@ -103,19 +103,18 @@ ActiveRecord::Schema.define(version: 20150517161529) do
   add_index "pairs", ["user_id"], name: "index_pairs_on_user_id"
 
   create_table "requistions", force: true do |t|
-    t.integer  "status",               limit: 255, default: 0
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
-    t.string   "contact_name",                                 null: false
-    t.string   "contact_phone",                                null: false
-    t.string   "type_requistion",                              null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "contact_name",                     null: false
+    t.string   "contact_phone",                    null: false
+    t.string   "type_requistion",                  null: false
     t.string   "info"
     t.integer  "building_id"
     t.string   "subtype_requistions"
     t.string   "requistion_comment"
     t.integer  "category"
     t.integer  "contract_id"
-    t.integer  "raiting",                          default: 0
+    t.integer  "raiting",              default: 0
     t.datetime "time_assgned"
     t.datetime "time_adopted_in_work"
     t.datetime "time_running"

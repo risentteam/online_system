@@ -1,13 +1,14 @@
 <% provide(:title, 'Подача заявки') %>
 <div class="container">
 <h1>Электронная заявка</h1>
-
+<div class='row'>
+	<div class="col-xs-8">
 	<%= form_for @requistion, :html => {:class => "form-vertical"} do |f| %>
 		<div class="row">
 			<div class="form-group">
 					<label class=" col-xs-3">Объект</label>
 
-					<div  class="col-xs-5">
+					<div  class="col-xs-8">
 					<select required id="building_name" name="name" style="width: 100%">
 						<%=	options_for_select(@list.collect {|p| [ p.name ] }.uniq ) %>
 					</select>
@@ -23,7 +24,7 @@
 		<div class="row">
 			<div class="form-group">
 				<label class=" col-xs-3">Адрес</label>
-				<div class="col-xs-5">
+				<div class="col-xs-8">
 					<select required id="building_id" name="requistion[building_id]" style="width: 100%">
 					</select>
 
@@ -34,19 +35,12 @@
 					  	<span class="glyphicon glyphicon-remove"></span>
 					</button>
 				</div>
-
 			</div>
 		</div>
-
-	 	<div class="row" id="table_contracts_in_new">
-  				<%= render :partial => 'table_contract', :object => @list_contract %>
-		</div>
-
-
 	 	<div class="row">
 			<div class="form-group">
 				<label class=" col-xs-3">ФИО контактного лица заказчика</label>
-				<div class="col-xs-5">
+				<div class="col-xs-8">
 				<%= f.text_field :contact_name, :placeholder =>"Введите контактное лицо", class: "form-control", required: "" %>
 				</div>
 			</div>
@@ -54,7 +48,7 @@
 		<div class="row">
 			<div class="form-group">
 				<label class=" col-xs-3">Должность контактного лица</label>
-				<div class="col-xs-5">
+				<div class="col-xs-8">
 				<%= f.text_field :deputy, :placeholder =>"Введите должность", class: "form-control" %>
 
 				</div>
@@ -63,7 +57,7 @@
 		<div class="row">
 			<div class="form-group">
 				<label class=" col-xs-3">Телефон контактного лица заказчика</label>
-				<div class="col-xs-5">
+				<div class="col-xs-8">
 				<%= f.text_field :contact_phone, :placeholder =>"Ввведите контактный телефон", class: "form-control phonemask", required: "" %>
 				</div>
 			</div>
@@ -73,7 +67,7 @@
 		<div class="row">
 			<div class="form-group">
 			<label class=" col-xs-3">Тип работ</label>
-			<div class="col-xs-5">
+			<div class="col-xs-8">
 				<%= f.select :type_requistion, [['Электроснабжение	', 'Э'],
 											['Слаботочка', 'C'],
 											['Бассеины', 'Б'],
@@ -84,19 +78,19 @@
 			</div>
 			</div>
 		</div>
-    <div class="row">
-        <div class="form-group">
-          <%= f.label :'Категория заявки:', class: "col-md-3 control-label" %>
-          <div class="col-md-5">
-            <%= f.select :category, [['Авария', 1], ['Неисправность', 2], ['Коррекция режима работы', 3], ['Иные работы', 4]], {:prompt => "Выберите из списка"}, {:class =>  "form-control", required: ""} %>
-          </div>
-        </div>
-    </div>
+	    <div class="row">
+	        <div class="form-group">
+	          <%= f.label :'Категория заявки:', class: "col-xs-3 control-label" %>
+	          <div class="col-xs-8">
+	            <%= f.select :category, [['Авария', 1], ['Неисправность', 2], ['Коррекция режима работы', 3], ['Иные работы', 4]], {:prompt => "Выберите из списка"}, {:class =>  "form-control", required: ""} %>
+	          </div>
+	        </div>
+	    </div>
 
 		<div class="row" id="info" style="display:none">
 			<div class="form-group" >
 			  <label class=" col-xs-3">Дополнительная информация</label>
-			  <div class="col-xs-5">
+			  <div class="col-xs-8">
 			  <%= f.text_field :info, :placeholder =>"Опишите проблему", class: "form-control"%>
 			</div>
 
@@ -106,7 +100,7 @@
 		<div class="row">
 			<div class="form-group">
 			  <label class=" col-xs-3">Комментарий</label>
-			  <div class="col-xs-5">
+			  <div class="col-xs-8">
 				<%= f.text_field :requistion_comment, :placeholder =>"Введите описание", class: "form-control"%>
 			</div>
 			</div>
@@ -117,7 +111,7 @@
 		<div class="row">
 			<div class="form-group">
 			<label class=" col-xs-3">Исполнители</label>
-				<div  class="col-xs-5">
+				<div  class="col-xs-8">
 				<select id="workers-select" name="workers[]" multiple  placeholder="Выберите исполнителей">
 				<%= options_for_select(User.worker.collect {|p| [ p.name, p.id ] })	%>
 
@@ -136,12 +130,19 @@
 
 		<div class="row">
 			<div class=" col-xs-3"></div>
-			<div class="col-xs-5">
+			<div class="col-xs-8">
 				<%= f.submit "Подать заявку", class: "btn" %>
 			</div>
 		</div>
 	<% end %>
+  	</div>
+  	 <div class ="col-xs-4">
+		<div class="row" id="table_contracts_in_new">
+  				<%= render :partial => 'table_contract', :object => @list_contract %>
+		</div>
+	</div>
   </div>
+</div>
 <script>
   $('button.clearbutton1').click (function() {
     $('#building_name').select2('val', null);
