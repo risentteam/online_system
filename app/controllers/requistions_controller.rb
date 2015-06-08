@@ -181,6 +181,12 @@ class RequistionsController < ApplicationController
 		end
 	end
 
+	def destroy
+		Requistion.find(params[:id]).destroy
+		flash[:success] = "Заявка удалена"
+		render 'index'
+	end
+
 	def index
 		@name = "Все заявки"
 		@requistions = Requistion.all.order(:created_at)
@@ -239,9 +245,7 @@ class RequistionsController < ApplicationController
 	def update
 		#Необходимо добавить проверку корректности данных
 		@requistion = Requistion.find(params[:id])
-		if @requistion.update_attributes(
-			requistion_update_attributes
-			)
+		if @requistion.update_attributes(requistion_update_attributes)
 
 			client = @requistion.users.client.first
 
@@ -303,7 +307,7 @@ class RequistionsController < ApplicationController
 		end
 
 		def requistion_update_attributes
-			params.require(:requistion).permit(:time_deadline, :requistion_comment)
+			params.require(:requistion).permit(:time_deadline, :requistion_comment, :contact_phone, :contact_name)
 		end
 
 		def send_to_boss(worker_id)

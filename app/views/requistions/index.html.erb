@@ -19,7 +19,7 @@
 				<% end %>
 <% end %>
 
-<table id="requistions" class="table table-wrapper">
+<table id="requistions" class="table table-bordered">
 	<thead>
 		<tr>
 			<th>Номер</th>
@@ -65,6 +65,9 @@
 			</td>
 			<td><%= link_to edit_requistion_path(requistion) do%>
 				<span class="glyphicon glyphicon-pencil " ></span>
+				<% end %>
+				<%= link_to requistion, method: :delete, data: { confirm: "Вы уверены, что хотите удалить?" } do%>
+					<span class="glyphicon glyphicon-trash" title="удалить"></span>
 				<% end %>
 			</td>
 		</tr>
