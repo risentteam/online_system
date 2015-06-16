@@ -109,7 +109,7 @@ var domValue =
 
 
 
-addToMain(function(){
+$(document).on('ready page:load', function(){
 	var pos = $.getUrlVars()['position'];
 	var value = $.getUrlVars()['value'];
 	if (pos == '10')
@@ -117,13 +117,14 @@ addToMain(function(){
 
 		if (value=='%D0%97%D0%B0%D0%B2%D0%B5%D1%80%D1%88%D0%B5%D0%BD%D0%BE')
 		{
-			$("select[rel="+pos+"]").find("option:contains('завершено')").attr("selected", "selected");
-			$("select[rel="+pos+"]").trigger('change');
+			$("select[rel='10']").find("option:contains('завершено')").attr("selected", "selected");
+			$("select[rel='10']").trigger('change');	
 		}
 		else
 		{
-			$("select[rel="+pos+"]").find("option:contains('Статус')").attr("selected", "selected");
-			$("select[rel="+pos+"]").trigger('change');
+			
+			$("select[rel='10']").find("option:contains('Статус')").attr("selected", "selected");
+			$("select[rel='10']").trigger('change');
 		}
 	}
 	else
