@@ -17,60 +17,37 @@ class Contract < ActiveRecord::Base
   def self.parse_begin_time(begin_time_in_russian)
     case begin_time_in_russian
           when 'с января'
-            '01.01.2015'
+            Date.new(2015, 1)
           when 'c февраля'
-            '01.02.2015'
+            Date.new(2015, 2)
           when 'с марта'
-            '01.03.2015'
+            Date.new(2015, 3)
           when 'с апреля'
-            '01.03.2015'
+            Date.new(2015, 4)
           when 'с мая'
-            '01.04.2015'
+            Date.new(2015, 5)
           when 'c июня'
-            '01.05.2015'
+            Date.new(2015, 6)
           when 'c июля'
-            '01.07.2015'
+            Date.new(2015, 7)
           when 'с августа'
-            '01.08.2015'
+            Date.new(2015, 8)
           when 'с сентября'
-            '01.09.2015'
+            Date.new(2015, 9)
           when 'с октября'
-            '01.10.2015'
+            Date.new(2015, 10)
           when 'с ноября'
-            '01.11.2015'
+            Date.new(2015, 11)
           when 'c декабря'
-            '01.12.2015'
-          else begin_time_in_russian
+            Date.new(2015, 12)
+          else Date.parse(begin_time_in_russian)
     end
   end
 
-  def self.parse_end_time(end_month)
-    case end_month
-          when 12
-            '31.12.2015'
-          when 11
-            '30.11.2015'
-          when 10
-            '31.10.2015'
-          when 9
-            '30.9.2015'
-          when 8
-            '31.8.2015'
-          when 7
-            '31.7.2015'
-          when 6
-            '30.6.2015'
-          when 5
-            '31.5.2015'
-          when 4
-            '30.4.2015'
-          when 3
-            '31.3.2015'
-          when 2
-            '28.2.2015'
-          when 1
-            '31.1.2015'
-          else end_month
+  def self.parse_end_time(btime, duration)
+    if duration
+      btime.next_month(duration)
+    else end_month
     end
   end
 

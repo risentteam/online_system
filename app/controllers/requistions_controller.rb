@@ -294,7 +294,6 @@ class RequistionsController < ApplicationController
 				(SELECT id FROM contracts t WHERE user_id = ?))", current_user[:id])
 		else
 			@list = Building.order("lower(name)").all
-
 		end
 	end
 
