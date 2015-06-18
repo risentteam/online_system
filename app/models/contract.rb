@@ -40,14 +40,13 @@ class Contract < ActiveRecord::Base
             Date.new(2015, 11)
           when 'c декабря'
             Date.new(2015, 12)
-          else Date.parse(begin_time_in_russian)
+#          else Date.parse(begin_time_in_russian)
     end
   end
 
   def self.parse_end_time(btime, duration)
-    if duration
+    if duration and not btime.nil?
       btime.next_month(duration)
-    else end_month
     end
   end
 
@@ -65,7 +64,7 @@ class Contract < ActiveRecord::Base
         company.squeeze!(' ,.')
         company.strip!
         btime = parse_begin_time(row[5])
-        etime = parse_end_time(row[8])
+        etime = parse_end_time(btime, row[8])
         if Contract.where("name_contract = ? ", row[1].to_s).empty?
           contract = Contract.create(name_contract: row[1].to_s, date_of_signing: row[6], description: row[7], begin_time: btime, end_time: etime, comment: row[9])
         else
@@ -94,7 +93,7 @@ class Contract < ActiveRecord::Base
   #  case File.extname(file.original_filename)
   #  when ".csv" then Roo::Csv.new(file.path, nil, :ignore)
   #  when ".xls" then Roo::Excel.new(file.path, nil, :ignore)
-    Roo::Excel.new(file_path, nil, :ignore)
+    Roo::Excel.new(file_path, packed: nil, file_warning: :ignore)
   #  when ".xlsx" then Roo::Excelx.new(file.path, nil, :ignore)
   #  else raise "Unknown file type: #{file.original_filename}"
   #  end

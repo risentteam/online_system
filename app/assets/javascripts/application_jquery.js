@@ -92,7 +92,7 @@ var exportToolsforWoker = {
 					"bFooter": false,
 					"sCharSet" : "cp1251",
 					"bSelectedOnly" : true,
-					"sFieldSeperator": ';',
+					"sFieldSeperator": ";",
 					"mColumns": [0,1,2,3,5],
 					"oSelectorOpts": {        filter: "applied"    }
 				}
